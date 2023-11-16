@@ -48,3 +48,54 @@
     --ring: 263.4 70% 50.4%;
   }
 }
+
+@layer base {
+  * {
+    @apply border-border m-0 p-0;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-[Inter];
+  }
+}
+
+@layer utilities {
+  .max-container {
+    @apply mx-auto max-w-3xl xl:max-w-5xl;
+  }
+
+  .padding-container {
+    @apply px-4 sm:px-6 xl:px-0;
+  }
+
+  .invert-colors {
+    @apply invert dark:invert-0;
+  }
+
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+
+  .text-bold {
+    @apply text-[18px] font-bold leading-[25.2px];
+  }
+
+  .text-medium {
+    @apply text-[18px] font-medium leading-[25.2px];
+  }
+
+  .logo-text-bold {
+    @apply text-[24px] font-bold leading-[31.2px];
+  }
+}
+
+.active-theme {
+  filter: invert(28%) sepia(97%) saturate(3413%) hue-rotate(252deg)
+    brightness(92%) contrast(102%);
+}
