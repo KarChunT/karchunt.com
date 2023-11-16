@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import ThemeProviders from "@/context/ThemeProviders";
 
 import "./globals.css";
+import NavBar from "@/components/shared/navbar/navBar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -21,8 +22,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable}`}>
-        <ThemeProviders>{children}</ThemeProviders>
+      <body className={`${inter.variable} h-full w-full antialiased`}>
+        <ThemeProviders>
+          <div className="max-container padding-container flex h-screen flex-col">
+            <NavBar />
+            <main className="relative grow">{children}</main>
+          </div>
+        </ThemeProviders>
       </body>
     </html>
   );
