@@ -6,6 +6,7 @@ import ThemeProviders from "@/context/ThemeProviders";
 
 import "./globals.css";
 import NavBar from "@/components/shared/navbar/navBar";
+import Footer from "@/components/shared/footer/footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
           <div className="max-container padding-container flex h-screen flex-col">
             <NavBar />
             <main className="relative grow">{children}</main>
+            <Footer />
           </div>
         </ThemeProviders>
       </body>
