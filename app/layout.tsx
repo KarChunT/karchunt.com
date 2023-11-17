@@ -1,6 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Arvo } from "next/font/google";
 
 import ThemeProviders from "@/context/ThemeProviders";
 
@@ -8,7 +8,11 @@ import "./globals.css";
 import NavBar from "@/components/shared/navbar/navBar";
 import Footer from "@/components/shared/footer/footer";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const arvo = Arvo({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-arvo",
+});
 
 export const metadata: Metadata = {
   title: "KarChunT",
@@ -23,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} h-full w-full antialiased`}>
+      <body className={`${arvo.className} h-full w-full antialiased`}>
         <ThemeProviders>
           <div className="max-container padding-container flex h-screen flex-col">
             <NavBar />

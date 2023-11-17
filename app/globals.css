@@ -57,7 +57,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-background text-foreground font-[Inter];
+    @apply bg-background text-foreground;
   }
 }
 
