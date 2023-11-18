@@ -74,8 +74,16 @@
     @apply invert dark:invert-0;
   }
 
+  .padding-y {
+    @apply sm:py-16 py-10;
+  }
+
   .flex-center {
     @apply flex items-center justify-center;
+  }
+
+  .flex-start {
+    @apply flex items-start justify-center;
   }
 
   .flex-between {
