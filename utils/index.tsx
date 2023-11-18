@@ -4,12 +4,10 @@ import { slug } from "github-slugger";
 export const descSortPosts = (posts: any[]) => {
   return posts
     .slice()
-    .sort((a, b) =>
-      compareDesc(parseISO(a.publishedAt), parseISO(b.publishedAt))
-    );
+    .sort((a, b) => compareDesc(parseISO(a.updatedAt), parseISO(b.updatedAt)));
 };
 
-export const getAllTags = (posts: any[]) => {
+export const getAllUniqueTags = (posts: any[]) => {
   const allTags = ["all"];
   for (let i = 0; i < posts.length; i++) {
     const postTags = posts[i].tags;
