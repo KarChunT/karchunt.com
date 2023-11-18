@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { format } from "date-fns";
 import Tag from "./tag";
+import { slug } from "github-slugger";
+import { Key } from "react";
 
 const Post = ({ post }) => {
   return (
@@ -9,8 +11,10 @@ const Post = ({ post }) => {
         <time className="text-gray-500">
           {format(new Date(post.publishedAt), "MMMM dd, yyyy")}
         </time>
-        {post.tags.map((tag, index) => (
-          <Tag key={index} tag={tag} />
+        {post.tags.map((tag: string, index: Key | null | undefined) => (
+          <div key={index}>
+            <Tag name={tag} tag={slug(tag)} />
+          </div>
         ))}
       </div>
       <div className="group relative">

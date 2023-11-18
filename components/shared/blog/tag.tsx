@@ -1,13 +1,11 @@
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 
-const Tag = ({ tag }) => {
+const Tag = ({ name, tag }: { name: string; tag: string }) => {
   return (
-    <Link
-      href={`tags/${tag}`}
-      className="relative z-10 rounded-full bg-primary px-3 py-1.5 font-medium text-primary-foreground hover:bg-primary/90"
-    >
-      {tag}
-    </Link>
+    <Badge className="py-1.5">
+      <Link href={`tags/${tag}`}>{name.toLowerCase()}</Link>
+    </Badge>
   );
 };
 
