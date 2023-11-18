@@ -12,9 +12,7 @@ const Post = ({ post }) => {
           {format(new Date(post.publishedAt), "MMMM dd, yyyy")}
         </time>
         {post.tags.map((tag: string, index: Key | null | undefined) => (
-          <div key={index}>
-            <Tag name={tag} tag={slug(tag)} />
-          </div>
+          <Tag key={index} name={tag} tag={slug(tag)} />
         ))}
       </div>
       <div className="group relative">
