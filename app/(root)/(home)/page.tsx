@@ -19,7 +19,7 @@ const Home = () => {
           Latest Posts
         </h2>
         <div className="mt-6 max-w-7xl">
-          <div className="mt-6 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-10 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+          <div className="mt-6 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-10 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             {posts.map((post, index) => (
               <article key={index}>
                 <Post post={post} />
