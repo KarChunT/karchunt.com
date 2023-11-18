@@ -16,7 +16,7 @@ const Post = defineDocumentType(() => ({
     description: {
       type: "string",
     },
-    publishedAt: {
+    updatedAt: {
       type: "date",
       required: true,
     },

@@ -9,7 +9,7 @@ const Post = ({ post }) => {
     <div className="flex max-w-xl flex-col items-start justify-between">
       <div className="flex items-center gap-x-4 text-xs">
         <time className="text-gray-500">
-          {format(new Date(post.publishedAt), "MMMM dd, yyyy")}
+          {format(new Date(post.updatedAt), "MMMM dd, yyyy")}
         </time>
         {post.tags.map((tag: string, index: Key | null | undefined) => (
           <Tag key={index} name={tag} tag={slug(tag)} />

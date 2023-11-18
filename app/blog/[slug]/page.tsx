@@ -13,7 +13,7 @@ const page = ({ params }) => {
       <div className="relative w-full">
         <div className="flex flex-col gap-4 text-center">
           <div className="flex-center gap-1 text-gray-500">
-            <time>{format(new Date(post.publishedAt), "MMMM dd, yyyy")}</time>
+            <time>{format(new Date(post.updatedAt), "MMMM dd, yyyy")}</time>
             <span>-</span>
             <span>{post?.readingTime.text.replace("read", "")}</span>
           </div>
