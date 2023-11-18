@@ -54,13 +54,13 @@ const MobileNav = () => {
         />
       </SheetTrigger>
       <SheetContent side="top" className="h-full w-full border-none">
-        <Link href="/" className="flex items-center gap-1">
+        <Link href="/" className="flex items-center gap-2">
           <Avatar>
             <AvatarImage
               width={48}
               height={48}
-              alt="IsPenguin"
-              src="/assets/icons/ispenguin.svg"
+              alt="karchunt"
+              src="/assets/images/karchunt.jpeg"
             />
             <AvatarFallback>KC</AvatarFallback>
           </Avatar>

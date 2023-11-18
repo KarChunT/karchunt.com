@@ -11,13 +11,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 const NavBar = () => {
   return (
     <nav className="flex-between relative z-50 w-full gap-5 py-5">
-      <Link href="/" className="flex items-center gap-1">
+      <Link href="/" className="flex items-center gap-2">
         <Avatar>
           <AvatarImage
             width={48}
             height={48}
-            alt="IsPenguin"
-            src="/assets/icons/ispenguin.svg"
+            alt="karchunt"
+            src="/assets/images/karchunt.jpeg"
           />
           <AvatarFallback>KC</AvatarFallback>
         </Avatar>
