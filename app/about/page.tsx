@@ -43,9 +43,9 @@ const page = () => {
           <Image
             src={aboutme?.avatar}
             alt="karchunt"
-            width={250}
-            height={250}
-            className="max-h-[250px] max-w-[250px] rounded-xl object-cover"
+            width={300}
+            height={400}
+            className="max-h-[400px] max-w-[300px] rounded-xl object-cover"
           />
         </div>
       </div>
