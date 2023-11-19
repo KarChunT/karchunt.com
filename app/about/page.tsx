@@ -1,6 +1,11 @@
 import Image from "next/image";
 import { allAbouts } from "@/.contentlayer/generated";
 import MDXContent from "@/components/shared/mdx/mdxcontent";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About me",
+};
 
 const page = () => {
   const aboutme = allAbouts.find(
