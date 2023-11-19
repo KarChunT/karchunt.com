@@ -34,7 +34,7 @@ const NavBar = () => {
           </Link>
         ))}
 
-        <SearchButton />
+        {/* <SearchButton /> */}
         <Theme />
         <MobileNav />
       </div>
