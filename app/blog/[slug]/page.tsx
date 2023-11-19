@@ -3,6 +3,41 @@ import { slug } from "github-slugger";
 import { allPosts } from "@/.contentlayer/generated";
 import Tag from "@/components/shared/blog/tag";
 import MDXContent from "@/components/shared/mdx/mdxcontent";
+import { siteMetaData } from "@/utils/siteMetaData";
+
+export async function generateStaticParams() {
+  return allPosts.map((post) => ({ slug: post._raw.flattenedPath }));
+}
+
+export async function generateMetadata({ params }) {
+  const post = allPosts.find(
+    (post) => post._raw.flattenedPath.replace("posts/", "") === params.slug
+  );
+
+  if (!post) {
+    return;
+  }
+
+  const publishedAt = new Date(post.publishedAt).toISOString();
+  const updatedAt = new Date(post.updatedAt).toISOString();
+
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      url: siteMetaData.siteUrl + post.url,
+      siteName: siteMetaData.title,
+      locale: "en_US",
+      type: "article",
+      publishedTime: publishedAt,
+      modifiedTime: updatedAt,
+      images: [siteMetaData.socialBanner],
+      authors: [siteMetaData.author],
+    },
+  };
+}
 
 const page = ({ params }: { params: any }) => {
   const post = allPosts.find(

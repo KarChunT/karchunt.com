@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Separator } from "../../ui/separator";
+import { siteMetaData } from "@/utils/siteMetaData";
 
 const Footer = () => {
   return (
@@ -10,7 +11,7 @@ const Footer = () => {
       <div className="flex-center flex-col gap-1 text-center">
         <p>© 2023 KarChunT. All rights reserved.</p>
         <div className="flex gap-1">
-          <Link href="https://github.com/karchunt">
+          <Link href={siteMetaData.github}>
             <Image
               src="/assets/icons/github.svg"
               alt="github"
@@ -19,7 +20,7 @@ const Footer = () => {
               height={24}
             />
           </Link>
-          <Link href="https://www.linkedin.com/in/karchuntan">
+          <Link href={siteMetaData.linkedin}>
             <Image
               src="/assets/icons/linkedin.svg"
               alt="linkedin"

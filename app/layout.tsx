@@ -7,6 +7,7 @@ import ThemeProviders from "@/context/ThemeProviders";
 import "./globals.css";
 import NavBar from "@/components/shared/navbar/navBar";
 import Footer from "@/components/shared/footer/footer";
+import { siteMetaData } from "@/utils/siteMetaData";
 
 const arvo = Arvo({
   weight: ["400", "700"],
@@ -15,9 +16,38 @@ const arvo = Arvo({
 });
 
 export const metadata: Metadata = {
-  title: "KarChunT",
-  description:
-    "I'm an Infrastructure and DevOps Engineer at Intel. I love to code and design software architecture.",
+  metadataBase: new URL(siteMetaData.siteUrl),
+  title: {
+    template: `%s | ${siteMetaData.title}`,
+    default: siteMetaData.title,
+  },
+  description: siteMetaData.description,
+  authors: [{ name: siteMetaData.author }],
+  creator: siteMetaData.author,
+  icons: {
+    icon: "/assets/images/karchunt-removebg.png",
+  },
+  openGraph: {
+    title: siteMetaData.title,
+    description: siteMetaData.description,
+    url: siteMetaData.siteUrl,
+    siteName: siteMetaData.title,
+    images: [siteMetaData.socialBanner],
+    locale: "en_US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: false,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
