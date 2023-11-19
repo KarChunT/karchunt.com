@@ -6,9 +6,31 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import GithubSlugger from "github-slugger";
 
+const About = defineDocumentType(() => ({
+  name: "About",
+  filePathPattern: "about/**/*.mdx",
+  contentType: "mdx",
+  fields: {
+    name: { type: "string", required: true },
+    avatar: { type: "string" },
+    job: { type: "string" },
+    company: { type: "string" },
+    email: { type: "string" },
+    linkedin: { type: "string" },
+    github: { type: "string" },
+    newsletter: { type: "string" },
+  },
+  computedFields: {
+    readingTime: {
+      type: "json",
+      resolve: (doc) => readingTime(doc.body.raw),
+    },
+  },
+}));
+
 const Post = defineDocumentType(() => ({
   name: "Post",
-  filePathPattern: "**/*.mdx",
+  filePathPattern: "posts/**/*.mdx",
   contentType: "mdx",
   fields: {
     title: {
@@ -33,7 +55,7 @@ const Post = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: "string",
-      resolve: (doc) => `/blog/${doc._raw.flattenedPath}`,
+      resolve: (doc) => `/blog/${doc._raw.flattenedPath.replace("posts/", "")}`,
     },
     readingTime: {
       type: "json",
@@ -77,8 +99,8 @@ const codeOptions = {
 };
 
 export default makeSource({
-  contentDirPath: "posts",
-  documentTypes: [Post],
+  contentDirPath: "data",
+  documentTypes: [Post, About],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [

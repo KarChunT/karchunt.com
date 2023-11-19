@@ -1,12 +1,13 @@
-import { useMDXComponent } from "next-contentlayer/hooks";
 import { format } from "date-fns";
 import { slug } from "github-slugger";
 import { allPosts } from "@/.contentlayer/generated";
 import Tag from "@/components/shared/blog/tag";
+import MDXContent from "@/components/shared/mdx/mdxcontent";
 
 const page = ({ params }: { params: any }) => {
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
-  const MDXContent = useMDXComponent(post.body.code);
+  const post = allPosts.find(
+    (post) => post._raw.flattenedPath.replace("posts/", "") === params.slug
+  );
 
   return (
     <article className="py-4 sm:py-10">
@@ -70,7 +71,7 @@ const page = ({ params }: { params: any }) => {
             ))}
           </ul> */}
 
-          <MDXContent />
+          <MDXContent data={post} />
         </div>
       </div>
     </article>
