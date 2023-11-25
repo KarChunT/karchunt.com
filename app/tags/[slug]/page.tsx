@@ -2,8 +2,6 @@ import PostCardLayout from "@/components/shared/blog/postCardLayout";
 import { allPosts } from "@/.contentlayer/generated";
 import { descSortPosts } from "@/utils";
 import { slug } from "github-slugger";
-import { siteMetaData } from "@/utils/siteMetaData";
-import post from "@/components/shared/blog/post";
 
 export async function generateStaticParams() {
   const tags = [];
