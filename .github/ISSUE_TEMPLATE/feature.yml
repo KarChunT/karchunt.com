@@ -1,0 +1,27 @@
+name: Feature Request
+description: File a new feature request
+title: "[Feature]: "
+labels: ["feature"]
+assignees:
+  - KarChunT
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this feature request!
+  - type: input
+    id: feature-name
+    attributes:
+      label: Feature Name
+      description: New feature name to be added into this website.
+      placeholder: ex. Search bar
+    validations:
+      required: true
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: New feature description (Specific).
+      placeholder: A search bar that can search for any blog posts.
+    validations:
+      required: false
