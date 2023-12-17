@@ -21,7 +21,12 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PRODUCTION: true
+      REPOSITORY: ${{ github.event.repository.name }}
     steps:
+      - name: output
+        run: echo "$REPOSITORY"
       - name: Checkout
         uses: actions/checkout@v4
 
