@@ -49,7 +49,9 @@ const page = ({ params }: { params: any }) => {
       <div className="relative w-full">
         <div className="flex flex-col gap-4 text-center">
           <div className="flex-center gap-1 text-gray-500">
-            <time>{format(new Date(post.updatedAt), "MMMM dd, yyyy")}</time>
+            <time>
+              Updated on {format(new Date(post.updatedAt), "MMMM dd, yyyy")}
+            </time>
             <span>-</span>
             <span>{post?.readingTime.text.replace("read", "")}</span>
           </div>
@@ -63,6 +65,7 @@ const page = ({ params }: { params: any }) => {
               <Tag key={index} name={tag} tag={slug(tag)} />
             ))}
           </div>
+          <p>{post?.description}</p>
         </div>
       </div>
 
@@ -83,29 +86,6 @@ const page = ({ params }: { params: any }) => {
           prose-code:after:content-['']
           prose-li:marker:text-primary"
         >
-          {/* <h2 id="introduction">
-            Introduction
-            <Link href="#introduction">
-              <span className="text-[0.8rem]">#</span>
-            </Link>
-          </h2> */}
-          {/* {post?.description} */}
-
-          {/* toc */}
-          {/* <ul>
-            {post?.toc.map((heading) => (
-              <li key={`#${heading.slug}`}>
-                <a
-                  href={`#${heading.slug}`}
-                  data-level={heading.level}
-                  className="no-underline data-[level=five]:pl-12 data-[level=four]:pl-8 data-[level=one]:pl-0 data-[level=six]:pl-16 data-[level=three]:pl-4 data-[level=two]:pl-0"
-                >
-                  <span className="hover:underline">{heading.text}</span>
-                </a>
-              </li>
-            ))}
-          </ul> */}
-
           <MDXContent data={post} />
         </div>
       </div>
