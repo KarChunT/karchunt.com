@@ -4,12 +4,13 @@ import { allPosts } from "@/.contentlayer/generated";
 import Tag from "@/components/shared/blog/tag";
 import MDXContent from "@/components/shared/mdx/mdxcontent";
 import { siteMetaData } from "@/utils/siteMetaData";
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({ slug: post._raw.flattenedPath }));
 }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }: { params: any }) {
   const post = allPosts.find(
     (post) => post._raw.flattenedPath.replace("posts/", "") === params.slug
   );
@@ -43,6 +44,10 @@ const page = ({ params }: { params: any }) => {
   const post = allPosts.find(
     (post) => post._raw.flattenedPath.replace("posts/", "") === params.slug
   );
+
+  if (!post) {
+    return notFound();
+  }
 
   return (
     <article className="py-4 sm:py-10">

@@ -4,7 +4,7 @@ import { descSortPosts } from "@/utils";
 import { slug } from "github-slugger";
 
 export async function generateStaticParams() {
-  const tags = [];
+  const tags: string[] = [];
   const paths = [{ slug: "all" }];
 
   allPosts.map((post) => {
@@ -21,13 +21,13 @@ export async function generateStaticParams() {
   return paths;
 }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }: { params: any }) {
   return {
     title: `Tag: ${params.slug.replaceAll("-", " ")}`,
   };
 }
 
-const page = ({ params }) => {
+const page = ({ params }: { params: any }) => {
   let posts = allPosts.filter((post) => {
     return post.tags?.some((tag) => {
       const slugified = slug(tag);
