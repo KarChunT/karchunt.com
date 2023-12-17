@@ -2,7 +2,15 @@ import { compareDesc, parseISO } from "date-fns";
 import { slug } from "github-slugger";
 
 export const descSortPosts = (posts: any[]) => {
-  return posts
+  const publishedPosts = [];
+
+  for (let i = 0; i < posts.length; i++) {
+    if (posts[i].isPublished) {
+      publishedPosts.push(posts[i]);
+    }
+  }
+
+  return publishedPosts
     .slice()
     .sort((a, b) => compareDesc(parseISO(a.updatedAt), parseISO(b.updatedAt)));
 };
