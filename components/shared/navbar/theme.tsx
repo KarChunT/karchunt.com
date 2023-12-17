@@ -16,7 +16,7 @@ const Theme = () => {
     >
       {theme === "light" ? (
         <Image
-          src="/assets/icons/moon.svg"
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/icons/moon.svg`}
           alt="moon"
           width={24}
           height={24}
@@ -24,7 +24,7 @@ const Theme = () => {
         />
       ) : (
         <Image
-          src="/assets/icons/sun.svg"
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/icons/sun.svg`}
           alt="sun"
           width={24}
           height={24}

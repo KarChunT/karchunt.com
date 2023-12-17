@@ -46,7 +46,7 @@ const MobileNav = () => {
     <Sheet>
       <SheetTrigger asChild>
         <Image
-          src="/assets/icons/hamburger.svg"
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/icons/hamburger.svg`}
           alt="Menu"
           width={36}
           height={36}
@@ -60,7 +60,7 @@ const MobileNav = () => {
               width={48}
               height={48}
               alt="karchunt"
-              src="/assets/images/karchunt.jpeg"
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/images/karchunt.jpeg`}
             />
             <AvatarFallback>KC</AvatarFallback>
           </Avatar>

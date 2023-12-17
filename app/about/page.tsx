@@ -21,19 +21,19 @@ const page = () => {
           </h1>
           <div
             className="prose prose-lg mt-6 
-          max-w-max dark:prose-invert 
-          prose-blockquote:rounded-r-lg 
-          prose-blockquote:border-primary
-          prose-blockquote:bg-primary/30
-          prose-blockquote:p-2
-          prose-blockquote:px-6 
-          prose-code:rounded-md
-          prose-code:bg-[#282c34]
-          prose-code:p-[0.2em]
-          prose-code:text-white
-          prose-code:before:content-['']
-          prose-code:after:content-['']
-          prose-li:marker:text-primary"
+              max-w-max dark:prose-invert 
+              prose-blockquote:rounded-r-lg 
+              prose-blockquote:border-primary
+              prose-blockquote:bg-primary/30
+              prose-blockquote:p-2
+              prose-blockquote:px-6 
+              prose-code:rounded-md
+              prose-code:bg-[#282c34]
+              prose-code:p-[0.2em]
+              prose-code:text-white
+              prose-code:before:content-['']
+              prose-code:after:content-['']
+              prose-li:marker:text-primary"
           >
             <MDXContent data={aboutme} />
           </div>
@@ -41,7 +41,7 @@ const page = () => {
 
         <div className="relative flex">
           <Image
-            src="/assets/images/anotherme.png"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/images/anotherme.png`}
             alt="karchunt"
             width={300}
             height={400}

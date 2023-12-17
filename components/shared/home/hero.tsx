@@ -22,7 +22,7 @@ const Hero = () => {
 
       <div className="relative flex flex-1 justify-start md:justify-end">
         <Image
-          src="/assets/images/ispenguin-withbg.png"
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/images/ispenguin-withbg.png`}
           alt="IsPenguin"
           width={400}
           height={400}

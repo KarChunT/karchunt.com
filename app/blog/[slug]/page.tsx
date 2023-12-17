@@ -7,7 +7,9 @@ import { siteMetaData } from "@/utils/siteMetaData";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  return allPosts.map((post) => ({ slug: post._raw.flattenedPath }));
+  return allPosts.map((post) => ({
+    slug: post._raw.flattenedPath.replace("posts/", ""),
+  }));
 }
 
 export async function generateMetadata({ params }: { params: any }) {
@@ -22,6 +24,11 @@ export async function generateMetadata({ params }: { params: any }) {
   const publishedAt = new Date(post.publishedAt).toISOString();
   const updatedAt = new Date(post.updatedAt).toISOString();
 
+  const images = [siteMetaData.socialBanner];
+  const ogImages = images.map((img) => {
+    return { url: img.includes("http") ? img : siteMetaData.siteUrl + img };
+  });
+
   return {
     title: post.title,
     description: post.description,
@@ -34,7 +41,7 @@ export async function generateMetadata({ params }: { params: any }) {
       type: "article",
       publishedTime: publishedAt,
       modifiedTime: updatedAt,
-      images: [siteMetaData.socialBanner],
+      images: ogImages,
       authors: [siteMetaData.author],
     },
   };

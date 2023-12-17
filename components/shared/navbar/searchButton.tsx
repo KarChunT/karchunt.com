@@ -5,7 +5,7 @@ const SearchButton = () => {
   return (
     <div>
       <Image
-        src="/assets/icons/search.svg"
+        src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/icons/search.svg`}
         width={24}
         height={24}
         alt="Search"

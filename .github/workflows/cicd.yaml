@@ -22,8 +22,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PRODUCTION: true
-      REPOSITORY: ${{ github.event.repository.name }}
+      NEXT_PUBLIC_BASE_PATH: "" #"/${{ github.event.repository.name }}"
+      NEXT_PUBLIC_ASSET_PREFIX: "" #"/${{ github.event.repository.name }}/"
+      NEXT_PUBLIC_HAS_DOMAIN: "true"
     steps:
       - name: Checkout
         uses: actions/checkout@v4

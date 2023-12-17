@@ -13,7 +13,7 @@ const Footer = () => {
         <div className="flex gap-1">
           <Link href={siteMetaData.github}>
             <Image
-              src="/assets/icons/github.svg"
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/icons/github.svg`}
               alt="github"
               className="github-icon"
               width={24}
@@ -22,7 +22,7 @@ const Footer = () => {
           </Link>
           <Link href={siteMetaData.linkedin}>
             <Image
-              src="/assets/icons/linkedin.svg"
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/icons/linkedin.svg`}
               alt="linkedin"
               width={24}
               height={24}

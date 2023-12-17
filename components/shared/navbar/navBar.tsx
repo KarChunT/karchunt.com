@@ -17,7 +17,7 @@ const NavBar = () => {
             width={48}
             height={48}
             alt="karchunt"
-            src="/assets/images/karchunt.jpeg"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/images/karchunt.jpeg`}
           />
           <AvatarFallback>KC</AvatarFallback>
         </Avatar>

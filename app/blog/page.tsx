@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 
 const page = () => {
   const posts = descSortPosts(allPosts);
+  console.info(posts);
   return <PostCardLayout header="Posts" posts={posts} />;
 };
 
