@@ -41,7 +41,7 @@ const page = () => {
 
         <div className="relative flex">
           <Image
-            src={aboutme?.avatar}
+            src="/assets/images/anotherme.png"
             alt="karchunt"
             width={300}
             height={400}

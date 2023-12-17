@@ -2,7 +2,7 @@
 
 import Hero from "@/components/shared/home/hero";
 import Newsletter from "@/components/shared/home/newsletter";
-import Post from "@/components/shared/blog/post";
+import BlogPost from "@/components/shared/blog/blogPost";
 
 import { allPosts } from "@/.contentlayer/generated";
 import { descSortPosts } from "@/utils";
@@ -22,7 +22,7 @@ const Home = () => {
           <div className="mt-6 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-10 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             {posts.map((post, index) => (
               <article key={index}>
-                <Post post={post} />
+                <BlogPost post={post} />
               </article>
             ))}
           </div>

@@ -3,15 +3,16 @@ import { format } from "date-fns";
 import Tag from "./tag";
 import { slug } from "github-slugger";
 import { Key } from "react";
+import { Post } from "@/.contentlayer/generated";
 
-const Post = ({ post }) => {
+const BlogPost = ({ post }: { post: Post }) => {
   return (
     <div className="flex max-w-xl flex-col items-start justify-between">
       <div className="flex items-center gap-x-4 text-xs">
         <time className="text-gray-500">
           {format(new Date(post.updatedAt), "MMMM dd, yyyy")}
         </time>
-        {post.tags.map((tag: string, index: Key | null | undefined) => (
+        {post.tags?.map((tag: string, index: Key | null | undefined) => (
           <Tag key={index} name={tag} tag={slug(tag)} />
         ))}
       </div>
@@ -30,4 +31,4 @@ const Post = ({ post }) => {
   );
 };
 
-export default Post;
+export default BlogPost;

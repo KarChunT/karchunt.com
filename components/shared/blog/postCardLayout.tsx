@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { allPosts } from "@/.contentlayer/generated";
+import { Post, allPosts } from "@/.contentlayer/generated";
 import { getAllUniqueTags } from "@/utils";
-import Post from "./post";
+import BlogPost from "./blogPost";
 
-const PostCardLayout = ({ header, posts }) => {
+const PostCardLayout = ({ header, posts }: { header: string, posts: Post[] }) => {
   const tags = getAllUniqueTags(allPosts);
 
   return (
@@ -33,7 +33,7 @@ const PostCardLayout = ({ header, posts }) => {
         <div className="mt-6 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           {posts.map((post, index) => (
             <article key={index}>
-              <Post post={post} />
+              <BlogPost post={post} />
             </article>
           ))}
         </div>
