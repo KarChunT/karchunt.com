@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   description: siteMetaData.description,
   authors: [{ name: siteMetaData.author }],
   creator: siteMetaData.author,
-  icons: {
-    icon: `${process.env.NEXT_PUBLIC_BASE_PATH}/assets/images/karchunt-removebg.png`,
-  },
+  // icons: {
+  //   icon: `${process.env.NEXT_PUBLIC_BASE_PATH}/assets/images/karchunt-removebg.png`,
+  // },
   openGraph: {
     title: siteMetaData.title,
     description: siteMetaData.description,
