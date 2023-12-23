@@ -13,7 +13,7 @@ const page = () => {
   );
 
   return (
-    <div className="py-4 sm:py-10 ">
+    <div className="py-4 sm:py-10">
       <div className="mt-4 flex flex-col justify-between gap-4 md:flex-row">
         <div className="flex flex-1 flex-col pr-0 md:pr-4">
           <h1 className="text-[40px] font-bold leading-tight md:text-5xl">

@@ -4,7 +4,13 @@ import { Post, allPosts } from "@/.contentlayer/generated";
 import { getAllUniqueTags } from "@/utils";
 import BlogPost from "./blogPost";
 
-const PostCardLayout = ({ header, posts }: { header: string, posts: Post[] }) => {
+const PostCardLayout = ({
+  header,
+  posts,
+}: {
+  header: string;
+  posts: Post[];
+}) => {
   const tags = getAllUniqueTags(allPosts);
 
   return (
