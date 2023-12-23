@@ -21,6 +21,7 @@ const Theme = () => {
           width={24}
           height={24}
           className="active-theme"
+          priority
         />
       ) : (
         <Image
@@ -29,6 +30,7 @@ const Theme = () => {
           width={24}
           height={24}
           className="active-theme"
+          priority
         />
       )}
     </button>

@@ -51,6 +51,7 @@ const MobileNav = () => {
           width={36}
           height={36}
           className="invert-colors hover:cursor-pointer sm:hidden"
+          priority
         />
       </SheetTrigger>
       <SheetContent side="top" className="h-full w-full border-none">
