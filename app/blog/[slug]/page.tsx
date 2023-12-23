@@ -56,34 +56,57 @@ const page = ({ params }: { params: any }) => {
     return notFound();
   }
 
+  const images = [siteMetaData.socialBanner];
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: post.title,
+    description: post.description,
+    image: images,
+    datePublished: new Date(post.publishedAt).toISOString(),
+    dateModified: new Date(post.updatedAt).toISOString(),
+    author: [
+      {
+        "@type": "Person",
+        name: siteMetaData.author,
+        url: siteMetaData.linkedin,
+      },
+    ],
+  };
+
   return (
-    <article className="py-4 sm:py-10">
-      <div className="relative w-full">
-        <div className="flex flex-col gap-4 text-center">
-          <div className="flex-center gap-1 text-gray-500">
-            <time>
-              Updated on {format(new Date(post.updatedAt), "MMMM dd, yyyy")}
-            </time>
-            <span>-</span>
-            <span>{post?.readingTime.text.replace("read", "")}</span>
-          </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <article className="py-4 sm:py-10">
+        <div className="relative w-full">
+          <div className="flex flex-col gap-4 text-center">
+            <div className="flex-center gap-1 text-gray-500">
+              <time>
+                Updated on {format(new Date(post.updatedAt), "MMMM dd, yyyy")}
+              </time>
+              <span>-</span>
+              <span>{post?.readingTime.text.replace("read", "")}</span>
+            </div>
 
-          <h1 className="text-[40px] font-bold capitalize leading-tight md:text-5xl">
-            {post?.title}
-          </h1>
+            <h1 className="text-[40px] font-bold capitalize leading-tight md:text-5xl">
+              {post?.title}
+            </h1>
 
-          <div className="flex-center flex-wrap gap-3">
-            {post?.tags?.map((tag, index) => (
-              <Tag key={index} name={tag} tag={slug(tag)} />
-            ))}
+            <div className="flex-center flex-wrap gap-3">
+              {post?.tags?.map((tag, index) => (
+                <Tag key={index} name={tag} tag={slug(tag)} />
+              ))}
+            </div>
+            <p>{post?.description}</p>
           </div>
-          <p>{post?.description}</p>
         </div>
-      </div>
 
-      <div className="mt-8">
-        <div
-          className="prose prose-lg 
+        <div className="mt-8">
+          <div
+            className="prose prose-lg 
           max-w-max dark:prose-invert 
           prose-blockquote:rounded-r-lg 
           prose-blockquote:border-primary
@@ -97,11 +120,12 @@ const page = ({ params }: { params: any }) => {
           prose-code:before:content-['']
           prose-code:after:content-['']
           prose-li:marker:text-primary"
-        >
-          <MDXContent data={post} />
+          >
+            <MDXContent data={post} />
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
+    </>
   );
 };
 
