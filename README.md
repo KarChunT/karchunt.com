@@ -14,7 +14,7 @@ This [repository](https://github.com/KarChunT/karchunt.com) and [website](https:
 
 ## Blog Posts
 
-- Will update once it is available
+- [Setup Self-Hosted GitHub Runner](https://karchunt.com/blog/setup-self-hosted-github-runner)
 
 ## License
 
