@@ -31,6 +31,7 @@ const Hero = () => {
                   (max-width: 1280px) 50vw,
                   (max-width: 1536px) 33vw,
                   25vw"
+          priority
         />
       </div>
     </section>

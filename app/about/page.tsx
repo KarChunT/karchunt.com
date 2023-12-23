@@ -46,6 +46,7 @@ const page = () => {
             width={300}
             height={400}
             className="max-h-[400px] max-w-[300px] rounded-xl object-cover"
+            priority
           />
         </div>
       </div>
