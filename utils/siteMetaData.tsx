@@ -1,4 +1,3 @@
-// edit this first
 export const siteMetaData = {
   title: "KarChunT",
   author: "Tan Kar Chun",
