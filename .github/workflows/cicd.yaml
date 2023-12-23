@@ -59,9 +59,6 @@ jobs:
       - name: Build with Next.js
         run: "npm run build"
 
-      - name: List public folder
-        run: "ls -la ./dist/"
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
