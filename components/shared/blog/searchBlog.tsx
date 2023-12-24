@@ -33,7 +33,7 @@ const SearchBlog = () => {
   }, [query, router, searchParams]);
 
   return (
-    <div>
+    <div className="flex-1">
       <Input
         type="text"
         placeholder="Post"
