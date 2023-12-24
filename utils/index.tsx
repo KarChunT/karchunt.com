@@ -1,5 +1,7 @@
 import { compareDesc, parseISO } from "date-fns";
 import { slug } from "github-slugger";
+import qs from "query-string";
+import { UrlQueryParams, RemoveUrlQueryParams } from "@/types";
 
 export const descSortPosts = (posts: any[]) => {
   const publishedPosts = [];
@@ -28,3 +30,31 @@ export const getAllUniqueTags = (posts: any[]) => {
   }
   return allTags;
 };
+
+export function urlQueryForm({ params, key, value }: UrlQueryParams) {
+  const currentUrl = qs.parse(params);
+  currentUrl[key] = value;
+
+  return qs.stringifyUrl(
+    {
+      url: window.location.pathname,
+      query: currentUrl,
+    },
+    { skipNull: true }
+  );
+}
+
+export function removeKeysFromQuery({ params, keys }: RemoveUrlQueryParams) {
+  const currentUrl = qs.parse(params);
+  keys.forEach((key) => {
+    delete currentUrl[key];
+  });
+
+  return qs.stringifyUrl(
+    {
+      url: window.location.pathname,
+      query: currentUrl,
+    },
+    { skipNull: true }
+  );
+}

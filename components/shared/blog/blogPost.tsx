@@ -12,9 +12,13 @@ const BlogPost = ({ post }: { post: Post }) => {
         <time className="text-gray-500">
           {format(new Date(post.updatedAt), "MMMM dd, yyyy")}
         </time>
-        {post.tags?.map((tag: string, index: Key | null | undefined) => (
-          <Tag key={index} name={tag} tag={slug(tag)} />
-        ))}
+
+        {/* display tags 0 >= 2 < 3 */}
+        {post.tags
+          ?.slice(0, 2)
+          .map((tag: string, index: Key | null | undefined) => (
+            <Tag key={index} name={tag} tag={slug(tag)} />
+          ))}
       </div>
       <div className="group relative">
         <h3 className="mt-3 text-lg font-semibold leading-6">

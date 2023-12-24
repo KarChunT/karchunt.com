@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import SearchButton from "./searchButton";
 import Theme from "./theme";
 import MobileNav from "./mobileNav";
 
@@ -34,7 +33,6 @@ const NavBar = () => {
           </Link>
         ))}
 
-        {/* <SearchButton /> */}
         <Theme />
         <MobileNav />
       </div>

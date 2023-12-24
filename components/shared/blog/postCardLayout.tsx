@@ -1,8 +1,7 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Post, allPosts } from "@/.contentlayer/generated";
-import { getAllUniqueTags } from "@/utils";
+import { Post } from "@/.contentlayer/generated";
 import BlogPost from "./blogPost";
+import SearchBlog from "./searchBlog";
+import TagFilter from "./tagFilter";
 
 const PostCardLayout = ({
   header,
@@ -11,27 +10,16 @@ const PostCardLayout = ({
   header: string;
   posts: Post[];
 }) => {
-  const tags = getAllUniqueTags(allPosts);
-
   return (
     <div className="py-4 sm:py-10">
-      <div className="flex max-w-4xl flex-col gap-4">
+      <div className="flex flex-col gap-4">
         <h1 className="mt-4 text-[40px] font-bold leading-tight md:text-5xl">
           {header}
         </h1>
 
-        <div className="break-words py-4">
-          <span className="flex flex-wrap gap-3">
-            {tags.map((tag, i) => (
-              <div key={i}>
-                <Button asChild className="rounded-full">
-                  <Link href={`/tags/${tag}`}>
-                    {tag.replace("-", " ").toLowerCase()}
-                  </Link>
-                </Button>
-              </div>
-            ))}
-          </span>
+        <div className="flex w-full flex-col gap-5 md:flex-row">
+          <SearchBlog />
+          <TagFilter />
         </div>
       </div>
 
