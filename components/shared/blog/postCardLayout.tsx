@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Post, allPosts } from "@/.contentlayer/generated";
 import { getAllUniqueTags } from "@/utils";
 import BlogPost from "./blogPost";
+import SearchBlog from "./searchBlog";
 
 const PostCardLayout = ({
   header,
@@ -33,6 +34,8 @@ const PostCardLayout = ({
             ))}
           </span>
         </div>
+
+        <SearchBlog />
       </div>
 
       <div className="mt-16 max-w-7xl">
