@@ -53,14 +53,21 @@ tags:
    ```
 
    Programmatically assign [labels](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/using-labels-with-self-hosted-runners) to a self-hosted runner is optional.
-
    Here is the sample configuration of the runner.
-   ![img4](/assets/posts/setup-self-hosted-github-runner/img4.png)
+
+   <Image
+     src="/assets/posts/setup-self-hosted-github-runner/img4.png"
+     alt="img4"
+     width="500"
+     height="500"
+   />
+
+   Verify your runner being setup.
    ![img5](/assets/posts/setup-self-hosted-github-runner/img5.png)
 
 6. Using your self-hosted runner. Create a new file under `.github/workflows/test.yaml`.
 
-   ```yaml {7} title="test.yaml"
+   ```yaml {6} caption="test.yaml"
    name: Test runner
    on:
       push:
