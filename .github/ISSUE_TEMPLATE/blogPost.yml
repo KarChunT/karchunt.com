@@ -1,0 +1,35 @@
+name: New Blog Post
+description: File new blog post content
+title: "[Blog Post]: "
+labels: ["blog post"]
+assignees:
+  - KarChunT
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this new blog post content!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: newBlogPost
+    attributes:
+      label: New Blog Post Content
+      description: Would you like to learn more about any specific topic? It would be helpful if you could write it here and be as specific as possible. Thank you!
+      render: Markdown
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/KarChunT/karchunt.com/blob/main/LICENSE)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
