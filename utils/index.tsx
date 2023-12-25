@@ -2,6 +2,7 @@ import { compareDesc, parseISO } from "date-fns";
 import { slug } from "github-slugger";
 import qs from "query-string";
 import { UrlQueryParams, RemoveUrlQueryParams } from "@/types";
+import { Post } from "@/.contentlayer/generated";
 
 export const descSortPosts = (posts: any[]) => {
   const publishedPosts = [];
@@ -29,6 +30,19 @@ export const getAllUniqueTags = (posts: any[]) => {
     }
   }
   return allTags;
+};
+
+export const getPostUniqueTags = (post: Post) => {
+  const tags: string[] = [];
+  const postTags = post.tags;
+
+  for (let i = 0; i < postTags.length; i++) {
+    const slugified = slug(postTags[i]);
+    if (!tags.includes(slugified)) {
+      tags.push(slugified);
+    }
+  }
+  return tags;
 };
 
 export function urlQueryForm({ params, key, value }: UrlQueryParams) {
