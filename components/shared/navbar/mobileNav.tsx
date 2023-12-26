@@ -8,36 +8,35 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-
+import { Separator } from "@/components/ui/separator";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { NAV_LINKS } from "@/constants";
 import { usePathname } from "next/navigation";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const NavContent = () => {
   const pathname = usePathname();
 
   return (
-    <section className="flex-center flex-col gap-6 pt-16">
+    <ul className="flex flex-col items-start gap-5">
       {NAV_LINKS.map((item) => {
         const isActive =
           (pathname.includes(item.href) && item.href.length > 1) ||
           pathname === item.href;
 
         return (
-          <SheetClose asChild key={item.key}>
-            <Link href={item.href}>
-              <p
-                className={`${
-                  isActive ? "text-bold text-primary" : "text-medium"
-                }`}
-              >
-                {item.label}
-              </p>
-            </Link>
-          </SheetClose>
+          <li
+            key={item.key}
+            className={`${
+              isActive ? "text-primary decoration-primary" : "text-current"
+            } underline-offset-8 hover:underline`}
+          >
+            <SheetClose asChild key={item.key}>
+              <Link href={item.href}>{item.label}</Link>
+            </SheetClose>
+          </li>
         );
       })}
-    </section>
+    </ul>
   );
 };
 
@@ -54,7 +53,7 @@ const MobileNav = () => {
           priority
         />
       </SheetTrigger>
-      <SheetContent side="top" className="h-full w-full border-none">
+      <SheetContent side="right" className="flex h-full flex-col gap-6">
         <Link href="/" className="flex items-center gap-2">
           <Avatar>
             <AvatarImage
@@ -70,11 +69,8 @@ const MobileNav = () => {
           </p>
         </Link>
 
-        <div>
-          <SheetClose asChild>
-            <NavContent />
-          </SheetClose>
-        </div>
+        <Separator className="border" />
+        <NavContent />
       </SheetContent>
     </Sheet>
   );
