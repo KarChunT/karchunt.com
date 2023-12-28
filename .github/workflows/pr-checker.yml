@@ -43,3 +43,17 @@ jobs:
       - name: Display linting code fail status
         if: ${{ failure() }}
         run: echo "### Code Lint ❌" >> $GITHUB_STEP_SUMMARY
+
+  check-version-label-assigned:
+    runs-on: ubuntu-latest
+    needs: [lint]
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v4
+
+      - name: Check version label assigned
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const script = require('.github/scripts/check-version-label-assigned.js')
+            await script({github, context, core})
