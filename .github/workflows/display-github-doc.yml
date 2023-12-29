@@ -1,0 +1,21 @@
+name: Display GitHub Doc
+
+on:
+  workflow_call:
+
+jobs:
+  display-github-doc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display GitHub Object
+        shell: bash
+        env:
+          JSON_OBJ: ${{ toJSON(github) }}
+        run: |
+          printf '%s\n' "$JSON_OBJ" > result.json
+          cat result.json
+
+      - name: Display GitHub Context
+        uses: actions/github-script@v7
+        with:
+          script: console.log(context)
