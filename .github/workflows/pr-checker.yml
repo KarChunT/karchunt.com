@@ -1,0 +1,59 @@
+name: PR Checker
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - labeled
+      - unlabeled
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  display-github-doc:
+    uses: ./.github/workflows/display-github-doc.yml
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: [display-github-doc]
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v4
+
+      - name: Install NPM Dependencies
+        uses: ./.github/actions/install-npm-dependencies
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Display linting code success status
+        if: ${{ success() }}
+        run: echo "### Code Lint ✅" >> $GITHUB_STEP_SUMMARY
+
+      - name: Display linting code fail status
+        if: ${{ failure() }}
+        run: echo "### Code Lint ❌" >> $GITHUB_STEP_SUMMARY
+
+  check-version-label-assigned:
+    runs-on: ubuntu-latest
+    needs: [lint]
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v4
+
+      - name: Check version label assigned
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const script = require('.github/scripts/check-version-label-assigned.js')
+            await script({github, context, core})
