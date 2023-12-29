@@ -65,7 +65,7 @@ jobs:
           git commit -am "Bump version to $latest_version"
           git tag $latest_version
 
-          git push -f origin HEAD:main
+          git push origin HEAD:main
           git push origin "$latest_version"
 
       - name: Summary
