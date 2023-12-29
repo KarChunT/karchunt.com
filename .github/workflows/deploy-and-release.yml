@@ -1,4 +1,4 @@
-name: Deployment and generate new release
+name: Deploy and generate new release
 
 on:
   push:

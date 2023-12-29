@@ -12,6 +12,7 @@ concurrency:
 
 permissions:
   actions: read
+  contents: write
 
 jobs:
   check-merge-pr-workflow-status:
