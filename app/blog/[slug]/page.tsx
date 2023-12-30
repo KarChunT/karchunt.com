@@ -108,25 +108,27 @@ const page = ({ params }: { params: any }) => {
         <div className="mt-8">
           <div
             className="prose prose-lg 
-          max-w-max dark:prose-invert 
-          prose-blockquote:rounded-r-lg 
-          prose-blockquote:border-primary
-          prose-blockquote:bg-primary/30
-          prose-blockquote:p-2
-          prose-blockquote:px-6 
-          prose-code:rounded-md
-          prose-code:bg-[#282c34]
-          prose-code:p-[0.2em]
-          prose-code:text-white
-          prose-code:before:content-['']
-          prose-code:after:content-['']
-          prose-li:marker:text-primary"
+              max-w-max dark:prose-invert 
+              prose-blockquote:rounded-r-lg 
+              prose-blockquote:border-primary
+              prose-blockquote:bg-primary/30
+              prose-blockquote:p-2
+              prose-blockquote:px-6 
+              prose-code:rounded-md
+              prose-code:bg-[#282c34]
+              prose-code:p-[0.2em]
+              prose-code:text-white
+              prose-code:before:content-['']
+              prose-code:after:content-['']
+              prose-li:marker:text-primary"
           >
             <MDXContent data={post} />
+
+            <h2>Comments</h2>
+            <Comments />
           </div>
         </div>
       </article>
-      <Comments />
     </>
   );
 };
