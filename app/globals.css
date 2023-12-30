@@ -191,3 +191,8 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
   font-size: 1rem;
   color: rgb(107, 114, 128, 1);
 }
+
+.utterances {
+  margin: 0;
+  max-width: none;
+}
