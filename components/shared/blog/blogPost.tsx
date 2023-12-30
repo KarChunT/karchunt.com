@@ -20,7 +20,7 @@ const BlogPost = ({ post }: { post: Post }) => {
         </div>
 
         <time className="text-sm text-gray-500">
-          {format(new Date(post.updatedAt), "MMMM dd, yyyy")}
+          {format(new Date(post.publishedAt), "MMMM dd, yyyy")}
         </time>
       </div>
 
