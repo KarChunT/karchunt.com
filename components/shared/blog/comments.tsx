@@ -37,7 +37,7 @@ const Comments = () => {
 
   return (
     <div className="w-full">
-      <div className="flex items-start justify-start" ref={comment} />
+      <div ref={comment} />
     </div>
   );
 };
