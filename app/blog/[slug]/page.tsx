@@ -5,6 +5,7 @@ import Tag from "@/components/shared/blog/tag";
 import MDXContent from "@/components/shared/mdx/mdxcontent";
 import { siteMetaData } from "@/utils/siteMetaData";
 import { notFound } from "next/navigation";
+import Comments from "@/components/shared/blog/comments";
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -125,6 +126,7 @@ const page = ({ params }: { params: any }) => {
           </div>
         </div>
       </article>
+      <Comments />
     </>
   );
 };
