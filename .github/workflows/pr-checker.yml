@@ -8,8 +8,7 @@ on:
       - opened
       - reopened
       - synchronize
-      - labeled
-      - unlabeled
+      - ready_for_review
 
 permissions:
   contents: read
