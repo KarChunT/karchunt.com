@@ -124,10 +124,10 @@ const page = ({ params }: { params: any }) => {
           >
             <MDXContent data={post} />
 
-            <h2>Comments</h2>
-            <Comments />
+            <h2 className="pb-4">Comments</h2>
           </div>
         </div>
+        <Comments />
       </article>
     </>
   );
