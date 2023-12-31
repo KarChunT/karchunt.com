@@ -92,7 +92,7 @@ const page = ({ params }: { params: any }) => {
               <span>{post?.readingTime.text.replace("read", "")}</span>
             </div>
 
-            <h1 className="text-[40px] font-bold capitalize leading-tight md:text-5xl">
+            <h1 className="text-[40px] font-bold leading-tight md:text-5xl">
               {post?.title}
             </h1>
 
