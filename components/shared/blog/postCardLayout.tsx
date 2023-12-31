@@ -25,9 +25,7 @@ const PostCardLayout = ({
 }) => {
   const allTags = getAllUniqueTags(allPosts);
 
-  const [filteredPosts, setFilteredPosts] = useState<Post[]>(
-    descSortPosts([posts])
-  );
+  const [filteredPosts, setFilteredPosts] = useState<Post[]>(posts);
   const [postTitles] = useState<string[]>(
     allPosts.map((post: Post) => post.title.toLowerCase())
   );
@@ -59,7 +57,7 @@ const PostCardLayout = ({
         return slugified === tag;
       });
     });
-    setFilteredPosts(refilteredPosts);
+    setFilteredPosts(descSortPosts(refilteredPosts));
   }, [searchText, postTitles, posts, tag, header]);
 
   return (
@@ -81,7 +79,7 @@ const PostCardLayout = ({
             <div className="flex-1">
               <Select onValueChange={(value: string) => setTag(value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="all" />
+                  <SelectValue placeholder="Select a tag (Default: all)" />
                 </SelectTrigger>
                 <SelectContent>
                   {allTags.map((tag) => (
