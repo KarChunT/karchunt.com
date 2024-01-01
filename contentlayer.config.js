@@ -5,6 +5,7 @@ import rehypeSlug from "rehype-slug"; // adding id for each heading
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import GithubSlugger from "github-slugger";
+import remarkMermaid from "remark-mermaidjs";
 
 const About = defineDocumentType(() => ({
   name: "About",
@@ -39,6 +40,7 @@ const Post = defineDocumentType(() => ({
     },
     description: {
       type: "string",
+      required: true,
     },
     publishedAt: {
       type: "date",
@@ -108,7 +110,7 @@ export default makeSource({
   contentDirPath: "data",
   documentTypes: [Post, About],
   mdx: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm, remarkMermaid],
     rehypePlugins: [
       rehypeSlug,
       [rehypeAutolinkHeadings, { behavior: "append" }],
