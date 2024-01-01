@@ -9,7 +9,7 @@ const Footer = () => {
       <Separator />
 
       <div className="flex-center flex-col gap-1 text-center">
-        <p>© 2023 KarChunT. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} KarChunT. All rights reserved.</p>
         <div className="flex gap-1">
           <Link href={siteMetaData.github}>
             <Image
