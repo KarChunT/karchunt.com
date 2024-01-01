@@ -15,7 +15,9 @@ export const descSortPosts = (posts: any[]) => {
 
   return publishedPosts
     .slice()
-    .sort((a, b) => compareDesc(parseISO(a.updatedAt), parseISO(b.updatedAt)));
+    .sort((a, b) =>
+      compareDesc(parseISO(a.publishedAt), parseISO(b.publishedAt))
+    );
 };
 
 export const getAllUniqueTags = (posts: any[]) => {
