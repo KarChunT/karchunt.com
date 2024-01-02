@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import { IoLogoGithub } from "react-icons/io";
+import { MdRssFeed } from "react-icons/md";
 import { Separator } from "../../ui/separator";
 import { siteMetaData } from "@/utils/siteMetaData";
 
@@ -9,16 +11,10 @@ const Footer = () => {
       <Separator />
 
       <div className="flex-center flex-col gap-1 text-center">
-        <p>© 2023 KarChunT. All rights reserved.</p>
-        <div className="flex gap-1">
+        <p>© {new Date().getFullYear()} KarChunT. All rights reserved.</p>
+        <div className="flex-center gap-1">
           <Link href={siteMetaData.github}>
-            <Image
-              src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/icons/github.svg`}
-              alt="github"
-              className="github-icon"
-              width={24}
-              height={24}
-            />
+            <IoLogoGithub size="24px" />
           </Link>
           <Link href={siteMetaData.linkedin}>
             <Image
@@ -27,6 +23,9 @@ const Footer = () => {
               width={24}
               height={24}
             />
+          </Link>
+          <Link href={`${process.env.NEXT_PUBLIC_BASE_PATH}/rss.xml`}>
+            <MdRssFeed color="#ee802f" size="24px" />
           </Link>
         </div>
       </div>
