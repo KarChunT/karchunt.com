@@ -6,8 +6,10 @@ import MDXContent from "@/components/shared/mdx/mdxcontent";
 import { siteMetaData } from "@/utils/siteMetaData";
 import { notFound } from "next/navigation";
 import Comments from "@/components/shared/blog/comments";
+import { generateRSSFeed } from "@/utils";
 
 export async function generateStaticParams() {
+  generateRSSFeed(allPosts);
   return allPosts.map((post) => ({
     slug: post._raw.flattenedPath.replace("posts/", ""),
   }));
