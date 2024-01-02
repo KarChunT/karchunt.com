@@ -47,3 +47,10 @@ sitemap*.xml
 
 # robots
 robots*.txt
+
+# rss
+rss*.xml
+rss*.json
+
+# atom
+atom*.xml
