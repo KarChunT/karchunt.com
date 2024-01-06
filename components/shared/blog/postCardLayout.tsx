@@ -96,7 +96,7 @@ const PostCardLayout = ({
         )}
       </div>
 
-      <div className="mt-12">
+      <div className="mt-8">
         <div className="grid grid-cols-1 gap-8">
           {/* eslint-disable-next-line array-callback-return */}
           {filteredPosts.map((post: Post, index: number) => (
