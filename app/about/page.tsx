@@ -41,7 +41,7 @@ const page = () => {
 
         <div className="relative flex">
           <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/images/anotherme.png`}
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/images/anotherme.webp`}
             alt="karchunt"
             width={300}
             height={400}
