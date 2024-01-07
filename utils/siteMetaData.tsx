@@ -7,8 +7,8 @@ export const siteMetaData = {
   language: "en-us",
   theme: "system", // system, dark or light
   siteUrl: "https://karchunt.com", // your website URL
-  siteLogo: `${process.env.NEXT_PUBLIC_BASE_PATH}/assets/images/karchunt-removebg.png`,
-  socialBanner: `${process.env.NEXT_PUBLIC_BASE_PATH}/assets/images/ispenguin-withbg.png`,
+  siteLogo: `${process.env.NEXT_PUBLIC_BASE_PATH}/assets/images/siteLogo.webp`,
+  socialBanner: `${process.env.NEXT_PUBLIC_BASE_PATH}/assets/images/ispenguin-withbg.webp`,
   email: "karchuntan.1999@gmail.com",
   github: "https://github.com/karchunt",
   linkedin: "https://www.linkedin.com/in/karchuntan",
