@@ -12,17 +12,17 @@ const Hero = () => {
         </h1>
         <p className="mt-4 text-lg font-medium leading-normal">
           I&apos;m an{" "}
-          <span className="text-primary">
+          <span className="font-bold text-primary">
             Infrastructure and DevOps Engineer
           </span>{" "}
-          at <span className="text-[#00C7FD]">Intel</span>. I love to code and
-          design software architecture.
+          at <span className="font-bold text-primary">Intel</span>. I love to
+          code and design software architecture.
         </p>
       </div>
 
       <div className="relative flex flex-1 justify-start md:justify-end">
         <Image
-          src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/images/ispenguin-withbg.png`}
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/images/ispenguin-withbg.webp`}
           alt="IsPenguin"
           width={400}
           height={400}

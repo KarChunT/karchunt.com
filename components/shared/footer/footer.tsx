@@ -13,7 +13,10 @@ const Footer = () => {
       <div className="flex-center flex-col gap-1 text-center">
         <p>© {new Date().getFullYear()} KarChunT. All rights reserved.</p>
         <div className="flex-center gap-1">
-          <Link href={siteMetaData.github}>
+          <Link
+            href={siteMetaData.github}
+            aria-label="Read more about KarChunT GitHub"
+          >
             <IoLogoGithub size="24px" />
           </Link>
           <Link href={siteMetaData.linkedin}>
@@ -24,7 +27,10 @@ const Footer = () => {
               height={24}
             />
           </Link>
-          <Link href={`${process.env.NEXT_PUBLIC_BASE_PATH}/rss.xml`}>
+          <Link
+            href={`${process.env.NEXT_PUBLIC_BASE_PATH}/rss.xml`}
+            aria-label="Read more about KarChunT RSS"
+          >
             <MdRssFeed color="#ee802f" size="24px" />
           </Link>
         </div>

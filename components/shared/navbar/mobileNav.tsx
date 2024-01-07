@@ -12,6 +12,7 @@ import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { NAV_LINKS } from "@/constants";
 import { usePathname } from "next/navigation";
+import { siteMetaData } from "@/utils/siteMetaData";
 
 const NavContent = () => {
   const pathname = usePathname();
@@ -60,7 +61,7 @@ const MobileNav = () => {
               width={48}
               height={48}
               alt="karchunt"
-              src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/images/karchunt.jpeg`}
+              src={siteMetaData.siteLogo}
             />
             <AvatarFallback>KC</AvatarFallback>
           </Avatar>
