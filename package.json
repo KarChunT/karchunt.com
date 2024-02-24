@@ -24,5 +24,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "markdown-it": "^14.0.0"
   }
 }
