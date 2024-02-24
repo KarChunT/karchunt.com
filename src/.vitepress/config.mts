@@ -14,7 +14,10 @@ export default defineConfig({
     externalLinkIcon: true,
     logo: "/penguin-nobg.webp",
     // editLink: {},
-    nav: [{ text: "Home", link: "/" }],
+    nav: [
+      { text: "Home", link: "/" },
+      { text: "About", link: "/about" },
+    ],
     search: {
       provider: "local",
     },
