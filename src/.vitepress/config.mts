@@ -17,6 +17,7 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "About", link: "/about" },
+      { text: "Gallery", link: "/gallery" },
     ],
     search: {
       provider: "local",

@@ -2,6 +2,7 @@ import type { Theme } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 
 import About from "./components/About.vue";
+import Gallery from "./components/Gallery.vue";
 
 import "./styles/globals.css";
 
@@ -10,5 +11,6 @@ export default {
   enhanceApp({ app }) {
     // register all the custom global components
     app.component("About", About);
+    app.component("Gallery", Gallery);
   },
 } satisfies Theme;
