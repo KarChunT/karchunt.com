@@ -17,6 +17,14 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "About", link: "/about" },
+      {
+        text: "Blog",
+        items: [
+          { text: "Blog Home", link: "/blog" },
+          { text: "Tags", link: "/blog/tags" },
+          { text: "Archives", link: "/blog/archives" },
+        ],
+      },
       { text: "Gallery", link: "/gallery" },
     ],
     search: {

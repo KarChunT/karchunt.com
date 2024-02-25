@@ -8,10 +8,10 @@ hero:
   image:
     src: /penguin-nobg.webp
     alt: KarChunT-Penguin
-  # actions:
-  #   - theme: brand
-  #     text: Blog
-  #     link: /blog/
+  actions:
+    - theme: brand
+      text: Blog
+      link: /blog
   #   - theme: sponsor
   #     text: Sponsor Me
   #     link: https://github.com/vuejs/vitepress
