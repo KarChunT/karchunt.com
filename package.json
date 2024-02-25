@@ -27,6 +27,6 @@
   },
   "dependencies": {
     "markdown-it": "^14.0.0",
-    "photoswipe": "^5.4.3"
+    "vue-gallery": "^2.0.5"
   }
 }
