@@ -11,7 +11,7 @@ const getDateTime = (date: Post["date"]): string => {
 };
 
 const getTagPath = (tag: string): string => {
-  return `./blog/tags/${tag}`;
+  return `./blog/tags?tag=${tag}`;
 };
 </script>
 
