@@ -1,31 +1,9 @@
 <script setup lang="ts">
 import { inBrowser } from "vitepress";
 import { ref } from "vue";
-import { data as posts } from "./posts.data";
-import type { Post } from "./posts.data.ts";
+import { postsTags } from "../utils/tags";
 
 const selectedTag = ref("");
-
-const postsTags = () => {
-  let data: Record<string, Post[]> = {};
-  for (let i = 0; i < posts.length; i++) {
-    const post = posts[i];
-    const tags = post.tags;
-
-    if (Array.isArray(tags)) {
-      tags.forEach((tag) => {
-        if (tag in data) {
-          data[tag].push(post);
-        } else {
-          data[tag] = [];
-          data[tag].push(post);
-        }
-      });
-    }
-  }
-  return data;
-};
-
 const toggleTag = (tag: string) => {
   selectedTag.value = tag;
 };

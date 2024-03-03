@@ -2,17 +2,10 @@
 import { useData } from "vitepress";
 import { VPButton } from "vitepress/theme";
 import { data as posts } from "./posts.data";
-import type { Post } from "./posts.data.ts";
+import { getTagPath } from "../utils/tags.ts";
+import { getDateTime } from "../utils/common.ts";
 
 const { frontmatter } = useData();
-
-const getDateTime = (date: Post["date"]): string => {
-  return new Date(date.time).toISOString();
-};
-
-const getTagPath = (tag: string): string => {
-  return `./blog/tags?tag=${tag}`;
-};
 </script>
 
 <template>
