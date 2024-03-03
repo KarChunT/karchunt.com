@@ -7,10 +7,13 @@ import BlogHome from "./components/BlogHome.vue";
 import Tags from "./components/Tags.vue";
 import Archives from "./components/Archives.vue";
 
+import BlogPostLayout from "./components/BlogPostLayout.vue";
+
 import "./styles/globals.css";
 
 export default {
   extends: DefaultTheme,
+  Layout: BlogPostLayout,
   enhanceApp({ app }) {
     // register all the custom global components
     app.component("About", About);
