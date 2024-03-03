@@ -54,7 +54,7 @@ const postsByYear = () => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .archives h2 {
   border: none;
   padding: 0px;

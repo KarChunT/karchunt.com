@@ -62,7 +62,7 @@ if (inBrowser) {
   </div>
 </template>
 
-<style>
+<style scoped>
 .tags h2 {
   border: none;
   padding: 0px;
