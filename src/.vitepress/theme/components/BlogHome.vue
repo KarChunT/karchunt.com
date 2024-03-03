@@ -31,7 +31,7 @@ const { frontmatter } = useData();
     </div>
 
     <div class="mt-12">
-      <div v-for="{ title, url, date, tags, excerpt } of posts">
+      <div v-for="{ title, description, url, date, tags } of posts">
         <article class="mt-9">
           <time
             class="text-gray-500 dark:text-gray-400 font-medium"
@@ -48,8 +48,8 @@ const { frontmatter } = useData();
           </div>
           <div
             class="text-gray-500 dark:text-gray-400 clear-left"
-            v-if="excerpt"
-            v-html="excerpt"
+            v-if="description"
+            v-html="description"
           ></div>
         </article>
       </div>
@@ -57,7 +57,7 @@ const { frontmatter } = useData();
   </div>
 </template>
 
-<style>
+<style scoped>
 .blog-home h2 {
   border: none;
   margin-top: 0px;

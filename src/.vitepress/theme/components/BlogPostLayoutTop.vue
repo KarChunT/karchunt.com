@@ -17,5 +17,9 @@ const { currentPost } = getPost();
     >
       {{ currentPost.title }}
     </h1>
+
+    <p class="py-4">
+      {{ currentPost.description }}
+    </p>
   </header>
 </template>
