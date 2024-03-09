@@ -39,7 +39,6 @@
   },
   "dependencies": {
     "markdown-it": "^14.0.0",
-    "vue": "^3.4.19",
-    "vue-gallery": "^2.0.5"
+    "vue": "^3.4.19"
   }
 }
