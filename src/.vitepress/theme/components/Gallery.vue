@@ -32,15 +32,15 @@ export default {
 
 <template>
   <div class="gallery">
-    <div class="gallery-header">
+    <div class="gallery-header text-center">
       <h1>Gallery</h1>
     </div>
 
     <div class="gallery-content">
       <gallery :images="images" :index="index" @close="index = null"></gallery>
-      <div class="mt-4">
+      <div class="mt-4 flex flex-wrap justify-center items-center">
         <div
-          class="bg-cover bg-no-repeat bg-center float-left mr-4 mt-4 rounded-xl"
+          class="cursor-pointer bg-cover bg-no-repeat bg-center float-left mr-4 mt-4 rounded-xl"
           v-for="(image, imageIndex) in images"
           :key="imageIndex"
           @click="index = imageIndex"
