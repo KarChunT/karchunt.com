@@ -55,3 +55,6 @@ rss*.json
 
 # atom
 atom*.xml
+
+# environment files
+.env*
