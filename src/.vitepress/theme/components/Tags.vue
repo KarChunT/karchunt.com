@@ -22,44 +22,46 @@ if (inBrowser) {
 </script>
 
 <template>
-  <div class="tags flex flex-col gap-4">
-    <div class="text-center">
-      <h1>Tags</h1>
-    </div>
-
-    <div class="flex flex-wrap justify-center gap-4">
-      <div v-for="(posts, tag) in postsByTag" @click="toggleTag(tag)">
-        <button
-          :class="{
-            noselect: selectedTag !== tag,
-            select: selectedTag === tag,
-          }"
-        >
-          {{ tag + " (" + posts.length + ")" }}
-        </button>
-      </div>
-    </div>
-
-    <div v-if="selectedTag">
-      <div>
-        <h2>{{ selectedTag }} ({{ postsByTag[selectedTag].length }})</h2>
+  <ClientOnly>
+    <div class="tags flex flex-col gap-4">
+      <div class="text-center">
+        <h1>Tags</h1>
       </div>
 
-      <a
-        v-for="post in postsByTag[selectedTag]"
-        :href="post.url"
-        class="flex items-center justify-between gap-4 pb-4"
-      >
-        <div class="flex-1">
-          {{ post.title }}
+      <div class="flex flex-wrap justify-center gap-4">
+        <div v-for="(posts, tag) in postsByTag" @click="toggleTag(tag)">
+          <button
+            :class="{
+              noselect: selectedTag !== tag,
+              select: selectedTag === tag,
+            }"
+          >
+            {{ tag + " (" + posts.length + ")" }}
+          </button>
         </div>
+      </div>
 
+      <div v-if="selectedTag">
         <div>
-          {{ post.date.string }}
+          <h2>{{ selectedTag }} ({{ postsByTag[selectedTag].length }})</h2>
         </div>
-      </a>
+
+        <a
+          v-for="post in postsByTag[selectedTag]"
+          :href="post.url"
+          class="flex items-center justify-between gap-4 pb-4"
+        >
+          <div class="flex-1">
+            {{ post.title }}
+          </div>
+
+          <div>
+            {{ post.date.string }}
+          </div>
+        </a>
+      </div>
     </div>
-  </div>
+  </ClientOnly>
 </template>
 
 <style scoped>
