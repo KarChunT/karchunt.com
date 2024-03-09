@@ -2,6 +2,7 @@
   "name": "karchunt",
   "description": "karchunt personal website",
   "type": "module",
+  "version": "0.0.1",
   "scripts": {
     "docs:dev": "vitepress dev src",
     "docs:build": "env-cmd -f .env.production vitepress build src",
