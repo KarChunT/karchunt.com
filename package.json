@@ -42,6 +42,7 @@
   "dependencies": {
     "env-cmd": "^10.1.0",
     "markdown-it": "^14.0.0",
+    "vitepress": "^1.0.0-rc.45",
     "vue": "^3.4.19"
   }
 }
