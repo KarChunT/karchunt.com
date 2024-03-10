@@ -1,0 +1,17 @@
+name: Check previous workflow status
+
+on:
+  workflow_call:
+
+jobs:
+  check-previous-workflow-status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check previous workflow status was successful
+        run: |
+          if [[ "${{ github.event.workflow_run.conclusion }}" == "success" ]]; then
+            echo "### Previous Workflow Succeeded ✅" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### Previous Workflow Failed ❌" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
