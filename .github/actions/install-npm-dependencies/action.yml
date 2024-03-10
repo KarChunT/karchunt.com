@@ -9,11 +9,17 @@ inputs:
     description: "Node cache type"
     required: true
     default: "npm" # npm or yarn
+  github-token:
+    description: "GitHub PAT"
+    required: false
+    default: ${{ github.token }}
 runs:
   using: "composite"
   steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        token: ${{ inputs.github-token }}
 
     - name: Setup Node
       uses: actions/setup-node@v4
