@@ -1,0 +1,65 @@
+name: PR Checker
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+      - edited
+
+permissions:
+  contents: read
+  pull-requests: write
+  # To report GitHub Actions status checks
+  statuses: write
+
+concurrency:
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Super-linter
+        uses: super-linter/super-linter@v6.3.0
+        env:
+          # To report GitHub Actions status checks
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_CHECKOV: false
+          VALIDATE_CSS: false
+          VALIDATE_GITHUB_ACTIONS: false
+          VALIDATE_JAVASCRIPT_STANDARD: false
+          VALIDATE_JSON: false
+
+      - name: Display linting code success status
+        if: ${{ success() }}
+        run: echo "### Code Lint ✅" >> $GITHUB_STEP_SUMMARY
+
+      - name: Display linting code fail status
+        if: ${{ failure() }}
+        run: echo "### Code Lint ❌" >> $GITHUB_STEP_SUMMARY
+
+  check-version-label-assigned:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check version label assigned
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const script = require('.github/scripts/check-version-label-assigned.cjs')
+            await script({github, context, core})
