@@ -1,0 +1,81 @@
+name: Bump version and create tag
+
+on:
+  workflow_run:
+    workflows: ["Merge PR"]
+    types:
+      - completed
+
+concurrency:
+  group: "bump-version-and-create-tag"
+  cancel-in-progress: false
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  check-merge-pr-workflow-status:
+    uses: ./.github/workflows/check-previous-workflow-status.yml
+
+  download-artifact:
+    runs-on: ubuntu-latest
+    needs: [check-merge-pr-workflow-status]
+    outputs:
+      VERSION_BUMP_TYPE: ${{ steps.version_bump_type.outputs.version_bump_type }}
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v4
+
+      - name: Download version bump artifact
+        uses: actions/github-script@v7
+        env:
+          PREVIOUS_WORKFLOW_RUN_ID: ${{ github.event.workflow_run.id }}
+          ARTIFACT_NAME: "versionBump"
+        with:
+          script: |
+            const script = require('.github/scripts/download-artifact.cjs')
+            await script({github, context, core})
+
+      - name: Save version bump type to GitHub Output
+        id: version_bump_type
+        run: echo "version_bump_type=$(cat versionBumpType.txt)" >> $GITHUB_OUTPUT
+
+  bump-version-and-create-tag:
+    runs-on: ubuntu-latest
+    needs: [download-artifact]
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT }}
+
+      - name: Install NPM Dependencies
+        uses: ./.github/actions/install-npm-dependencies
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+      - name: Bump version and create tag
+        id: version
+        run: |
+          bump_type=${{ needs.download-artifact.outputs.VERSION_BUMP_TYPE }}
+
+          if [[ $bump_type = "major" ]]; then
+            npm run release:major
+          elif [[ $bump_type = "minor" ]]; then
+            npm run release:minor
+          else
+            npm run release:patch
+          fi
+
+          latest_version="v$(node -p "require('./package.json').version")"
+          echo "latest_version=$latest_version" >> $GITHUB_OUTPUT
+
+          git push origin main
+          git push origin "$latest_version"
+
+      - name: Summary
+        run: echo "The project version has been increased to **${{ steps.version.outputs.latest_version }}**." >> $GITHUB_STEP_SUMMARY
