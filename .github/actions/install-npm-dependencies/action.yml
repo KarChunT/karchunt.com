@@ -20,6 +20,7 @@ runs:
       uses: actions/checkout@v4
       with:
         token: ${{ inputs.github-token }}
+        fetch-depth: 0 # to get all conventional commits
 
     - name: Setup Node
       uses: actions/setup-node@v4
