@@ -76,7 +76,7 @@ jobs:
           latest_version="v$(node -p "require('./package.json').version")"
           echo "latest_version=$latest_version" >> $GITHUB_OUTPUT
 
-          git push --follow-tags -f
+          git push --follow-tags
 
       - name: Summary
         run: echo "The project version has been increased to **${{ steps.version.outputs.latest_version }}**." >> $GITHUB_STEP_SUMMARY
