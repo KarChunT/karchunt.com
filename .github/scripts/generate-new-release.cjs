@@ -12,7 +12,7 @@ module.exports = async ({ github, context, core }) => {
       "utf-8"
     );
     changeLogContents.split("\n").forEach((line) => {
-      if (line.startsWith("## ")) {
+      if (line.startsWith("## ") || line.startsWith("### [")) {
         if (line.includes(version)) {
           insert = "true";
         } else {
