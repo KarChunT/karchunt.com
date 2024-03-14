@@ -10,6 +10,7 @@ const baseUrl = process.env.VUE_APP_BASE_URL;
 export default defineConfig({
   lang: "en-US",
   title: title,
+  titleTemplate: ":title",
   description: description,
   appearance: "dark",
   head: [
