@@ -12,9 +12,9 @@ hero:
     - theme: brand
       text: Blog
       link: /blog
-  #   - theme: sponsor
-  #     text: Sponsor Me
-  #     link: https://github.com/vuejs/vitepress
+    - theme: sponsor
+      text: Roadmap
+      link: /docs-roadmap
 # features:
 #   - title: 🥑 Design Pattern
 #     details: Solving typical software design problems.
