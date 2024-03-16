@@ -14,7 +14,7 @@ export default defineConfig({
   description: description,
   appearance: "dark",
   head: [
-    ["link", { rel: "icon", type: "image/x-icon", href: "/penguin-nobg.ico" }],
+    ["link", { rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     ["link", { rel: "icon", type: "image/png", href: "/penguin-nobg.png" }],
     ["meta", { name: "robots", content: "index, follow" }],
     [
