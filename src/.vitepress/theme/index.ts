@@ -6,6 +6,7 @@ import Gallery from "./components/Gallery.vue";
 import BlogHome from "./components/BlogHome.vue";
 import Tags from "./components/Tags.vue";
 import Archives from "./components/Archives.vue";
+import Roadmap from "./components/Roadmap.vue";
 
 import BlogPostLayout from "./components/BlogPostLayout.vue";
 
@@ -21,5 +22,6 @@ export default {
     app.component("BlogHome", BlogHome);
     app.component("Tags", Tags);
     app.component("Archives", Archives);
+    app.component("Roadmap", Roadmap);
   },
 } satisfies Theme;
