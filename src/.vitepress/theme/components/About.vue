@@ -22,21 +22,43 @@ You can contact me via these channels!
 
 It is my hope that you can find something useful or helpful here. Thank you!
 `;
+
+interface MyImages {
+  url: string;
+  width: string;
+  height: string;
+}
+
+const images: MyImages[] = [
+  {
+    url: "/anotherme.webp",
+    width: "250px",
+    height: "350px",
+  },
+];
 </script>
 
 <template>
   <div class="about">
-    <div className="flex flex-col justify-between gap-4 md:flex-row">
-      <div className="flex flex-1 flex-col gap-4">
-        <h1>Meee 😎</h1>
-        <div v-html="markdown.render(aboutMarkDown)"></div>
-      </div>
+    <div className="flex flex-col gap-4">
+      <h1>Meee 😎</h1>
+      <div v-html="markdown.render(aboutMarkDown)"></div>
+    </div>
 
-      <div className="relative flex">
-        <img src="/anotherme.webp" alt="karchunt" class="rounded-xl" />
-      </div>
+    <div class="flex flex-wrap">
+      <a
+        class="cursor-pointer bg-cover bg-no-repeat bg-center mr-4 mt-4 rounded-xl"
+        v-for="(image, imageIndex) in images"
+        :key="imageIndex"
+        :href="image.url"
+        target="_blank"
+        :style="{
+          backgroundImage: 'url(' + image.url + ')',
+          width: image.width,
+          height: image.height,
+        }"
+      >
+      </a>
     </div>
   </div>
 </template>
-
-<style></style>
