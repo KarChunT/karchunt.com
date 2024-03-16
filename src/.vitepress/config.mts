@@ -111,7 +111,12 @@ export default defineConfig({
   themeConfig: {
     externalLinkIcon: false,
     logo: "/penguin-nobg.webp",
-    // editLink: {},
+    editLink: {
+      pattern: ({ filePath }) => {
+        const githubUrl = "https://github.com/KarChunT/karchunt.com";
+        return `${githubUrl}/edit/main/src/${filePath}`;
+      },
+    },
     nav: [
       { text: "Home", link: "/" },
       { text: "About", link: "/about" },
