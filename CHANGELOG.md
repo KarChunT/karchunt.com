@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/KarChunT/karchunt.com/compare/v1.0.1...v1.1.0) (2024-03-16)
+
+
+### Features
+
+* **about:** support and display more personal photos ([b0ae3e2](https://github.com/KarChunT/karchunt.com/commit/b0ae3e24287591938c872f1b5131a0e18a76a70f))
+* **roadmap:** setup docs roadmap page ([260f03b](https://github.com/KarChunT/karchunt.com/commit/260f03b6a9e874ff6f498a00975feb7ee90e4bf1))
+* **roadmap:** setup roadmap component and apply that to custom global components ([7a2555b](https://github.com/KarChunT/karchunt.com/commit/7a2555b7364385333da6e8b8afc2602a3d538e29))
+
 ### [1.0.1](https://github.com/KarChunT/karchunt.com/compare/v1.0.0...v1.0.1) (2024-03-14)
 
 
