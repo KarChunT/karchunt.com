@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/KarChunT/karchunt.com/compare/v1.1.0...v1.1.1) (2024-03-17)
+
+
+### Bug Fixes
+
+* display SSH details on homepage ([3b0cda1](https://github.com/KarChunT/karchunt.com/commit/3b0cda1c4799c71551c04e4102f1977a86d43961))
+
+
+### Internal
+
+* **readme:** fix deploy and release workflow badge link ([4cfb1bc](https://github.com/KarChunT/karchunt.com/commit/4cfb1bcf8a041e789d7fa61871c469f55d06d9b1))
+* **roadmap:** restructing those types, constants, and data to separate files ([2c84254](https://github.com/KarChunT/karchunt.com/commit/2c84254675588decb2981b33560fa6002e46bdc8))
+* setup rules for displaying conventional types in changelog ([e2e0544](https://github.com/KarChunT/karchunt.com/commit/e2e0544430ff70132095052d6b18910200dc58fe))
+
 ## [1.1.0](https://github.com/KarChunT/karchunt.com/compare/v1.0.1...v1.1.0) (2024-03-16)
 
 
