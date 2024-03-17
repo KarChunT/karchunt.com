@@ -17,7 +17,7 @@ import { roadmapContents } from "../constants/roadmapConstant";
           ></div>
 
           <time class="mb-1 text-sm text-gray-500 dark:text-gray-400">
-            {{ roadmapContent.dateString }}
+            {{ roadmapContent.date.string }}
           </time>
 
           <VPBadge
