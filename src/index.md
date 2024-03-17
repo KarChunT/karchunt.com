@@ -15,7 +15,11 @@ hero:
     - theme: sponsor
       text: Roadmap
       link: /docs-roadmap
-# features:
+features:
+  - title: 🛠️ SSH
+    details: SSH stands for Secure Shell (SSH) Protocol that is mainly used to connect to a Linux server remotely.
+    link: /docs/ssh/ssh-overview
+    linkText: Learn more
 #   - title: 🥑 Design Pattern
 #     details: Solving typical software design problems.
 #     link: /docs/design-pattern/
