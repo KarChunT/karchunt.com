@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/KarChunT/karchunt.com/compare/v1.1.1...v1.1.2) (2024-03-17)
+
+
+### Bug Fixes
+
+* **roadmap:** fix roadmap date bugs not showing issue ([b5ecba3](https://github.com/KarChunT/karchunt.com/commit/b5ecba34f4837380bd4bf7aa7bd95e83538a67a4))
+
 ### [1.1.1](https://github.com/KarChunT/karchunt.com/compare/v1.1.0...v1.1.1) (2024-03-17)
 
 
