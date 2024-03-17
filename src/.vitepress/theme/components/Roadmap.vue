@@ -1,33 +1,6 @@
 <script setup lang="ts">
 import { VPBadge, VPButton } from "vitepress/theme";
-
-const formatDate = (raw: string) => {
-  const date = new Date(raw);
-  date.setUTCHours(12);
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-};
-
-interface RoadmapContent {
-  title: string;
-  description: string;
-  dateString: string;
-  link: string;
-  isComplete: string;
-}
-
-const roadmapContents: RoadmapContent[] = [
-  // {
-  //   title: "Sample",
-  //   description: "sample description",
-  //   dateString: formatDate("2024-01-01"),
-  //   link: "",
-  //   isComplete: "false",
-  // },
-];
+import { roadmapContents } from "../constants/roadmapConstant";
 </script>
 
 <template>
