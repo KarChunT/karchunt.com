@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.5](https://github.com/KarChunT/karchunt.com/compare/v1.1.4...v1.1.5) (2024-03-30)
+
+
+### Features
+
+* support and add sitemap.xml ([e85cc4a](https://github.com/KarChunT/karchunt.com/commit/e85cc4af3efa80515d3c614ba3baed7cfc1611c1))
+
+
+### Internal
+
+* **.vitepress/config:** add docs to navbar ([38b8e50](https://github.com/KarChunT/karchunt.com/commit/38b8e50ef51d77b5fb892ee102ea2803ba1d7001))
+* **readme:** add ssh doc ([9c6bce2](https://github.com/KarChunT/karchunt.com/commit/9c6bce2c1bd30146c4fb1c772b6133dd5fbb22d4))
+
 ### [1.1.4](https://github.com/KarChunT/karchunt.com/compare/v1.1.3...v1.1.4) (2024-03-30)
 
 
