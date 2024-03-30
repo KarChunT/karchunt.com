@@ -153,4 +153,8 @@ export default defineConfig({
     },
   },
   ignoreDeadLinks: true,
+  sitemap: {
+    hostname: "https://karchunt.com",
+    lastmodDateOnly: true,
+  },
 });
