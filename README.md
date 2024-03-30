@@ -17,7 +17,7 @@ This [repository](https://github.com/KarChunT/karchunt.com) and [website](https:
 
 ## Documentation/Notes
 
-WIP
+- [SSH](https://karchunt.com/docs/ssh/ssh-overview)
 
 ## Blog Posts
 
