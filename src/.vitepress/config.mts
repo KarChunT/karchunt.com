@@ -1,4 +1,5 @@
 import { HeadConfig, defineConfig } from "vitepress";
+import { sshSideBar } from "./theme/constants/docsConstants";
 
 const title = "KarChunT";
 const description =
@@ -133,7 +134,9 @@ export default defineConfig({
     search: {
       provider: "local",
     },
-    sidebar: {},
+    sidebar: {
+      "/docs/ssh/": sshSideBar,
+    },
     outline: {
       level: "deep",
     },
