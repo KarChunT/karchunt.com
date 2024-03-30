@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.4](https://github.com/KarChunT/karchunt.com/compare/v1.1.3...v1.1.4) (2024-03-30)
+
+
+### Internal
+
+* **.vitepress/config:** add docs to navbar ([8cb5d22](https://github.com/KarChunT/karchunt.com/commit/8cb5d22e80d00f5e8227ca2cb19f53af4287ddda))
+* setup ssh tunneling ([a61cc6e](https://github.com/KarChunT/karchunt.com/commit/a61cc6ea0e7fc619178e7d45e03d4659a4a7dcd7))
+* **ssh:** add ps aux result ([e7fc592](https://github.com/KarChunT/karchunt.com/commit/e7fc592c1365d7e750ab3e0adcfcd23ba1864505))
+
 ### [1.1.3](https://github.com/KarChunT/karchunt.com/compare/v1.1.2...v1.1.3) (2024-03-30)
 
 
