@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://github.com/KarChunT/karchunt.com/compare/v1.1.2...v1.1.3) (2024-03-30)
+
+
+### Internal
+
+* **.vitepress/config:** setup sidebar for SSH ([eb86e09](https://github.com/KarChunT/karchunt.com/commit/eb86e090cf673f71f35bdf5d4468189cc7f10da5))
+* add docs template ([fb2f71b](https://github.com/KarChunT/karchunt.com/commit/fb2f71b26fc14740c85b28e8019e7af8038007d9))
+* **roadmap:** change SSH status to complete and the completed date ([e4ff6c3](https://github.com/KarChunT/karchunt.com/commit/e4ff6c3ba57b62f2ebb8808c271d7a55595a3dca))
+* **ssh:** setup SSH documentation ([fb93c31](https://github.com/KarChunT/karchunt.com/commit/fb93c31b64c4678ace35e07850a8ca92665c91be))
+
 ### [1.1.2](https://github.com/KarChunT/karchunt.com/compare/v1.1.1...v1.1.2) (2024-03-17)
 
 
