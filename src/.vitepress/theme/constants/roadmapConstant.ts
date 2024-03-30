@@ -7,8 +7,8 @@ export const roadmapContents: RoadmapContent[] = [
     title: "SSH",
     description:
       "SSH stands for Secure Shell (SSH) Protocol that is mainly used to connect to a Linux server remotely.",
-    date: formatDate("2024-03-17"),
+    date: formatDate("2024-03-30"),
     link: `${sshBasePath}/ssh-overview`,
-    isComplete: "false",
+    isComplete: "true",
   },
 ];
