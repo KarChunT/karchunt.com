@@ -39,6 +39,16 @@ ps aux | grep <local-port>
 kill <process-id>
 ```
 
+```bash
+Output
+1001      5965  0.0  0.0  48168  1136 ?        Ss   12:28   0:00 ssh -f -N -L 8888:your_domain:80 username@remote_host
+1001      6113  0.0  0.0  13648   952 pts/2    S+   12:37   0:00 grep --colour=auto 8888
+```
+
+```bash
+kill 5965
+```
+
 ### Local tunneling local network
 
 You can tunnel remote host local network to your local. Here is the animation diagram of the local network web server and common SSH server.
