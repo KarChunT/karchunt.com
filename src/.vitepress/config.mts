@@ -129,6 +129,10 @@ export default defineConfig({
           { text: "Archives", link: "/blog/archives" },
         ],
       },
+      {
+        text: "Docs",
+        items: [{ text: "SSH", link: "/docs/ssh/ssh-overview" }],
+      },
       { text: "Gallery", link: "/gallery" },
     ],
     search: {
