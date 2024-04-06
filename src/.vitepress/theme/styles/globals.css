@@ -48,10 +48,6 @@
   color: var(--vp-c-brand-1);
 }
 
-.vp-doc img {
-  height: 350px;
-}
-
 .vp-doc blockquote {
   border-left: 3px solid var(--vp-c-brand-1);
 }
