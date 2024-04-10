@@ -16,9 +16,13 @@ hero:
       text: Roadmap
       link: /docs-roadmap
 features:
-  - title: 🛠️ SSH
+  - title: 🍇 SSH
     details: SSH stands for Secure Shell (SSH) Protocol that is mainly used to connect to a Linux server remotely.
     link: /docs/ssh/ssh-overview
+    linkText: Learn more
+  - title: 🍈 Git
+    details: Git is a distributed version control system that tracks file changes.
+    link: /docs/git/what-is-git
     linkText: Learn more
 #   - title: 🥑 Design Pattern
 #     details: Solving typical software design problems.
