@@ -145,6 +145,7 @@ export default withMermaid(
           items: [
             { text: "SSH", link: "/docs/ssh/ssh-overview" },
             { text: "Git", link: "/docs/git/what-is-git" },
+            { text: "How-to?", link: "/docs/how-to/overview" },
           ],
         },
         { text: "Gallery", link: "/gallery" },
