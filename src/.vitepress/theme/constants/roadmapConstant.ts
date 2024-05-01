@@ -1,5 +1,5 @@
 import { RoadmapContent } from "../types/types";
-import { sshBasePath, gitBasePath } from "./docsConstants";
+import { sshBasePath, gitBasePath, dockerBasePath } from "./docsConstants";
 import { formatDate } from "../utils/common";
 
 export const roadmapContents: RoadmapContent[] = [
@@ -18,5 +18,13 @@ export const roadmapContents: RoadmapContent[] = [
     date: formatDate("2024-04-12"),
     link: `${gitBasePath}/what-is-git`,
     isComplete: "true",
+  },
+  {
+    title: "Docker",
+    description:
+      "Docker is an open platform for developing, shipping, and running applications.",
+    date: formatDate("2024-05-01"),
+    link: `${dockerBasePath}/what-is-docker`,
+    isComplete: "false",
   },
 ];

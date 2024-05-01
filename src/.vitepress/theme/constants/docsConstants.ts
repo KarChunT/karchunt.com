@@ -149,3 +149,25 @@ export const howToSideBar = [
     ],
   },
 ];
+
+export const dockerBasePath = "/docs/docker";
+export const dockerSideBar = [
+  {
+    text: "Contents",
+    collapsed: false,
+    items: [
+      {
+        text: "Setup & Installation",
+        link: `${dockerBasePath}/setup-and-install`,
+      },
+      {
+        text: "Edit & Fix",
+        link: `${dockerBasePath}/edit-and-fix`,
+      },
+      {
+        text: "Technology",
+        link: `${howToBasePath}/technology`,
+      },
+    ],
+  },
+];

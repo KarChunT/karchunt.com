@@ -3,6 +3,7 @@ import {
   gitSideBar,
   sshSideBar,
   howToSideBar,
+  dockerSideBar,
 } from "./theme/constants/docsConstants";
 import { withMermaid } from "vitepress-plugin-mermaid";
 
@@ -146,6 +147,7 @@ export default withMermaid(
             { text: "SSH", link: "/docs/ssh/ssh-overview" },
             { text: "Git", link: "/docs/git/what-is-git" },
             { text: "How-to?", link: "/docs/how-to/overview" },
+            { text: "Docker", link: "/docs/docker/what-is-docker" },
           ],
         },
         { text: "Gallery", link: "/gallery" },
