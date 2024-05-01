@@ -123,3 +123,19 @@ export const gitSideBar = [
     ],
   },
 ];
+
+export const howToBasePath = "/docs/how-to";
+export const howToSideBar = [
+  {
+    text: "Setup & Installation",
+    link: `${howToBasePath}/setup-and-install`,
+  },
+  {
+    text: "Edit & Fix",
+    link: `${howToBasePath}/edit-and-fix`,
+  },
+  {
+    text: "Technology",
+    link: `${howToBasePath}/technology`,
+  },
+];

@@ -24,6 +24,10 @@ features:
     details: Git is a distributed version control system that tracks file changes.
     link: /docs/git/what-is-git
     linkText: Learn more
+  - title: 🥥 How to?
+    details: This section will show you how to do and solve problems.
+    link: /docs/how-to/overview
+    linkText: Learn more
 #   - title: 🥑 Design Pattern
 #     details: Solving typical software design problems.
 #     link: /docs/design-pattern/

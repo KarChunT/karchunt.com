@@ -1,5 +1,9 @@
 import { HeadConfig, defineConfig } from "vitepress";
-import { gitSideBar, sshSideBar } from "./theme/constants/docsConstants";
+import {
+  gitSideBar,
+  sshSideBar,
+  howToSideBar,
+} from "./theme/constants/docsConstants";
 import { withMermaid } from "vitepress-plugin-mermaid";
 
 const title = "KarChunT";
@@ -151,6 +155,7 @@ export default withMermaid(
       sidebar: {
         "/docs/ssh/": sshSideBar,
         "/docs/git/": gitSideBar,
+        "/docs/how-to/": howToSideBar,
       },
       outline: {
         level: "deep",
