@@ -28,6 +28,10 @@ features:
     details: This section will show you how to do and solve problems.
     link: /docs/how-to/overview
     linkText: Learn more
+  - title: 🍉 Docker
+    details: Docker is an open platform for developing, shipping, and running applications.
+    link: /docs/docker/what-is-docker
+    linkText: Learn more
 #   - title: 🥑 Design Pattern
 #     details: Solving typical software design problems.
 #     link: /docs/design-pattern/
