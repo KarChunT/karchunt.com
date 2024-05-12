@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.6](https://github.com/KarChunT/karchunt.com/compare/v1.1.5...v1.1.6) (2024-05-12)
+
+
+### Internal
+
+* **.vitepress/config:** wrap mermaid plugins to default vitepress defineconfig ([3988dda](https://github.com/KarChunT/karchunt.com/commit/3988ddad5c51a16f4e3d551c774c484893a2e284))
+* **constant:** refactor all constants into a centralized constants.ts ([156200d](https://github.com/KarChunT/karchunt.com/commit/156200dcc7634342d1d2b3b448bae3e24c0129cf))
+* **css:** remove constant value for vp-doc image ([e6e4170](https://github.com/KarChunT/karchunt.com/commit/e6e4170ffa19b1506d4dcd9b0a4b8e4dd4c0c507))
+* **docker:** setup docker documentation ([4bfec89](https://github.com/KarChunT/karchunt.com/commit/4bfec896e8a0f46272783a0255ac9e034e1abb95))
+* **git:** setup Git documentation ([59ae50e](https://github.com/KarChunT/karchunt.com/commit/59ae50e0032eea145cba973b81688fbb79179d91))
+* **how-to:** create overview page for how-to ([dd841ac](https://github.com/KarChunT/karchunt.com/commit/dd841acbf648ef2744d2c014c71f4be082136cc8))
+* **how-to:** setup how-to documentation ([c991340](https://github.com/KarChunT/karchunt.com/commit/c9913407393435aa35bbb7e4409d880bf6401872))
+
 ### [1.1.5](https://github.com/KarChunT/karchunt.com/compare/v1.1.4...v1.1.5) (2024-03-30)
 
 
