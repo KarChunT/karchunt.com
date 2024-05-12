@@ -18,6 +18,10 @@ This [repository](https://github.com/KarChunT/karchunt.com) and [website](https:
 ## Documentation/Notes
 
 - [SSH](https://karchunt.com/docs/ssh/ssh-overview)
+- [Git](https://karchunt.com/docs/git/what-is-git)
+- [How-To](https://karchunt.com/docs/how-to/overview)
+- [Docker](https://karchunt.com/docs/docker/what-is-docker)
+- [12-Factor App](https://karchunt.com/docs/twelve-factor-app/introduction)
 
 ## Blog Posts
 
