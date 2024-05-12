@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { VPBadge, VPButton } from "vitepress/theme";
-import { roadmapContents } from "../constants/roadmapConstant";
+import { roadmapContents } from "../constants/constants";
 </script>
 
 <template>

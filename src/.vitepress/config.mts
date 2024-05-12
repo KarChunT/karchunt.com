@@ -1,10 +1,5 @@
 import { HeadConfig, defineConfig } from "vitepress";
-import {
-  gitSideBar,
-  sshSideBar,
-  howToSideBar,
-  dockerSideBar,
-} from "./theme/constants/docsConstants";
+import { navItems, navSideBar } from "./theme/constants/constants";
 import { withMermaid } from "vitepress-plugin-mermaid";
 
 const title = "KarChunT";
@@ -130,36 +125,11 @@ export default withMermaid(
           return `${githubUrl}/edit/main/src/${filePath}`;
         },
       },
-      nav: [
-        { text: "Home", link: "/" },
-        { text: "About", link: "/about" },
-        {
-          text: "Blog",
-          items: [
-            { text: "Blog Home", link: "/blog" },
-            { text: "Tags", link: "/blog/tags" },
-            { text: "Archives", link: "/blog/archives" },
-          ],
-        },
-        {
-          text: "Docs",
-          items: [
-            { text: "SSH", link: "/docs/ssh/ssh-overview" },
-            { text: "Git", link: "/docs/git/what-is-git" },
-            { text: "How-to?", link: "/docs/how-to/overview" },
-            { text: "Docker", link: "/docs/docker/what-is-docker" },
-          ],
-        },
-        { text: "Gallery", link: "/gallery" },
-      ],
+      nav: navItems,
       search: {
         provider: "local",
       },
-      sidebar: {
-        "/docs/ssh/": sshSideBar,
-        "/docs/git/": gitSideBar,
-        "/docs/how-to/": howToSideBar,
-      },
+      sidebar: navSideBar,
       outline: {
         level: "deep",
       },
