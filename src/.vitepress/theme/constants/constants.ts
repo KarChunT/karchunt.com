@@ -208,9 +208,9 @@ export const roadmapContents: RoadmapContent[] = [
     title: "Twelve Factor App",
     description:
       "It is a methodology for building software-as-a-service applications with best practices.",
-    date: formatDate("2024-05-04"),
+    date: formatDate("2024-05-12"),
     link: twelveFactorMainPage,
-    isComplete: "false",
+    isComplete: "true",
   },
 ];
 

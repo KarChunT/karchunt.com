@@ -32,6 +32,10 @@ features:
     details: Docker is an open platform for developing, shipping, and running applications.
     link: /docs/docker/what-is-docker
     linkText: Learn more
+  - title: 🍊 12 Factor App
+    details: It is a methodology for building software-as-a-service applications with best practices.
+    link: /docs/twelve-factor-app/introduction
+    linkText: Learn more
 #   - title: 🥑 Design Pattern
 #     details: Solving typical software design problems.
 #     link: /docs/design-pattern/
