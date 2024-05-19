@@ -175,8 +175,70 @@ const dockerSideBar = [
         text: "Docker Architecture",
         link: `${dockerBasePath}/docker-architecture`,
       },
+      {
+        text: "Docker Installation",
+        link: `${dockerBasePath}/docker-installation`,
+      },
+      {
+        text: "Daemon Configuration",
+        link: `${dockerBasePath}/daemon-configuration`,
+      },
     ],
   },
+  {
+    text: "Docker Topics",
+    collapsed: false,
+    items: [
+      {
+        text: "Container",
+        link: `${dockerBasePath}/container`,
+      },
+      {
+        text: "Image",
+        link: `${dockerBasePath}/image`,
+      },
+      {
+        text: "Volume",
+        link: `${dockerBasePath}/volume`,
+      },
+      {
+        text: "Network",
+        link: `${dockerBasePath}/network`,
+      },
+      {
+        text: "Resource Limits",
+        link: `${dockerBasePath}/resource-limits`,
+      },
+      {
+        text: "Docker Compose",
+        link: `${dockerBasePath}/docker-compose`,
+      },
+    ],
+  },
+  {
+    text: "Additional",
+    collapsed: false,
+    items: [
+      {
+        text: "Useful commands",
+        link: `${dockerBasePath}/useful-commands`,
+      },
+      {
+        text: "Future",
+        link: `${dockerBasePath}/future`,
+      },
+    ],
+  },
+  // {
+  //   text: "Best practices",
+  //   collapsed: false,
+  //   items: [
+  //     {
+  //       text: "Dockerfile",
+  //       link: `${dockerBasePath}/best-practice-dockerfile`,
+  //     },
+  //   ],
+  // },
 ];
 
 export const roadmapContents: RoadmapContent[] = [
@@ -202,7 +264,7 @@ export const roadmapContents: RoadmapContent[] = [
       "Docker is an open platform for developing, shipping, and running applications.",
     date: formatDate("2024-05-01"),
     link: dockerMainPage,
-    isComplete: "false",
+    isComplete: "true",
   },
   {
     title: "Twelve Factor App",
