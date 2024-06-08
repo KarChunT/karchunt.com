@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.7](https://github.com/KarChunT/karchunt.com/compare/v1.1.6...v1.1.7) (2024-06-08)
+
+
+### Features
+
+* **compiler:** add compiler for more interactive and learning purpose ([df2663c](https://github.com/KarChunT/karchunt.com/commit/df2663c8675f7277611584af4d977743d46f8140)), closes [#18](https://github.com/KarChunT/karchunt.com/issues/18)
+
+
+### Internal
+
+* **docker:** setup Docker documentation ([b79bd82](https://github.com/KarChunT/karchunt.com/commit/b79bd828b1c923f9f71ef480252c7b392b47ba43))
+* **readme.md:** add missing documentation/notes section ([d28a2ca](https://github.com/KarChunT/karchunt.com/commit/d28a2ca0b3c5df3cdc0833f403174aa54fcde02a))
+* **twelve-factor-app:** setup 12-factor app documentation ([0707320](https://github.com/KarChunT/karchunt.com/commit/0707320ef6a0fff131b74092a7afc64acd271621))
+
 ### [1.1.6](https://github.com/KarChunT/karchunt.com/compare/v1.1.5...v1.1.6) (2024-05-12)
 
 
