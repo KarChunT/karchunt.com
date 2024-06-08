@@ -298,6 +298,7 @@ export const navItems = [
     ],
   },
   { text: "Gallery", link: "/gallery" },
+  { text: "Compiler", link: "/compiler" },
 ];
 
 export const navSideBar = {
