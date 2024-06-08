@@ -1,16 +1,15 @@
-import { RoadmapContent } from "../types/types";
-import { formatDate } from "../utils/common";
-
 const sshBasePath = "/docs/ssh";
 const gitBasePath = "/docs/git";
 const howToBasePath = "/docs/how-to";
 const dockerBasePath = "/docs/docker";
+const designPatternBasePath = "/docs/design-pattern";
 const twelveFactorBasePath = "/docs/twelve-factor-app";
 
 const sshMainPage = `${sshBasePath}/ssh-overview`;
 const gitMainPage = `${gitBasePath}/what-is-git`;
 const howToMainPage = `${howToBasePath}/overview`;
 const dockerMainPage = `${dockerBasePath}/what-is-docker`;
+const designPatternMainPage = `${designPatternBasePath}/introduction`;
 const twelveFactorMainPage = `${twelveFactorBasePath}/introduction`;
 
 const sshSideBar = [
@@ -241,38 +240,16 @@ const dockerSideBar = [
   // },
 ];
 
-export const roadmapContents: RoadmapContent[] = [
+const designPatternSideBar = [
   {
-    title: "SSH",
-    description:
-      "SSH stands for Secure Shell (SSH) Protocol that is mainly used to connect to a Linux server remotely.",
-    date: formatDate("2024-03-30"),
-    link: sshMainPage,
-    isComplete: "true",
-  },
-  {
-    title: "Git",
-    description:
-      "Git is a distributed version control system that tracks file changes.",
-    date: formatDate("2024-04-12"),
-    link: gitMainPage,
-    isComplete: "true",
-  },
-  {
-    title: "Docker",
-    description:
-      "Docker is an open platform for developing, shipping, and running applications.",
-    date: formatDate("2024-05-01"),
-    link: dockerMainPage,
-    isComplete: "true",
-  },
-  {
-    title: "Twelve Factor App",
-    description:
-      "It is a methodology for building software-as-a-service applications with best practices.",
-    date: formatDate("2024-05-12"),
-    link: twelveFactorMainPage,
-    isComplete: "true",
+    text: "Introduction",
+    collapsed: false,
+    items: [
+      // {
+      //   text: "What is Docker",
+      //   link: `${dockerBasePath}/what-is-docker`,
+      // },
+    ],
   },
 ];
 
@@ -295,6 +272,7 @@ export const navItems = [
       { text: "How-to?", link: howToMainPage },
       { text: "Docker", link: dockerMainPage },
       { text: "12 Factor App", link: twelveFactorMainPage },
+      // { text: "Design Pattern", link: designPatternMainPage },
     ],
   },
   { text: "Gallery", link: "/gallery" },
@@ -306,4 +284,5 @@ export const navSideBar = {
   "/docs/git/": gitSideBar,
   "/docs/how-to/": howToSideBar,
   "/docs/docker/": dockerSideBar,
+  // "/docs/design-pattern/": designPatternSideBar,
 };

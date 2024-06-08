@@ -13,8 +13,8 @@ hero:
       text: Blog
       link: /blog
     - theme: sponsor
-      text: Roadmap
-      link: /docs-roadmap
+      text: Compiler
+      link: /compiler
 features:
   - title: 🍇 SSH
     details: SSH stands for Secure Shell (SSH) Protocol that is mainly used to connect to a Linux server remotely.
@@ -36,8 +36,8 @@ features:
     details: It is a methodology for building software-as-a-service applications with best practices.
     link: /docs/twelve-factor-app/introduction
     linkText: Learn more
-#   - title: 🥑 Design Pattern
-#     details: Solving typical software design problems.
-#     link: /docs/design-pattern/
-#     linkText: Learn more
+  # - title: 🥑 Design Pattern
+  #   details: Solving typical software design problems.
+  #   link: /docs/design-pattern/introduction
+  #   linkText: Learn more
 ---
