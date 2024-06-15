@@ -2,6 +2,7 @@ const sshBasePath = "/docs/ssh";
 const gitBasePath = "/docs/git";
 const howToBasePath = "/docs/how-to";
 const dockerBasePath = "/docs/docker";
+const kubernetesBasePath = "/docs/kubernetes";
 const designPatternBasePath = "/docs/design-pattern";
 const twelveFactorBasePath = "/docs/twelve-factor-app";
 
@@ -9,6 +10,7 @@ const sshMainPage = `${sshBasePath}/ssh-overview`;
 const gitMainPage = `${gitBasePath}/what-is-git`;
 const howToMainPage = `${howToBasePath}/overview`;
 const dockerMainPage = `${dockerBasePath}/what-is-docker`;
+const kubernetesMainPage = `${kubernetesBasePath}/what-is-kubernetes`;
 const designPatternMainPage = `${designPatternBasePath}/introduction`;
 const twelveFactorMainPage = `${twelveFactorBasePath}/introduction`;
 
@@ -240,6 +242,23 @@ const dockerSideBar = [
   // },
 ];
 
+const kubernetesSideBar = [
+  {
+    text: "Introduction",
+    collapsed: false,
+    items: [
+      {
+        text: "What is Kubernetes",
+        link: `${kubernetesBasePath}/what-is-kubernetes`,
+      },
+      {
+        text: "Cluster Architecture",
+        link: `${kubernetesBasePath}/cluster-architecture`,
+      },
+    ],
+  },
+];
+
 const designPatternSideBar = [
   {
     text: "Introduction",
@@ -272,6 +291,7 @@ export const navItems = [
       { text: "How-to?", link: howToMainPage },
       { text: "Docker", link: dockerMainPage },
       { text: "12 Factor App", link: twelveFactorMainPage },
+      { text: "Kubernetes", link: kubernetesMainPage },
       // { text: "Design Pattern", link: designPatternMainPage },
     ],
   },
@@ -284,5 +304,6 @@ export const navSideBar = {
   "/docs/git/": gitSideBar,
   "/docs/how-to/": howToSideBar,
   "/docs/docker/": dockerSideBar,
+  "/docs/kubernetes/": kubernetesSideBar,
   // "/docs/design-pattern/": designPatternSideBar,
 };

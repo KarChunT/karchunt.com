@@ -36,6 +36,10 @@ features:
     details: It is a methodology for building software-as-a-service applications with best practices.
     link: /docs/twelve-factor-app/introduction
     linkText: Learn more
+  - title: 🍍 Kubernetes
+    details: Kubernetes, also known as k8s, is an open source system to deploy, scalwe, and manage containerized applications.
+    link: /docs/kubernetes/what-is-kubernetes
+    linkText: Learn more
   # - title: 🥑 Design Pattern
   #   details: Solving typical software design problems.
   #   link: /docs/design-pattern/introduction
