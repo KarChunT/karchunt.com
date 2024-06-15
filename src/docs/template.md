@@ -4,7 +4,7 @@ titleTemplate:
 description: Understand
 ---
 
-<h1>Title</h1>
+<h1>{{ $frontmatter.title }}</h1>
 
 ## start here
 
