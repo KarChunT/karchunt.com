@@ -16,7 +16,7 @@ It's a **methodology** for building **software-as-a-service (SaaS) or Cloud Nati
 
 - App can run in different execution environments without having the change the source code (Portability).
 - Suitable for deployment on modern cloud platforms
-- Minimize divergenece between development and production
+- Minimize divergence between development and production
 - Enable continuous deployment
 - Easy to scale up
 
@@ -136,8 +136,12 @@ So, we have to keep those configuration separately. What we can do is creating a
 
 ```python
 import os
-from fastapi import FastAPI
 import mysql.connector
+
+from fastapi import FastAPI
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI(
   title='Notifications',
@@ -184,6 +188,8 @@ Example of Backing services;
 > It makes no distinction between local and third party services
 >
 > — 12factor.net
+
+![backing-services](/docs/twelve-factor-app/backing-services.gif)
 
 Imagine you have integrated PostgreSQL service to your application to store your data. A PostgreSQL database is an attached resource to your app, which can be run locally, in the cloud, or on a server. If it is hosted somewhere, it will work without having to change the application code since all the configurations, such as URL, credentials, etc., are stored in a config file like `.env`.
 
@@ -241,15 +247,33 @@ The another scenario is that when the user login to the website, normally we wil
 
 ### Port binding
 
-In summary, we have to **export services** via **port binding**, as 12 factor app is **completely self-contained** (services) and does **not rely** on a specific web server to function.
+In summary, we have to **export services** via **port binding**, as 12 factor app is **completely self-contained** (services) and does **not rely** on a specific web server to function. This means that by **declaring the port** your application uses, the runtime and development environment know **where to access your services**. You must do this to ensure **portability** across platforms and environments.
 
-For example, FastAPI application is using port **8000** by default. So, in the web application, HTTP is exported as a service by binding to a port **8000** and listening for requests. That means in local development environment, you can visit a service url like `http://localhost:8000` to access the service exported by their app.
+```python
+import os
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def hello_world():
+	return "<p>Hello, World!</p>"
+
+if __name__ == '__main__':
+ 	app.run(debug=True, port=os.environ.get("PORT", 5000))
+```
+
+For example, Flask application is using port **5000** by default. So, in the web application, HTTP is exported as a service by binding to a port **5000** and listening for requests. That means in local development environment, you can visit a service url like `http://localhost:5000` to access the service exported by their app.
 
 ### Concurrency
 
 In summary, we have to **scale out via the process model**. So the applications should **scale out horizontally** and **not vertically** by running multiple instances of the application concurrently.
 
+![concurrency](/docs/twelve-factor-app/concurrency.gif)
+
 As an example, you currently have one instance of your application serving multiple users. What if you have more users visiting your application? It's possible to scale your **resources vertically** by adding resources (RAM, Storage, etc) to the server, but that means the server must be taken down. This approach isn't good.
+
+![horizontal-scaling](/docs/twelve-factor-app/horizontal-scaling.gif)
 
 Because processes are the **first class citizens** of the twelve-factor app, we should **scale out horizontally** by **adding/provisioning more servers** so we can spin more instances. Of course, you can have a **load balancer** as well to balance your load across the instances of the application.
 
@@ -257,11 +281,15 @@ Because processes are the **first class citizens** of the twelve-factor app, we 
 
 In summary, we will need to **maximize robustness** of a system with **fast startup** and **graceful shutdown**, as 12 factor app's processes are **disposable**, meaning they can be started or stopped at a moment's notice.
 
+![disposability](/docs/twelve-factor-app/disposability.gif)
+
 It's important for processes to make an effort to **minimize startup time** by **avoiding complex startup scripts** for **provisioning** the application and this concept also applies to reduce instances of the application.
 
 > Processes shut down gracefully when they receive a SIGTERM signal from the process manager.
 >
 > — 12factor.net
+
+![disposability-2](/docs/twelve-factor-app/disposability-2.gif)
 
 Here is an example, when executing the `docker stop` command for Docker containers, Docker initiates the **SIGTERM** signal to the container initially. If the container does not stop within a grace period, Docker will then send the **SIGKILL** signal to forcibly terminate the process running within the container.
 
