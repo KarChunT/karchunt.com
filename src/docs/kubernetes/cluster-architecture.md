@@ -105,12 +105,48 @@ The replication controller **monitors the replicaset status** and **takes necess
 
 #### Kube Scheduler
 
-<!-- - Kube Scheduler, which schedules activities to the worker nodes based on events occurring on the etcd. It also holds the nodes resources plan to determine the proper action for the triggered event. For example the scheduler would figure out which worker node will host a newly scheduled POD.  -->
+::: tip
+It only **decides** which pod goes to which node.  
+Additional add-on
 
-<!-- Schedulers (kube-scheduler)
+- Taints and tolerations
+- Node Selectors
+- Node Affinity
+  :::
 
-- scheduler identifies the right node to place a container on based on the containers resource requirements.
-- The worker nodes capacity or any other policies or constraints such as tents and tolerations or node affinity rules that are on them. -->
+The kube scheduler **identifies** and **schedules** the **pods** on **nodes** based on the **pod resource requirements**, but it does **not place** the pod on the nodes. The **kubelet** is the one who will **place** and **create** the pod on the node.
+
+The reason why we need a scheduler is because there could be **different sizes of nodes and pods**. You will need to ensure that the **node** has **sufficient resources** so that the **pod** can **proceed**. Therefore, each pod is **analyzed** by the scheduler to **determine the best node**.
+
+![kube-scheduler-ranking](/docs/kubernetes/kube-scheduler-ranking.gif)
+
+Here is an example, currently we have one pod with **CPU requirements of 10**. The kube scheduler will be going through **2 phases** to identify and schedule the pod on the **best node**.
+
+1. The kube scheduler will **filter out** those **nodes** that **do not fit the requirements**. So in this case, node 1 will be filtered out as node 1 only has 4 CPUs.
+2. (**Rank nodes**) By using a **priority function** or class, the kube scheduler **assigns a score** and **calculates** how much **free space** is available on the nodes after the pod is placed. The **highest score** after calculation will place the pod on that node.
+   - Assuming the priority score is **5**
+     - Score on node 2 = `10 - 5 = 5`
+     - Score on node 3 = `20 - 5 = 15` (Win)
+
+There are two ways to deploy kube scheduler in Kubernetes environment.
+
+- Manual installation
+
+  - [kube scheduler releases](https://kubernetes.io/releases/download/)
+
+- kubeadm
+  - Similar to above, we can use `kubectl get pods -n kube-system` command to find the **kube scheduler pod**.
+  - Run on control-plane (master node)
+    - If you want to see the kube-scheduler pod config options, then you have to `cat /etc/kubernetes/manifests/kube-scheduler.yaml`.
+    - If you want to see the kube-scheduler running process, then you have to `ps -aux | grep kube-scheduler`.
+
+#### Kube API Server
+
+::: tip More details
+It **orchestrates (manage) all cluster operations**. The **Kubernetes API** is **exposed** for **external users** to **manage the cluster**, as well as for the **controllers** to **monitor the state of the cluster** and make the necessary changes, and for the **worker nodes** to **communicate with the server**.
+:::
+
+In Kubernetes, the kube-apiserver is the **primary management component**, which **acts** as the **frontend** to the **cluster**, that means **all internal** (controller-manager, ETCD, kube-scheduler, kubelet) and **external communication** to the cluster is **via** the **kube-apiserver** component.
 
 <style scoped>
 h2 {
