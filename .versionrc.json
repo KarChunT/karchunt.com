@@ -7,6 +7,8 @@
     { "type": "style", "section": "Internal" },
     { "type": "refactor", "section": "Internal" },
     { "type": "perf", "section": "Internal" },
-    { "type": "test", "hidden": true }
+    { "type": "test", "hidden": true },
+    { "type": "migration", "section": "Migration" },
+    { "type": "ui", "section": "UI" }
   ]
 }

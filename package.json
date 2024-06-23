@@ -1,19 +1,8 @@
 {
   "name": "karchunt",
   "description": "karchunt personal website",
-  "type": "module",
   "version": "1.1.7",
-  "scripts": {
-    "docs:dev": "vitepress dev src",
-    "docs:build": "env-cmd -f .env.production vitepress build src",
-    "docs:preview": "vitepress preview src",
-    "prepare": "husky install",
-    "cz": "cz",
-    "release": "standard-version",
-    "release:minor": "standard-version --release-as minor",
-    "release:patch": "standard-version --release-as patch",
-    "release:major": "standard-version --release-as major"
-  },
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/KarChunT/karchunt.com"
@@ -23,28 +12,66 @@
     "email": "karchuntan.1999@gmail.com",
     "url": "https://www.linkedin.com/in/karchuntan"
   },
-  "devDependencies": {
-    "@commitlint/cli": "18.6.1",
-    "@commitlint/config-conventional": "18.6.2",
-    "@types/github-script": "github:actions/github-script",
-    "autoprefixer": "^10.4.17",
-    "cz-conventional-changelog": "^3.3.0",
-    "husky": "^8.0.0",
-    "mermaid": "^10.9.0",
-    "postcss": "^8.4.35",
-    "standard-version": "^9.5.0",
-    "tailwindcss": "^3.4.1",
-    "vitepress-plugin-mermaid": "^2.0.16"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "prepare": "husky",
+    "lint-staged": {
+      "src/**/*.{js,jsx,ts,tsx,json}": [
+        "eslint --fix --max-warnings=0",
+        "prettier --write"
+      ],
+      "src/**/*.{js,jsx,ts,tsx,json,css,md,mdx}": [
+        "prettier --write"
+      ]
+    },
+    "release": "standard-version",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch",
+    "release:major": "standard-version --release-as major"
   },
   "dependencies": {
-    "env-cmd": "^10.1.0",
-    "markdown-it": "^14.0.0",
-    "vitepress": "^1.0.0-rc.45",
-    "vue": "^3.4.19"
+    "@radix-ui/react-slot": "^1.1.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.2.12",
+    "lucide-react": "^0.396.0",
+    "mini-svg-data-uri": "^1.4.4",
+    "next": "14.2.4",
+    "next-themes": "^0.3.0",
+    "nextra": "^2.13.4",
+    "nextra-theme-docs": "^2.13.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@types/github-script": "github:actions/github-script",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^7.13.1",
+    "@typescript-eslint/parser": "^7.13.1",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.34.3",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
+    "postcss": "^8.4.38",
+    "prettier": "^3.3.2",
+    "prettier-plugin-tailwindcss": "^0.6.5",
+    "standard-version": "^9.5.0",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5"
   }
 }
