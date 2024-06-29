@@ -9,13 +9,13 @@ const Hero = () => {
   const flipWords = ['world', 'industry', 'technology'];
 
   return (
-    <div className="pb-20">
+    <div>
       <Spotlight
         className="-top-40 left-0 md:-top-20 md:left-60"
         fill="green"
       />
 
-      <div className="relative z-10 my-20 flex justify-center">
+      <div className="relative z-10 mt-20 flex justify-center">
         <div className="flex max-w-[89vw] flex-col items-center justify-center md:max-w-2xl lg:max-w-[60vw]">
           <div className="max-w-80 text-center text-xs uppercase tracking-widest">
             Revolutionize the
