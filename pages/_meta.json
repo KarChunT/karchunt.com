@@ -1,0 +1,12 @@
+{
+  "*": {
+    "type": "page"
+  },
+  "index": {
+    "title": "Home",
+    "theme": {
+      "layout": "full",
+      "timestamp": false
+    }
+  }
+}
