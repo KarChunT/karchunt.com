@@ -1,5 +1,6 @@
 import Hero from '@/components/Hero';
 import Docs from '@/components/Docs';
+import Phase from '@/components/Phase';
 
 const Home = () => {
   return (
@@ -7,6 +8,7 @@ const Home = () => {
       <div className="w-full">
         <Hero />
         <Docs />
+        <Phase />
       </div>
     </main>
   );

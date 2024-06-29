@@ -27,7 +27,7 @@ const Hero = () => {
             className="text-center text-[40px] md:text-5xl lg:text-6xl"
           />
 
-          <p className="pt-6 text-center text-lg md:text-lg md:tracking-wider lg:text-2xl">
+          <p className="pt-6 text-center text-lg md:tracking-wider lg:text-2xl">
             I&apos;m an Infrastructure and DevOps Engineer at Intel. I love to
             code and design software architecture.
           </p>

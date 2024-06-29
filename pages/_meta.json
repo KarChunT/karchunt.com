@@ -5,7 +5,7 @@
   "index": {
     "title": "Home",
     "theme": {
-      "layout": "full",
+      "layout": "raw",
       "timestamp": false
     }
   }
