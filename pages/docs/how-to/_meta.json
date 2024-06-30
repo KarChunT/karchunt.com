@@ -1,0 +1,23 @@
+{
+  "overview": {
+    "title": "Overview",
+    "href": "/docs/how-to/overview"
+  },
+
+  "-- Contents": {
+    "type": "separator",
+    "title": "Contents"
+  },
+  "setup-and-install": {
+    "title": "Setup & Installation",
+    "href": "/docs/how-to/setup-and-install"
+  },
+  "edit-and-fix": {
+    "title": "Edit & Fix",
+    "href": "/docs/how-to/edit-and-fix"
+  },
+  "technology": {
+    "title": "Technology",
+    "href": "/docs/how-to/technology"
+  }
+}
