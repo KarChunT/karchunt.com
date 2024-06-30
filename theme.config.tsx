@@ -1,11 +1,10 @@
 import Image from 'next/image';
+import { useConfig } from 'nextra-theme-docs';
+import type { DocsThemeConfig } from 'nextra-theme-docs';
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default {
+const config: DocsThemeConfig = {
   docsRepositoryBase:
     'https://github.com/KarChunT/karchunt.com/tree/v2(brand-new-design)',
-
-  // navbar
   logo: (
     <>
       <Image src="/penguin-nobg.png" width={24} height={24} alt="Penguin" />
@@ -29,5 +28,38 @@ export default {
   search: {
     placeholder: 'Search content...',
   },
-  // sidebar
+  footer: {
+    text: (
+      <span className="mx-auto">
+        Copyright © {new Date().getFullYear()} KarChunT. All rights reserved
+      </span>
+    ),
+  },
+  sidebar: {
+    toggleButton: true,
+  },
+  toc: {
+    backToTop: true,
+  },
+  darkMode: false,
+  nextThemes: {
+    defaultTheme: 'dark',
+    forcedTheme: 'dark',
+  },
+  primaryHue: {
+    dark: 143,
+    light: 143,
+  },
+  primarySaturation: {
+    dark: 100,
+    light: 100,
+  },
+  useNextSeoProps() {
+    const { frontMatter } = useConfig();
+    return {
+      titleTemplate: `%s - ${frontMatter.titleTemplate}`,
+    };
+  },
 };
+
+export default config;

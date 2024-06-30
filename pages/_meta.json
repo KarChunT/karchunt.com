@@ -8,5 +8,35 @@
       "layout": "raw",
       "timestamp": false
     }
+  },
+  "docs": {
+    "title": "Docs",
+    "type": "menu",
+    "items": {
+      "ssh": {
+        "title": "SSH",
+        "href": "/docs/ssh/ssh-overview"
+      },
+      "git": {
+        "title": "Git",
+        "href": "/docs/git/what-is-git"
+      },
+      "how-to": {
+        "title": "How to?",
+        "href": "/docs/how-to/overview"
+      },
+      "docker": {
+        "title": "Docker",
+        "href": "/docs/docker/what-is-docker'"
+      },
+      "12-factor-app": {
+        "title": "12 Factor App",
+        "href": "/docs/twelve-factor-app/introduction"
+      },
+      "kubernetes": {
+        "title": "Kubernetes",
+        "href": "/docs/kubernetes/what-is-kubernetes"
+      }
+    }
   }
 }
