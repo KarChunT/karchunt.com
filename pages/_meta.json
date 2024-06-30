@@ -27,7 +27,7 @@
       },
       "docker": {
         "title": "Docker",
-        "href": "/docs/docker/what-is-docker'"
+        "href": "/docs/docker/what-is-docker"
       },
       "12-factor-app": {
         "title": "12 Factor App",
@@ -37,6 +37,13 @@
         "title": "Kubernetes",
         "href": "/docs/kubernetes/what-is-kubernetes"
       }
+    }
+  },
+  "gallery": {
+    "title": "Gallery",
+    "theme": {
+      "layout": "raw",
+      "timestamp": false
     }
   },
   "compiler": {
