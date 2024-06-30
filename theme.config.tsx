@@ -56,8 +56,11 @@ const config: DocsThemeConfig = {
   },
   useNextSeoProps() {
     const { frontMatter } = useConfig();
+    const titleTemplate = frontMatter.titleTemplate
+      ? `%s - ${frontMatter.titleTemplate}`
+      : 'KarChunT';
     return {
-      titleTemplate: `%s - ${frontMatter.titleTemplate}`,
+      titleTemplate,
     };
   },
 };
