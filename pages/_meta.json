@@ -38,5 +38,12 @@
         "href": "/docs/kubernetes/what-is-kubernetes"
       }
     }
+  },
+  "compiler": {
+    "title": "Compiler",
+    "theme": {
+      "layout": "raw",
+      "timestamp": false
+    }
   }
 }
