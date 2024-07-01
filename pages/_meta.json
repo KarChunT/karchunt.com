@@ -42,14 +42,14 @@
   "gallery": {
     "title": "Gallery",
     "theme": {
-      "layout": "raw",
+      "layout": "full",
       "timestamp": false
     }
   },
   "compiler": {
     "title": "Compiler",
     "theme": {
-      "layout": "raw",
+      "layout": "full",
       "timestamp": false
     }
   }

@@ -1,10 +1,10 @@
 const Compiler = () => {
   return (
-    <div className="mx-auto flex h-[80vh] w-full items-center justify-center p-6">
+    <div className="flex justify-center pt-6">
       <iframe
-        height="550px"
+        height="500px"
         src="https://onecompiler.com/embed/?theme=dark&hideTitle=true"
-        width="80%"
+        width="100%"
       ></iframe>
     </div>
   );

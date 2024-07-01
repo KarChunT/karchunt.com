@@ -4,7 +4,7 @@ import Phase from '@/components/Phase';
 
 const Home = () => {
   return (
-    <main className="relative mx-auto flex flex-col items-center justify-center overflow-hidden">
+    <main className="nx-min-h-[calc(100vh-var(--nextra-navbar-height))] relative mx-auto flex flex-col items-center overflow-hidden">
       <div className="w-full">
         <Hero />
         <Docs />
