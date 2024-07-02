@@ -34,10 +34,12 @@
     "release:major": "standard-version --release-as major"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.0",
     "@react-three/fiber": "^8.16.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "embla-carousel-react": "^8.1.6",
     "framer-motion": "^11.2.12",
     "lucide-react": "^0.396.0",
     "mini-svg-data-uri": "^1.4.4",

@@ -1,5 +1,25 @@
 import { Doc } from '@/types/type';
 
+export const IMAGES: string[] = [
+  '/gallery/penguin-challenge.webp',
+  '/gallery/penguin-document.webp',
+  '/gallery/penguin-learn.webp',
+  '/gallery/penguin1.webp',
+  '/gallery/penguin10.webp',
+  '/gallery/penguin11.webp',
+  '/gallery/penguin12.webp',
+  '/gallery/penguin13.webp',
+  '/gallery/penguin14.webp',
+  '/gallery/penguin2.webp',
+  '/gallery/penguin3.webp',
+  '/gallery/penguin4.webp',
+  '/gallery/penguin5.webp',
+  '/gallery/penguin6.webp',
+  '/gallery/penguin7.webp',
+  '/gallery/penguin8.webp',
+  '/gallery/penguin9.webp',
+];
+
 export const DOCUMENTATION: Doc[] = [
   {
     title: '🍇 SSH',
