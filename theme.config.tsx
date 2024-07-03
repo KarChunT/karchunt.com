@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useConfig } from 'nextra-theme-docs';
 import type { DocsThemeConfig } from 'nextra-theme-docs';
 
@@ -62,6 +63,30 @@ const config: DocsThemeConfig = {
     return {
       titleTemplate,
     };
+  },
+  head: () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const { asPath } = useRouter();
+    const rootPath = 'https://www.karchunt.com';
+    const url = `${rootPath}${asPath}`;
+    const ogImage = `${rootPath}/penguin-nobg.png`;
+
+    return (
+      <>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" href="/penguin-nobg.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta httpEquiv="Content-Language" content="en" />
+        <meta name="apple-mobile-web-app-title" content="KarChunT" />
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="googlebot"
+          content="index, follow, noimageindex, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        />
+        <meta name="og:url" content={url} />
+        <meta name="og:image" content={ogImage} />
+      </>
+    );
   },
 };
 
