@@ -34,6 +34,7 @@
     "release:major": "standard-version --release-as major"
   },
   "dependencies": {
+    "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.0",
     "@react-three/fiber": "^8.16.8",

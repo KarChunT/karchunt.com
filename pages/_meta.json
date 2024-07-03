@@ -9,6 +9,13 @@
       "timestamp": false
     }
   },
+  "about": {
+    "title": "About",
+    "theme": {
+      "layout": "default",
+      "timestamp": false
+    }
+  },
   "docs": {
     "title": "Docs",
     "type": "menu",

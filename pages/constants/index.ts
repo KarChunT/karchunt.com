@@ -1,5 +1,16 @@
 import { Doc } from '@/types/type';
 
+export const PERSONAL_IMAGES = [
+  {
+    id: 1,
+    name: 'Intel KarChunT',
+    designation: 'Infrastructure & DevOps Engineer',
+    image: '/personal/anotherme.webp',
+    width: 300,
+    height: 300,
+  },
+];
+
 export const IMAGES: string[] = [
   '/gallery/penguin-challenge.webp',
   '/gallery/penguin-document.webp',
