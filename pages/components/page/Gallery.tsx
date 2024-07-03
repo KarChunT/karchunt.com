@@ -18,7 +18,7 @@ const Gallery = () => {
             />
           </DialogTrigger>
           <DialogContent className="border-none bg-transparent">
-            <Card className="border-none">
+            <Card className="border-none bg-transparent">
               <CardContent className="flex aspect-square items-center justify-center p-0">
                 <Image
                   className="rounded-lg"
