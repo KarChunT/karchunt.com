@@ -1,7 +1,7 @@
 {
   "overview": {
     "title": "Overview",
-    "href": "/docs/how-to/overview"
+    "href": "/blog/overview"
   },
 
   "-- Contents": {
@@ -10,14 +10,14 @@
   },
   "setup-and-install": {
     "title": "Setup & Installation",
-    "href": "/docs/how-to/setup-and-install"
+    "href": "/blog/setup-and-install"
   },
   "edit-and-fix": {
     "title": "Edit & Fix",
-    "href": "/docs/how-to/edit-and-fix"
+    "href": "/blog/edit-and-fix"
   },
   "technology": {
     "title": "Technology",
-    "href": "/docs/how-to/technology"
+    "href": "/blog/technology"
   }
 }

@@ -34,7 +34,7 @@ const Hero = () => {
 
           <div className="flex items-center justify-center gap-2 pt-6">
             <Button asChild>
-              <Link href="/blog">Blog</Link>
+              <Link href="/blog/overview">Blog</Link>
             </Button>
 
             <Button variant="secondary" asChild>

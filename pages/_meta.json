@@ -16,6 +16,9 @@
       "timestamp": false
     }
   },
+  "blog": {
+    "title": "Blog"
+  },
   "docs": {
     "title": "Docs",
     "type": "menu",
@@ -27,10 +30,6 @@
       "git": {
         "title": "Git",
         "href": "/docs/git/what-is-git"
-      },
-      "how-to": {
-        "title": "How to?",
-        "href": "/docs/how-to/overview"
       },
       "docker": {
         "title": "Docker",

@@ -44,7 +44,7 @@ const About = () => {
         Intel. Welcome to my website, visit my{' '}
         <Link
           className="nx-text-primary-600 nx-underline nx-decoration-from-font [text-underline-position:from-font]"
-          href="/blog"
+          href="/blog/overview"
         >
           blog
         </Link>

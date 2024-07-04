@@ -45,11 +45,6 @@ export const DOCUMENTATION: Doc[] = [
     link: '/docs/git/what-is-git',
   },
   {
-    title: '🥥 How to?',
-    description: 'This section will show you how to do and solve problems.',
-    link: '/docs/how-to/overview',
-  },
-  {
     title: '🍉 Docker',
     description:
       'Docker is an open platform for developing, shipping, and running applications.',
