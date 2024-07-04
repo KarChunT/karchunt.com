@@ -8,4 +8,7 @@ const withNextra = require('nextra')({
 // If you have other Next.js configurations, you can pass them as the parasmeter:
 module.exports = withNextra({
   /* other next.js config */
+  images: {
+    unoptimized: true,
+  },
 });
