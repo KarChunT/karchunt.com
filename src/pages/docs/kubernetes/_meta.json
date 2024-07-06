@@ -1,0 +1,14 @@
+{
+  "-- Introduction": {
+    "type": "separator",
+    "title": "Introduction"
+  },
+  "what-is-kubernetes": {
+    "title": "What is Kubernetes",
+    "href": "/docs/kubernetes/what-is-kubernetes"
+  },
+  "cluster-architecture": {
+    "title": "Cluster Architecture",
+    "href": "/docs/kubernetes/cluster-architecture"
+  }
+}

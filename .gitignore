@@ -1,12 +1,4 @@
-# log
-*.log
-
-# temp
-.temp
-temp/
-
-# cache
-cache/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
 /node_modules
@@ -20,6 +12,7 @@ cache/
 # next.js
 /.next/
 /out/
+/dist/
 
 # production
 /build
@@ -36,25 +29,9 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# vercel
+.vercel
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# dist
-dist/
-
-# sitemap
-sitemap*.xml
-
-# robots
-robots*.txt
-
-# rss
-rss*.xml
-rss*.json
-
-# atom
-atom*.xml
-
-# environment files
-.env*
