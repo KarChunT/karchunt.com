@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { cn } from '@/utils/cn';
-import { PERSONAL_IMAGES } from '@/constants';
+import { cn } from '../../utils/cn';
+import { PERSONAL_IMAGES } from '../../constants';
 import { FlipWords } from '@/components/ui/flip-words';
 import { AnimatedTooltip } from '@/components/ui/animated-tooltip';
 import {

@@ -1,4 +1,4 @@
-import { DOCUMENTATION } from '@/constants';
+import { DOCUMENTATION } from '../constants';
 import { HoverEffect } from '@/components/ui/card-hover-effect';
 
 const Docs = () => {

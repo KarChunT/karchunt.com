@@ -1,4 +1,4 @@
-import { Doc } from '@/types/type';
+import { Doc } from '../types/type';
 
 export const PERSONAL_IMAGES = [
   {

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { IMAGES } from '@/constants';
+import { IMAGES } from '../../constants';
 import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
