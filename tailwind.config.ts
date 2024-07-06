@@ -6,7 +6,7 @@ const colors = require('tailwindcss/colors');
 
 /** @type {import('tailwindcss').Config} */
 export const darkMode = ['class'];
-export const content = ['./src/**/*.{js,ts,jsx,tsx,mdx}', '*.jsx'];
+export const content = ['./src/**/*.{js,ts,jsx,tsx,mdx}', '*.tsx'];
 export const prefix = '';
 export const theme = {
   container: {
