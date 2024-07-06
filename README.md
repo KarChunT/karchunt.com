@@ -7,39 +7,12 @@
 
 This [repository](https://github.com/KarChunT/karchunt.com) and [website](https://karchunt.com/) share what I have learned and studied previously, as well as the knowledge I have gained through my experiences and from other developers so far. I hope you can find something useful or helpful here. Thank you!
 
-## Built with
-
-- [Vue](https://vuejs.org/)
-- [VitePress](https://vitepress.dev/)
-- [TailwindCSS](https://tailwindcss.com/)
-- [env-cmd](https://www.npmjs.com/package/env-cmd)
-- [markdown-it](https://www.npmjs.com/package/markdown-it)
-
-## Documentation/Notes
-
-- [SSH](https://karchunt.com/docs/ssh/ssh-overview)
-- [Git](https://karchunt.com/docs/git/what-is-git)
-- [How-To](https://karchunt.com/docs/how-to/overview)
-- [Docker](https://karchunt.com/docs/docker/what-is-docker)
-- [12-Factor App](https://karchunt.com/docs/twelve-factor-app/introduction)
-
-## Blog Posts
-
-- [Setup Self-Hosted GitHub Runner](https://karchunt.com/blog/posts/setup-self-hosted-github-runner)
-- [Linux Problems Solving - No Module named 'apt_pkg'](https://karchunt.com/blog/posts/fix-no-module-named-apt-pkg)
-- [Git LFS Problems Solving](https://karchunt.com/blog/posts/fix-git-lfs-pointers)
+**Note**: KarChunT's personal website running on Next.js.
 
 ## Changelog
 
 Detailed changes for each release are documented in the [CHANGELOG](https://github.com/KarChunT/karchunt.com/blob/main/CHANGELOG.md).
 
-## Acknowledgements
-
-- [VitePress](https://vitepress.dev/)
-- [jcamp-code](https://github.com/jcamp-code/vitepress-blog-theme)
-- [Conventional Commits](https://kapeli.com/cheat_sheets/Conventional_Commits.docset/Contents/Resources/Documents/index)
-- [ghacosta/definitive-guide-for-commitizen-commitlint-husky-3of9](https://dev.to/ghacosta/definitive-guide-for-commitizen-commitlint-husky-3of9)
-- [seriouslysean/demo--auto-bump-forked-prs](https://github.com/seriouslysean/demo--auto-bump-forked-prs)
 
 ## License
 

@@ -23,18 +23,20 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
+        with:
+          static_site_generator: next
 
-      - name: Setup environment
-        run: |
-          echo "VUE_APP_BASE_URL=${{ vars.BASE_URL }}" > .env.production
+      # - name: Setup environment
+      #   run: |
+      #     echo "VUE_APP_BASE_URL=${{ vars.BASE_URL }}" > .env.production
 
-      - name: Build with VitePress
-        run: npm run docs:build
+      - name: Build with Next.js
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: src/.vitepress/dist
+          path: ./dist
 
   deploy:
     environment:
