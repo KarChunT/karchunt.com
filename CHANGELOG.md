@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/KarChunT/karchunt.com/compare/v1.1.7...v2.0.0) (2024-07-06)
+
+
+### Internal
+
+* **design-pattern:** temp remove design pattern documentation ([3b03111](https://github.com/KarChunT/karchunt.com/commit/3b03111333f70aa9454a954d3e2733e583e1709e))
+* **kubernetes-and-12-factor-app:** update kubernetes and 12 factor app docs ([5d37f53](https://github.com/KarChunT/karchunt.com/commit/5d37f5396207f0c7c8dc210b2f13998671f82b3a))
+* **kubernetes:** setup Kubernetes documentation ([8dc713d](https://github.com/KarChunT/karchunt.com/commit/8dc713d94664805b1ba558d52ed412fb9379dbbb))
+* **roadmap:** remove roadmap page ([be792c5](https://github.com/KarChunT/karchunt.com/commit/be792c57f97632fad973f6b86d62e4f8d8fc47af))
+
 ### [1.1.7](https://github.com/KarChunT/karchunt.com/compare/v1.1.6...v1.1.7) (2024-06-08)
 
 
