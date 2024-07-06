@@ -4,13 +4,40 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [2.0.0](https://github.com/KarChunT/karchunt.com/compare/v1.1.7...v2.0.0) (2024-07-06)
 
+### Migration
+
+* migrate from VitePress to Nextra ([83b2af1](https://github.com/KarChunT/karchunt.com/pull/20/commits/83b2af1b2f43544d310e1f84c88eaf1b128fc04b))
+* migrate all docs images from vitepress to nextra ([0e1f3f2](https://github.com/KarChunT/karchunt.com/pull/20/commits/0e1f3f2d2eac566d82d6cf722f1c6daf9e85a0ab))
+* migrate compiler from vitepress to nextra ([7116fc7](https://github.com/KarChunT/karchunt.com/pull/20/commits/7116fc72983d9ab89f0d8377398a7d169ad05d66))
+
+### UI
+
+* setup hero UI ([2996f90](https://github.com/KarChunT/karchunt.com/pull/20/commits/2996f90ff75bf1cb4d00f61e5b9d3b02e7e5af3e))
+* setup docs ui ([eab5535](https://github.com/KarChunT/karchunt.com/pull/20/commits/eab55351c54adb7819af078021a23c27d8b1b83b))
+* setup phase ui ([d4a5b72](https://github.com/KarChunT/karchunt.com/pull/20/commits/d4a5b724aab166b78b19d916f1c2cd067712eba0))
+* recustomize UI and set respective layout ([ef23bd0](https://github.com/KarChunT/karchunt.com/pull/20/commits/ef23bd047fc77062393bb9873080262e3d0d385c))
+* create a brand new UI for gallery ([af55d0e](https://github.com/KarChunT/karchunt.com/pull/20/commits/af55d0ec3de0cf102f3fd0bae54e77feea116c7f))
+* create 404 page not found ui ([205aa85](https://github.com/KarChunT/karchunt.com/pull/20/commits/205aa85f0680eaff1d5771b4e640fb8f09a46a00))
+* create brand new ui for about page ([5a592e1](https://github.com/KarChunT/karchunt.com/pull/20/commits/5a592e1d283e0c0cd080709054f47ffdaa3a0ea8))
+* customize the UI layout ([b8922a5](https://github.com/KarChunT/karchunt.com/pull/20/commits/b8922a5b69b9f924c7658ca33e14728f43be7680))
+* create brand new blog UI design ([0ca2085](https://github.com/KarChunT/karchunt.com/pull/20/commits/0ca2085ceeb4f755f51d2395929f8e6866d2d4a3))
 
 ### Internal
 
-* **design-pattern:** temp remove design pattern documentation ([3b03111](https://github.com/KarChunT/karchunt.com/commit/3b03111333f70aa9454a954d3e2733e583e1709e))
-* **kubernetes-and-12-factor-app:** update kubernetes and 12 factor app docs ([5d37f53](https://github.com/KarChunT/karchunt.com/commit/5d37f5396207f0c7c8dc210b2f13998671f82b3a))
-* **kubernetes:** setup Kubernetes documentation ([8dc713d](https://github.com/KarChunT/karchunt.com/commit/8dc713d94664805b1ba558d52ed412fb9379dbbb))
-* **roadmap:** remove roadmap page ([be792c5](https://github.com/KarChunT/karchunt.com/commit/be792c57f97632fad973f6b86d62e4f8d8fc47af))
+* rename theme.config file and add more configs into it ([76677d6](https://github.com/KarChunT/karchunt.com/pull/20/commits/76677d6d51b1c2a7061f79c03198f7c47cf1494a))
+* set defaultShowCopyCode to true for global config ([2bba2b9](https://github.com/KarChunT/karchunt.com/pull/20/commits/2bba2b9e4b1cddcc88f0b1ea8bc1c8c298771dff))
+* migrate SSH docs from vitepress to nextra ([38353a3](https://github.com/KarChunT/karchunt.com/pull/20/commits/38353a30e4baeb2169b8df1cf664eb57af50b827))
+* migrate how-to docs from vitepress to nextra ([252d967](https://github.com/KarChunT/karchunt.com/pull/20/commits/252d96721442f2c116b46b6c49f1b45ac43f19db))
+* migrate 12 factor app docs from vitepress to nextra ([ac7ea45](https://github.com/KarChunT/karchunt.com/pull/20/commits/ac7ea457645a884bfafe0e0e910582149cc7595a))
+* migrate Kubernetes docs from vitepress to nextra ([06ae1d4](https://github.com/KarChunT/karchunt.com/pull/20/commits/06ae1d4ad4a002958c846d7e17b8b958acef9f4e))
+* migrate git docs from vitepress to nextrc ([779027a](https://github.com/KarChunT/karchunt.com/pull/20/commits/779027a49f8ae5ed3554e3c8044f7eda376f3c02))
+* migrate docker docs from vitepress to nextra ([e13e861](https://github.com/KarChunT/karchunt.com/pull/20/commits/e13e861a6fa174f8a9cc279259405810b49b9720))
+* setup SEO dynamic headers ([408cd01](https://github.com/KarChunT/karchunt.com/pull/20/commits/408cd01c4bd7575f6eb5e19dc26542adade36bf6))
+* remove timestamp from 404 ([7cff022](https://github.com/KarChunT/karchunt.com/pull/20/commits/7cff022e331c0bf06dddfb142a23f47a76b11ea1))
+* add deployment steps and set image unoptimized to true ([44735ad](https://github.com/KarChunT/karchunt.com/pull/20/commits/44735ad72c25037f51bee950c7f9e1c8644a803a))
+* arrange folder structure to src/ directory ([3b70a66](https://github.com/KarChunT/karchunt.com/pull/20/commits/3b70a66458b745ebea36361aa4bd3253c68a618b))
+* ignore dist/ directory being pushed to GitHub ([cf99fcf](https://github.com/KarChunT/karchunt.com/pull/20/commits/cf99fcfdbca3ec8af308c5676e94394517251695))
+
 
 ### [1.1.7](https://github.com/KarChunT/karchunt.com/compare/v1.1.6...v1.1.7) (2024-06-08)
 
