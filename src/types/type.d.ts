@@ -3,3 +3,9 @@ export type Doc = {
   description: string;
   link: string;
 };
+
+export type Project = {
+  title: string;
+  description: string;
+  href: string;
+};

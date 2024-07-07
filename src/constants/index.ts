@@ -1,4 +1,17 @@
-import { Doc } from '../types/type';
+import { Doc, Project } from '../types/type';
+
+export const PROJECTS: Project[] = [
+  {
+    title: 'karchunt.com (latest)',
+    description: 'Hey, this is my current personal website.',
+    href: 'https://github.com/KarChunT/karchunt.com',
+  },
+  {
+    title: 'karchunt.com (v1)',
+    description: 'Hey, this is my v1 personal website.',
+    href: 'https://github.com/KarChunT/karchunt.com/tree/v1.1.7',
+  },
+];
 
 export const PERSONAL_IMAGES = [
   {
