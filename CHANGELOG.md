@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](https://github.com/KarChunT/karchunt.com/compare/v2.0.1...v2.0.2) (2024-07-07)
+
+
+### UI
+
+* setup project UI page ([b9cce91](https://github.com/KarChunT/karchunt.com/commit/b9cce9183a1117a581948a757f18c52aeca503bd))
+
 ### [2.0.1](https://github.com/KarChunT/karchunt.com/compare/v2.0.0...v2.0.1) (2024-07-07)
 
 
