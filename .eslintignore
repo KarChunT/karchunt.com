@@ -8,3 +8,5 @@ next-env.d.ts
 next.config.ts
 yarn.lock
 package-lock.json
+Dockerfile
+.dockerignore
