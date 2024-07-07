@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/KarChunT/karchunt.com/compare/v2.0.0...v2.0.1) (2024-07-07)
+
+
+### Internal
+
+* rename jsx to tsx ([bd776ec](https://github.com/KarChunT/karchunt.com/commit/bd776ec5b606b383ab2cfc194ccb12e29875e770))
+* **sitemap:** generate sitemap ([f2131b1](https://github.com/KarChunT/karchunt.com/commit/f2131b1f9fe155631cbbbec4880b134936bcc379))
+* support Dockerfile in karchunt.com repo ([e943754](https://github.com/KarChunT/karchunt.com/commit/e943754404286a6fab34408274845eb6ab0f20d2))
+* update CHANGELOG.md ([207fa0d](https://github.com/KarChunT/karchunt.com/commit/207fa0d2e88297ff0c4a5d25b812935d74e6175a))
+
 ## [2.0.0](https://github.com/KarChunT/karchunt.com/compare/v1.1.7...v2.0.0) (2024-07-06)
 
 ### Migration
