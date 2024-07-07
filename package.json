@@ -16,7 +16,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next build && next export",
     "lint": "eslint .",
     "format": "prettier --write .",
     "prepare": "husky",
@@ -51,6 +50,7 @@
     "nextra-theme-docs": "^2.13.4",
     "react": "^18",
     "react-dom": "^18",
+    "sharp": "^0.33.4",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.166.0"
