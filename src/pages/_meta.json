@@ -45,6 +45,20 @@
       }
     }
   },
+  "anything": {
+    "title": "Anything",
+    "type": "menu",
+    "items": {
+      "project": {
+        "title": "Projects",
+        "href": "/anything/projects"
+      }
+    },
+    "theme": {
+      "layout": "full",
+      "timestamp": false
+    }
+  },
   "gallery": {
     "title": "Gallery",
     "theme": {
@@ -57,6 +71,7 @@
     "theme": {
       "layout": "full",
       "timestamp": false
-    }
+    },
+    "display": "hidden"
   }
 }
