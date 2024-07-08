@@ -1,5 +1,31 @@
 import { Doc, Project } from '../types/type';
 
+export const ACKNOWLEDGMENTS = [
+  {
+    text: 'https://theodorusclarence.com/shorts/husky-commitlint-prettier',
+  },
+  {
+    text: 'https://medium.com/naukri-engineering/elevating-code-and-commit-quality-with-husky-prettier-eslint-lint-staged-and-commitlint-8e9617583a61',
+  },
+  {
+    text: 'https://dev.to/jsdevspace/setup-nextjs-14-project-with-eslint-prettier-tailwind-css-226j',
+  },
+  {
+    text: 'https://medium.com/yavar/setting-up-a-eslint-prettier-husky-and-lint-staged-integration-with-typescript-in-next-js-13-14-68044dfae920',
+  },
+  { text: 'https://nextra.site/' },
+  { text: 'https://github.com/seriouslysean/demo--auto-bump-forked-prs' },
+  {
+    text: 'https://dev.to/ghacosta/definitive-guide-for-commitizen-commitlint-husky-3of9',
+  },
+  {
+    text: 'https://kapeli.com/cheat_sheets/Conventional_Commits.docset/Contents/Resources/Documents/index',
+  },
+  { text: 'https://vitepress.dev/' },
+  { text: 'https://github.com/jcamp-code/vitepress-blog-theme' },
+  { text: 'https://kodekloud.com/' },
+];
+
 export const PROJECTS: Project[] = [
   {
     title: 'karchunt.com (latest)',

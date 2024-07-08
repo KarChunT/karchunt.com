@@ -52,11 +52,11 @@
       "project": {
         "title": "Projects",
         "href": "/anything/projects"
+      },
+      "acknowledgment": {
+        "title": "Acknowledgment",
+        "href": "/anything/acknowledgment"
       }
-    },
-    "theme": {
-      "layout": "full",
-      "timestamp": false
     }
   },
   "gallery": {
