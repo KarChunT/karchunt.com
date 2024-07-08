@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.3](https://github.com/KarChunT/karchunt.com/compare/v2.0.2...v2.0.3) (2024-07-08)
+
+
+### Internal
+
+* **css:** change default theme css ([e06696e](https://github.com/KarChunT/karchunt.com/commit/e06696e598630683474e7345e457593da561b9b0))
+
+
+### UI
+
+* setup acknowledgment UI page ([2d36b33](https://github.com/KarChunT/karchunt.com/commit/2d36b3369271be5a8241d997d9a33e081c2d440d))
+* support main UI from multi-step-loader, sparkles, and vortex ([d10aa8e](https://github.com/KarChunT/karchunt.com/commit/d10aa8eec16de7462a876317e0b8feeaffad0518))
+
 ### [2.0.2](https://github.com/KarChunT/karchunt.com/compare/v2.0.1...v2.0.2) (2024-07-07)
 
 
