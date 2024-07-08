@@ -52,3 +52,8 @@
 strong {
   color: hsl(var(--primary));
 }
+
+/* aside bar */
+:is(html[class~='dark'] .dark\:nx-bg-dark) {
+  background: black;
+}
