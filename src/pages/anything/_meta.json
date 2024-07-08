@@ -1,5 +1,19 @@
 {
   "*": {
     "type": "page"
+  },
+  "projects": {
+    "title": "Projects",
+    "theme": {
+      "layout": "full",
+      "timestamp": false
+    }
+  },
+  "acknowledgment": {
+    "title": "Acknowledgment",
+    "theme": {
+      "layout": "raw",
+      "timestamp": false
+    }
   }
 }
