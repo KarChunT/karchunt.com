@@ -4,8 +4,7 @@ import { useConfig } from 'nextra-theme-docs';
 import type { DocsThemeConfig } from 'nextra-theme-docs';
 
 const config: DocsThemeConfig = {
-  docsRepositoryBase:
-    'https://github.com/KarChunT/karchunt.com/tree/v2(brand-new-design)',
+  docsRepositoryBase: 'https://github.com/KarChunT/karchunt.com/tree/main',
   logo: (
     <>
       <Image src="/penguin-nobg.png" width={24} height={24} alt="Penguin" />
