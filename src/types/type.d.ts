@@ -8,8 +8,9 @@ export type Doc = {
 
 export type Project = {
   title: string;
-  description: string;
   href: string;
+  description: string;
+  icon: Icon;
 };
 
 export type Blog = {

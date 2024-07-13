@@ -8,6 +8,7 @@ import {
   IconBrandGithub,
   IconLetterP,
   IconWheel,
+  IconCode,
 } from '@tabler/icons-react';
 
 // find icons from here https://tabler.io/icons
@@ -193,13 +194,15 @@ export const ACKNOWLEDGMENTS = [
 export const PROJECTS: Project[] = [
   {
     title: 'karchunt.com (latest)',
-    description: 'Hey, this is my current personal website.',
     href: 'https://github.com/KarChunT/karchunt.com',
+    description: 'Hey, this is my current personal website.',
+    icon: IconCode,
   },
   {
     title: 'karchunt.com (v1)',
-    description: 'Hey, this is my v1 personal website.',
     href: 'https://github.com/KarChunT/karchunt.com/tree/v1.1.7',
+    description: 'Hey, this is my v1 personal website.',
+    icon: IconCode,
   },
 ];
 
