@@ -15,5 +15,12 @@
       "layout": "raw",
       "timestamp": false
     }
+  },
+  "tools": {
+    "title": "Tools",
+    "theme": {
+      "layout": "full",
+      "timestamp": false
+    }
   }
 }
