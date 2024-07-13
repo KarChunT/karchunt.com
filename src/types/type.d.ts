@@ -9,3 +9,10 @@ export type Project = {
   description: string;
   href: string;
 };
+
+export type Blog = {
+  title: string;
+  href: string;
+  category: string;
+  tags: string[];
+};
