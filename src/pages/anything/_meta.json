@@ -9,13 +9,6 @@
       "timestamp": false
     }
   },
-  "acknowledgment": {
-    "title": "Acknowledgment",
-    "theme": {
-      "layout": "raw",
-      "timestamp": false
-    }
-  },
   "tools": {
     "title": "Tools",
     "theme": {
