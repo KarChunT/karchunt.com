@@ -1,4 +1,74 @@
-import { Doc, Project, Blog } from '../types/type';
+import { Doc, Project, Blog, Tool } from '../types/type';
+import {
+  IconWriting,
+  IconAi,
+  IconBrandVite,
+  IconBrandNextjs,
+  IconBrandDocker,
+  IconBrandGithub,
+  IconLetterP,
+  IconWheel,
+} from '@tabler/icons-react';
+
+// find icons from here https://tabler.io/icons
+export const TOOL: Tool[] = [
+  {
+    title: 'draw.io (diagrams.net)',
+    href: 'https://app.diagrams.net/',
+    description:
+      'Free online diagram software for making flowcharts, process diagrams, org charts, UML, ER and network diagrams',
+    icon: IconWriting,
+  },
+  {
+    title: 'Perplexity AI',
+    href: 'https://www.perplexity.ai/',
+    description:
+      'Free AI-powered answer engine that provides accurate, trusted, and real-time answers to any question.',
+    icon: IconAi,
+  },
+  {
+    title: 'VitePress',
+    href: 'https://vitepress.dev/',
+    description:
+      'VitePress is a Static Site Generator (SSG) designed for building fast, content-centric websites.',
+    icon: IconBrandVite,
+  },
+  {
+    title: 'Next.js',
+    href: 'https://nextjs.org/',
+    description:
+      'Next.js is a React framework for building full-stack web applications. You use React Components to build user interfaces, and Next.js for additional features and optimizations.',
+    icon: IconBrandNextjs,
+  },
+  {
+    title: 'Docker',
+    href: 'https://www.docker.com/',
+    description:
+      'Docker is a platform designed to help developers build, share, and run container applications.',
+    icon: IconBrandDocker,
+  },
+  {
+    title: 'Kubernetes',
+    href: 'https://kubernetes.io/',
+    description:
+      'Kubernetes, also known as K8s, is an open source system for automating deployment, scaling, and management of containerized applications.',
+    icon: IconWheel,
+  },
+  {
+    title: 'GitHub',
+    href: 'https://github.com/',
+    description:
+      'GitHub is a developer platform that allows developers to create, store, manage and share their code.',
+    icon: IconBrandGithub,
+  },
+  {
+    title: 'Prettier',
+    href: 'https://prettier.io/',
+    description:
+      'An opinionated code formatter, support many languages, and integrates with most editors.',
+    icon: IconLetterP,
+  },
+];
 
 export const BLOG: Blog[] = [
   {

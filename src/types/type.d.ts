@@ -1,3 +1,5 @@
+import { Icon } from '@tabler/icons-react';
+
 export type Doc = {
   title: string;
   description: string;
@@ -15,4 +17,11 @@ export type Blog = {
   href: string;
   category: string;
   tags: string[];
+};
+
+export type Tool = {
+  title: string;
+  href: string;
+  description: string;
+  icon: Icon;
 };
