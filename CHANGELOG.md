@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/KarChunT/karchunt.com/compare/v2.0.3...v2.1.0) (2024-07-13)
+
+
+### Internal
+
+* change docsRepositoryBase branch to main ([65f716c](https://github.com/KarChunT/karchunt.com/commit/65f716cc0b4b772132a50b07180c66541590d42d))
+
+
+### UI
+
+* add dropdown-menu, input, select, and table helpers UI ([b3589c4](https://github.com/KarChunT/karchunt.com/commit/b3589c43a20f2302130be29c087ee73734e119b4))
+* renew blog overview ui ([e3cb80a](https://github.com/KarChunT/karchunt.com/commit/e3cb80a29ddbf6898bc618720e9c9ff277db1a5f))
+* setup tool ui page ([8e7bff8](https://github.com/KarChunT/karchunt.com/commit/8e7bff8075a3583a52b0b5f6f815e0d9d562e819))
+
 ### [2.0.3](https://github.com/KarChunT/karchunt.com/compare/v2.0.2...v2.0.3) (2024-07-08)
 
 
