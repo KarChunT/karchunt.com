@@ -5,6 +5,7 @@ description: Understand those Docker useful commands
 ---
 
 import { Callout } from 'nextra/components';
+import Comments from '@/components/Comments';
 
 # Useful commands
 
@@ -50,3 +51,5 @@ docker container cp /home/username/config.yaml apiapp:/etc/api/config.yaml
 docker container cp <container>:<container-path> <local-path>
 docker container cp apiapp:/etc/api/config.yaml /home/username/config.yaml
 ```
+
+<Comments />

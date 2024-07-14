@@ -5,6 +5,7 @@ description: Understand remote server connection
 ---
 
 import { Callout } from 'nextra/components';
+import Comments from '@/components/Comments';
 
 # Remove Server Connection
 
@@ -43,3 +44,5 @@ When you SSH to a server, it will prompt you whether you want to connect by show
 A fingerprint will be displayed when you SSH to a server. If you put "yes", the system will save the fingerprint to your local `~/.ssh/known_hosts` file, so you won't have to enter the same thing again next time.
 
 As a result, it can help to prevent the man-in-the-middle-attack.
+
+<Comments />

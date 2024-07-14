@@ -4,6 +4,8 @@ titleTemplate: SSH
 description: Understand local tunneling
 ---
 
+import Comments from '@/components/Comments';
+
 # Local Tunneling
 
 More information: [A Visual Guide to SSH Tunnels: Local and Remote Port Forwarding](https://iximiuz.com/en/posts/ssh-tunnels/)
@@ -69,3 +71,5 @@ You can tunnnel remote host private network to your local. Here is the animation
 ssh -L <local-port>:<server-ip-address>:<server-port> <username>@<bastion-server-ip-address>
 ssh -L 8080:10.0.0.12:8080 user@bastion
 ```
+
+<Comments />

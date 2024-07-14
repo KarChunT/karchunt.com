@@ -4,6 +4,8 @@ titleTemplate: SSH
 description: Understand how to play with SSH Keys
 ---
 
+import Comments from '@/components/Comments';
+
 # Play with SSH Keys
 
 ## Generating an SSH Key Pair
@@ -90,3 +92,5 @@ ssh -A <username>@<remote-server-ip-address/name>
 ```
 
 This will allow you to SSH into any other host that your SSH key has permission to access because the server that you are connected to right now will **"know"** your private SSH key on this server.
+
+<Comments />

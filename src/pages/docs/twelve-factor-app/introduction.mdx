@@ -5,6 +5,7 @@ description: Understand what is twelve factor app
 ---
 
 import { Callout, FileTree } from 'nextra/components';
+import Comments from '@/components/Comments';
 
 # Twelve Factor App
 
@@ -372,3 +373,5 @@ In summary, **admin/management tasks** should be **run as one-time processes**, 
 Let's say you discover that the total number of visits recorded in your webpage's PostgreSQL database is **inaccurate**. In such cases, you can **reset** the count. To do this, you can create a script that **performs the reset** as a **one-time task**. This process is similar to other tasks like database migration or fixing specific issues.
 
 **You need to ensure the admin task is running on the same systems as the production application, but as a separate process.**
+
+<Comments />

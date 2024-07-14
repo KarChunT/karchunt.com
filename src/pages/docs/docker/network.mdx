@@ -5,6 +5,7 @@ description: Understand how to manage Docker network
 ---
 
 import { Callout } from 'nextra/components';
+import Comments from '@/components/Comments';
 
 # Network
 
@@ -137,3 +138,5 @@ There are two methods to let a container communicate with another container.
   - Use the container name as the input `mongodb://mymongodb:27017/user`
   - The container name refers to its IP address allocated by **docker0**.
   - ![communication-to-communication](/docs/docker/communication-to-communication.gif)
+
+<Comments />

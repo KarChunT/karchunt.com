@@ -5,6 +5,7 @@ description: Understand how to control resource limits
 ---
 
 import { Callout } from 'nextra/components';
+import Comments from '@/components/Comments';
 
 # Resource Limits
 
@@ -124,3 +125,5 @@ docker run --memory=512m --memory-swap=-1 --memory-reservation=100m ubuntu
 ```
 
 `--memory-reservation` = Allows you to specify a soft limit smaller than --memory which is activated when Docker **detects contention or low memory** on the host machine. It must be **set lower** than `--memory` for it to takje precedence. Because it is a soft limit, it **doesn't guarantee** that the container **doesn't exceed the limit**.
+
+<Comments />

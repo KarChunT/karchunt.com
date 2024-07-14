@@ -5,6 +5,7 @@ description: Understand remote tunneling
 ---
 
 import { Callout } from 'nextra/components';
+import Comments from '@/components/Comments';
 
 # Remote Tunneling
 
@@ -57,3 +58,5 @@ You can tunnel your local private network to remote host. Here is the animation 
 ssh -R 8080:<local-server-ip-address>:8080 user@remote-host-ip-address/gateway
 ssh -R 0.0.0.0:8080:<local-server-ip-address>:8080 user@remote-host-ip-address/gateway
 ```
+
+<Comments />

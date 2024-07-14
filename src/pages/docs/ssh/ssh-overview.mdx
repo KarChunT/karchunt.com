@@ -4,6 +4,8 @@ titleTemplate: SSH
 description: Understand SSH overview
 ---
 
+import Comments from '@/components/Comments';
+
 # SSH Overview
 
 ## What is SSH?
@@ -37,3 +39,5 @@ Steps to authenticate;
 5. The server will send the encrypted message to the client to test whether the client has the associated private key.
 6. After receiving an encrypted message from the server, the client will use the **client's private key** to decrypt and send the decrypted information back to the server.
 7. Lastly,the client is able to log into shell sessions when the server determines that the client has the associated private key by validating the decrypted information is correct.
+
+<Comments />
