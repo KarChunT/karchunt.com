@@ -16,7 +16,7 @@ export type Project = {
 export type Blog = {
   title: string;
   href: string;
-  category: string;
+  // category: string;
   tags: string[];
 };
 
