@@ -27,10 +27,6 @@ import Link from 'next/link';
 
 const columns: ColumnDef<Blog>[] = [
   {
-    accessorKey: 'category',
-    header: 'Category',
-  },
-  {
     accessorKey: 'title',
     header: ({ column }) => {
       return (
