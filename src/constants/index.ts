@@ -153,6 +153,23 @@ export const BLOG: Blog[] = [
     href: '/blog/problem-solving#add-apt-repository-unable-to-support-jammy',
     tags: ['linux', 'python'],
   },
+  {
+    title: 'Use different Python version to setup Pythonvirtual environment',
+    href: '/blog/problem-solving#use-different-python-version-to-setup-python-virtual-environment',
+    tags: ['python'],
+  },
+  {
+    title:
+      'Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock',
+    href: '/blog/problem-solving#got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket-at-unixvarrundockersock',
+    tags: ['docker'],
+  },
+  {
+    title:
+      'Nginx permission problem [nginx: [emerg] mkdir() "/var/cache/nginx/client_temp" failed (13: Permission denied)]',
+    href: '/blog/problem-solving#nginx-permission-problem-nginx-emerg-mkdir-varcachenginxclient_temp-failed-13-permission-denied',
+    tags: ['nginx'],
+  },
 ];
 
 export const ACKNOWLEDGMENTS = [

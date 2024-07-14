@@ -499,3 +499,51 @@ sudo cp apt_pkg.cpython-310-x86_64-linux-gnu.so apt_pkg.so
    ```
 
 8. Go to your browser and type your domain name.
+
+## Use different Python version to setup Python virtual environment
+
+**Docs**
+- [virtualenv docs](https://virtualenv.pypa.io/en/latest/)
+- [virtualenv pypi](https://pypi.org/project/virtualenv/)
+
+```bash
+# Linux
+pip install virtualenv
+virtualenv venv --python=/usr/local/bin/python
+virtualenv venv --python=/usr/local/bin/python3
+
+# Windows
+##  Method 1 - I don't recommend to use virtualenv as it will have some missing files
+pip install virtualenv
+virtualenv venv -p `which python`
+virtualenv venv -p `which python3`
+virtual venv -p "C:\Users\karchunt\AppData\Local\Programs\Python\Python312\python.exe"
+
+##  Method 2
+"C:\Users\karchunt\AppData\Local\Programs\Python\Python312\python.exe" -m venv venv
+```
+
+## Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock
+
+```bash
+sudo chmod 666 /var/run/docker.sock
+```
+
+## Nginx permission problem [nginx: [emerg] mkdir() "/var/cache/nginx/client_temp" failed (13: Permission denied)]
+
+[Reference](https://stackoverflow.com/questions/54360223/openshift-nginx-permission-problem-nginx-emerg-mkdir-var-cache-nginx-cli)
+
+This error typically occurs in `alpine` docker image. Since the nginx image already have a user called **nginx**. We will reuse it.
+
+```dockerfile
+FROM nginx:alpine
+
+RUN touch /var/run/nginx.pid \
+   && chown -R nginx:nginx /var/cache/nginx /var/run/nginx.pid
+
+COPY --chown=nginx:nginx <your-files> /usr/share/nginx/html
+COPY --chown=nginx:nginx <your-nginx-config> /etc/nginx/conf.d/default.conf
+
+USER nginx
+...
+```
