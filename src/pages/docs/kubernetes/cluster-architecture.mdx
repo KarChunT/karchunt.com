@@ -5,6 +5,7 @@ description: Understand how the Kubernetes architecture works
 ---
 
 import { Callout } from 'nextra/components';
+import Comments from '@/components/Comments';
 
 # Architecture
 
@@ -53,6 +54,21 @@ flowchart
 ![Cluster-Architecture](/docs/kubernetes/cluster-architecture.gif)
 
 Each Kubernetes cluster has a **master node** (control plane) and one or more **worker nodes**. It's responsible for **managing the cluster**, while the worker nodes (Nodes) are responsible for **hosting application as containers** and **running the applications**.
+
+<Callout type="info" emoji="ℹ️">
+  Kubernetes supports other runtime engines that adhere to the OCI standards, like containerd or Rocket, so it is not necessary to install Docker before installing Kubernetes.
+</Callout>
+
+Here is an **overview** of Kubernetes cluster.
+- The cluster has **master and worker nodes**, both serve different purposes.
+- Master node
+  - **ETCD Cluster** is used to **store information** regarding the **cluster**.
+  - **kube-controller-manager** is used to **manage various controllers**, each controller, each controller has different functions to take care of its side.
+  - **kube-scheduler** is used to **identify and schedule** the pods on nodes. It **only decides** which pod goes to which node.
+  - **kube-apiserver** is used to **orchestrate (manage) all cluster operations** and it's the **primary management component** in Kubernetes which **acts as the frontend** to the cluster.
+- Worker node
+  - **kubelet** is used to **register the node** with the **kube-apiserver**. It will **create the pod** on the node when it **receives the instructions** from the **kube-apiserver**, and **monitor the node** and **container/pod state**.
+  - **kube-proxy** is used to **create appropriate routing rules** when a new service is created to **establish communication** between containers via services within the cluster.
 
 ### Cluster
 
@@ -312,7 +328,7 @@ flowchart RL
 
 The **kubelet** is an **agent** that **runs** on **each node** in the **cluster**. It will **register the node** with the **kube-apiserver** when it exists in worker node. It will **listen the instructions** from the **kube-apiserver**, when it **receives the instructions** to **deploy a container** or **pod** on the node, it will **create the pod** on the node and **tell the container runtime engine** to **pull** the required image and **run** as an application instance. Lastly, after everything is completed, the kubelet will **update the status back** to the kube-apiserver and the kube-apiserver will **update the information** in the ETCD cluster.
 
-Besides, the kube-api server **retrieves kubelet status reports** periodically to **monitor the node** and **container/pod state**.
+Besides, the kube-api server **retrieves kubelet status reports** periodically to **monitor the node** and **container/pod state**. Lastly, kubelet **ensures a specific number of pods** are **available** on a single node.
 
 Summary;
 - Register node
@@ -403,3 +419,5 @@ How to deploy kube-proxy?
   - Similar to other Kubernetes components, we can use `kubectl get pods -n kube-system` command to find the **kube-proxy pod**.
   - Do take note that, kube-proxy is actually deployed as a **Daemonset**, so the kube-proxy pod **will always be deployed** on each new node in the cluster.
     - `kubectl get daemonset -n kube-system`
+
+<Comments />
