@@ -10,11 +10,60 @@ import { Callout } from 'nextra/components';
 
 ## Cluster Architecture
 
+```mermaid
+---
+title: Cluster Architecture
+---
+flowchart
+  user --> kube-apiserver
+
+  subgraph "Cluster"
+    subgraph "Master Node (Control Plane)"
+      id[ETCD cluster] --> kube-apiserver
+      id1[Controller Manager] --> kube-apiserver
+      id2[kube-scheduler] --> kube-apiserver
+    end
+
+    subgraph "Node 1 (Worker Node)"
+      kubelet1[kubelet] --> kube-apiserver
+      kubelet1 --> sub1
+      kube-proxy1[kube-proxy] --> sub1
+
+      subgraph sub1 ["Container Runtime engine"]
+        direction TB
+        id3[Pod]
+        id4[Pod]
+      end
+    end
+
+    subgraph "Node 2 (Worker Node)"
+      kubelet2[kubelet] --> kube-apiserver
+      kubelet2 --> sub2
+      kube-proxy2[kube-proxy] --> sub2
+
+      subgraph sub2 ["Container Runtime engine"]
+        direction TB
+        id6[Pod]
+        id7[Pod]
+      end
+    end
+  end
+```
+
 ![Cluster-Architecture](/docs/kubernetes/cluster-architecture.gif)
 
 Each Kubernetes cluster has a **master node** (control plane) and one or more **worker nodes**. It's responsible for **managing the cluster**, while the worker nodes (Nodes) are responsible for **hosting application as containers** and **running the applications**.
 
 ### Cluster
+
+```mermaid
+flowchart
+  subgraph "Cluster"
+    id["Master Node (Control Plane)"]
+    id1["Node 1 (Worker Node)"]
+    id2["Node 2 (Worker Node)"]
+  end
+```
 
 A cluster is a **set of nodes grouped**, with multiple nodes within a cluster, it can help to **distribute** or **share** the **workload** as well. As a result, your application will still be **accessible** even if one of the nodes **fails**.
 
@@ -27,6 +76,15 @@ A node is a **worker machine**, it can be either a physical or virtual one depen
 <Callout type="info" emoji="ℹ️">
   Master node can be **hosted** in the form of **containers**.
 </Callout>
+
+```mermaid
+flowchart
+  subgraph "Master Node (Control Plane)"
+    id[ETCD cluster] --> kube-apiserver
+    id1[Controller Manager] --> kube-apiserver
+    id2[kube-scheduler] --> kube-apiserver
+  end
+```
 
 A master node is a **node** that is **responsible** for;
 
@@ -65,7 +123,17 @@ There are two ways to deploy ETCD in Kubernetes environment.
 
 #### Kube Controller Manager
 
-![kube-controller-manager](/docs/kubernetes/kube-controller-manager.png)
+```mermaid
+---
+title: Example of various controllers
+---
+flowchart BT
+  subgraph "kube controller manager"
+    node-controller
+    replication-controller
+    namespace-controller
+  end
+```
 
 The kube controller manager **manage various controllers** in Kubernetes, for example;
 
@@ -91,7 +159,16 @@ The controller is a **process** that is responsible for **monitoring the state**
 
 ##### Node-controller
 
-![node-controller-gif](/docs/kubernetes/node-controller.gif)
+```mermaid
+flowchart RL
+  subgraph "Master Node (Control Plane)"
+    node-controller --> controller-manager
+    controller-manager --> kube-apiserver
+  end
+  node1[Worker Node 1] --> kube-apiserver
+  node2[Worker Node 2] --> kube-apiserver
+  node3[Worker Node 3] --> kube-apiserver
+```
 
 The node controller **monitors node status** and **takes necessary action** to ensure that **applications** are **running** through the **kube-apiserver**.
 
@@ -101,7 +178,16 @@ Nodes are **tested every 5 seconds** to ensure the node is **healthy** by the no
 
 ##### Replication-controller
 
-![replication-controller-gif](/docs/kubernetes/replication-controller.gif)
+```mermaid
+flowchart RL
+  subgraph "Master Node (Control Plane)"
+    replication-controller --> controller-manager
+    controller-manager --> kube-apiserver
+  end
+  node1[Worker Node 1] --> kube-apiserver
+  node2[Worker Node 2] --> kube-apiserver
+  node3[Worker Node 3] --> kube-apiserver
+```
 
 The replication controller **monitors the replicaset status** and **takes necessary action** to ensure that the **desired number of PODs** are **available** at all times within the replication group. The POD creates a new one if it dies.
 
@@ -120,8 +206,19 @@ The kube scheduler **identifies** and **schedules** the **pods** on **nodes** ba
 
 The reason why we need a scheduler is because there could be **different sizes of nodes and pods**. You will need to ensure that the **node** has **sufficient resources** so that the **pod** can **proceed**. Therefore, each pod is **analyzed** by the scheduler to **determine the best node**.
 
-![kube-scheduler-ranking](/docs/kubernetes/kube-scheduler-ranking.gif)
-
+```mermaid
+---
+title: kube-scheduler ranking 
+---
+flowchart LR
+  pod["Pod (CPU: 8)"]
+  subgraph nodes["A List of nodes"]
+    node1["Node 1 (CPU: 4)"]
+    node2["Node 2 (CPU: 10)"]
+    node3["Node 3 (CPU: 20)"]
+  end
+  pod ---> node3
+```
 Here is an example, currently we have one pod with **CPU requirements of 10**. The kube scheduler will be going through **2 phases** to identify and schedule the pod on the **best node**.
 
 1. The kube scheduler will **filter out** those **nodes** that **do not fit the requirements**. So in this case, node 1 will be filtered out as node 1 only has 4 CPUs.
@@ -153,3 +250,156 @@ There are two ways to deploy kube scheduler in Kubernetes environment.
 </Callout>
 
 In Kubernetes, the kube-apiserver is the **primary management component**, which **acts** as the **frontend** to the **cluster**, that means **all internal** (controller-manager, ETCD, kube-scheduler, kubelet) and **external communication** to the cluster is **via** the **kube-apiserver** component.
+
+```mermaid
+---
+title: Kube-apiserver
+---
+flowchart 
+  user --"kubectl get 'something'"--> kube-apiserver
+  etcd[ETCD Cluster] --"Retrieve data from ETCD Cluster"--> kube-apiserver
+```
+
+All the `kubectl` commands will first reach to the **kube-apiserver**. There are some steps that **kube-apiserver** to go through. These 3 steps normally are for `kubectl get <something>`.
+
+1. **Authenticate** the request
+2. **Validate** the request
+3. **Retrieve** the data from **ETCD cluster** and returns the requested information
+
+```bash
+# Reference: https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/
+curl -X POST /api/v1/namespace/default/pods
+```
+Of course, you can interact with **kube-apiserver** by calling the API directly instead of using `kubectl` command. Here is an another example of creating a pod.
+
+1. **Authenticate** the request
+2. **Validate** the request
+3. **Retrieve** the data from **ETCD cluster**
+4. **Create** a Pod Object without the node assign, **update** the **information** in the **ETCD server**, and **return** the information (Pod has been created) back to the user
+5. The **scheduler** will **identify and schedule** the pod on node by monitoring the kube-apiserver and **return** the information back to **kube-apiserver**. After that, the kube-apiserver will **update the information** in the **ETCD cluster**
+6. The kube-apiserver will **send** that information to the **appropriate worker node** in the **kubelet**
+    1. The **kubelet** will **create the pod** on the node and **tell the container runtime engine** to **deploy** the application image.
+    2. After everything is completed, the **kubelet** will **update the status back** to the **kube-apiserver** and the kube-apiserver will **update the information** in the **ETCD cluster**
+
+All these steps are very similar when every time a change is requested and the only component that **directly interacts** with **etcd** is **kube-apiserver**. **Scheduler**, **kube-controller manager**, and **kubelet** **use** the **kube-apiserver** to **perform updates** in their respective areas of the cluster. 
+
+There are two ways to deploy kube-apiserver in Kubernetes environment.
+
+- Manual installation
+
+  - [kube-apiserver releases](https://kubernetes.io/releases/download/)
+
+- kubeadm
+  - Similar to above, we can use `kubectl get pods -n kube-system` command to find the **kube-apiserver pod**.
+  - Run on control-plane (master node)
+    - If you want to see the kube-apiserver pod config options, then you have to `cat /etc/kubernetes/manifests/kube-apiserver.yaml`.
+    - If you want to see the kube-apiserver running process, then you have to `ps -aux | grep kube-apiserver`.
+    - If you want to see the kube-apiserver service, then you have to `cat /etc/systemd/system/kube-apiserver.service`
+
+### Worker node (Workers)
+
+#### kubelet
+
+```mermaid
+flowchart RL
+  subgraph "Master Node (Control Plane)"
+    kube-apiserver
+  end
+  subgraph "Node 1 (Worker Node)"
+    kubelet --> kube-apiserver
+  end
+```
+
+The **kubelet** is an **agent** that **runs** on **each node** in the **cluster**. It will **register the node** with the **kube-apiserver** when it exists in worker node. It will **listen the instructions** from the **kube-apiserver**, when it **receives the instructions** to **deploy a container** or **pod** on the node, it will **create the pod** on the node and **tell the container runtime engine** to **pull** the required image and **run** as an application instance. Lastly, after everything is completed, the kubelet will **update the status back** to the kube-apiserver and the kube-apiserver will **update the information** in the ETCD cluster.
+
+Besides, the kube-api server **retrieves kubelet status reports** periodically to **monitor the node** and **container/pod state**.
+
+Summary;
+- Register node
+- Create Pod
+- Monitor node & PODs
+
+By default, **kubelet** is **not automatically deploy** by **kubeadm** tool. So, you have to install it manually on the worker nodes. Refer to this link for [kubelet installation](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-kubeadm-kubelet-and-kubectl).
+
+If you want to see the kubelet running process, then you have to `ps -aux | grep kubelet`.
+
+#### kube-proxy
+
+```mermaid
+flowchart
+  pod-network(POD network) --- pod1
+  pod-network(POD network) --- pod2
+
+  subgraph "Node 2"
+    pod1["Pod 2 (10.106.0.2)"]
+  end
+  subgraph "Node 1"
+    pod2["Pod 1 (10.106.0.1)"]
+  end
+```
+
+Every pod can **reach other pods** within a Kubernetes cluster by **deploying a pod networking solution**. A pod network is an **internal virtual network** connecting all nodes in a cluster so that the pods can **communicate with each other**. In this example, assuming Pod 1 is an API application and Pod 2 is the database. Pod 1 can access Pod 2 using the Pod 2 IP address, but the Pod 2 IP will **not be guaranteed** the same as always.
+
+```mermaid
+flowchart
+  pod-network(POD network) --- pod1
+  pod-network(POD network) --- pod2
+
+  subgraph "Node 2"
+    pod2["Pod 2 (10.106.0.2)"]
+  end
+  subgraph "Node 1"
+    pod1["Pod 1 (10.106.0.1)"]
+  end
+
+  service["service.db (10.106.0.3)"]
+
+  pod2 --- service
+  pod1 --- service
+```
+
+So, we have to create a Kubernetes **service** object that **exposes** the database across the cluster, which means Pod 1 (API application) can access Pod 2 (database) by using the **service name** and the **service** will also **assign an IP address**. 
+
+<Callout type="warning" emoji="ℹ️">
+  But how does the service get its IP address? Does the service join the same pod network as well?
+</Callout>
+
+Unfortunately, it **does not join the pod network**. Here is the explanation.
+- Service objects are **not actually objects**: they have **no interfaces or active listening processes**, and they are **virtual components** within Kubernetes that only **live in memory**, so they cannot join the pod network.
+
+```mermaid
+flowchart
+  pod-network(POD network) --- pod1
+  pod-network(POD network) --- pod2
+
+  subgraph "Node 2"
+    direction TB
+    pod2["Pod 2 (10.106.0.2)"]
+    kube-proxy2[kube-proxy]
+    pod2 --- kube-proxy2
+    table2[IPTable: 10.106.0.3 --> 10.106.0.2]
+  end
+  subgraph "Node 1"
+    direction TB
+    pod1["Pod 1 (10.106.0.1)"]
+    kube-proxy1[kube-proxy]
+    pod1 --- kube-proxy1
+    table1[IPTable: 10.106.0.3 --> 10.106.0.2]
+  end
+
+  service["service.db (10.106.0.3)"]
+
+  service --- kube-proxy2
+  service --- kube-proxy1
+```
+
+However, we also stated that the service should be accessible from any node in the cluster. With the help of **kube-proxy**, we can achieve that. Each node in the Kubernetes cluster **runs Kube-proxy**, which **looks for new services** and **creates appropriate routing rules** on the worker nodes to **forward traffic** to the **new services to pods** whenever a new service is created. It will ensure that the containers can **talk to each other via services** within the cluster.
+
+This can be done through **IPTables rules**. It will **create an IPTable rules** on each node in the cluster to know that the Database service is actually **point** to Pod 2 (database), **10.106.0.3 ---> 10.106.0.2**. This is how kube-proxy configures a new service.
+
+How to deploy kube-proxy?
+
+- kubeadm
+  - Similar to other Kubernetes components, we can use `kubectl get pods -n kube-system` command to find the **kube-proxy pod**.
+  - Do take note that, kube-proxy is actually deployed as a **Daemonset**, so the kube-proxy pod **will always be deployed** on each new node in the cluster.
+    - `kubectl get daemonset -n kube-system`
