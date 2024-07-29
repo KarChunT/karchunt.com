@@ -22,5 +22,12 @@
       "layout": "full",
       "timestamp": false
     }
+  },
+  "codesandbox": {
+    "title": "Code Sandbox",
+    "theme": {
+      "layout": "full",
+      "timestamp": false
+    }
   }
 }
