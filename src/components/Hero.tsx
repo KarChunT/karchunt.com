@@ -38,7 +38,7 @@ const Hero = () => {
             </Button>
 
             <Button variant="secondary" asChild>
-              <Link href="/compiler">Compiler</Link>
+              <Link href="/anything/compiler">Compiler</Link>
             </Button>
           </div>
         </div>

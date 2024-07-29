@@ -15,5 +15,12 @@
       "layout": "full",
       "timestamp": false
     }
+  },
+  "compiler": {
+    "title": "Compiler",
+    "theme": {
+      "layout": "full",
+      "timestamp": false
+    }
   }
 }
