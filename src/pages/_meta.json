@@ -56,6 +56,10 @@
       "tool": {
         "title": "Tools",
         "href": "/anything/tools"
+      },
+      "compiler": {
+        "title": "Compiler",
+        "href": "/anything/compiler"
       }
     }
   },
@@ -65,13 +69,5 @@
       "layout": "full",
       "timestamp": false
     }
-  },
-  "compiler": {
-    "title": "Compiler",
-    "theme": {
-      "layout": "full",
-      "timestamp": false
-    },
-    "display": "hidden"
   }
 }
