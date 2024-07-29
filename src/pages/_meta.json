@@ -60,6 +60,10 @@
       "compiler": {
         "title": "Compiler",
         "href": "/anything/compiler"
+      },
+      "codesandbox": {
+        "title": "Code Sandbox",
+        "href": "/anything/codesandbox"
       }
     }
   },
