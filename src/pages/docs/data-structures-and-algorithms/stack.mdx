@@ -1,0 +1,51 @@
+---
+title: Stack
+titleTemplate: Data Structures and Algorithms
+description: Understand what is stack
+---
+
+import { Tabs } from 'nextra/components';
+import Comments from '@/components/Comments';
+
+# Stack
+
+## What is stack?
+
+Stack is a **Last In First Out (LIFO)** manner and it is built by **dynamic array**. That means the **last element added** will be the **1st element to come out** first.
+
+![stack](/docs/data-structures-and-algorithms/stack.png)
+
+| Operation | Big-O Time |
+| --------- | ---------- |
+| Push | O(1) |
+| Pop | O(1) |
+| Peek / Top | O(1) |
+
+<Tabs items={['Python']}>
+  <Tabs.Tab>
+    ```python
+    class Stack:
+        def __init__(self) -> None:
+            self.stack = []
+
+        def __len__(self) -> int:
+            return len(self.stack)
+
+        def push(self, n) -> None:
+            self.stack.append(n)
+
+        def pop(self):
+            if len(self) == 0:
+                raise Exception("Stack is empty")
+            return self.stack.pop()
+
+        def peek(self):
+            if len(self) == 0:
+                raise Exception("Stack is empty")
+            return self.stack[-1]
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+
+<Comments />

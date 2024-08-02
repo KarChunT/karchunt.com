@@ -1,0 +1,75 @@
+---
+title: Dynamic Array
+titleTemplate: Data Structures and Algorithms
+description: Understand how dynamic array works
+---
+
+import Comments from '@/components/Comments';
+import { Tabs } from 'nextra/components';
+
+# Dynamic Array
+
+## What is Dynamic Array?
+
+Dynamic Array will **auto grows/resized** when we make an **insertion (arrays grow)** and there is **no more space left**. **No need** to **specify** the **array size** when initialization. Usually, we will **double in array size** based on the default size, and different languages may have **default size**.
+
+![dynamic array 1](/docs/data-structures-and-algorithms/dynamic-array-1.png)
+
+When we **append, delete, pop, etc** to the array, we have a **pointer** that tells us that the **last index element** of this array. Therefore when we **pop** the value, we know the **time operation** of **pop is O(1)** because we have that pointer to the last element when they add new element into it.
+
+![dynamic array 2](/docs/data-structures-and-algorithms/dynamic-array-2.png)
+
+When we **resized the array**, we will create a **new brand array** and this new brand array will have **new space allocated** for it in **memory**. Then, all the array elements will be **copied** from the **old array to new array**, and the old array will be **deallocated** (free this from memory).
+- Double the capacity called **Amortized time complexity**. Amortized time complexity **averages the running times of operations in a sequence over that sequence (average time taken per operation, if you do many operations)**. That means, we resize the array operation is **O(n)** and for adding elements part is **O(1)**, since this operation is not performed every time we add an element, so the average time taken per operation is **O(1)**.
+- Therefore, we can see that operation time for overall is O(1), just only resize part operation is O(n), so it is **much lower than worst-case**.
+
+| Operation | Big-O Time | Notes |
+| --------- | ---------- | ----- |
+| Access | O(1) | - |
+| Insert/Remove End | O(1) | - |
+| Insert/Remove Middle | O(n) | You have to shift the values |
+
+<Tabs items={['Python']}>
+  <Tabs.Tab>
+    ```python
+    class DynamicArray:
+        def __init__(self, capacity: int):
+            self.capacity = capacity
+            self.length = 0
+            self.array = [0] * capacity
+
+        def get(self, i: int) -> int:
+            return self.array[i]
+
+        def set(self, i: int, n: int) -> None:
+            self.array[i] = n
+
+        def pushback(self, n: int) -> None:
+            if self.length == self.capacity:
+                self.resize()
+            self.array[self.length] = n
+            self.length += 1
+
+        def popback(self) -> int:
+            if self.length > 0:
+                self.length -= 1
+            return self.array[self.length]
+    
+        def resize(self) -> None:
+            self.capacity = self.capacity * 2
+            new_array = [0] * self.capacity
+
+            for i in range(self.length):
+                new_array[i] = self.array[i]
+            self.array = new_array
+
+        def getSize(self) -> int:
+            return self.length
+
+        def getCapacity(self) -> int:
+            return self.capacity
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+<Comments />

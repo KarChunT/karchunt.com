@@ -1,0 +1,49 @@
+---
+title: Memory (RAM)
+titleTemplate: Data Structures and Algorithms
+description: Understand how Memory (RAM) works
+---
+
+import { Callout } from 'nextra/components';
+import Comments from '@/components/Comments';
+
+# Memory (RAM)
+
+## What is RAM?
+
+<Callout type="info" emoji="ℹ️">
+  <div>1 byte = 8 bits</div>
+  <div>A bit is a 0 or 1</div>
+</Callout>
+
+**RAM** stands for **Random Access Memory**, which we call as **Memory** or **RAM**.
+- It is basically **store all variables**.
+- It is measured in **bytes**.
+- It has two **components**;
+  - value
+  - address
+
+### Storing Array of Integers in RAM
+
+![RAM](/docs/data-structures-and-algorithms/ram.png)
+
+In this case, we have an array of integers. For example, we have `[1, 2, 3]`. But how can we store all these integers in the RAM, as computers only **understand bits 0 or 1**.
+
+So the integer will be **_converted_ into bits** like for example, 1 can be represented as `00000001`, 2 as `00000010`, and 3 as `00000011`. Then we can only put that into RAM.
+
+RAM can be consider as **contiguous block of data** (memory is allocated to a process or file needing it), which means that it has two components which are **value and address**. Each element in array will be **stored continously in order**. Do take note that, we **cannot determine and choose what location** the data will be stored into the RAM.
+
+You might have a question, why the address is **incrementing by 4** every time?
+- You need to know that Integers are **occupying 4 bytes (32 bits) in memory**. So every integer that stored in the RAM will take 4 bytes to store.
+- Each **integer** takes **32 bits of space**, **4 bytes**, hence the **addresses** are **4 bytes apart**
+
+### Storing Array of Characters in RAM
+
+![RAM character](/docs/data-structures-and-algorithms/ram-character.png)
+
+Storing characters is also pretty the same as integers, just the address is different, as **each character only takes 1 byte to store in memory**.
+
+Each **character** takes **8 bits of space**, **1 byte**, hence the **addresses** are **1 byte apart**.
+
+
+<Comments />

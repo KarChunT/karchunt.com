@@ -14,5 +14,13 @@
   "container-runtime": {
     "title": "Container Runtime",
     "href": "/docs/kubernetes/container-runtime"
+  },
+  "-- Core Topics": {
+    "type": "separator",
+    "title": "Core Topics"
+  },
+  "pod": {
+    "title": "Pod",
+    "href": "/docs/kubernetes/pod"
   }
 }
