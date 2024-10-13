@@ -5,10 +5,10 @@ on:
     types:
       - closed
     branches:
-      - main
+      - maindisable
 
 concurrency:
-  group: "merging"
+  group: 'merging'
   cancel-in-progress: false
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [check-pr-merged]
     env:
-      FILENAME: "versionBumpType.txt"
+      FILENAME: 'versionBumpType.txt'
     steps:
       - name: Code checkout
         uses: actions/checkout@v4
