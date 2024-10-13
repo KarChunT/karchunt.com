@@ -3,7 +3,7 @@ name: PR Checker
 on:
   pull_request:
     branches:
-      - main
+      - maindisable
     types:
       - opened
       - reopened

@@ -1,5 +1,6 @@
 .next
 .cache
+package-lock.json
 public
 build
 dist
@@ -7,8 +8,5 @@ node_modules
 next-env.d.ts
 next.config.ts
 yarn.lock
-package-lock.json
 *.mdx
 *.md
-Dockerfile
-.dockerignore
