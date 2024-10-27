@@ -78,7 +78,7 @@ const Hero = () => {
         </BlurFade>
 
         <BlurFade delay={0.25 * 5} inView>
-          <div className="relative mt-7 flex max-h-[700px] flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
+          <div className="relative mt-7 flex max-h-[700px] max-w-[64rem] flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
             {/* video */}
             <div className="relative">
               <HeroVideoDialog
