@@ -59,7 +59,7 @@ const Hero = () => {
         </BlurFade>
 
         <BlurFade delay={0.25 * 3} inView>
-          <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
+          <p className="max-w-[42rem] leading-normal text-neutral-500 sm:text-xl sm:leading-8">
             I&apos;m an{' '}
             <span className="text-primary">
               Infrastructure and DevOps Engineer
