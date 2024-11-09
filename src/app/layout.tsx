@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
-import NavBar from '@/components/shared/navbar';
-import Footer from '@/components/shared/footer';
 import ThemeProvider from '@/components/theme-provider';
 
 export const metadata: Metadata = {
@@ -24,11 +22,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NavBar />
-          <div className="container flex min-h-screen flex-col bg-background px-4 pb-8">
-            {children}
-          </div>
-          <Footer />
+          <main>{children}</main>
         </ThemeProvider>
       </body>
     </html>
