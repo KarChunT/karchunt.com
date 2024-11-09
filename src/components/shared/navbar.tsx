@@ -10,13 +10,22 @@ import {
   IconMenu2,
   IconCloud,
   IconCloudRain,
+  IconSearch,
 } from '@tabler/icons-react';
 import { useTheme } from 'next-themes';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet';
-import { NAV_LINKS, SOCIAL_MEDIAS } from '@/constants';
+import { NAV_LINKS, SOCIAL_MEDIAS, DOCUMENTATION_SECTIONS } from '@/constants';
+import {
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from '@/components/ui/command';
 
 const RainingIcon = ({ delay }: { delay: number }) => {
   const iconSrc = '/assets/images/penguin-nobg.webp';
@@ -50,10 +59,24 @@ const RainingIcon = ({ delay }: { delay: number }) => {
 const NavBar = () => {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
+  const [isSearchOpen, setIsSearchOpen] = React.useState(false);
   const [isRaining, setIsRaining] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
   const count = 30;
 
+  // Search command key 'k' or 'K'
+  React.useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setIsSearchOpen((isSearchOpen) => !isSearchOpen);
+      }
+    };
+    document.addEventListener('keydown', down);
+    return () => document.removeEventListener('keydown', down);
+  }, []);
+
+  // navbar shadow
   React.useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
@@ -62,6 +85,20 @@ const NavBar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const flattenItems = (items: DocItem[]) => {
+    return items.reduce((acc: DocItem[], item) => {
+      acc.push(item);
+      if (item.items) {
+        acc.push(...flattenItems(item.items));
+      }
+      return acc;
+    }, []);
+  };
+
+  const allItems = DOCUMENTATION_SECTIONS.flatMap((section) =>
+    section.items.flatMap((item) => item.items),
+  );
 
   return (
     <>
@@ -102,6 +139,15 @@ const NavBar = () => {
 
           <div className="flex flex-1 items-center justify-end space-x-4">
             <nav className="flex items-center space-x-1">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="w-9 px-0"
+                onClick={() => setIsSearchOpen(true)}
+              >
+                <IconSearch className="h-[1.2rem] w-[1.2rem]" />
+              </Button>
+
               {SOCIAL_MEDIAS.map((social_media, index) => {
                 const SocialMediaIcon = social_media.icon;
                 return (
@@ -132,7 +178,7 @@ const NavBar = () => {
                 )}
               </Button>
 
-              <Button
+              {/* <Button
                 variant="ghost"
                 size="sm"
                 className="w-9 px-0"
@@ -144,7 +190,7 @@ const NavBar = () => {
                   <IconMoon className="h-[1.2rem] w-[1.2rem]" />
                 )}
                 <span className="sr-only">Toggle theme</span>
-              </Button>
+              </Button> */}
 
               {/* mobile navbar */}
               <Sheet>
@@ -188,6 +234,27 @@ const NavBar = () => {
           ))}
         </div>
       )}
+
+      <CommandDialog open={isSearchOpen} onOpenChange={setIsSearchOpen}>
+        <CommandInput placeholder="Type a command or search..." />
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          {DOCUMENTATION_SECTIONS.map((section) => (
+            <CommandGroup key={section.title} heading={section.title}>
+              {allItems.map((item) => (
+                <CommandItem key={item?.title}>
+                  <Link
+                    href={item?.href || ''}
+                    className="flex w-full items-center"
+                  >
+                    {item?.title}
+                  </Link>
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          ))}
+        </CommandList>
+      </CommandDialog>
     </>
   );
 };

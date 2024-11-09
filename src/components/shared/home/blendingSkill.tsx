@@ -5,7 +5,7 @@ import BeamOfMe from '@/components/shared/home/beamOfMe';
 
 const BlendingSkill = () => {
   return (
-    <div className="mx-auto max-w-[64rem] px-4 py-12">
+    <div className="mx-auto max-w-[64rem] px-4 pt-20">
       <div className="mb-12 text-center">
         <BlurFade delay={0.25} inView>
           <h2 className="mb-4 text-3xl font-semibold tracking-tighter">

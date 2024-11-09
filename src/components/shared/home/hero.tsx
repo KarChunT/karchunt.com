@@ -1,6 +1,7 @@
+import React from 'react';
+import { Sparkles } from '@/components/ui/sparkles';
 import { Button } from '@/components/ui/button';
 import { FlipWords } from '@/components/ui/flip-words';
-import BlurFade from '@/components/ui/blur-fade';
 import HeroVideoDialog from '@/components/ui/hero-video-dialog';
 import { RainbowButton } from '@/components/ui/rainbow-button';
 import { BorderBeam } from '@/components/ui/border-beam';
@@ -40,69 +41,67 @@ const Hero = () => {
   };
 
   return (
-    <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-16">
-      <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
-        <BlurFade delay={0.25} inView>
-          <div className="rounded-2xl bg-muted px-4 py-1.5 text-sm font-medium">
-            Revolutionize the{' '}
-            <FlipWords
-              className="text-primary dark:text-primary"
-              words={words}
-            />
-          </div>
-        </BlurFade>
-
-        <BlurFade delay={0.25 * 2} inView>
-          <h1 className="font-heading text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl">
-            <span className="text-primary">Farm</span> with me
-          </h1>
-        </BlurFade>
-
-        <BlurFade delay={0.25 * 3} inView>
-          <p className="max-w-[42rem] leading-normal text-neutral-500 sm:text-xl sm:leading-8">
-            I&apos;m an{' '}
-            <span className="text-primary">
-              Infrastructure and DevOps Engineer
-            </span>{' '}
-            at Intel. I love to code and design software architecture.
-          </p>
-        </BlurFade>
-
-        <BlurFade delay={0.25 * 4} inView>
-          <div className="space-x-4">
-            <Button>Get Started</Button>
-            <Button asChild>
-              <RainbowButton onClick={handleClick}>Congraz 🎉</RainbowButton>
-            </Button>
-          </div>
-        </BlurFade>
-
-        <BlurFade delay={0.25 * 5} inView>
-          <div className="relative mt-7 flex max-h-[700px] max-w-[64rem] flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
-            {/* video */}
-            <div className="relative">
-              <HeroVideoDialog
-                className="block dark:hidden"
-                animationStyle="from-center"
-                videoSrc="/assets/videos/karchunt-video.mp4"
-                thumbnailSrc="/assets/images/harold-vasquez-coding.jpg"
-                thumbnailAlt="Hero Video"
-              />
-              <HeroVideoDialog
-                className="hidden dark:block"
-                animationStyle="from-center"
-                videoSrc="/assets/videos/karchunt-video.mp4"
-                thumbnailSrc="/assets/images/harold-vasquez-coding.jpg"
-                thumbnailAlt="Hero Video"
-              />
-            </div>
-
-            {/* Border beam */}
-            <BorderBeam />
-          </div>
-        </BlurFade>
+    <div>
+      <div className="relative h-80 overflow-hidden [mask-image:radial-gradient(50%_50%,white,transparent)] before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_bottom_center,#22C55E,transparent_90%)] before:opacity-100 after:absolute after:-left-1/2 after:top-1/2 after:aspect-[1/1.8] after:w-[200%] after:rounded-[50%] after:border-2 after:border-b after:border-[#7876c566] after:bg-zinc-900">
+        <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#ffffff2c_1px,transparent_1px),linear-gradient(to_bottom,#3a3a3a01_1px,transparent_1px)] bg-[size:70px_80px]"></div>
+        <Sparkles
+          density={400}
+          size={1.4}
+          direction="top"
+          className="absolute inset-x-0 top-0 h-full w-full [mask-image:radial-gradient(50%_50%,white,transparent_85%)]"
+        />
       </div>
-    </section>
+      <div className="container relative z-10 mx-auto -mt-40 flex max-w-[64rem] flex-col place-content-center items-center gap-4 text-center md:-mt-[168px]">
+        <div className="rounded-2xl bg-muted px-4 py-1.5 text-sm font-medium">
+          Revolutionize the{' '}
+          <FlipWords className="text-primary dark:text-primary" words={words} />
+        </div>
+      </div>
+
+      <article className="relative mx-auto flex w-2/3 flex-col items-center gap-4 pt-4 text-center">
+        <h1 className="font-heading text-4xl font-bold md:text-5xl lg:text-6xl">
+          <span className="text-primary">Farm</span>{' '}
+          <span className="text-white">with me</span>
+        </h1>
+        <p className="max-w-[42rem] leading-normal text-neutral-500 sm:text-xl sm:leading-8">
+          I&apos;m an{' '}
+          <span className="text-primary">
+            Infrastructure and DevOps Engineer
+          </span>{' '}
+          at Intel. I love to code and design software architecture.
+        </p>
+
+        <div className="space-x-4">
+          <Button>Get Started</Button>
+          <Button asChild>
+            <RainbowButton onClick={handleClick}>Congraz 🎉</RainbowButton>
+          </Button>
+        </div>
+      </article>
+
+      <div className="relative mx-auto mt-12 flex max-h-[700px] max-w-[64rem] flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
+        {/* video */}
+        <div className="relative">
+          <HeroVideoDialog
+            className="block dark:hidden"
+            animationStyle="from-center"
+            videoSrc="/assets/videos/karchunt-video.mp4"
+            thumbnailSrc="/assets/images/harold-vasquez-coding.jpg"
+            thumbnailAlt="Hero Video"
+          />
+          <HeroVideoDialog
+            className="hidden dark:block"
+            animationStyle="from-center"
+            videoSrc="/assets/videos/karchunt-video.mp4"
+            thumbnailSrc="/assets/images/harold-vasquez-coding.jpg"
+            thumbnailAlt="Hero Video"
+          />
+        </div>
+
+        {/* Border beam */}
+        <BorderBeam />
+      </div>
+    </div>
   );
 };
 
