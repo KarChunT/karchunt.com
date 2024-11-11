@@ -5,10 +5,58 @@ import type { DocsThemeConfig } from 'nextra-theme-docs';
 
 const config: DocsThemeConfig = {
   docsRepositoryBase: 'https://github.com/KarChunT/karchunt.com/tree/main',
+  head: () => {
+    const { asPath } = useRouter();
+    const { frontMatter } = useConfig();
+    const rootPath = 'https://www.karchunt.com';
+    const url = `${rootPath}${asPath}`;
+    const ogImage = `${rootPath}/penguin-nobg.png`;
+    const title = frontMatter.titleTemplate
+      ? `${frontMatter.title} - ${frontMatter.titleTemplate}`
+      : 'KarChunT';
+
+    return (
+      <>
+        <title>{title}</title>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" href="/penguin-nobg.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta httpEquiv="Content-Language" content="en" />
+        <meta name="apple-mobile-web-app-title" content="KarChunT" />
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="googlebot"
+          content="index, follow, noimageindex, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        />
+        <meta name="og:url" content={url} />
+        <meta name="og:image" content={ogImage} />
+        <meta name="og:title" content={title} />
+        <meta
+          name="og:description"
+          content={frontMatter.description || "KarChunT's personal website"}
+        />
+      </>
+    );
+  },
+  darkMode: false,
+  nextThemes: {
+    defaultTheme: 'dark',
+    forcedTheme: 'dark',
+  },
+  color: {
+    hue: {
+      dark: 143,
+      light: 143,
+    },
+    saturation: {
+      dark: 100,
+      light: 100,
+    },
+  },
   logo: (
     <>
       <Image src="/penguin-nobg.png" width={24} height={24} alt="Penguin" />
-      <span className="ml-[.4em] font-extrabold">KarChunT</span>
+      <span style={{ marginLeft: '.4em', fontWeight: 800 }}>KarChunT</span>
     </>
   ),
   project: {
@@ -28,64 +76,18 @@ const config: DocsThemeConfig = {
   search: {
     placeholder: 'Search content...',
   },
-  footer: {
-    text: (
-      <span className="mx-auto">
-        Copyright © {new Date().getFullYear()} KarChunT. All rights reserved
-      </span>
-    ),
-  },
   sidebar: {
     toggleButton: true,
   },
   toc: {
     backToTop: true,
   },
-  darkMode: false,
-  nextThemes: {
-    defaultTheme: 'dark',
-    forcedTheme: 'dark',
-  },
-  primaryHue: {
-    dark: 143,
-    light: 143,
-  },
-  primarySaturation: {
-    dark: 100,
-    light: 100,
-  },
-  useNextSeoProps() {
-    const { frontMatter } = useConfig();
-    const titleTemplate = frontMatter.titleTemplate
-      ? `%s - ${frontMatter.titleTemplate}`
-      : 'KarChunT';
-    return {
-      titleTemplate,
-    };
-  },
-  head: () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { asPath } = useRouter();
-    const rootPath = 'https://www.karchunt.com';
-    const url = `${rootPath}${asPath}`;
-    const ogImage = `${rootPath}/penguin-nobg.png`;
-
-    return (
-      <>
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" href="/penguin-nobg.png" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta httpEquiv="Content-Language" content="en" />
-        <meta name="apple-mobile-web-app-title" content="KarChunT" />
-        <meta name="robots" content="index, follow" />
-        <meta
-          name="googlebot"
-          content="index, follow, noimageindex, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
-        />
-        <meta name="og:url" content={url} />
-        <meta name="og:image" content={ogImage} />
-      </>
-    );
+  footer: {
+    content: (
+      <span className="mx-auto">
+        Copyright © {new Date().getFullYear()} KarChunT. All rights reserved
+      </span>
+    ),
   },
 };
 
