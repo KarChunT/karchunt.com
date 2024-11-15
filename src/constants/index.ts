@@ -185,37 +185,43 @@ export const ACKNOWLEDGMENTS = [
 
 export const DOCUMENTATION = [
   {
-    title: '🍇 SSH',
+    icon: '🍇',
+    title: 'SSH',
     description:
       'SSH stands for Secure Shell (SSH) Protocol that is mainly used to connect to a Linux server remotely.',
     link: '/docs/ssh/ssh-overview',
   },
   {
-    title: '🍈 Git',
+    icon: '🍈',
+    title: 'Git',
     description:
       'Git is a distributed version control system that tracks file changes.',
     link: '/docs/git/what-is-git',
   },
   {
-    title: '🍉 Docker',
+    icon: '🍉',
+    title: 'Docker',
     description:
       'Docker is an open platform for developing, shipping, and running applications.',
     link: '/docs/docker/what-is-docker',
   },
   {
-    title: '🍊 12 Factor App',
+    icon: '🍊',
+    title: '12 Factor App',
     description:
       'It is a methodology for building software-as-a-service applications with best practices.',
     link: '/docs/twelve-factor-app/introduction',
   },
   {
-    title: '🍍 Kubernetes',
+    icon: '🍍',
+    title: 'Kubernetes',
     description:
       'Kubernetes, also known as k8s, is an open source system to deploy, scalwe, and manage containerized applications.',
     link: '/docs/kubernetes/what-is-kubernetes',
   },
   {
-    title: '🍐 Data Structures and Algorithms',
+    icon: '🍐',
+    title: 'Data Structures and Algorithms',
     description:
       'Data structures are used to organize, store, and manipulate data in memory, while algorithms are used to solve specific problems.',
     link: '/docs/data-structures-and-algorithms/memory',

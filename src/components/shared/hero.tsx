@@ -127,14 +127,14 @@ const Hero = () => {
             className="block dark:hidden"
             animationStyle="from-center"
             videoSrc="/videos/karchunt-video.mp4"
-            thumbnailSrc="/harold-vasquez-coding.jpg"
+            thumbnailSrc="/passion-in-coding.png"
             thumbnailAlt="Hero Video"
           />
           <HeroVideoDialog
             className="hidden dark:block"
             animationStyle="from-center"
             videoSrc="/videos/karchunt-video.mp4"
-            thumbnailSrc="/harold-vasquez-coding.jpg"
+            thumbnailSrc="/passion-in-coding.png"
             thumbnailAlt="Hero Video"
           />
         </div>
