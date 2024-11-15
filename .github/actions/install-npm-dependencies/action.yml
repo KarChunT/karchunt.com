@@ -4,7 +4,7 @@ inputs:
   node-version:
     description: 'Node version'
     required: true
-    default: '20'
+    default: '21.6.2'
   node-cache-type:
     description: 'Node cache type'
     required: true
