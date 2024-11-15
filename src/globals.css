@@ -74,10 +74,10 @@ strong {
 }
 
 /* aside bar - footer */
-.nextra-sidebar-footer {
+/* .nextra-sidebar-footer {
   background: black;
-}
-
+} */
+/* 
 @layer base {
   * {
     @apply border-border;
@@ -85,4 +85,9 @@ strong {
   body {
     @apply bg-background text-foreground;
   }
+} */
+
+/* aside bar */
+:is(html[class~='dark'] .dark\:nx-bg-dark) {
+  background: black;
 }

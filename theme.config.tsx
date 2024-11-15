@@ -43,15 +43,23 @@ const config: DocsThemeConfig = {
     defaultTheme: 'dark',
     forcedTheme: 'dark',
   },
-  color: {
-    hue: {
-      dark: 143,
-      light: 143,
-    },
-    saturation: {
-      dark: 100,
-      light: 100,
-    },
+  // color: {
+  //   hue: {
+  //     dark: 143,
+  //     light: 143,
+  //   },
+  //   saturation: {
+  //     dark: 100,
+  //     light: 100,
+  //   },
+  // },
+  primaryHue: {
+    dark: 143,
+    light: 143,
+  },
+  primarySaturation: {
+    dark: 100,
+    light: 100,
   },
   logo: (
     <>
@@ -83,7 +91,7 @@ const config: DocsThemeConfig = {
     backToTop: true,
   },
   footer: {
-    content: (
+    text: (
       <span className="mx-auto">
         Copyright © {new Date().getFullYear()} KarChunT. All rights reserved
       </span>

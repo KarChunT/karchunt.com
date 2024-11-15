@@ -4,7 +4,7 @@ inputs:
   node-version:
     description: 'Node version'
     required: true
-    default: '20'
+    default: '21.6.2'
   node-cache-type:
     description: 'Node cache type'
     required: true
@@ -41,4 +41,9 @@ runs:
 
     - name: Install dependencies
       run: 'npm install'
+      shell: bash
+
+    - name: Install missing dependencies
+      run: |
+        npm i @napi-rs/snappy-linux-x64-gnu @napi-rs/simple-git-linux-x64-gnu sharp -f
       shell: bash

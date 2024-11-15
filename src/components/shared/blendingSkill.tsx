@@ -25,7 +25,7 @@ const BlendingSkill = () => {
       <BlurFade delay={0.25 * 3} inView>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {/* IconCloud */}
-          <div className="relative mx-auto flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg border bg-background px-20 pb-20 pt-8">
+          <div className="relative mx-auto flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg border border-neutral-700 bg-background px-20 pb-20 pt-8">
             <IconCloud iconSlugs={SKILLS_SLUGS} />
           </div>
 

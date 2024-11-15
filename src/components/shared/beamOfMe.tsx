@@ -34,7 +34,7 @@ const BeamOfMe = () => {
 
   return (
     <div
-      className="relative mx-auto flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg border bg-background px-20 pb-20 pt-8"
+      className="relative mx-auto flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg border border-neutral-700 bg-background px-20 pb-20 pt-8"
       ref={containerRef}
     >
       <div className="flex size-full max-h-[200px] max-w-lg flex-col items-stretch justify-between gap-10">

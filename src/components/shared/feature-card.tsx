@@ -32,9 +32,9 @@ export default function FeatureCard({
   const delay = generateRandomDelayNumber();
 
   return (
-    <div className="relative overflow-hidden rounded-lg border bg-background">
+    <div className="relative overflow-hidden rounded-lg bg-background">
       <Link href={href}>
-        <Card className="h-full">
+        <Card className="h-full border-neutral-700">
           <CardHeader>
             <div className="flex flex-col">
               <div className="rounded-full pb-3 text-primary-foreground">
