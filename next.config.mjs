@@ -1,5 +1,4 @@
 // module.exports = withNextra({
-//   distDir: 'dist',
 //   //   assetPrefix,
 //   //   basePath: assetPrefix,
 // });
@@ -11,6 +10,7 @@ const nextConfig = {
   images: {
     unoptimized: true, // mandatory, otherwise won't export
   },
+  distDir: 'dist',
 };
 
 const withNextra = nextra({
