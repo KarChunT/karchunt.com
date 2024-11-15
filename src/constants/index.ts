@@ -232,3 +232,13 @@ export const DOCUMENTATION = [
   //   link: '/docs/design-pattern/introduction',
   // },
 ];
+
+export const PERSONAL = [
+  {
+    quote:
+      'Passion is the key to success. Passion means everything to me, as part of my passion and motivation, I love to inspire people and my ambition is to develop a new technology that can revolutionize the world.',
+    name: 'Tan Kar Chun',
+    designation: 'Infrastructure & DevOps Engineer',
+    src: '/personal/anotherme.webp',
+  },
+];

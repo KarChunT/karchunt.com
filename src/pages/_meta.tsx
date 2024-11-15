@@ -15,6 +15,14 @@ export default {
       typesetting: 'article',
     },
   },
+  about: {
+    title: 'About',
+    type: 'page',
+    theme: {
+      layout: 'default',
+      timestamp: false,
+    },
+  },
   docs: {
     title: 'Docs',
     type: 'menu',
@@ -52,14 +60,6 @@ export default {
 };
 
 // {
-//   "about": {
-//     "title": "About",
-// type: 'page',
-//     "theme": {
-//       "layout": "default",
-//       "timestamp": false
-//     }
-//   },
 //   "blog": {
 //     "title": "Blog"
 // type: 'page',
