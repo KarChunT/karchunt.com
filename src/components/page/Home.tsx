@@ -1,16 +1,15 @@
-import Hero from '@/components/Hero';
-import Docs from '@/components/Docs';
-import Phase from '@/components/Phase';
+import React from 'react';
+import Hero from '@/components/shared/hero';
+import CoreValues from '@/components/shared/coreValues';
+import BlendingSkill from '@/components/shared/blendingSkill';
 
 const Home = () => {
   return (
-    <main className="nx-min-h-[calc(100vh-var(--nextra-navbar-height))] relative mx-auto flex flex-col items-center overflow-hidden">
-      <div className="w-full">
-        <Hero />
-        <Docs />
-        <Phase />
-      </div>
-    </main>
+    <div className="flex min-h-screen flex-col px-4 pb-8">
+      <Hero />
+      <BlendingSkill />
+      <CoreValues />
+    </div>
   );
 };
 
