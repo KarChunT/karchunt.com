@@ -1,77 +1,62 @@
-import { Doc, Project, Blog, Tool } from '../types/type';
-import {
-  IconWriting,
-  IconAi,
-  IconBrandVite,
-  IconBrandNextjs,
-  IconBrandDocker,
-  IconBrandGithub,
-  IconLetterP,
-  IconWheel,
-  IconCode,
-} from '@tabler/icons-react';
-
-// find icons from here https://tabler.io/icons
-export const TOOL: Tool[] = [
+export const CORE_VALUES = [
   {
-    title: 'draw.io (diagrams.net)',
-    href: 'https://app.diagrams.net/',
-    description:
-      'Free online diagram software for making flowcharts, process diagrams, org charts, UML, ER and network diagrams',
-    icon: IconWriting,
+    title: 'Build with Passion',
+    content:
+      'Passion means everything to me, as part of my passion and motivation, I love to inspire people and my ambition is to develop a new technology that can revolutionize the world.',
+    srcImage: '/core-values/build-with-passion.png',
   },
   {
-    title: 'Perplexity AI',
-    href: 'https://www.perplexity.ai/',
-    description:
-      'Free AI-powered answer engine that provides accurate, trusted, and real-time answers to any question.',
-    icon: IconAi,
+    title: 'Discover the beauty of coding and architecture design',
+    content:
+      'Exploring the synergy between coding and architectural design is the beauty of the software system in terms of principles of structure, creativity, and problem-solving.',
+    srcImage: '/core-values/beauty-of-coding.png',
   },
   {
-    title: 'VitePress',
-    href: 'https://vitepress.dev/',
-    description:
-      'VitePress is a Static Site Generator (SSG) designed for building fast, content-centric websites.',
-    icon: IconBrandVite,
-  },
-  {
-    title: 'Next.js',
-    href: 'https://nextjs.org/',
-    description:
-      'Next.js is a React framework for building full-stack web applications. You use React Components to build user interfaces, and Next.js for additional features and optimizations.',
-    icon: IconBrandNextjs,
-  },
-  {
-    title: 'Docker',
-    href: 'https://www.docker.com/',
-    description:
-      'Docker is a platform designed to help developers build, share, and run container applications.',
-    icon: IconBrandDocker,
-  },
-  {
-    title: 'Kubernetes',
-    href: 'https://kubernetes.io/',
-    description:
-      'Kubernetes, also known as K8s, is an open source system for automating deployment, scaling, and management of containerized applications.',
-    icon: IconWheel,
-  },
-  {
-    title: 'GitHub',
-    href: 'https://github.com/',
-    description:
-      'GitHub is a developer platform that allows developers to create, store, manage and share their code.',
-    icon: IconBrandGithub,
-  },
-  {
-    title: 'Prettier',
-    href: 'https://prettier.io/',
-    description:
-      'An opinionated code formatter, support many languages, and integrates with most editors.',
-    icon: IconLetterP,
+    title: 'Learn, build, and apply',
+    content:
+      'I learn technical skills from many sources, and then I will document them, but the main thing for me is understanding and knowing how to apply them.',
+    srcImage: '/core-values/learn-apply.png',
   },
 ];
 
-export const BLOG: Blog[] = [
+export const SKILLS_SLUGS = [
+  'typescript',
+  'java',
+  'react',
+  'html5',
+  'css3',
+  'nextdotjs',
+  'postgresql',
+  'docker',
+  'git',
+  'jira',
+  'github',
+  'gitlab',
+  'sonarqube',
+  'dotenv',
+  'terraform',
+  'python',
+  'fastapi',
+  'argo',
+  'trivy',
+  'istio',
+  'grafana',
+  'prometheus',
+  'githubactions',
+  'gnubash',
+  'kubernetes',
+  'linux',
+  'ubuntu',
+  'jenkins',
+  'ansible',
+  'vagrant',
+  'tailwindcss',
+  'gitlfs',
+  'javascript',
+  'snyk',
+];
+
+export const BLOG = [
   {
     title: 'Setup self-hosted GitHub runner',
     href: '/blog/problem-solving#setup-self-hosted-github-runner',
@@ -198,53 +183,7 @@ export const ACKNOWLEDGMENTS = [
   { text: 'https://kodekloud.com/' },
 ];
 
-export const PROJECTS: Project[] = [
-  {
-    title: 'karchunt.com (latest)',
-    href: 'https://github.com/KarChunT/karchunt.com',
-    description: 'Hey, this is my current personal website.',
-    icon: IconCode,
-  },
-  {
-    title: 'karchunt.com (v1)',
-    href: 'https://github.com/KarChunT/karchunt.com/tree/v1.1.7',
-    description: 'Hey, this is my v1 personal website.',
-    icon: IconCode,
-  },
-];
-
-export const PERSONAL_IMAGES = [
-  {
-    id: 1,
-    name: 'Intel KarChunT',
-    designation: 'Infrastructure & DevOps Engineer',
-    image: '/personal/anotherme.webp',
-    width: 300,
-    height: 300,
-  },
-];
-
-export const IMAGES: string[] = [
-  '/gallery/penguin-challenge.webp',
-  '/gallery/penguin-document.webp',
-  '/gallery/penguin-learn.webp',
-  '/gallery/penguin1.webp',
-  '/gallery/penguin10.webp',
-  '/gallery/penguin11.webp',
-  '/gallery/penguin12.webp',
-  '/gallery/penguin13.webp',
-  '/gallery/penguin14.webp',
-  '/gallery/penguin2.webp',
-  '/gallery/penguin3.webp',
-  '/gallery/penguin4.webp',
-  '/gallery/penguin5.webp',
-  '/gallery/penguin6.webp',
-  '/gallery/penguin7.webp',
-  '/gallery/penguin8.webp',
-  '/gallery/penguin9.webp',
-];
-
-export const DOCUMENTATION: Doc[] = [
+export const DOCUMENTATION = [
   {
     title: '🍇 SSH',
     description:
@@ -280,12 +219,6 @@ export const DOCUMENTATION: Doc[] = [
     description:
       'Data structures are used to organize, store, and manipulate data in memory, while algorithms are used to solve specific problems.',
     link: '/docs/data-structures-and-algorithms/memory',
-  },
-  {
-    title: '🍌 Leetcode',
-    description:
-      'LeetCode is the best platform to help you enhance your skills, expand your knowledge and prepare for technical interviews.',
-    link: 'https://github.com/KarChunT/awesome-leetcode',
   },
   // {
   //   title: '🥑 Design Pattern',
