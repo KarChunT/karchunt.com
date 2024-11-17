@@ -1,0 +1,35 @@
+---
+title: Commands and Arguments
+titleTemplate: Kubernetes
+description: Understand how to use setup commands and arguments
+---
+
+import Comments from '@/components/Comments';
+
+# Commands and Arguments
+
+## Usage of commands and arguments
+
+```mermaid
+flowchart LR
+  A[Dockerfile-ENTRYPOINT] --> C
+  B[Dockerfile-CMD] --> D
+  C[YAML-command]
+  D[YAML-args]
+```
+
+```yaml showLineNumbers filename="pod.yaml"
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-name
+spec:
+  containers:
+    - name: container-name
+      image: ubuntu:22.04
+      command: ["sleep"] # entrypoint in Dockerfile
+      args: ["10"] # CMD in Dockerfile
+```
+
+
+<Comments />
