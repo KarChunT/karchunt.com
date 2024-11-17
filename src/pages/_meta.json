@@ -52,5 +52,13 @@
         "href": "/docs/data-structures-and-algorithms/memory"
       }
     }
+  },
+  "gallery": {
+    "title": "Gallery",
+    "type": "page",
+    "theme": {
+      "layout": "full",
+      "timestamp": false
+    }
   }
 }
