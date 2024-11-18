@@ -105,7 +105,7 @@ const Hero = () => {
           at Intel. I love to code and design software architecture.
         </p>
 
-        <div className="space-x-4">
+        <div className="flex space-x-4">
           <Button onClick={() => setIsRaining(!isRaining)}>
             Raining
             {isRaining ? (

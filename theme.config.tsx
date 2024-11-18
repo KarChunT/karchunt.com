@@ -93,7 +93,7 @@ const config: DocsThemeConfig = {
   footer: {
     text: (
       <span className="mx-auto">
-        Copyright © {new Date().getFullYear()} KarChunT. All rights reserved
+        Copyright © {new Date().getFullYear()} KarChunT. All rights reserved.
       </span>
     ),
   },
