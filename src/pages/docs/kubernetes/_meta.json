@@ -22,5 +22,17 @@
   "pod": {
     "title": "Pod",
     "href": "/docs/kubernetes/pod"
+  },
+  "replica-set": {
+    "title": "ReplicaSet",
+    "href": "/docs/kubernetes/replica-set"
+  },
+  "deployment": {
+    "title": "Deployment",
+    "href": "/docs/kubernetes/deployment"
+  },
+  "command-and-args": {
+    "title": "Commands and Arguments",
+    "href": "/docs/kubernetes/command-and-args"
   }
 }
