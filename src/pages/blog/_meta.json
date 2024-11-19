@@ -1,0 +1,51 @@
+{
+  "setup-self-hosted-github-runner": {
+    "title": "Setup self-hosted GitHub runner"
+  },
+  "setup-k3s-on-ubuntu": {
+    "title": "Setup k3s on Ubuntu"
+  },
+  "run-sudo-command-without-a-password": {
+    "title": "Run sudo command without a password"
+  },
+  "install-java-with-apt-on-ubuntu": {
+    "title": "Install Java with APT on Ubuntu"
+  },
+  "install-java-openjdk-17": {
+    "title": "Install Java OpenJDK 17"
+  },
+  "install-maven-mvn": {
+    "title": "Install Maven (MVN)"
+  },
+  "install-latest-git": {
+    "title": "Install latest Git"
+  },
+  "install-packages-using-deb-file": {
+    "title": "Install packages using deb file"
+  },
+  "install-kubevirt": { "title": "Install KubeVirt" },
+  "install-jenkins-with-docker-compose": {
+    "title": "Install Jenkins with Docker Compose"
+  },
+  "edit-hostname-on-ubuntu": { "title": "Edit hostname on Ubuntu" },
+  "fix-docker-compose-error-max-virtual-memory-areas-vm-max-map-count-65530-is-too-low-increase-to-at-least-262144": {
+    "title": "Fix docker-compose ERROR: max > virtual memory areas vm.max_map_count [65530] is too low, increase to > at least [262144]"
+  },
+  "fix-git-lfs-pointers-issue": { "title": "Fix Git LFS Pointers issue" },
+  "no-module-named-apt_pkg": { "title": "No Module named 'apt_pkg'" },
+  "share-your-local-server-with-ngrok": {
+    "title": "Share your local server with Ngrok"
+  },
+  "add-apt-repository-unable-to-support-jammy": {
+    "title": "add-apt-repository unable to support jammy"
+  },
+  "use-different-python-version-to-setup-python-virtual-environment": {
+    "title": "Use different Python version to setup Pythonvirtual environment"
+  },
+  "got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket-at-unixvarrundockersock": {
+    "title": "Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock"
+  },
+  "nginx-permission-problem-nginx-emerg-mkdir-varcachenginxclient_temp-failed-13-permission-denied": {
+    "title": "Nginx permission problem [nginx: [emerg] mkdir() '/var/cache/nginx/client_temp' failed (13: Permission denied)]"
+  }
+}
