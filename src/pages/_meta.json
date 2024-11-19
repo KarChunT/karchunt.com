@@ -53,6 +53,10 @@
       }
     }
   },
+  "blog": {
+    "title": "Blog",
+    "type": "page"
+  },
   "gallery": {
     "title": "Gallery",
     "type": "page",

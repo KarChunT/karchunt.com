@@ -59,100 +59,100 @@ export const SKILLS_SLUGS = [
 export const BLOG = [
   {
     title: 'Setup self-hosted GitHub runner',
-    href: '/blog/problem-solving#setup-self-hosted-github-runner',
+    href: '/blog/setup-self-hosted-github-runner',
     tags: ['self-hosted', 'github'],
   },
   {
     title: 'Setup k3s on Ubuntu',
-    href: '/blog/problem-solving#setup-k3s-on-ubuntu',
+    href: '/blog/setup-k3s-on-ubuntu',
     tags: ['kubernetes', 'ubuntu'],
   },
   {
     title: 'Run sudo command without a password',
-    href: '/blog/problem-solving#run-sudo-command-without-a-password',
+    href: '/blog/run-sudo-command-without-a-password',
     tags: ['linux'],
   },
   {
     title: 'Install Java with APT on Ubuntu',
-    href: '/blog/problem-solving#install-java-with-apt-on-ubuntu',
+    href: '/blog/install-java-with-apt-on-ubuntu',
     tags: ['java', 'ubuntu'],
   },
   {
     title: 'Install Java OpenJDK 17',
-    href: '/blog/problem-solving#install-java-openjdk-17',
+    href: '/blog/install-java-openjdk-17',
     tags: ['java', 'ubuntu'],
   },
   {
     title: 'Install Maven (MVN)',
-    href: '/blog/problem-solving#install-maven-mvn',
+    href: '/blog/install-maven-mvn',
     tags: ['maven'],
   },
   {
     title: 'Install latest Git',
-    href: '/blog/problem-solving#install-latest-git',
+    href: '/blog/install-latest-git',
     tags: ['git'],
   },
   {
     title: 'Install packages using deb file',
-    href: '/blog/problem-solving#install-packages-using-deb-file',
+    href: '/blog/install-packages-using-deb-file',
     tags: ['deb', 'linux'],
   },
   {
     title: 'Install KubeVirt',
-    href: '/blog/problem-solving#install-kubevirt',
+    href: '/blog/install-kubevirt',
     tags: ['kubevirt'],
   },
   {
     title: 'Install Jenkins with Docker Compose',
-    href: '/blog/problem-solving#install-jenkins-with-docker-compose',
+    href: '/blog/install-jenkins-with-docker-compose',
     tags: ['jenkins', 'docker-compose'],
   },
   {
     title: 'Edit hostname on Ubuntu',
-    href: '/blog/problem-solving#edit-hostname-on-ubuntu',
+    href: '/blog/edit-hostname-on-ubuntu',
     tags: ['hostname', 'ubuntu'],
   },
   {
     title:
       'Fix docker-compose ERROR: max > virtual memory areas vm.max_map_count [65530] is too low, increase to > at least [262144]',
-    href: '/blog/problem-solving#fix-docker-compose-error-max-virtual-memory-areas-vm-max-map-count-65530-is-too-low-increase-to-at-least-262144',
+    href: '/blog/fix-docker-compose-error-max-virtual-memory-areas-vm-max-map-count-65530-is-too-low-increase-to-at-least-262144',
     tags: ['docker-compose'],
   },
   {
     title: 'Fix Git LFS Pointers issue',
-    href: '/blog/problem-solving#fix-git-lfs-pointers-issue',
+    href: '/blog/fix-git-lfs-pointers-issue',
     tags: ['git lfs'],
   },
   {
     title: 'No Module named "apt_pkg"',
-    href: '/blog/problem-solving#no-module-named-apt_pkg',
+    href: '/blog/no-module-named-apt_pkg',
     tags: ['linux'],
   },
   {
     title: 'Share your local server with Ngrok',
-    href: '/blog/problem-solving#share-your-local-server-with-ngrok',
+    href: '/blog/share-your-local-server-with-ngrok',
     tags: ['ngrok', 'local'],
   },
   {
     title: 'add-apt-repository unable to support jammy',
-    href: '/blog/problem-solving#add-apt-repository-unable-to-support-jammy',
+    href: '/blog/add-apt-repository-unable-to-support-jammy',
     tags: ['linux', 'python'],
   },
   {
     title: 'Use different Python version to setup Pythonvirtual environment',
-    href: '/blog/problem-solving#use-different-python-version-to-setup-python-virtual-environment',
+    href: '/blog/use-different-python-version-to-setup-python-virtual-environment',
     tags: ['python'],
   },
   {
     title:
       'Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock',
-    href: '/blog/problem-solving#got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket-at-unixvarrundockersock',
+    href: '/blog/got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket-at-unixvarrundockersock',
     tags: ['docker'],
   },
   {
     title:
       'Nginx permission problem [nginx: [emerg] mkdir() "/var/cache/nginx/client_temp" failed (13: Permission denied)]',
-    href: '/blog/problem-solving#nginx-permission-problem-nginx-emerg-mkdir-varcachenginxclient_temp-failed-13-permission-denied',
+    href: '/blog/nginx-permission-problem-nginx-emerg-mkdir-varcachenginxclient_temp-failed-13-permission-denied',
     tags: ['nginx'],
   },
 ];
