@@ -37,9 +37,7 @@ export default function FeatureCard({
         <Card className="h-full border-neutral-700">
           <CardHeader>
             <div className="flex flex-col">
-              <div className="rounded-full pb-3 text-primary-foreground">
-                {icon}
-              </div>
+              <div className="rounded-full pb-3">{icon}</div>
               <CardTitle>{title}</CardTitle>
             </div>
           </CardHeader>
