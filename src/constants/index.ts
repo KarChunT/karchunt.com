@@ -183,13 +183,190 @@ export const ACKNOWLEDGMENTS = [
   { text: 'https://kodekloud.com/' },
 ];
 
-export const DOCUMENTATION = [
+export const DOCUMENTATION: DocItem[] = [
   {
     icon: '🍇',
     title: 'SSH',
     description:
       'SSH stands for Secure Shell (SSH) Protocol that is mainly used to connect to a Linux server remotely.',
     link: '/docs/ssh/ssh-overview',
+    hierarchy: [
+      {
+        name: 'Introduction',
+        hierarchy: [
+          {
+            name: 'SSH overview',
+            link: '/docs/ssh/ssh-overview',
+            hierarchy: [
+              {
+                name: 'What is SSH?',
+                link: '/docs/ssh/ssh-overview#what-is-ssh',
+              },
+              {
+                name: 'How SSH Works?',
+                link: '/docs/ssh/ssh-overview#how-ssh-works',
+              },
+              {
+                name: 'How SSH Authenticate Users?',
+                link: '/docs/ssh/ssh-overview#how-ssh-authenticate-users',
+                hierarchy: [
+                  { name: 'Password', link: '/docs/ssh/ssh-overview#password' },
+                  { name: 'SSH Keys', link: '/docs/ssh/ssh-overview#ssh-keys' },
+                ],
+              },
+            ],
+          },
+          {
+            name: 'SSH Installation',
+            hierarchy: [
+              {
+                name: 'Install SSH on Linux',
+                link: '/docs/ssh/installation#install-ssh-on-linux',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'SSH Keys',
+        hierarchy: [
+          {
+            name: 'Play with SSH Keys',
+            link: '/docs/ssh/play-with-ssh-keys',
+            hierarchy: [
+              {
+                name: 'Generating an SSH Key Pair',
+                link: '/docs/ssh/play-with-ssh-keys#generating-an-ssh-key-pair',
+                hierarchy: [
+                  {
+                    name: 'Optional Parameters',
+                    link: '/docs/ssh/play-with-ssh-keys#optional-parameters',
+                  },
+                ],
+              },
+              {
+                name: 'Copy the public SSH key to the server',
+                link: '/docs/ssh/play-with-ssh-keys#copy-the-public-ssh-key-to-the-server',
+                hierarchy: [
+                  {
+                    name: 'Using ssh-copy-id command',
+                    link: '/docs/ssh/play-with-ssh-keys#using-ssh-copy-id-command',
+                  },
+                  {
+                    name: 'Manually copy SSH public key from local to a server',
+                    link: '/docs/ssh/play-with-ssh-keys#manually-copy-ssh-public-key-from-local-to-a-server',
+                  },
+                ],
+              },
+              {
+                name: 'Using an SSH agent to avoid typing your private key passphrase',
+                link: '/docs/ssh/play-with-ssh-keys#using-an-ssh-agent-to-avoid-typing-your-private-key-passphrase',
+              },
+              {
+                name: 'Forward SSH credentials to use on a server',
+                link: '/docs/ssh/play-with-ssh-keys#forward-ssh-credentials-to-use-on-a-server',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'Host & Server',
+        hierarchy: [
+          {
+            name: 'Remote Server Connection',
+            link: '/docs/ssh/remote-server-connection',
+            hierarchy: [
+              {
+                name: 'Connecting to a remote server',
+                link: '/docs/ssh/remote-server-connection#connecting-to-a-remote-server',
+              },
+              {
+                name: 'known_hosts',
+                link: '/docs/ssh/remote-server-connection#known_hosts',
+              },
+            ],
+          },
+          {
+            name: 'Host Configuration',
+            link: '/docs/ssh/host-configuration',
+            hierarchy: [
+              {
+                name: 'Host Specific Configuration file',
+                link: '/docs/ssh/host-configuration#host-specific-configuration-file',
+              },
+            ],
+          },
+          {
+            name: 'Server Configuration',
+            link: '/docs/ssh/server-configuration',
+            hierarchy: [
+              {
+                name: 'Disable password authentication',
+                link: '/docs/ssh/server-configuration#disable-password-authentication',
+              },
+              {
+                name: 'Change SSH Daemon runs/listens on port',
+                link: '/docs/ssh/server-configuration#change-ssh-daemon-runslistens-on-port',
+              },
+              {
+                name: 'Limit authenticate users to login',
+                link: '/docs/ssh/server-configuration#limit-authenticate-users-to-login',
+              },
+              {
+                name: 'Disable root login',
+                link: '/docs/ssh/server-configuration#disable-root-login',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'SSH Tunnels',
+        hierarchy: [
+          {
+            name: 'Local tunneling',
+            link: '/docs/ssh/local-tunneling',
+            hierarchy: [
+              {
+                name: 'Local tunneling to a server',
+                link: '/docs/ssh/local-tunneling#local-tunneling-to-a-server',
+                hierarchy: [
+                  {
+                    name: 'Local tunneling local network',
+                    link: '/docs/ssh/local-tunneling#local-tunneling-local-network',
+                  },
+                  {
+                    name: 'Local tunneling private network',
+                    link: '/docs/ssh/local-tunneling#local-tunneling-private-network',
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: 'Remote tunneling',
+            link: '/docs/ssh/remote-tunneling',
+            hierarchy: [
+              {
+                name: 'Remote tunneling to a server',
+                link: '/docs/ssh/remote-tunneling#remote-tunneling-to-a-server',
+                hierarchy: [
+                  {
+                    name: 'Remote tunneling local network',
+                    link: '/docs/ssh/remote-tunneling#remote-tunneling-local-network',
+                  },
+                  {
+                    name: 'Remote tunneling private network',
+                    link: '/docs/ssh/remote-tunneling#remote-tunneling-private-network',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     icon: '🍈',
@@ -197,6 +374,7 @@ export const DOCUMENTATION = [
     description:
       'Git is a distributed version control system that tracks file changes.',
     link: '/docs/git/what-is-git',
+    hierarchy: [],
   },
   {
     icon: '🍉',
@@ -204,6 +382,7 @@ export const DOCUMENTATION = [
     description:
       'Docker is an open platform for developing, shipping, and running applications.',
     link: '/docs/docker/what-is-docker',
+    hierarchy: [],
   },
   {
     icon: '🍊',
@@ -211,6 +390,66 @@ export const DOCUMENTATION = [
     description:
       'It is a methodology for building software-as-a-service applications with best practices.',
     link: '/docs/twelve-factor-app/introduction',
+    hierarchy: [
+      {
+        name: 'What is 12 Factor App?',
+        link: '/docs/twelve-factor-app/introduction#what-is-12-factor-app',
+      },
+      {
+        name: 'The Twelve Factors',
+        link: '/docs/twelve-factor-app/introduction#the-twelve-factors',
+        hierarchy: [
+          {
+            name: 'Codebase',
+            link: '/docs/twelve-factor-app/introduction#codebase',
+          },
+          {
+            name: 'Dependencies',
+            link: '/docs/twelve-factor-app/introduction#dependencies',
+          },
+          {
+            name: 'Config',
+            link: '/docs/twelve-factor-app/introduction#config',
+          },
+          {
+            name: 'Backing Services',
+            link: '/docs/twelve-factor-app/introduction#backing-services',
+          },
+          {
+            name: 'Build, release, run',
+            link: '/docs/twelve-factor-app/introduction#build-release-run',
+          },
+          {
+            name: 'Processes',
+            link: '/docs/twelve-factor-app/introduction#processes',
+          },
+          {
+            name: 'Port binding',
+            link: '/docs/twelve-factor-app/introduction#port-binding',
+          },
+          {
+            name: 'Concurrency',
+            link: '/docs/twelve-factor-app/introduction#concurrency',
+          },
+          {
+            name: 'Disposability',
+            link: '/docs/twelve-factor-app/introduction#disposability',
+          },
+          {
+            name: 'Dev/prod parity',
+            link: '/docs/twelve-factor-app/introduction#devprod-parity',
+          },
+          {
+            name: 'Logs',
+            link: '/docs/twelve-factor-app/introduction#logs',
+          },
+          {
+            name: 'Admin processes',
+            link: '/docs/twelve-factor-app/introduction#admin-processes',
+          },
+        ],
+      },
+    ],
   },
   {
     icon: '🍍',
@@ -218,6 +457,7 @@ export const DOCUMENTATION = [
     description:
       'Kubernetes, also known as k8s, is an open source system to deploy, scalwe, and manage containerized applications.',
     link: '/docs/kubernetes/what-is-kubernetes',
+    hierarchy: [],
   },
   {
     icon: '🍐',
@@ -225,6 +465,7 @@ export const DOCUMENTATION = [
     description:
       'Data structures are used to organize, store, and manipulate data in memory, while algorithms are used to solve specific problems.',
     link: '/docs/data-structures-and-algorithms/memory',
+    hierarchy: [],
   },
   // {
   //   title: '🥑 Design Pattern',

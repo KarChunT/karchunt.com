@@ -13,7 +13,9 @@ const config: DocsThemeConfig = {
     const ogImage = `${rootPath}/penguin-nobg.png`;
     const title = frontMatter.titleTemplate
       ? `${frontMatter.title} - ${frontMatter.titleTemplate}`
-      : 'KarChunT';
+      : frontMatter.title
+        ? `${frontMatter.title} - KarChunT`
+        : 'KarChunT';
 
     return (
       <>
