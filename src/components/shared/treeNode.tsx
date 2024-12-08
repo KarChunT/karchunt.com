@@ -9,7 +9,6 @@ export function TreeNode({ data }) {
     setIsOpen(!isOpen);
   };
 
-  console.log(data);
   return (
     <div className="relative pl-7">
       <div className="flex items-center py-2">
@@ -19,9 +18,11 @@ export function TreeNode({ data }) {
           <button
             onClick={toggleOpen}
             className="relative z-10 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-medium text-white transition-colors hover:bg-green-600"
-            aria-expanded={data.hierarchy ? isOpen : undefined}
+            aria-expanded={
+              data.hierarchy && data.hierarchy.length ? isOpen : undefined
+            }
           >
-            {data.hierarchy ? (
+            {data.hierarchy && data.hierarchy.length ? (
               isOpen ? (
                 <IconChevronDown className="h-4 w-4" />
               ) : (
