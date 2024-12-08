@@ -31,6 +31,10 @@
     "title": "Deployment",
     "href": "/docs/kubernetes/deployment"
   },
+  "namespace": {
+    "title": "Namespace",
+    "href": "/docs/kubernetes/namespace"
+  },
   "command-and-args": {
     "title": "Commands and Arguments",
     "href": "/docs/kubernetes/command-and-args"
@@ -38,5 +42,9 @@
   "env-and-secrets-setup": {
     "title": "Environments (ConfigMap) and Secrets",
     "href": "/docs/kubernetes/env-and-secrets-setup"
+  },
+  "labels-selectors-and-annotations": {
+    "title": "Labels, selectors, and annotations",
+    "href": "/docs/kubernetes/labels-selectors-and-annotations"
   }
 }
