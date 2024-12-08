@@ -46,10 +46,6 @@
       "kubernetes": {
         "title": "Kubernetes",
         "href": "/docs/kubernetes/what-is-kubernetes"
-      },
-      "data-structures-and-algorithms": {
-        "title": "Data Structures & Algorithms",
-        "href": "/docs/data-structures-and-algorithms/memory"
       }
     }
   },
