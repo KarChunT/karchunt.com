@@ -39,7 +39,7 @@ const About = () => {
         Intel. Welcome to my website, visit my{' '}
         <Link
           className="text-primary decoration-from-font [text-underline-position:from-font] hover:underline"
-          href="/blog/overview"
+          href="/blog"
         >
           blog
         </Link>
