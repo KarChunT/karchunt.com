@@ -183,6 +183,36 @@ export const ACKNOWLEDGMENTS = [
   { text: 'https://kodekloud.com/' },
 ];
 
+export const PERSONAL = [
+  {
+    quote:
+      'Passion is the key to success. Passion means everything to me, as part of my passion and motivation, I love to inspire people and my ambition is to develop a new technology that can revolutionize the world.',
+    name: 'Tan Kar Chun',
+    designation: 'Infrastructure & DevOps Engineer',
+    src: '/personal/anotherme.webp',
+  },
+];
+
+export const GALLERY = [
+  { src: '/gallery/penguin-challenge.webp', category: 'Penguin' },
+  { src: '/gallery/penguin-document.webp', category: 'Penguin' },
+  { src: '/gallery/penguin-learn.webp', category: 'Penguin' },
+  { src: '/gallery/penguin1.webp', category: 'Penguin' },
+  { src: '/gallery/penguin2.webp', category: 'Penguin' },
+  { src: '/gallery/penguin3.webp', category: 'Penguin' },
+  { src: '/gallery/penguin4.webp', category: 'Penguin' },
+  { src: '/gallery/penguin5.webp', category: 'Penguin' },
+  { src: '/gallery/penguin6.webp', category: 'Penguin' },
+  { src: '/gallery/penguin7.webp', category: 'Penguin' },
+  { src: '/gallery/penguin8.webp', category: 'Penguin' },
+  { src: '/gallery/penguin9.webp', category: 'Penguin' },
+  { src: '/gallery/penguin10.webp', category: 'Penguin' },
+  { src: '/gallery/penguin11.webp', category: 'Penguin' },
+  { src: '/gallery/penguin12.webp', category: 'Penguin' },
+  { src: '/gallery/penguin13.webp', category: 'Penguin' },
+  { src: '/gallery/penguin14.webp', category: 'Penguin' },
+];
+
 export const DOCUMENTATION: DocItem[] = [
   {
     icon: '🍇',
@@ -374,7 +404,321 @@ export const DOCUMENTATION: DocItem[] = [
     description:
       'Git is a distributed version control system that tracks file changes.',
     link: '/docs/git/what-is-git',
-    hierarchy: [],
+    hierarchy: [
+      {
+        name: 'Git Introduction',
+        hierarchy: [
+          {
+            name: 'What is Git?',
+            link: '/docs/git/what-is-git',
+            hierarchy: [
+              {
+                name: 'Git Introduction',
+                link: '/docs/git/what-is-git#git-introduction',
+                hierarchy: [],
+              },
+              {
+                name: 'Local vs Remote repositories',
+                link: '/docs/git/what-is-git#local-vs-remote-repositories',
+                hierarchy: [],
+              },
+            ],
+          },
+          {
+            name: 'Git Installation',
+            link: '/docs/git/git-installation',
+            hierarchy: [
+              {
+                name: 'Install Git on Windows',
+                link: '/docs/git/git-installation#install-git-on-windows',
+                hierarchy: [],
+              },
+              {
+                name: 'Install Git on Ubuntu/Linux',
+                link: '/docs/git/git-installation#install-git-on-ubuntulinux',
+                hierarchy: [],
+              },
+            ],
+          },
+          {
+            name: 'Git in Depth',
+            link: '/docs/git/git-in-depth',
+            hierarchy: [
+              {
+                name: 'A real Git',
+                link: '/docs/git/git-in-depth#a-real-git',
+                hierarchy: [
+                  {
+                    name: 'hash-object',
+                    link: '/docs/git/git-in-depth#hash-object',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'cat-file',
+                    link: '/docs/git/git-in-depth#cat-file',
+                    hierarchy: [],
+                  },
+                ],
+              },
+              {
+                name: 'Git Object Contents',
+                link: '/docs/git/git-in-depth#git-object-contents',
+                hierarchy: [],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'Getting Started with Git',
+        hierarchy: [
+          {
+            name: 'Setup repository',
+            link: '/docs/git/setup-repository',
+            hierarchy: [
+              {
+                name: 'Initialize a new Git repo',
+                link: '/docs/git/setup-repository#initialize-a-new-git-repo',
+                hierarchy: [],
+              },
+              {
+                name: 'Clone an existing repo',
+                link: '/docs/git/setup-repository#clone-an-existing-repo',
+                hierarchy: [
+                  {
+                    name: 'Clone to a specific folder',
+                    link: '/docs/git/setup-repository#clone-to-a-specific-folder',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Clone a specific branch',
+                    link: '/docs/git/setup-repository#clone-a-specific-branch',
+                    hierarchy: [],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: 'Save changes',
+            link: '/docs/git/save-changes',
+            hierarchy: [
+              {
+                name: 'git add',
+                link: '/docs/git/save-changes#git-add',
+                hierarchy: [],
+              },
+              {
+                name: 'git status',
+                link: '/docs/git/save-changes#git-status',
+                hierarchy: [],
+              },
+              {
+                name: 'git commit',
+                link: '/docs/git/save-changes#git-commit',
+                hierarchy: [],
+              },
+              {
+                name: 'git log',
+                link: '/docs/git/save-changes#git-log',
+                hierarchy: [],
+              },
+              {
+                name: 'git diff',
+                link: '/docs/git/save-changes#git-diff',
+                hierarchy: [],
+              },
+              {
+                name: 'git restore',
+                link: '/docs/git/save-changes#git-restore',
+                hierarchy: [],
+              },
+              {
+                name: '.gitignore',
+                link: '/docs/git/save-changes#gitignore',
+                hierarchy: [],
+              },
+            ],
+          },
+          {
+            name: 'Branches',
+            link: '/docs/git/branches',
+            hierarchy: [
+              {
+                name: 'What is Git Branch?',
+                link: '/docs/git/branches#what-is-git-branch',
+                hierarchy: [],
+              },
+              {
+                name: 'Git branch commands',
+                link: '/docs/git/branches#git-branch-commands',
+                hierarchy: [
+                  {
+                    name: 'Create branch',
+                    link: '/docs/git/branches#create-branch',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Checkout/Switch branch',
+                    link: '/docs/git/branches#checkoutswitch-branch',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Merge branch (Fast-forward)',
+                    link: '/docs/git/branches#merge-branch-fast-forward',
+                    hierarchy: [
+                      {
+                        name: 'Merge conflicts',
+                        link: '/docs/git/branches#merge-conflicts',
+                        hierarchy: [],
+                      },
+                    ],
+                  },
+                  {
+                    name: 'List branches',
+                    link: '/docs/git/branches#list-branches',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Delete branch',
+                    link: '/docs/git/branches#delete-branch',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Rename branch',
+                    link: '/docs/git/branches#rename-branch',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Create remote branches and push',
+                    link: '/docs/git/branches#create-remote-branches-and-push',
+                    hierarchy: [],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: 'Remote repository',
+            link: '/docs/git/remote-repositories',
+            hierarchy: [
+              {
+                name: 'Configuration and setup Git config',
+                link: '/docs/git/remote-repositories#configuration-and-setup-git-config',
+                hierarchy: [],
+              },
+              {
+                name: 'Fetching and pulling',
+                link: '/docs/git/remote-repositories#fetching-and-pulling',
+                hierarchy: [
+                  {
+                    name: 'Fetching',
+                    link: '/docs/git/remote-repositories#fetching',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Pulling',
+                    link: '/docs/git/remote-repositories#pulling',
+                    hierarchy: [],
+                  },
+                ],
+              },
+              {
+                name: 'List all remote repositories',
+                link: '/docs/git/remote-repositories#list-all-remote-repositories',
+                hierarchy: [],
+              },
+            ],
+          },
+          {
+            name: 'Rebasing',
+            link: '/docs/git/rebasing',
+            hierarchy: [
+              {
+                name: 'Rebase',
+                link: '/docs/git/rebasing#rebase',
+                hierarchy: [],
+              },
+              {
+                name: 'Interactive rebasing',
+                link: '/docs/git/rebasing#interactive-rebasing',
+                hierarchy: [],
+              },
+              {
+                name: 'Cherry-pick',
+                link: '/docs/git/rebasing#cherry-pick',
+                hierarchy: [],
+              },
+            ],
+          },
+          {
+            name: 'Reset and Revert',
+            link: '/docs/git/reset-and-revert',
+            hierarchy: [
+              {
+                name: 'Revert',
+                link: '/docs/git/reset-and-revert#revert',
+                hierarchy: [],
+              },
+              {
+                name: 'Reset',
+                link: '/docs/git/reset-and-revert#reset',
+                hierarchy: [
+                  {
+                    name: 'soft',
+                    link: '/docs/git/reset-and-revert#soft',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'hard',
+                    link: '/docs/git/reset-and-revert#hard',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'mixed',
+                    link: '/docs/git/reset-and-revert#mixed',
+                    hierarchy: [],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: 'Stashing',
+            link: '/docs/git/stashing',
+            hierarchy: [
+              {
+                name: 'Git Stash',
+                link: '/docs/git/stashing#git-stash',
+                hierarchy: [
+                  {
+                    name: 'stash push',
+                    link: '/docs/git/stashing#stash-push',
+                    hierarchy: [],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'Advanced',
+        hierarchy: [
+          {
+            name: 'Reflog',
+            link: '/docs/git/reflog',
+            hierarchy: [
+              {
+                name: 'Git Reflog',
+                link: '/docs/git/reflog#git-reflog',
+                hierarchy: [],
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     icon: '🍉',
@@ -382,7 +726,572 @@ export const DOCUMENTATION: DocItem[] = [
     description:
       'Docker is an open platform for developing, shipping, and running applications.',
     link: '/docs/docker/what-is-docker',
-    hierarchy: [],
+    hierarchy: [
+      {
+        name: 'Docker Introduction',
+        hierarchy: [
+          {
+            name: 'What is Docker',
+            link: '/docs/docker/what-is-docker',
+            hierarchy: [
+              {
+                name: 'Docker Introduction',
+                link: '/docs/docker/what-is-docker#docker-introduction',
+                hierarchy: [],
+              },
+            ],
+          },
+          {
+            name: 'Docker Architecture',
+            link: '/docs/docker/docker-architecture',
+            hierarchy: [
+              {
+                name: 'Docker Engine Architecture',
+                link: '/docs/docker/docker-architecture#docker-engine-architecture',
+                hierarchy: [
+                  {
+                    name: 'containerd',
+                    link: '/docs/docker/docker-architecture#containerd',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'libcontainer/runC',
+                    link: '/docs/docker/docker-architecture#libcontainerrunc',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'containerd-shim',
+                    link: '/docs/docker/docker-architecture#containerd-shim',
+                    hierarchy: [],
+                  },
+                ],
+              },
+              {
+                name: 'Docker Objects',
+                link: '/docs/docker/docker-architecture#docker-objects',
+                hierarchy: [
+                  {
+                    name: 'Images',
+                    link: '/docs/docker/docker-architecture#images',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Containers',
+                    link: '/docs/docker/docker-architecture#containers',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Volumes',
+                    link: '/docs/docker/docker-architecture#volumes',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Networks',
+                    link: '/docs/docker/docker-architecture#networks',
+                    hierarchy: [],
+                  },
+                ],
+              },
+              {
+                name: 'Registry',
+                link: '/docs/docker/docker-architecture#registry',
+                hierarchy: [],
+              },
+            ],
+          },
+          {
+            name: 'Docker Installation',
+            link: '/docs/docker/docker-installation',
+            hierarchy: [
+              {
+                name: 'Install Docker Engine on Ubuntu',
+                link: '/docs/docker/docker-installation#install-docker-engine-on-ubuntu',
+                hierarchy: [],
+              },
+            ],
+          },
+          {
+            name: 'Daemon Configuration',
+            link: '/docs/docker/daemon-configuration',
+            hierarchy: [
+              {
+                name: 'Docker Service Configuration',
+                link: '/docs/docker/daemon-configuration#docker-service-configuration',
+                hierarchy: [],
+              },
+              {
+                name: 'Start Docker Daemon manually',
+                link: '/docs/docker/daemon-configuration#start-docker-daemon-manually',
+                hierarchy: [],
+              },
+              {
+                name: 'Unix Socket',
+                link: '/docs/docker/daemon-configuration#unix-socket',
+                hierarchy: [],
+              },
+              {
+                name: 'Logging Driver',
+                link: '/docs/docker/daemon-configuration#logging-driver',
+                hierarchy: [],
+              },
+              {
+                name: 'Storage Driver',
+                link: '/docs/docker/daemon-configuration#storage-driver',
+                hierarchy: [],
+              },
+              {
+                name: 'Troubleshoot Docker Daemon',
+                link: '/docs/docker/daemon-configuration#troubleshoot-docker-daemon',
+                hierarchy: [
+                  {
+                    name: 'View Docker Daemon Logs',
+                    link: '/docs/docker/daemon-configuration#view-docker-daemon-logs',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Check free disk space on host',
+                    link: '/docs/docker/daemon-configuration#check-free-disk-space-on-host',
+                    hierarchy: [],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'Docker Topics',
+        hierarchy: [
+          {
+            name: 'Container',
+            link: '/docs/docker/container',
+            hierarchy: [
+              {
+                name: 'Create container',
+                link: '/docs/docker/container#create-container',
+                hierarchy: [],
+              },
+              {
+                name: 'List container details',
+                link: '/docs/docker/container#list-container-details',
+                hierarchy: [],
+              },
+              {
+                name: 'Start container',
+                link: '/docs/docker/container#start-container',
+                hierarchy: [],
+              },
+              {
+                name: 'Run a container',
+                link: '/docs/docker/container#run-a-container',
+                hierarchy: [],
+              },
+              {
+                name: 'Expose container port (Capital P)',
+                link: '/docs/docker/container#expose-container-port-capital-p',
+                hierarchy: [],
+              },
+              {
+                name: 'Rename container',
+                link: '/docs/docker/container#rename-container',
+                hierarchy: [],
+              },
+              {
+                name: 'Run a new command in a running container',
+                link: '/docs/docker/container#run-a-new-command-in-a-running-container',
+                hierarchy: [],
+              },
+              {
+                name: "Attach the terminal's I/O to a running container",
+                link: '/docs/docker/container#attach-the-terminals-io-to-a-running-container',
+                hierarchy: [],
+              },
+              {
+                name: 'Inspect container',
+                link: '/docs/docker/container#inspect-container',
+                hierarchy: [],
+              },
+              {
+                name: 'Display a live stream of containers resource usage statistics',
+                link: '/docs/docker/container#display-a-live-stream-of-containers-resource-usage-statistics',
+                hierarchy: [],
+              },
+              {
+                name: 'Display running processes of a container',
+                link: '/docs/docker/container#display-running-processes-of-a-container',
+                hierarchy: [],
+              },
+              {
+                name: 'Container Logs',
+                link: '/docs/docker/container#container-logs',
+                hierarchy: [],
+              },
+              {
+                name: 'Pause and Unpause container',
+                link: '/docs/docker/container#pause-and-unpause-container',
+                hierarchy: [],
+              },
+              {
+                name: 'Restart container',
+                link: '/docs/docker/container#restart-container',
+                hierarchy: [],
+              },
+              {
+                name: 'Update container',
+                link: '/docs/docker/container#update-container',
+                hierarchy: [],
+              },
+              {
+                name: 'Stop, remove, and prune the container',
+                link: '/docs/docker/container#stop-remove-and-prune-the-container',
+                hierarchy: [],
+              },
+            ],
+          },
+          {
+            name: 'Image',
+            link: '/docs/docker/image',
+            hierarchy: [
+              {
+                name: 'Image Operations',
+                link: '/docs/docker/image#image-operations',
+                hierarchy: [
+                  {
+                    name: 'List images',
+                    link: '/docs/docker/image#list-images',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Search images',
+                    link: '/docs/docker/image#search-images',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Pull / Download the image',
+                    link: '/docs/docker/image#pull--download-the-image',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Push image',
+                    link: '/docs/docker/image#push-image',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Tag image',
+                    link: '/docs/docker/image#tag-image',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Inspect image',
+                    link: '/docs/docker/image#inspect-image',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Remove image and remove all unused image',
+                    link: '/docs/docker/image#remove-image-and-remove-all-unused-image',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Display image layers',
+                    link: '/docs/docker/image#display-image-layers',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Save or load image',
+                    link: '/docs/docker/image#save-or-load-image',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Convert container into image in a tar format using Import and Export operations',
+                    link: '/docs/docker/image#convert-container-into-image-in-a-tar-format-using-import-and-export-operations',
+                    hierarchy: [],
+                  },
+                ],
+              },
+              {
+                name: 'Image naming convention and Authenticate to registries',
+                link: '/docs/docker/image#image-naming-convention-and-authenticate-to-registries',
+                hierarchy: [],
+              },
+              {
+                name: 'Dockerfile (Build a custom image)',
+                link: '/docs/docker/image#dockerfile-build-a-custom-image',
+                hierarchy: [
+                  {
+                    name: 'Dockerfile explanation',
+                    link: '/docs/docker/image#dockerfile-explanation',
+                    hierarchy: [
+                      {
+                        name: 'WORKDIR',
+                        link: '/docs/docker/image#workdir',
+                        hierarchy: [],
+                      },
+                      {
+                        name: 'HEALTHCHECK',
+                        link: '/docs/docker/image#healthcheck',
+                        hierarchy: [],
+                      },
+                      {
+                        name: 'COPY vs ADD',
+                        link: '/docs/docker/image#copy-vs-add',
+                        hierarchy: [],
+                      },
+                      {
+                        name: 'CMD vs ENTRYPOINT (Utility container)',
+                        link: '/docs/docker/image#cmd-vs-entrypoint-utility-container',
+                        hierarchy: [],
+                      },
+                    ],
+                  },
+                  {
+                    name: 'Build cache',
+                    link: '/docs/docker/image#build-cache',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Multi-stage builds',
+                    link: '/docs/docker/image#multi-stage-builds',
+                    hierarchy: [],
+                  },
+                ],
+              },
+              {
+                name: 'Create custom image from running container',
+                link: '/docs/docker/image#create-custom-image-from-running-container',
+                hierarchy: [],
+              },
+            ],
+          },
+          {
+            name: 'Volume',
+            link: '/docs/docker/volume',
+            hierarchy: [
+              {
+                name: 'Volume types',
+                link: '/docs/docker/volume#volume-types',
+                hierarchy: [
+                  {
+                    name: 'Anonymous and named volumes',
+                    link: '/docs/docker/volume#anonymous-and-named-volumes',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Bind mounts',
+                    link: '/docs/docker/volume#bind-mounts',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Read-only volume',
+                    link: '/docs/docker/volume#read-only-volume',
+                    hierarchy: [],
+                  },
+                ],
+              },
+              {
+                name: 'List volume',
+                link: '/docs/docker/volume#list-volume',
+                hierarchy: [],
+              },
+              {
+                name: 'Create volume',
+                link: '/docs/docker/volume#create-volume',
+                hierarchy: [],
+              },
+              {
+                name: 'Inspect volume',
+                link: '/docs/docker/volume#inspect-volume',
+                hierarchy: [],
+              },
+              {
+                name: 'Remove volume',
+                link: '/docs/docker/volume#remove-volume',
+                hierarchy: [],
+              },
+            ],
+          },
+          {
+            name: 'Network',
+            link: '/docs/docker/network',
+            hierarchy: [
+              {
+                name: 'Network types',
+                link: '/docs/docker/network#network-types',
+                hierarchy: [
+                  {
+                    name: 'None',
+                    link: '/docs/docker/network#none',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Host (local)',
+                    link: '/docs/docker/network#host-local',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Bridge',
+                    link: '/docs/docker/network#bridge',
+                    hierarchy: [
+                      {
+                        name: 'User-defined bridge network',
+                        link: '/docs/docker/network#user-defined-bridge-network',
+                        hierarchy: [],
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                name: 'List neworks',
+                link: '/docs/docker/network#list-neworks',
+                hierarchy: [],
+              },
+              {
+                name: 'Inspect networks',
+                link: '/docs/docker/network#inspect-networks',
+                hierarchy: [],
+              },
+              {
+                name: 'Remove network',
+                link: '/docs/docker/network#remove-network',
+                hierarchy: [],
+              },
+              {
+                name: 'Connect/Disconnect container to network',
+                link: '/docs/docker/network#connectdisconnect-container-to-network',
+                hierarchy: [],
+              },
+              {
+                name: 'Container Communication',
+                link: '/docs/docker/network#container-communication',
+                hierarchy: [
+                  {
+                    name: 'Container to host (local) communication',
+                    link: '/docs/docker/network#container-to-host-local-communication',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Container to container communication',
+                    link: '/docs/docker/network#container-to-container-communication',
+                    hierarchy: [],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: 'Resource Limits',
+            link: '/docs/docker/resource-limits',
+            hierarchy: [
+              {
+                name: 'CPU',
+                link: '/docs/docker/resource-limits#cpu',
+                hierarchy: [
+                  {
+                    name: 'CPU Shares',
+                    link: '/docs/docker/resource-limits#cpu-shares',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'CPU Sets',
+                    link: '/docs/docker/resource-limits#cpu-sets',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'CPU Count',
+                    link: '/docs/docker/resource-limits#cpu-count',
+                    hierarchy: [],
+                  },
+                ],
+              },
+              {
+                name: 'Memory',
+                link: '/docs/docker/resource-limits#memory',
+                hierarchy: [],
+              },
+            ],
+          },
+          {
+            name: 'Docker Compose',
+            link: '/docs/docker/docker-compose',
+            hierarchy: [
+              {
+                name: 'compose.yaml',
+                link: '/docs/docker/docker-compose#composeyaml',
+                hierarchy: [],
+              },
+              {
+                name: 'Commands',
+                link: '/docs/docker/docker-compose#commands',
+                hierarchy: [
+                  {
+                    name: 'List containers',
+                    link: '/docs/docker/docker-compose#list-containers',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Build or rebuild containers',
+                    link: '/docs/docker/docker-compose#build-or-rebuild-containers',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Create and start containers',
+                    link: '/docs/docker/docker-compose#create-and-start-containers',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Execute a command in a running container',
+                    link: '/docs/docker/docker-compose#execute-a-command-in-a-running-container',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Display service log output',
+                    link: '/docs/docker/docker-compose#display-service-log-output',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Stop services',
+                    link: '/docs/docker/docker-compose#stop-services',
+                    hierarchy: [],
+                  },
+                  {
+                    name: 'Stop and remove containers, networks',
+                    link: '/docs/docker/docker-compose#stop-and-remove-containers-networks',
+                    hierarchy: [],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'Additional',
+        hierarchy: [
+          {
+            name: 'Useful commands',
+            link: '/docs/docker/useful-commands',
+            hierarchy: [
+              {
+                name: 'Docker system events',
+                link: '/docs/docker/useful-commands#docker-system-events',
+                hierarchy: [],
+              },
+              {
+                name: 'Disk usage metrics for docker objects',
+                link: '/docs/docker/useful-commands#disk-usage-metrics-for-docker-objects',
+                hierarchy: [],
+              },
+              {
+                name: 'Copy',
+                link: '/docs/docker/useful-commands#copy',
+                hierarchy: [],
+              },
+            ],
+          },
+          { name: 'Future', link: '/docs/docker/future', hierarchy: [] },
+        ],
+      },
+    ],
   },
   {
     icon: '🍊',
@@ -459,47 +1368,17 @@ export const DOCUMENTATION: DocItem[] = [
     link: '/docs/kubernetes/what-is-kubernetes',
     hierarchy: [],
   },
-  {
-    icon: '🍐',
-    title: 'Data Structures and Algorithms',
-    description:
-      'Data structures are used to organize, store, and manipulate data in memory, while algorithms are used to solve specific problems.',
-    link: '/docs/data-structures-and-algorithms/memory',
-    hierarchy: [],
-  },
+  // {
+  //   icon: '🍐',
+  //   title: 'Data Structures and Algorithms',
+  //   description:
+  //     'Data structures are used to organize, store, and manipulate data in memory, while algorithms are used to solve specific problems.',
+  //   link: '/docs/data-structures-and-algorithms/memory',
+  //   hierarchy: [],
+  // },
   // {
   //   title: '🥑 Design Pattern',
   //   description: 'Solving typical software design problems.',
   //   link: '/docs/design-pattern/introduction',
   // },
-];
-
-export const PERSONAL = [
-  {
-    quote:
-      'Passion is the key to success. Passion means everything to me, as part of my passion and motivation, I love to inspire people and my ambition is to develop a new technology that can revolutionize the world.',
-    name: 'Tan Kar Chun',
-    designation: 'Infrastructure & DevOps Engineer',
-    src: '/personal/anotherme.webp',
-  },
-];
-
-export const GALLERY = [
-  { src: '/gallery/penguin-challenge.webp', category: 'Penguin' },
-  { src: '/gallery/penguin-document.webp', category: 'Penguin' },
-  { src: '/gallery/penguin-learn.webp', category: 'Penguin' },
-  { src: '/gallery/penguin1.webp', category: 'Penguin' },
-  { src: '/gallery/penguin2.webp', category: 'Penguin' },
-  { src: '/gallery/penguin3.webp', category: 'Penguin' },
-  { src: '/gallery/penguin4.webp', category: 'Penguin' },
-  { src: '/gallery/penguin5.webp', category: 'Penguin' },
-  { src: '/gallery/penguin6.webp', category: 'Penguin' },
-  { src: '/gallery/penguin7.webp', category: 'Penguin' },
-  { src: '/gallery/penguin8.webp', category: 'Penguin' },
-  { src: '/gallery/penguin9.webp', category: 'Penguin' },
-  { src: '/gallery/penguin10.webp', category: 'Penguin' },
-  { src: '/gallery/penguin11.webp', category: 'Penguin' },
-  { src: '/gallery/penguin12.webp', category: 'Penguin' },
-  { src: '/gallery/penguin13.webp', category: 'Penguin' },
-  { src: '/gallery/penguin14.webp', category: 'Penguin' },
 ];
