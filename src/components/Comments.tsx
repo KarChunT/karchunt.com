@@ -13,7 +13,6 @@ const useScript = (params: any) => {
     commentScript.setAttribute('crossorigin', 'anonymous');
     commentScript.setAttribute('repo', repo);
 
-    console.log(ref.current.children.length);
     if (ref.current.children.length === 0) {
       ref.current.appendChild(commentScript);
     }
