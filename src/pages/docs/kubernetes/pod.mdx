@@ -59,6 +59,9 @@ kubectl edit pod <pod-name>
 
 # extract pod definition to a file
 kubectl get pod <pod-name> -o yaml > pod.yaml
+
+# get more pod information like IP address, etc
+kubectl get pods -o wide
 ```
 
 ## Pod YAML File

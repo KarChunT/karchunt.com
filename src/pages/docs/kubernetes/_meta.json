@@ -46,5 +46,9 @@
   "labels-selectors-and-annotations": {
     "title": "Labels, selectors, and annotations",
     "href": "/docs/kubernetes/labels-selectors-and-annotations"
+  },
+  "services": {
+    "title": "Services",
+    "href": "/docs/kubernetes/services"
   }
 }
