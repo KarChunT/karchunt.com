@@ -1,0 +1,14 @@
+{
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
+  },
+  "[mdx]": {
+    "editor.tabSize": 2,
+    "editor.wordWrap": "on"
+  },
+  "[markdown]": {
+    "editor.tabSize": 2,
+    "editor.wordWrap": "on"
+  }
+}
