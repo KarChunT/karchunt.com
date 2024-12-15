@@ -50,5 +50,13 @@
   "services": {
     "title": "Services",
     "href": "/docs/kubernetes/services"
+  },
+  "-- Scheduling": {
+    "type": "separator",
+    "title": "Scheduling"
+  },
+  "manual-scheduling": {
+    "title": "Manual Scheduling",
+    "href": "/docs/kubernetes/manual-scheduling"
   }
 }
