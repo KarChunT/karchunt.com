@@ -58,5 +58,13 @@
   "manual-scheduling": {
     "title": "Manual Scheduling",
     "href": "/docs/kubernetes/manual-scheduling"
+  },
+  "-- Observability": {
+    "type": "separator",
+    "title": "Observability"
+  },
+  "readiness-probes": {
+    "title": "Readiness Probes",
+    "href": "/docs/kubernetes/readiness-probes"
   }
 }
