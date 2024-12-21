@@ -1,3 +1,116 @@
+export const WORLD_DOTS_LAT_AND_LNG = [
+  {
+    start: {
+      lat: 5.4164, // Penang, Malaysia
+      lng: 100.3327,
+    },
+    end: {
+      lat: 34.0522,
+      lng: -118.2437,
+    }, // Los Angeles
+  },
+  {
+    start: {
+      lat: 5.4164, // Penang, Malaysia
+      lng: 100.3327,
+    },
+    end: {
+      lat: 40.7128,
+      lng: -74.006,
+    }, // New York
+  },
+  {
+    start: {
+      lat: 5.4164, // Penang, Malaysia
+      lng: 100.3327,
+    },
+    end: {
+      lat: 51.5074,
+      lng: -0.1278,
+    }, // London
+  },
+  {
+    start: {
+      lat: 5.4164, // Penang, Malaysia
+      lng: 100.3327,
+    },
+    end: {
+      lat: 35.6895,
+      lng: 139.6917,
+    }, // Tokyo
+  },
+  {
+    start: {
+      lat: 5.4164, // Penang, Malaysia
+      lng: 100.3327,
+    },
+    end: {
+      lat: -33.8688,
+      lng: 151.2093,
+    }, // Sydney
+  },
+  {
+    start: {
+      lat: 5.4164, // Penang, Malaysia
+      lng: 100.3327,
+    },
+    end: {
+      lat: 48.8566,
+      lng: 2.3522,
+    }, // Paris
+  },
+  {
+    start: {
+      lat: 5.4164, // Penang, Malaysia
+      lng: 100.3327,
+    },
+    end: {
+      lat: 55.7558,
+      lng: 37.6173,
+    }, // Moscow
+  },
+  {
+    start: {
+      lat: 5.4164, // Penang, Malaysia
+      lng: 100.3327,
+    },
+    end: {
+      lat: 39.9042,
+      lng: 116.4074,
+    }, // Beijing
+  },
+  {
+    start: {
+      lat: 5.4164, // Penang, Malaysia
+      lng: 100.3327,
+    },
+    end: {
+      lat: -23.5505,
+      lng: -46.6333,
+    }, // São Paulo
+  },
+  {
+    start: {
+      lat: 5.4164, // Penang, Malaysia
+      lng: 100.3327,
+    },
+    end: {
+      lat: 19.4326,
+      lng: -99.1332,
+    }, // Mexico City
+  },
+  {
+    start: {
+      lat: 5.4164, // Penang, Malaysia
+      lng: 100.3327,
+    },
+    end: {
+      lat: 1.3521,
+      lng: 103.8198,
+    }, // Singapore
+  },
+];
+
 export const CORE_VALUES = [
   {
     title: 'Build with Passion',

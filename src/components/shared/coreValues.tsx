@@ -23,7 +23,7 @@ const CoreValues = () => {
     }
   }, [timer]);
   return (
-    <div className="mx-auto max-w-[64rem] px-4 py-20">
+    <div className="mx-auto max-w-[64rem] px-4 py-16">
       <div className="mb-12 text-center">
         <BlurFade delay={0.25} inView>
           <h2 className="mb-4 text-3xl font-semibold tracking-tighter">
