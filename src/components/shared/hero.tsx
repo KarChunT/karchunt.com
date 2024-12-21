@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { FlipWords } from '@/components/ui/flip-words';
 import { RainbowButton } from '@/components/ui/rainbow-button';
 import { BorderBeam } from '@/components/ui/border-beam';
-import { CodeBlock } from '@/components/ui/code-block';
 import HeroVideoDialog from '@/components/ui/hero-video-dialog';
 import { IconCloud, IconCloudRain } from '@tabler/icons-react';
 
