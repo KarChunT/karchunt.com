@@ -1,8 +1,10 @@
 import '@/globals.css';
+import ScrollProgress from "@/components/ui/scroll-progress";
 
 export default function App({ Component, pageProps }) {
   return (
     <div className="bg-black">
+      <ScrollProgress className="top-[60px]" />
       <Component {...pageProps} />
     </div>
   );
