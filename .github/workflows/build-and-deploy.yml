@@ -19,6 +19,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          submodules: true
 
       - name: Install NPM Dependencies
         uses: ./.github/actions/install-npm-dependencies
