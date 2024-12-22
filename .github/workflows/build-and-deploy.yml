@@ -20,6 +20,7 @@ jobs:
         with:
           fetch-depth: 0
           submodules: true
+          token: ${{ secrets.PAT }}
 
       - name: Install NPM Dependencies
         uses: ./.github/actions/install-npm-dependencies
