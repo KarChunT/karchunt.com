@@ -2,7 +2,6 @@ import BlurFade from '@/components/ui/blur-fade';
 import IconCloud from '@/components/ui/icon-cloud';
 import { SKILLS_SLUGS } from '@/constants';
 import BeamOfMe from '@/components/shared/beamOfMe';
-// import { WorldMap } from '@/components/ui/world-map';
 
 const BlendingSkill = () => {
   return (
@@ -34,10 +33,6 @@ const BlendingSkill = () => {
           <BeamOfMe />
         </div>
       </BlurFade>
-
-      {/* <BlurFade delay={0.25 * 3} inView>
-        <WorldMap dots={WORLD_DOTS_LAT_AND_LNG} />
-      </BlurFade> */}
     </div>
   );
 };

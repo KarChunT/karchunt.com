@@ -15,6 +15,15 @@
       "typesetting": "article"
     }
   },
+  "login": {
+    "title": "Login",
+    "type": "page",
+    "display": "hidden",
+    "theme": {
+      "layout": "default",
+      "timestamp": false
+    }
+  },
   "about": {
     "title": "About",
     "type": "page",
