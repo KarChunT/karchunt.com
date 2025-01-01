@@ -60,7 +60,7 @@
     "react-dom": "^18",
     "react-dropzone": "^14.3.5",
     "react-globe.gl": "^2.27.3",
-    "react-icon-cloud": "^4.1.4",
+    "react-icon-cloud": "^4.1.6",
     "react-spring": "^9.7.4",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",

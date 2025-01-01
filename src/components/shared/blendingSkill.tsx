@@ -1,5 +1,5 @@
 import BlurFade from '@/components/ui/blur-fade';
-import IconCloud from '@/components/ui/icon-cloud';
+import { IconCloud } from '@/components/ui/icon-cloud';
 import { SKILLS_SLUGS } from '@/constants';
 import BeamOfMe from '@/components/shared/beamOfMe';
 
