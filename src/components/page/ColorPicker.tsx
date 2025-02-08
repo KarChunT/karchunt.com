@@ -46,7 +46,7 @@ export default function ColorPickerDemo() {
   const [copied, setCopied] = useState(false);
 
   const generateHarmoniousColors = useCallback(() => {
-    let anchorColors: [number, number, number][] = [];
+    const anchorColors: [number, number, number][] = [];
 
     if (lockedColor) {
       const [h, s, l] = colorScheme[lockedColor].split(' ').map(parseFloat);

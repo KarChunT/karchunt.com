@@ -20,9 +20,8 @@ const Journey = () => {
         </div>
         <div className="grid grid-cols-2 gap-4">
           {cert.certificates.map((certificate, index) => (
-            <Link href={certificate.link}>
+            <Link key={index} href={certificate.link}>
               <Image
-                key={index}
                 src={certificate.src}
                 alt={certificate.name}
                 width={500}
