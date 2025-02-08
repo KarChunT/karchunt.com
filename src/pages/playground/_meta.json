@@ -1,0 +1,9 @@
+{
+  "color-picker": {
+    "type": "page",
+    "theme": {
+      "layout": "default",
+      "timestamp": false
+    }
+  }
+}

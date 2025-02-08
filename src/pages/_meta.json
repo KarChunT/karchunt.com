@@ -49,6 +49,16 @@
       }
     }
   },
+  "playground": {
+    "title": "Playground",
+    "type": "menu",
+    "items": {
+      "color-picker": {
+        "title": "Color Picker",
+        "href": "/playground/color-picker"
+      }
+    }
+  },
   "blog": {
     "title": "Blog",
     "type": "page"
