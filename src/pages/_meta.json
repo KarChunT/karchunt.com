@@ -23,6 +23,15 @@
       "timestamp": false
     }
   },
+  "journey": {
+    "title": "Journey",
+    "type": "page",
+    "display": "hidden",
+    "theme": {
+      "layout": "default",
+      "timestamp": false
+    }
+  },
   "docs": {
     "title": "Docs",
     "type": "menu",
