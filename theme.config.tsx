@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useConfig } from 'nextra-theme-docs';
 import type { DocsThemeConfig } from 'nextra-theme-docs';
@@ -94,8 +95,12 @@ const config: DocsThemeConfig = {
   },
   footer: {
     text: (
-      <span className="mx-auto">
+      <span className="mx-auto text-center">
         Copyright © {new Date().getFullYear()} KarChunT. All rights reserved.
+        <br />
+        <Link href="/journey" className="pt-2 text-primary hover:underline">
+          Certificate Journey
+        </Link>
       </span>
     ),
   },

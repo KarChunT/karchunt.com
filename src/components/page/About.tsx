@@ -95,6 +95,22 @@ const About = () => {
       </ul>
 
       <p className="mt-6 leading-7 first:mt-0">
+        Here is my{' '}
+        <Link
+          className="text-primary decoration-from-font [text-underline-position:from-font] hover:underline"
+          href="https://www.credly.com/users/kar-chun-tan"
+        >
+          Credly
+        </Link>{' '}
+        profile, where you can find my certifications and badges. <br />
+        You can refer to my{' '}
+        <Link
+          className="text-primary decoration-from-font [text-underline-position:from-font] hover:underline"
+          href="/journey"
+        >
+          journey
+        </Link>{' '}
+        in the timelime below. <br />
         It is my hope that you can find something useful or helpful here. Thank
         you!
       </p>
