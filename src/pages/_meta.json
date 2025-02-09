@@ -58,13 +58,13 @@
       }
     }
   },
-  "playground": {
-    "title": "Playground",
+  "hub": {
+    "title": "Hub",
     "type": "menu",
     "items": {
       "color-picker": {
         "title": "Color Picker",
-        "href": "/playground/color-picker"
+        "href": "/hub/color-picker"
       }
     }
   },

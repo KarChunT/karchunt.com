@@ -265,7 +265,11 @@ export default function ColorPickerDemo() {
               ))}
             </div>
           </motion.div>
-          <Button onClick={copyColorScheme} className="w-full">
+          <Button
+            variant="secondary"
+            onClick={copyColorScheme}
+            className="w-full"
+          >
             Copy Full Color Scheme
           </Button>
         </div>
