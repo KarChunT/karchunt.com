@@ -1,3 +1,5 @@
+import { link } from 'fs';
+
 export const WORLD_DOTS_LAT_AND_LNG = [
   {
     start: {
@@ -314,6 +316,31 @@ export const CERTIFICATES = [
         name: 'Certified Kubernetes Administrator (CKA)',
         src: '/certificates/cka.png',
         link: 'https://www.credly.com/badges/8fff7b8d-3415-4263-b4fe-4f96ff52484e',
+        certified: true,
+      },
+      {
+        name: 'Kubernetes and Cloud Native Associate (KCNA)',
+        src: '',
+        link: '',
+        certified: false,
+      },
+      {
+        name: 'Kubernetes and Cloud Native Security Associate (KCSA)',
+        src: '',
+        link: '',
+        certified: false,
+      },
+      {
+        name: 'Certified Kubernetes Security Specialist (CKS)',
+        src: '',
+        link: '',
+        certified: false,
+      },
+      {
+        name: 'Kubestronaut',
+        src: '',
+        link: '',
+        certified: false,
       },
     ],
   },
@@ -324,6 +351,7 @@ export const CERTIFICATES = [
         name: 'LFD121: Developing Secure Software',
         src: '/certificates/lfd121.png',
         link: 'https://www.credly.com/badges/cad91d1d-0327-46d8-aa99-21ccaf91c589',
+        certified: true,
       },
     ],
   },
@@ -334,11 +362,13 @@ export const CERTIFICATES = [
         name: 'Professional Scrum Master™ I (PSM I)',
         src: '/certificates/psm1.png',
         link: 'https://www.credly.com/badges/a9a3bcd4-bfec-44bf-be2f-fb91579c0ee6',
+        certified: true,
       },
       {
         name: 'CKAD: Certified Kubernetes Application Developer',
         src: '/certificates/ckad.png',
         link: 'https://www.credly.com/badges/0cf9e91e-2736-46cb-a987-f558e099b30e',
+        certified: true,
       },
     ],
   },
@@ -349,16 +379,19 @@ export const CERTIFICATES = [
         name: 'Certified Jenkins Engineer 2022',
         src: '/certificates/cje.png',
         link: 'https://certificates.cloudbees.com/dc763bc8-1f25-4335-9bfd-f8f13ae03cf4#acc.jet6FUmf',
+        certified: true,
       },
       {
         name: '[PCAP-31-03] PCAP™ – Certified Associate Python Programmer',
         src: '/certificates/pcap.png',
         link: 'https://www.credly.com/badges/c2d73e1d-d0b4-4e27-a4fa-2a805f202fbc',
+        certified: true,
       },
       {
         name: '[PCEP-30-01] PCEP – Certified Entry-Level Python Programmer',
         src: '/certificates/pcep.png',
         link: 'https://www.credly.com/badges/3bac6f7f-53dd-40d8-a195-61284a31d8fd',
+        certified: true,
       },
     ],
   },
