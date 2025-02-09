@@ -5,5 +5,12 @@
       "layout": "default",
       "timestamp": false
     }
+  },
+  "book": {
+    "type": "page",
+    "theme": {
+      "layout": "default",
+      "timestamp": false
+    }
   }
 }
