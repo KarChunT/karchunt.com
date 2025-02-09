@@ -97,10 +97,6 @@ const config: DocsThemeConfig = {
     text: (
       <span className="mx-auto text-center">
         Copyright © {new Date().getFullYear()} KarChunT. All rights reserved.
-        <br />
-        <Link href="/journey" className="pt-2 text-primary hover:underline">
-          Certificate Journey
-        </Link>
       </span>
     ),
   },

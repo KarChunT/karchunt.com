@@ -1,4 +1,12 @@
 {
+  "journey": {
+    "title": "Journey",
+    "type": "page",
+    "theme": {
+      "layout": "default",
+      "timestamp": false
+    }
+  },
   "color-picker": {
     "type": "page",
     "theme": {

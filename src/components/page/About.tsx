@@ -106,7 +106,7 @@ const About = () => {
         You can refer to my{' '}
         <Link
           className="text-primary decoration-from-font [text-underline-position:from-font] hover:underline"
-          href="/journey"
+          href="/hub/journey"
         >
           journey
         </Link>{' '}
