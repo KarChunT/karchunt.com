@@ -86,7 +86,8 @@ const config: Config = {
   			rainbow: 'rainbow var(--speed, 2s) infinite linear',
   			'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+  			pulse: 'pulse var(--duration) ease-out infinite'
   		},
   		keyframes: {
   			rainbow: {
@@ -116,6 +117,14 @@ const config: Config = {
   				},
   				to: {
   					height: '0'
+  				}
+  			},
+  			pulse: {
+  				'0%, 100%': {
+  					boxShadow: '0 0 0 0 var(--pulse-color)'
+  				},
+  				'50%': {
+  					boxShadow: '0 0 0 8px var(--pulse-color)'
   				}
   			}
   		}
