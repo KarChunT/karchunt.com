@@ -2,7 +2,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Timeline } from '@/components/ui/timeline';
 import { CERTIFICATES } from '@/constants';
-import { isNull } from 'lodash';
 
 const Journey = () => {
   const certificates = CERTIFICATES.map((cert) => ({
