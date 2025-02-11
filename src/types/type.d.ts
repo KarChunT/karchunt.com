@@ -20,5 +20,4 @@ interface Book {
   description: string;
   coverColor: string;
   coverUrl: string;
-  summary: string;
 }

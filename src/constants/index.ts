@@ -1,5 +1,3 @@
-import { link } from 'fs';
-
 export const WORLD_DOTS_LAT_AND_LNG = [
   {
     start: {
@@ -110,6 +108,19 @@ export const WORLD_DOTS_LAT_AND_LNG = [
       lat: 1.3521,
       lng: 103.8198,
     }, // Singapore
+  },
+];
+
+export const BOOKS: Book[] = [
+  {
+    title: 'Atomic Habits',
+    author: 'James Clear',
+    url: '/hub/books/atomic-habit',
+    genre: 'Self-help',
+    description:
+      "No matter your goals, Atomic Habits offers a proven framework for improving--every day. James Clear, one of the world's leading experts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results.",
+    coverColor: '#fefdf7',
+    coverUrl: '/book-cover/atomic-habit.webp',
   },
 ];
 
