@@ -16,6 +16,7 @@ interface Book {
   title: string;
   author: string;
   url: string;
+  pdfUrl: string;
   genre: string;
   description: string;
   coverColor: string;
