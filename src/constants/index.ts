@@ -331,9 +331,9 @@ export const CERTIFICATES = [
       },
       {
         name: 'Kubernetes and Cloud Native Associate (KCNA)',
-        src: '',
-        link: '',
-        certified: false,
+        src: '/certificates/kcna.png',
+        link: 'https://www.credly.com/badges/66e3e661-2a7f-44ba-b137-a4ecab838370',
+        certified: true,
       },
       {
         name: 'Kubernetes and Cloud Native Security Associate (KCSA)',
