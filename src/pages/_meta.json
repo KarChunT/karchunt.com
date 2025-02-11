@@ -61,9 +61,9 @@
         "title": "Color Picker",
         "href": "/hub/color-picker"
       },
-      "book": {
-        "title": "Book",
-        "href": "/hub/book"
+      "books": {
+        "title": "Books",
+        "href": "/hub/books"
       }
     }
   },

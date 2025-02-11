@@ -14,7 +14,7 @@
       "timestamp": false
     }
   },
-  "book": {
+  "books": {
     "type": "page",
     "theme": {
       "layout": "default",
