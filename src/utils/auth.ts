@@ -6,10 +6,10 @@ const TOKEN_EXPIRY_TIME = 3600 * 1000; // 1 hour in milliseconds
 
 const secretKey = process.env.SECRET_KEY || 'development_secret_key';
 
-export const createToken = (email: string): string => {
+export const createToken = (data: string): string => {
   const randomText = CryptoJS.lib.WordArray.random(16).toString();
   const token = CryptoJS.AES.encrypt(
-    `${email}:${randomText}`,
+    `${data}:${randomText}`,
     secretKey,
   ).toString();
   return token;
@@ -31,8 +31,8 @@ export const verifyToken = (token: string): boolean => {
     return false;
   }
 
-  const [email, randomText] = decryptedText.split(':');
-  return !!email && !!randomText;
+  const [data, randomText] = decryptedText.split(':');
+  return !!data && !!randomText;
 };
 
 export const setTokenLocalStorage = (token: string) => {

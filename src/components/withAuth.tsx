@@ -1,16 +1,17 @@
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getTokenLocalStorage, verifyToken } from '@/utils/auth';
 
 const withAuth = (WrappedComponent) => {
   const WithAuthComponent = (props) => {
     const router = useRouter();
-    const isAuthenticated = false;
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
       if (typeof window !== 'undefined') {
         const token = getTokenLocalStorage();
-        const isAuthenticated = token && verifyToken(token);
+        const isAuthenticated = !!(token && verifyToken(token)); // Ensure isAuthenticated is always a boolean
+        setIsAuthenticated(isAuthenticated);
         if (!isAuthenticated) {
           router.push('/login'); // Redirect to login page if not authenticated
         }

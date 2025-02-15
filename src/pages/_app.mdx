@@ -5,17 +5,25 @@ import { useRouter } from 'next/router';
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
-  // const protectedRoutes = [
-  //   '/docs/kubernetes'
-  // ];
+  const protectedRoutes = [
+    // '/docs/kubernetes'
+    '/hub/books/**'
+  ];
+
+  const isProtectedRoute = protectedRoutes.some(route => {
+    const pattern = route.replace('**', '.*');
+    const regex = new RegExp(`^${pattern}$`);
+    return regex.test(router.pathname);
+  });
+
   // const isProtectedRoute = protectedRoutes.some(route => router.pathname.startsWith(route));
-  // const ProtectedComponent = isProtectedRoute ? withAuth(Component) : Component;
+  const ProtectedComponent = isProtectedRoute ? withAuth(Component) : Component;
 
   return (
     <div className="bg-black">
       <ScrollProgress className="top-[60px]" />
-      <Component {...pageProps} />
-      {/* <ProtectedComponent {...pageProps} /> */}
+      {/* <Component {...pageProps} /> */}
+      <ProtectedComponent {...pageProps} />
     </div>
   );
 }
