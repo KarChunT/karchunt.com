@@ -8,15 +8,6 @@
       "timestamp": false
     }
   },
-  "login": {
-    "title": "Login",
-    "type": "page",
-    "display": "hidden",
-    "theme": {
-      "layout": "default",
-      "timestamp": false
-    }
-  },
   "404": {
     "type": "page",
     "theme": {
@@ -85,6 +76,14 @@
     "type": "page",
     "theme": {
       "layout": "full",
+      "timestamp": false
+    }
+  },
+  "login": {
+    "title": "🔐",
+    "type": "page",
+    "theme": {
+      "layout": "default",
       "timestamp": false
     }
   }
