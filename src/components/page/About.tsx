@@ -110,7 +110,7 @@ const About = () => {
         >
           journey
         </Link>{' '}
-        in the timelime below. <br />
+        in the timelime. <br />
         It is my hope that you can find something useful or helpful here. Thank
         you!
       </p>
