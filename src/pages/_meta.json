@@ -45,7 +45,7 @@
       },
       "kubernetes": {
         "title": "Kubernetes",
-        "href": "/docs/kubernetes/what-is-kubernetes"
+        "href": "/docs/kubernetes/introduction/what-is-kubernetes"
       }
     }
   },

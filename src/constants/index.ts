@@ -1581,7 +1581,7 @@ export const DOCUMENTATION: DocItem[] = [
     title: 'Kubernetes',
     description:
       'Kubernetes, also known as k8s, is an open source system to deploy, scalwe, and manage containerized applications.',
-    link: '/docs/kubernetes/what-is-kubernetes',
+    link: '/docs/kubernetes/introduction/what-is-kubernetes',
     hierarchy: [],
   },
   // {
