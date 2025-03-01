@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Play, XIcon } from 'lucide-react';
+import HeroTerminal from '@/components/shared/heroTerminal';
 
 import { cn } from '@/lib/utils';
 
@@ -83,13 +84,14 @@ export default function HeroVideoDialog({
         className="group relative cursor-pointer"
         onClick={() => setIsVideoOpen(true)}
       >
-        <img
+        <HeroTerminal />
+        {/* <img
           src={thumbnailSrc}
           alt={thumbnailAlt}
           width={1920}
           height={1080}
           className="w-full rounded-md border border-neutral-700 shadow-lg transition-all duration-200 ease-out group-hover:brightness-[0.8]"
-        />
+        /> */}
         <div className="absolute inset-0 flex scale-[0.9] items-center justify-center rounded-2xl transition-all duration-200 ease-out group-hover:scale-100">
           <div className="flex size-28 items-center justify-center rounded-full bg-primary/10 backdrop-blur-md">
             <div

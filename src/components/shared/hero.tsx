@@ -127,7 +127,7 @@ const Hero = () => {
         </div>
       </article>
 
-      <div className="relative mx-auto mt-12 flex max-h-[700px] max-w-[64rem] flex-col items-center justify-center overflow-hidden rounded-lg border border-neutral-700 bg-background md:shadow-xl">
+      <div className="relative mx-auto mt-12 flex max-h-[700px] max-w-lg flex-col items-center justify-center overflow-hidden rounded-lg border border-neutral-700 bg-background md:shadow-xl">
         {/* video */}
         <div className="relative">
           <HeroVideoDialog
