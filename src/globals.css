@@ -91,3 +91,12 @@ strong {
 :is(html[class~='dark'] .dark\:nx-bg-dark) {
   background: black;
 }
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
