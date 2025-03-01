@@ -338,9 +338,9 @@ export const CERTIFICATES = [
       },
       {
         name: 'Kubernetes and Cloud Native Security Associate (KCSA)',
-        src: '',
-        link: '',
-        certified: false,
+        src: '/certificates/kcsa.png',
+        link: 'https://www.credly.com/badges/c97c8086-4abc-4450-84ca-1f33d8cc5824',
+        certified: true,
       },
       {
         name: 'Certified Kubernetes Security Specialist (CKS)',
