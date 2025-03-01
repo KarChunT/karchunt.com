@@ -89,6 +89,8 @@ const config: Config = {
         'accordion-up': 'accordion-up 0.2s ease-out',
         pulse: 'pulse var(--duration) ease-out infinite',
         'line-shadow': 'line-shadow 15s linear infinite',
+        marquee: 'marquee var(--duration) linear infinite',
+        'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
       },
       keyframes: {
         rainbow: {
@@ -157,6 +159,14 @@ const config: Config = {
           '0%, 100%': { bottom: '0', right: '0' },
           '50%': { bottom: '25%', right: '40%' },
           '90%': { bottom: '50%', right: '25%' },
+        },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(calc(-100% - var(--gap)))' },
+        },
+        'marquee-vertical': {
+          from: { transform: 'translateY(0)' },
+          to: { transform: 'translateY(calc(-100% - var(--gap)))' },
         },
       },
     },

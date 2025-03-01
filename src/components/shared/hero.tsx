@@ -7,8 +7,11 @@ import { Button } from '@/components/ui/button';
 import { FlipWords } from '@/components/ui/flip-words';
 import { RainbowButton } from '@/components/ui/rainbow-button';
 import { BorderBeam } from '@/components/ui/border-beam';
+import { LineShadowText } from '@/components/ui/line-shadow-text';
+import { AuroraText } from '@/components/ui/aurora-text';
 import HeroVideoDialog from '@/components/ui/hero-video-dialog';
 import { IconCloud, IconCloudRain } from '@tabler/icons-react';
+import { HeroMarque } from '@/components/shared/heroMarque';
 
 const RainingIcon = ({ delay }: { delay: number }) => {
   const iconSrc = '/penguin-nobg.webp';
@@ -93,9 +96,13 @@ const Hero = () => {
       </div>
 
       <article className="relative mx-auto flex w-2/3 flex-col items-center gap-4 pt-4 text-center">
-        <h1 className="font-heading text-4xl font-bold md:text-5xl lg:text-6xl">
-          <span className="text-primary">Farm</span>{' '}
-          <span className="text-white">with me</span>
+        <h1 className="font-heading text-balance text-4xl font-bold md:text-5xl lg:text-6xl">
+          <AuroraText>
+            <LineShadowText className="italic" shadowColor="white">
+              Farm
+            </LineShadowText>
+          </AuroraText>
+          <span className="text-white"> with me</span>
         </h1>
         <p className="max-w-[42rem] leading-normal text-neutral-500 sm:text-xl sm:leading-8">
           I&apos;m an{' '}
@@ -142,6 +149,8 @@ const Hero = () => {
         {/* Border beam */}
         <BorderBeam />
       </div>
+
+      <HeroMarque />
 
       {isRaining && (
         <div className="pointer-events-none fixed inset-0 overflow-hidden">
