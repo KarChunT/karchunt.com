@@ -5,8 +5,10 @@ import shutil
 file_name = input("Enter the file name to write: ")
 topic = "kubernetes"
 
+category = input("Category: ")
+
 source_path = "src/templates/doc.mdx"
-destination_path = f"src/pages/docs/{topic}/{file_name}.mdx"
+destination_path = f"src/pages/docs/{topic}/{category}/{file_name}.mdx"
 
 # Copy the file
 shutil.copy(source_path, destination_path)
