@@ -53,7 +53,7 @@ const HeroTerminal = () => {
       </AnimatedSpan>
 
       <TypingAnimation delay={6500} className="text-muted-foreground">
-        Success! Documentation initialization completed.
+        Success! Documentation, blog initialization completed.
       </TypingAnimation>
 
       <TypingAnimation delay={7000} className="text-muted-foreground">

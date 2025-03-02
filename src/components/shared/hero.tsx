@@ -127,27 +127,22 @@ const Hero = () => {
         </div>
       </article>
 
-      <div className="relative mx-auto mt-12 flex max-h-[700px] max-w-lg flex-col items-center justify-center overflow-hidden rounded-lg border border-neutral-700 bg-background md:shadow-xl">
-        {/* video */}
-        <div className="relative">
-          <HeroVideoDialog
-            className="block dark:hidden"
-            animationStyle="from-center"
-            videoSrc="/videos/karchunt-video.mp4"
-            thumbnailSrc="/intro-page.png"
-            thumbnailAlt="Hero Video"
-          />
-          <HeroVideoDialog
-            className="hidden dark:block"
-            animationStyle="from-center"
-            videoSrc="/videos/karchunt-video.mp4"
-            thumbnailSrc="/intro-page.png"
-            thumbnailAlt="Hero Video"
-          />
-        </div>
-
-        {/* Border beam */}
-        <BorderBeam />
+      {/* video */}
+      <div className="relative mx-auto mt-12 flex max-w-lg flex-col items-center justify-center overflow-hidden rounded-lg">
+        <HeroVideoDialog
+          className="block dark:hidden"
+          animationStyle="from-center"
+          videoSrc="/videos/karchunt-video.mp4"
+          thumbnailSrc="/intro-page.png"
+          thumbnailAlt="Hero Video"
+        />
+        <HeroVideoDialog
+          className="hidden dark:block"
+          animationStyle="from-center"
+          videoSrc="/videos/karchunt-video.mp4"
+          thumbnailSrc="/intro-page.png"
+          thumbnailAlt="Hero Video"
+        />
       </div>
 
       <HeroMarque />

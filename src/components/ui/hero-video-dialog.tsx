@@ -6,6 +6,7 @@ import { Play, XIcon } from 'lucide-react';
 import HeroTerminal from '@/components/shared/heroTerminal';
 
 import { cn } from '@/lib/utils';
+import { BorderBeam } from './border-beam';
 
 type AnimationStyle =
   | 'from-bottom'
@@ -85,6 +86,7 @@ export default function HeroVideoDialog({
         onClick={() => setIsVideoOpen(true)}
       >
         <HeroTerminal />
+        <BorderBeam />
         {/* <img
           src={thumbnailSrc}
           alt={thumbnailAlt}
