@@ -331,6 +331,12 @@ export const CERTIFICATES = [
         certified: true,
       },
       {
+        name: 'Certified Kubernetes Security Specialist (CKS)',
+        src: '/certificates/cks.png',
+        link: 'https://www.credly.com/badges/d044d10b-35b0-4103-8c39-cbc956320578',
+        certified: true,
+      },
+      {
         name: 'Kubernetes and Cloud Native Associate (KCNA)',
         src: '/certificates/kcna.png',
         link: 'https://www.credly.com/badges/66e3e661-2a7f-44ba-b137-a4ecab838370',
@@ -343,16 +349,10 @@ export const CERTIFICATES = [
         certified: true,
       },
       {
-        name: 'Certified Kubernetes Security Specialist (CKS)',
-        src: '',
-        link: '',
-        certified: false,
-      },
-      {
         name: 'Kubestronaut',
-        src: '',
-        link: '',
-        certified: false,
+        src: '/certificates/kubestronaut.png',
+        link: 'https://www.credly.com/badges/e22d7205-9c6f-40d5-b62f-d94a2e5a805a',
+        certified: true,
       },
     ],
   },
