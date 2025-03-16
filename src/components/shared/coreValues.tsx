@@ -1,30 +1,148 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { cn } from '@/lib/utils';
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  type TouchEvent,
+  type MouseEvent,
+} from 'react';
 import { CORE_VALUES } from '@/constants';
-import Image from 'next/image';
 import BlurFade from '@/components/ui/blur-fade';
 
 const CoreValues = () => {
-  const [featureOpen, setFeatureOpen] = useState<number>(0);
-  const [timer, setTimer] = useState<number>(0);
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer((prev) => prev + 10);
-    }, 10);
-    return () => clearInterval(interval);
-  }, []);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [autoplay, setAutoplay] = useState(true);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [currentTranslate, setCurrentTranslate] = useState(0);
+  const [prevTranslate, setPrevTranslate] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (timer > 10000) {
-      setFeatureOpen((prev) => (prev + 1) % CORE_VALUES.length);
-      setTimer(0);
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % CORE_VALUES.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + CORE_VALUES.length) % CORE_VALUES.length,
+    );
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
+
+  // Handle drag start
+  const handleDragStart = (
+    e: TouchEvent<HTMLDivElement> | MouseEvent<HTMLDivElement>,
+  ) => {
+    setIsDragging(true);
+    setAutoplay(false);
+
+    // Get the starting position
+    if ('touches' in e) {
+      setStartX(e.touches[0].clientX);
+    } else {
+      setStartX(e.clientX);
     }
-  }, [timer]);
+
+    setPrevTranslate(currentIndex * -100);
+
+    if (carouselRef.current) {
+      carouselRef.current.style.transition = 'none';
+    }
+  };
+
+  // Handle dragging
+  const handleDragging = (
+    e: TouchEvent<HTMLDivElement> | MouseEvent<HTMLDivElement>,
+  ) => {
+    if (!isDragging) return;
+
+    e.preventDefault();
+
+    // Get current position
+    const currentX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+
+    // Calculate how far we've dragged
+    const diff =
+      ((currentX - startX) / (carouselRef.current?.offsetWidth || 1)) * 100;
+
+    // Update the translate value
+    const newTranslate = prevTranslate + diff;
+    setCurrentTranslate(newTranslate);
+
+    if (carouselRef.current) {
+      carouselRef.current.style.transform = `translateX(${newTranslate}%)`;
+    }
+  };
+
+  // Handle drag end
+  const handleDragEnd = () => {
+    if (!isDragging) return;
+
+    setIsDragging(false);
+    setAutoplay(true);
+
+    if (carouselRef.current) {
+      carouselRef.current.style.transition = 'transform 500ms ease-in-out';
+    }
+
+    // Determine if we should go to the next or previous slide
+    const movedBy = currentTranslate - prevTranslate;
+
+    if (movedBy < -20) {
+      // Dragged left - go to next slide
+      if (currentIndex === CORE_VALUES.length - 1) {
+        // If at last slide, loop to first
+        setCurrentIndex(0);
+      } else {
+        setCurrentIndex(currentIndex + 1);
+      }
+    } else if (movedBy > 20) {
+      // Dragged right - go to previous slide
+      if (currentIndex === 0) {
+        // If at first slide, loop to last
+        setCurrentIndex(CORE_VALUES.length - 1);
+      } else {
+        setCurrentIndex(currentIndex - 1);
+      }
+    } else {
+      // Go back to current slide
+      goToSlide(currentIndex);
+    }
+  };
+
+  // Reset autoplay when dragging is done
+  useEffect(() => {
+    if (!isDragging) {
+      setAutoplay(true);
+    }
+  }, [isDragging]);
+
+  // Update transform when currentIndex changes
+  useEffect(() => {
+    if (carouselRef.current) {
+      carouselRef.current.style.transform = `translateX(-${currentIndex * 100}%)`;
+      carouselRef.current.style.transition = 'transform 500ms ease-in-out';
+    }
+  }, [currentIndex]);
+
+  // Autoplay functionality
+  useEffect(() => {
+    if (!autoplay) return;
+
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [autoplay, currentIndex]);
+
   return (
     <div className="mx-auto max-w-[64rem] px-4 py-16">
-      <div className="mb-12 text-center">
+      <div className="mb-8 text-center">
         <BlurFade delay={0.25} inView>
           <h2 className="mb-4 text-3xl font-semibold tracking-tighter">
             Synergy of my three core values
@@ -42,109 +160,56 @@ const CoreValues = () => {
       </div>
 
       <BlurFade delay={0.25 * 3} inView>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div className="space-y-6">
+        <div
+          className="relative mx-auto max-w-5xl cursor-grab overflow-hidden"
+          onTouchStart={handleDragStart}
+          onTouchMove={handleDragging}
+          onTouchEnd={handleDragEnd}
+          onMouseDown={handleDragStart}
+          onMouseMove={handleDragging}
+          onMouseUp={handleDragEnd}
+          onMouseLeave={handleDragEnd}
+        >
+          <div
+            ref={carouselRef}
+            className="flex transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          >
             {CORE_VALUES.map((item, index) => (
-              <button
-                className="w-full"
-                key={item.title}
-                onClick={() => {
-                  setFeatureOpen(index);
-                  setTimer(0);
-                }}
-                type="button"
-              >
-                <TextComponent
-                  content={item.content}
-                  isOpen={featureOpen === index}
-                  loadingWidthPercent={featureOpen === index ? timer / 100 : 0}
-                  number={index + 1}
-                  title={item.title}
-                />
-              </button>
+              <div key={index} className="w-full flex-shrink-0">
+                <div className="mx-auto max-w-2xl rounded-lg border border-neutral-700 p-4 text-center">
+                  <blockquote>
+                    <p className="text-lg font-medium sm:text-xl md:text-2xl">
+                      {item.content}
+                    </p>
+
+                    <div className="mt-6">
+                      <cite className="font-medium text-primary">
+                        {item.title}
+                      </cite>
+                    </div>
+                  </blockquote>
+                </div>
+              </div>
             ))}
           </div>
-          <div className="h-full">
-            <div
-              className={cn(
-                'relative h-[450px] w-full overflow-hidden rounded-lg',
-              )}
-            >
-              {CORE_VALUES.map((item, index) => (
-                <Image
-                  alt={item.title}
-                  className={cn(
-                    'absolute h-[450px] w-full transform-gpu rounded-lg object-cover transition-all duration-300',
-                    featureOpen === index ? 'scale-100' : 'scale-70',
-                    featureOpen > index ? 'translate-y-full' : '',
-                  )}
-                  height={1024}
-                  width={1024}
-                  key={item.title}
-                  src={item.srcImage}
-                  style={{ zIndex: CORE_VALUES.length - index }}
-                />
-              ))}
-            </div>
-          </div>
+        </div>
+
+        <div className="mt-6 flex justify-center space-x-2">
+          {CORE_VALUES.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`h-2.5 w-2.5 rounded-full transition-colors ${
+                index === currentIndex ? 'bg-primary' : 'bg-gray-300'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </BlurFade>
     </div>
   );
 };
-
-function TextComponent({
-  number,
-  title,
-  content,
-  isOpen,
-  loadingWidthPercent,
-}: Readonly<{
-  number: number;
-  title: string;
-  content: string;
-  isOpen: boolean;
-  loadingWidthPercent?: number;
-}>) {
-  return (
-    <div
-      className={cn(
-        'transform-gpu rounded-lg border transition-all',
-        isOpen
-          ? 'border-neutral-500/10 bg-gradient-to-b from-neutral-200/15 to-neutral-200/5 dark:border-neutral-500/15 dark:from-neutral-600/15 dark:to-neutral-600/5 dark:shadow-[2px_4px_25px_0px_rgba(248,248,248,0.06)_inset]'
-          : 'scale-90 border-transparent opacity-50 saturate-0',
-      )}
-    >
-      <div className="flex w-full items-center gap-4 p-4">
-        <p
-          className={cn(
-            'inline-flex size-8 shrink-0 items-center justify-center rounded-md bg-neutral-500/20 text-primary',
-          )}
-        >
-          {number}
-        </p>
-        <h2 className={cn('text-left text-xl font-medium text-primary')}>
-          {title}
-        </h2>
-      </div>
-      <div
-        className={cn(
-          'w-full transform-gpu overflow-hidden text-left text-neutral-600 transition-all duration-500 dark:text-neutral-400',
-          isOpen ? 'max-h-64' : 'max-h-0',
-        )}
-      >
-        <p className="p-4 text-lg">{content}</p>
-        <div className="w-full px-4 pb-4">
-          <div className="relative h-1 w-full overflow-hidden rounded-full">
-            <div
-              className={cn('absolute left-0 top-0 h-1 bg-neutral-500')}
-              style={{ width: `${loadingWidthPercent}%` }}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default CoreValues;
