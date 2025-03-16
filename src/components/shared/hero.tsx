@@ -12,6 +12,7 @@ import { AuroraText } from '@/components/ui/aurora-text';
 import HeroVideoDialog from '@/components/ui/hero-video-dialog';
 import { IconCloud, IconCloudRain } from '@tabler/icons-react';
 import { HeroMarque } from '@/components/shared/heroMarque';
+import HeroTerminal from '@/components/shared/heroTerminal';
 
 const RainingIcon = ({ delay }: { delay: number }) => {
   const iconSrc = '/penguin-nobg.webp';
@@ -129,7 +130,12 @@ const Hero = () => {
 
       {/* video */}
       <div className="relative mx-auto mt-12 flex max-w-lg flex-col items-center justify-center overflow-hidden rounded-lg">
-        <HeroVideoDialog
+        <div className="group relative cursor-pointer">
+          <HeroTerminal />
+          <BorderBeam />
+        </div>
+
+        {/* <HeroVideoDialog
           className="block dark:hidden"
           animationStyle="from-center"
           videoSrc="/videos/karchunt-video.mp4"
@@ -142,7 +148,7 @@ const Hero = () => {
           videoSrc="/videos/karchunt-video.mp4"
           thumbnailSrc="/intro-page.png"
           thumbnailAlt="Hero Video"
-        />
+        /> */}
       </div>
 
       <HeroMarque />
