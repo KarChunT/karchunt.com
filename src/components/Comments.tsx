@@ -32,7 +32,7 @@ const Comments = () => {
   });
 
   return (
-    <div className="mt-16 w-full">
+    <div className="mt-6 w-full">
       <div ref={comment} />
     </div>
   );
