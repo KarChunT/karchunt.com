@@ -43,7 +43,7 @@ runs:
       run: 'npm install --legacy-peer-deps'
       shell: bash
 
-    - name: Install missing dependencies
-      run: |
-        npm i @napi-rs/snappy-linux-x64-gnu @napi-rs/simple-git-linux-x64-gnu sharp -f
-      shell: bash
+    # - name: Install missing dependencies
+    #   run: |
+    #     npm i @napi-rs/snappy-linux-x64-gnu @napi-rs/simple-git-linux-x64-gnu sharp -f
+    #   shell: bash
