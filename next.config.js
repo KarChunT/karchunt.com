@@ -1,10 +1,12 @@
-import { createMDX } from 'fumadocs-mdx/next';
+// import { createMDX } from 'fumadocs-mdx/next';
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { createMDX } = require('fumadocs-mdx/next');
 
 const withMDX = createMDX();
 
 /** @type {import('next').NextConfig} */
 const config = {
-  reactStrictMode: true,
+  // reactStrictMode: true,
   images: {
     unoptimized: true,
   },
