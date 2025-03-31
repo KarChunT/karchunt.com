@@ -17,6 +17,9 @@ module.exports = {
               ],
             },
           },
+          {
+            loader: 'babel-loader', // Ensure Babel processes the MDX files
+          },
         ],
       },
     ],
