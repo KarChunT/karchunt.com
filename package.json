@@ -3,6 +3,7 @@
   "description": "karchunt personal website",
   "version": "1.0.0",
   "private": true,
+  "package": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/KarChunT/karchunt.com"
