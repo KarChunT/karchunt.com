@@ -9,7 +9,6 @@ const config = {
     unoptimized: true,
   },
   output: 'export',
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   // distDir: 'dist',
 };
 

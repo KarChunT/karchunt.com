@@ -16,7 +16,7 @@ import defaultMdxComponents from 'fumadocs-ui/mdx';
 import { Control } from '@/components/page/blog/control';
 import Comments from '@/components/Comments';
 
-const page = async (props: { params: { slug: string } }) => {
+const Page = async (props: { params: Promise<{ slug: string }> }) => {
   const params = await props.params;
   const page = blog.getPage([params.slug]);
 
@@ -106,4 +106,4 @@ export async function generateMetadata(props: {
   });
 }
 
-export default page;
+export default Page;
