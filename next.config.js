@@ -13,4 +13,6 @@ const config = {
   // distDir: 'dist',
 };
 
-export default withMDX(config);
+module.exports = withMDX(config);
+
+// export default withMDX(config);
