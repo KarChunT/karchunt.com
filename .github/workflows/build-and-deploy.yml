@@ -35,15 +35,15 @@ jobs:
       #     echo "VUE_APP_BASE_URL=${{ vars.BASE_URL }}" > .env.production
 
       - name: Build with Next.js
-        env:
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          NEXT_PUBLIC_ALLOWED_USERNAMES: ${{ secrets.NEXT_PUBLIC_ALLOWED_USERNAMES }} # Ref: repository var
+        # env:
+        #   SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        #   NEXT_PUBLIC_ALLOWED_USERNAMES: ${{ secrets.NEXT_PUBLIC_ALLOWED_USERNAMES }} # Ref: repository var
         run: npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist
+      # - name: Upload artifact
+      #   uses: actions/upload-pages-artifact@v3
+      #   with:
+      #     path: ./dist
 
   deploy:
     environment:

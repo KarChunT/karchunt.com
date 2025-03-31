@@ -1,6 +1,0 @@
-[submodule "src/pages/docs"]
-	path = src/pages/docs
-	url = https://github.com/KarChunT/karchunt-docs
-[submodule "public/pdf"]
-	path = public/pdf
-	url = https://github.com/KarChunT/karchunt-books
