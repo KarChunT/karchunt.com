@@ -1,22 +1,27 @@
+import matter from 'gray-matter';
+
 module.exports = {
-  // ...existing configuration...
   module: {
     rules: [
-      // ...existing rules...
       {
         test: /\.mdx$/,
         use: [
           {
-            loader: 'babel-loader', // Optional: Use Babel if you need to transpile JSX
-          },
-          {
             loader: '@mdx-js/loader',
+            options: {
+              remarkPlugins: [
+                () => (tree, file) => {
+                  const { data } = matter(file.contents);
+                  file.data = { ...file.data, frontMatter: data };
+                },
+              ],
+            },
           },
         ],
       },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.mdx'], // Add .mdx to the list of extensions
+    extensions: ['.js', '.jsx', '.mdx'], // Add .mdx to the extensions
   },
 };
