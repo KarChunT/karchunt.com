@@ -9,7 +9,7 @@ export const source = loader({
   source: docs.toFumadocsSource(),
 });
 
-// export const blog = loader({
-//   baseUrl: '/blog',
-//   source: createMDXSource(blogPosts),
-// });
+export const blog = loader({
+  baseUrl: '/blog',
+  source: createMDXSource(blogPosts),
+});
