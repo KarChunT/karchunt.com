@@ -42,10 +42,10 @@ jobs:
           npm run postinstall
           npm run build
 
-      # - name: Upload artifact
-      #   uses: actions/upload-pages-artifact@v3
-      #   with:
-      #     path: ./dist
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
 
   deploy:
     environment:

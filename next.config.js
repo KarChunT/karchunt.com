@@ -12,7 +12,7 @@ const config = {
   },
   output: 'export',
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx', 'md'],
-  // distDir: 'dist',
+  distDir: 'dist',
 };
 
 module.exports = withMDX(config);
