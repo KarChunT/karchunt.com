@@ -10,3 +10,4 @@ next.config.ts
 yarn.lock
 *.mdx
 *.md
+global.css
