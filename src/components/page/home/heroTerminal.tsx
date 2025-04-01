@@ -36,7 +36,10 @@ const HeroTerminal = () => {
         <span className="pl-2">- utils/welcome.ts</span>
       </AnimatedSpan>
 
-      <TypingAnimation delay={6000} className="text-muted-foreground">
+      <TypingAnimation
+        delay={lastDelay + 1000}
+        className="text-muted-foreground"
+      >
         Success! Initialization completed.
       </TypingAnimation>
     </Terminal>
