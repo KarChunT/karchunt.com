@@ -11,8 +11,6 @@ import {
   IconBrandLinkedinFilled,
   IconCertificate,
   IconColorFilter,
-  IconAlbum,
-  IconBook,
 } from '@tabler/icons-react';
 
 const allDocItems = DOCUMENTATION.map((doc, index) => ({
@@ -54,7 +52,6 @@ export const baseOptions: BaseLayoutProps = {
       type: 'menu',
       text: 'Docs',
       url: '/docs',
-      icon: <IconBook />,
       items: allDocItems,
     },
     {
@@ -82,7 +79,6 @@ export const baseOptions: BaseLayoutProps = {
       ],
     },
     {
-      icon: <IconAlbum />,
       text: 'Blog',
       url: '/blog',
       active: 'nested-url',
