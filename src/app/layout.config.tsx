@@ -12,6 +12,7 @@ import {
   IconCertificate,
   IconCertificate2,
   IconColorFilter,
+  IconTools,
 } from '@tabler/icons-react';
 
 const allDocItems = DOCUMENTATION.map((doc, index) => ({
@@ -19,7 +20,9 @@ const allDocItems = DOCUMENTATION.map((doc, index) => ({
   description: doc.description,
   url: doc.link,
   icon: doc.icon,
-  menu: { className: `lg:col-start-${index + 1}` },
+  menu: {
+    className: index % 3 === 0 ? 'lg:col-start-1' : `lg:col-start-${index + 1}`,
+  },
 }));
 
 /**
@@ -84,6 +87,15 @@ export const baseOptions: BaseLayoutProps = {
           icon: <IconColorFilter />,
           menu: {
             className: 'lg:col-start-3',
+          },
+        },
+        {
+          text: 'Good Tools & Websites',
+          description: 'A collection of useful tools and websites.',
+          url: '/hub/tools',
+          icon: <IconTools />,
+          menu: {
+            className: 'lg:col-start-1',
           },
         },
       ],

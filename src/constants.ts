@@ -198,6 +198,23 @@ export const CERTIFICATES = [
   },
 ];
 
+export const GOODTOOLSANDWEBSITES: GoodToolsProps[] = [
+  {
+    title: 'Magic UI',
+    description:
+      'UI library for Design Engineers. 150+ free and open-source animated components and effects built with React, Typescript, Tailwind CSS, and Motion',
+    imageSrc: '/good-tools-and-websites/magicui.ico',
+    href: 'https://magicui.design/',
+  },
+  {
+    title: 'Aceternity UI',
+    description:
+      'Beautiful Tailwind CSS and Framer Motion Components, built with Next.js and TypeScript.',
+    imageSrc: '/good-tools-and-websites/aceternity.ico',
+    href: 'https://ui.aceternity.com/',
+  },
+];
+
 export const GALLERY = [
   { src: '/gallery/penguin-challenge.webp', category: 'Penguin' },
   { src: '/gallery/penguin-document.webp', category: 'Penguin' },
