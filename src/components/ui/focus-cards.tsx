@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
+import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
 
 export const Card = React.memo(
   ({
@@ -23,7 +24,7 @@ export const Card = React.memo(
         hovered !== null && hovered !== index && 'scale-[0.98] blur-sm',
       )}
     >
-      <Image src={card.src} alt={card.title} width={500} height={500} />
+      <ImageZoom src={card.src} alt={card.title} width={500} height={500} />
     </div>
   ),
 );
