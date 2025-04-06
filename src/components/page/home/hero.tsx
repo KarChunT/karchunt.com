@@ -9,7 +9,6 @@ import { IconCloud, IconCloudRain } from '@tabler/icons-react';
 import { Button } from '@/components/ui/button';
 import { Sparkles } from '@/components/ui/sparkles';
 import { FlipWords } from '@/components/ui/flip-words';
-import { AuroraText } from '@/components/ui/aurora-text';
 import { BorderBeam } from '@/components/ui/border-beam';
 import { RainbowButton } from '@/components/ui/rainbow-button';
 import { LineShadowText } from '@/components/ui/line-shadow-text';
@@ -104,11 +103,12 @@ const Hero = () => {
 
       <article className="relative mx-auto flex w-2/3 flex-col items-center gap-4 pt-4 text-center">
         <h1 className="font-heading text-4xl font-bold text-balance md:text-5xl lg:text-6xl">
-          <AuroraText>
-            <LineShadowText className="italic" shadowColor="white">
-              Farm
-            </LineShadowText>
-          </AuroraText>
+          <LineShadowText
+            className="bg-gradient-to-r from-blue-400 via-green-300 to-green-500 bg-clip-text text-transparent italic"
+            shadowColor="white"
+          >
+            Farm
+          </LineShadowText>
           <span className="text-white"> with me</span>
         </h1>
         <p className="max-w-[42rem] leading-normal text-neutral-500 sm:text-xl sm:leading-8">
