@@ -10,6 +10,7 @@ import {
 import {
   IconBrandLinkedinFilled,
   IconCertificate,
+  IconCertificate2,
   IconColorFilter,
 } from '@tabler/icons-react';
 
@@ -68,12 +69,21 @@ export const baseOptions: BaseLayoutProps = {
           },
         },
         {
+          text: 'Kubestronaut',
+          description: 'My Kubestronaut journey.',
+          url: '/hub/kubestronaut',
+          icon: <IconCertificate2 />,
+          menu: {
+            className: 'lg:col-start-2',
+          },
+        },
+        {
           text: 'Color Picker',
           description: 'A color picker tool for developers.',
           url: '/hub/color-picker',
           icon: <IconColorFilter />,
           menu: {
-            className: 'lg:col-start-2',
+            className: 'lg:col-start-3',
           },
         },
       ],
