@@ -95,6 +95,20 @@ export const PERSONAL = [
   },
 ];
 
+export const KUBESTRONAUT = {
+  certificates: [
+    '/certificates/kcna.png',
+    '/certificates/kcsa.png',
+    '/certificates/cka.png',
+    '/certificates/ckad.png',
+    '/certificates/cks.png',
+  ],
+  kubestronautCert: '/certificates/kubestronaut.png',
+  linkedinPost:
+    'https://www.linkedin.com/posts/karchuntan_im-happy-to-share-that-ive-obtained-a-new-activity-7305101498244288512-Osxo?utm_source=share&utm_medium=member_desktop&rcm=ACoAADHh4I0BsleIJAHeRMGtjJ7CEb5NduAUtYg',
+  cncfImage: '/kubestronaut/cncf-kubestronaut.png',
+};
+
 export const CERTIFICATES = [
   {
     year: '2025',
