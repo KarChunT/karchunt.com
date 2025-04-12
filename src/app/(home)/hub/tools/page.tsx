@@ -1,8 +1,34 @@
+'use client';
+
 import Image from 'next/image';
+import { useState } from 'react';
 import { Card, Cards } from 'fumadocs-ui/components/card';
 import { GOODTOOLSANDWEBSITES } from '@/constants';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
-const page = () => {
+const Page = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filter, setFilter] = useState('All');
+
+  const uniqueTags = [
+    'All',
+    ...Array.from(new Set(GOODTOOLSANDWEBSITES.flatMap((item) => item.tags))),
+  ];
+
+  const filteredTools = GOODTOOLSANDWEBSITES.filter(
+    (tool) =>
+      tool.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (filter === 'All' || tool.tags.includes(filter)),
+  );
+
   return (
     <div>
       <div className="@container container mx-auto max-w-5xl px-6 py-4 lg:py-8">
@@ -15,9 +41,31 @@ const page = () => {
             from here.
           </p>
         </div>
+        <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+          <Input
+            type="search"
+            placeholder="Search tools..."
+            className="flex-grow"
+            aria-label="Search tools"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <Select value={filter} onValueChange={setFilter}>
+            <SelectTrigger className="w-full sm:w-[180px]">
+              <SelectValue placeholder="Select tag" />
+            </SelectTrigger>
+            <SelectContent>
+              {uniqueTags.map((category) => (
+                <SelectItem key={category} value={category}>
+                  {category}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
         <div className="mx-auto mt-8">
           <Cards>
-            {GOODTOOLSANDWEBSITES.map((item, index) => (
+            {filteredTools.map((item, index) => (
               <Card
                 key={index}
                 href={item.href}
@@ -31,6 +79,14 @@ const page = () => {
                   />
                 }
               >
+                <div className="py-2">
+                  {item.tags.map((tag, index) => (
+                    <Badge variant="default" key={index}>
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+
                 {item.description}
               </Card>
             ))}
@@ -41,4 +97,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

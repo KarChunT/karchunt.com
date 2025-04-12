@@ -205,6 +205,7 @@ export const GOODTOOLSANDWEBSITES: GoodToolsProps[] = [
       'UI library for Design Engineers. 150+ free and open-source animated components and effects built with React, Typescript, Tailwind CSS, and Motion',
     imageSrc: '/good-tools-and-websites/magicui.ico',
     href: 'https://magicui.design/',
+    tags: ['UI'],
   },
   {
     title: 'Aceternity UI',
@@ -212,6 +213,7 @@ export const GOODTOOLSANDWEBSITES: GoodToolsProps[] = [
       'Beautiful Tailwind CSS and Framer Motion Components, built with Next.js and TypeScript.',
     imageSrc: '/good-tools-and-websites/aceternity.ico',
     href: 'https://ui.aceternity.com/',
+    tags: ['UI'],
   },
 ];
 

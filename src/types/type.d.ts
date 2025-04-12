@@ -10,4 +10,5 @@ interface GoodToolsProps {
   description: string;
   imageSrc: string;
   href: string;
+  tags: string[];
 }
