@@ -35,13 +35,22 @@ export default function Page(): React.ReactElement {
       <div
         className="h-[300px] p-8 md:p-12"
         style={{
+          backgroundColor: 'black',
           backgroundImage: [
-            'radial-gradient(circle at 50% 50%, rgba(0,100,0,0.6), transparent)',
-            'radial-gradient(circle at 70% 10%, rgba(34,139,34,0.6), transparent)',
-            'radial-gradient(circle at 0% 80%, rgba(0,190,100,0.5), transparent)',
-            `url("data:image/svg+xml,${encodeURIComponent(svg)}")`,
+            'linear-gradient(140deg, hsla(220,94%,54%,0.3), transparent 50%)',
+            'linear-gradient(to left top, hsla(160,90%,50%,0.8), transparent 50%)',
+            'radial-gradient(circle at 100% 100%, hsla(280,100%,82%,1), hsla(280,40%,40%,1) 17%, hsla(280,40%,40%,0.5) 20%, transparent)',
           ].join(', '),
+          backgroundBlendMode: 'difference, difference, normal',
         }}
+        // style={{
+        //   backgroundImage: [
+        //     'radial-gradient(circle at 50% 50%, rgba(0,100,0,0.6), transparent)',
+        //     'radial-gradient(circle at 70% 10%, rgba(34,139,34,0.6), transparent)',
+        //     'radial-gradient(circle at 0% 80%, rgba(0,190,100,0.5), transparent)',
+        //     `url("data:image/svg+xml,${encodeURIComponent(svg)}")`,
+        //   ].join(', '),
+        // }}
       >
         <h1 className="border-fd-foreground mb-4 border-b-4 pb-2 text-4xl font-bold md:text-5xl">
           {APPNAME} Blog
