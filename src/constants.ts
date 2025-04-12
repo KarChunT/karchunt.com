@@ -215,6 +215,37 @@ export const GOODTOOLSANDWEBSITES: GoodToolsProps[] = [
     href: 'https://ui.aceternity.com/',
     tags: ['UI'],
   },
+  {
+    title: 'Cult UI',
+    description:
+      'Shadcn templates & components that you can copy and paste into react apps. Customizable. Open Source. Typed.',
+    imageSrc: '/good-tools-and-websites/cultui.ico',
+    href: 'https://www.cult-ui.com/',
+    tags: ['UI'],
+  },
+  {
+    title: 'ui-layouts',
+    description:
+      'Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.',
+    imageSrc: '/good-tools-and-websites/ui-layouts.ico',
+    href: 'https://www.ui-layouts.com/',
+    tags: ['UI'],
+  },
+  {
+    title: 'Shadcn Marketing Blocks',
+    description:
+      'Speed up your workflow with responsive, pre-built UI blocks designed for marketing websites.',
+    imageSrc: '/good-tools-and-websites/Shadcn Marketing Blocks.ico',
+    href: 'https://nsui.irung.me',
+    tags: ['UI'],
+  },
+  {
+    title: 'Supabase UI Library',
+    description: 'Provides a library of components for your project',
+    imageSrc: '/good-tools-and-websites/Supabase UI Library.ico',
+    href: 'https://supabase.com/ui',
+    tags: ['UI'],
+  },
 ];
 
 export const GALLERY = [
