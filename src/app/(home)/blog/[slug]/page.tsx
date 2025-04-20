@@ -45,7 +45,8 @@ const Page = async (props: { params: Promise<{ slug: string }> }) => {
 
       <article className="flex flex-col px-0 py-8 lg:flex-row">
         <div className="prose min-w-0 flex-1 p-4">
-          <InlineTOC items={toc} />
+          {toc.length > 0 && <InlineTOC items={toc} />}
+
           <Mdx
             components={{
               ...defaultMdxComponents,
