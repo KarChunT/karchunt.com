@@ -3,6 +3,11 @@ name: Build and deploy
 on:
   push:
     branches: main
+    paths-ignore:
+      - .github/**
+      - .husky/**
+      - .vscode/**
+      - template/**
   workflow_call:
   workflow_dispatch:
 
