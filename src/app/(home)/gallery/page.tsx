@@ -46,7 +46,12 @@ const Gallery = () => {
   const visibleItems = filteredItems.slice(0, visibleCount); // Limit displayed items
 
   const handleLoadMore = () => {
-    setVisibleCount((prevCount) => prevCount + count); // Load more items
+    // setVisibleCount((prevCount) => prevCount + count); // Load more items
+    // Filter out items without a valid src before increasing the visible count
+    const validItems = filteredItems.filter((item) => item.src);
+    setVisibleCount((prevCount) =>
+      Math.min(prevCount + count, validItems.length),
+    ); // Ensure we don't exceed the valid items count
   };
 
   return (
