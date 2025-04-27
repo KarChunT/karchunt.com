@@ -24,7 +24,7 @@ export const Card = React.memo(
         hovered !== null && hovered !== index && 'scale-[0.98] blur-sm',
       )}
     >
-      <ImageZoom src={card.src} alt={card.title} width={500} height={500} />
+      <ImageZoom src={card.src} alt={`${index}`} width={500} height={500} />
     </div>
   ),
 );
