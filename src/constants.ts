@@ -248,26 +248,6 @@ export const GOODTOOLSANDWEBSITES: GoodToolsProps[] = [
   },
 ];
 
-export const GALLERY = [
-  { src: '/gallery/penguin-challenge.webp', category: 'Penguin' },
-  { src: '/gallery/penguin-document.webp', category: 'Penguin' },
-  { src: '/gallery/penguin-learn.webp', category: 'Penguin' },
-  { src: '/gallery/penguin1.webp', category: 'Penguin' },
-  { src: '/gallery/penguin2.webp', category: 'Penguin' },
-  { src: '/gallery/penguin3.webp', category: 'Penguin' },
-  { src: '/gallery/penguin4.webp', category: 'Penguin' },
-  { src: '/gallery/penguin5.webp', category: 'Penguin' },
-  { src: '/gallery/penguin6.webp', category: 'Penguin' },
-  { src: '/gallery/penguin7.webp', category: 'Penguin' },
-  { src: '/gallery/penguin8.webp', category: 'Penguin' },
-  { src: '/gallery/penguin9.webp', category: 'Penguin' },
-  { src: '/gallery/penguin10.webp', category: 'Penguin' },
-  { src: '/gallery/penguin11.webp', category: 'Penguin' },
-  { src: '/gallery/penguin12.webp', category: 'Penguin' },
-  { src: '/gallery/penguin13.webp', category: 'Penguin' },
-  { src: '/gallery/penguin14.webp', category: 'Penguin' },
-];
-
 export const DOCUMENTATION: DocItem[] = [
   {
     icon: '🍇',

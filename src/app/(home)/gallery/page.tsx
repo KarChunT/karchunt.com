@@ -1,6 +1,5 @@
 'use client';
 
-import { GALLERY } from '@/constants';
 import { FocusCards } from '@/components/ui/focus-cards';
 import { Button } from '@/components/ui/button';
 import {
@@ -10,17 +9,34 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Gallery = () => {
   const count = 10;
-  const [items, setItems] = useState(GALLERY);
+  const [items, setItems] = useState<GalleryProps[]>([]);
+
+  useEffect(() => {
+    const context = require.context(
+      '../../../../public/gallery',
+      true,
+      /\.webp$/,
+    );
+
+    const images: GalleryProps[] = [];
+    context.keys().forEach((key) => {
+      const image = key.replace('./', '');
+      const category = image.split('-')[0];
+      images.push({ src: `/gallery/${image}`, category: category });
+    });
+    setItems(images);
+  }, []);
+
   const [filter, setFilter] = useState('All');
   const [visibleCount, setVisibleCount] = useState(count); // Number of items to display initially
 
   const uniqueCategories = [
     'All',
-    ...Array.from(new Set(GALLERY.map((item) => item.category))),
+    ...Array.from(new Set(items.map((item) => item.category))),
   ];
 
   const filteredItems = items.filter(

@@ -12,3 +12,8 @@ interface GoodToolsProps {
   href: string;
   tags: string[];
 }
+
+interface GalleryProps {
+  src: string;
+  category: string;
+}
