@@ -47,6 +47,7 @@
     "fumadocs-mdx": "^11.5.7",
     "fumadocs-typescript": "^3.1.0",
     "fumadocs-ui": "^15.1.1",
+    "glob": "^11.0.2",
     "gray-matter": "^4.0.3",
     "husky": "^9.1.7",
     "katex": "^0.16.21",
