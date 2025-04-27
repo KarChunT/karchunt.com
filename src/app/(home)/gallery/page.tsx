@@ -32,7 +32,7 @@ const Gallery = () => {
   }, []);
 
   const [filter, setFilter] = useState('All');
-  const [visibleCount, setVisibleCount] = useState(count); // Number of items to display initially
+  const [visibleCount, setVisibleCount] = useState(items.length); // Number of items to display initially
 
   const uniqueCategories = [
     'All',
@@ -73,11 +73,11 @@ const Gallery = () => {
 
       <FocusCards cards={visibleItems} />
 
-      {visibleCount < filteredItems.length && ( // Show button only if there are more items to load
+      {/* {visibleCount < filteredItems.length && ( // Show button only if there are more items to load
         <div className="mt-6 flex justify-center">
           <Button onClick={handleLoadMore}>Load More</Button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
