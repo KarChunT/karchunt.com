@@ -59,6 +59,11 @@ export const baseOptions: BaseLayoutProps = {
       items: allDocItems,
     },
     {
+      text: 'Project',
+      url: '/project',
+      active: 'nested-url',
+    },
+    {
       type: 'menu',
       text: 'Hub',
       items: [

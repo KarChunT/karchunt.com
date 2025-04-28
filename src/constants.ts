@@ -264,6 +264,17 @@ export const GOODTOOLSANDWEBSITES: GoodToolsProps[] = [
   },
 ];
 
+export const PROJECTS: ProjectProps[] = [
+  {
+    title: 'Generative Art',
+    description:
+      'A project that generates art using algorithms and randomization.',
+    href: '/projects/generative-art',
+    tags: ['Python', 'Art', 'Algorithms'],
+    repoUrl: 'https://github.com/KarChunT/generative-art',
+  },
+];
+
 export const DOCUMENTATION: DocItem[] = [
   {
     icon: '🍇',
