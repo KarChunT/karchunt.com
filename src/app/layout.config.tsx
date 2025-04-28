@@ -59,8 +59,8 @@ export const baseOptions: BaseLayoutProps = {
       items: allDocItems,
     },
     {
-      text: 'Project',
-      url: '/project',
+      text: 'Projects',
+      url: '/projects',
       active: 'nested-url',
     },
     {
