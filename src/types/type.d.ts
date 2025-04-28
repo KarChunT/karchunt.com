@@ -17,13 +17,3 @@ interface GalleryProps {
   src: string;
   category: string;
 }
-
-interface ProjectProps {
-  title: string;
-  description: string;
-  href: string;
-  tags: string[];
-  demoUrl?: string;
-  repoUrl?: string;
-  image?: string;
-}

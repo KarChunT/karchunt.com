@@ -30,6 +30,16 @@ export const blog = defineCollections({
   }),
 });
 
+export const projects = defineCollections({
+  type: 'doc',
+  dir: 'content/projects',
+  schema: frontmatterSchema.extend({
+    tags: z.array(z.string()),
+    demoUrl: z.string().optional(),
+    repoUrl: z.string().optional(),
+  }),
+});
+
 export default defineConfig({
   lastModifiedTime: 'git',
   mdxOptions: {

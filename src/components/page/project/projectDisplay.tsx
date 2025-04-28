@@ -11,8 +11,7 @@ const ProjectDisplay = ({
   tags,
   demoUrl,
   repoUrl,
-  image,
-}: ProjectProps) => {
+}) => {
   return (
     <Card className="overflow-hidden">
       <CardContent className="flex flex-1 flex-col py-2">
