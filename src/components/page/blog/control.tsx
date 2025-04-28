@@ -30,7 +30,7 @@ export function Control({ url }: { url: string }): React.ReactElement {
             )}
           >
             <Share className="size-4" />
-            Share Post
+            Share
           </button>
         </TooltipTrigger>
 
