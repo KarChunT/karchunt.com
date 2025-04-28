@@ -34,7 +34,9 @@ export const projects = defineCollections({
   type: 'doc',
   dir: 'content/projects',
   schema: frontmatterSchema.extend({
-    tags: z.array(z.string()),
+    author: z.string(),
+    lastUpdated: z.string().date().or(z.date()).optional(),
+    languages: z.array(z.string()),
     demoUrl: z.string().optional(),
     repoUrl: z.string().optional(),
   }),

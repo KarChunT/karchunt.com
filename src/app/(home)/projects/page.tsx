@@ -17,11 +17,11 @@ const Page = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('All');
 
-  const uniqueTags = [
+  const uniqueLanguages = [
     'All',
     ...Array.from(
       new Set(
-        myProjects.flatMap((item) => item.data.tags), // Flatten the tags array
+        myProjects.flatMap((item) => item.data.languages), // Flatten the tags array
       ),
     ),
   ];
@@ -29,7 +29,7 @@ const Page = () => {
   const filteredProject = myProjects.filter(
     (project) =>
       project.data.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (filter === 'All' || project.data.tags.includes(filter)),
+      (filter === 'All' || project.data.languages.includes(filter)),
   );
 
   return (
@@ -57,7 +57,7 @@ const Page = () => {
               <SelectValue placeholder="Select tag" />
             </SelectTrigger>
             <SelectContent>
-              {uniqueTags.map((category) => (
+              {uniqueLanguages.map((category) => (
                 <SelectItem key={category} value={category}>
                   {category}
                 </SelectItem>
@@ -73,7 +73,7 @@ const Page = () => {
                 title={project.data.title}
                 description={project.data.description || ''}
                 href={project.url}
-                tags={project.data.tags}
+                languages={project.data.languages}
                 demoUrl={project.data.demoUrl}
                 repoUrl={project.data.repoUrl}
               />

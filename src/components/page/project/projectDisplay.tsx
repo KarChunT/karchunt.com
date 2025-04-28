@@ -8,7 +8,7 @@ const ProjectDisplay = ({
   title,
   description,
   href,
-  tags,
+  languages,
   demoUrl,
   repoUrl,
 }) => {
@@ -22,7 +22,7 @@ const ProjectDisplay = ({
 
         <div className="mt-auto flex flex-col gap-3">
           <div className="mb-2 flex flex-wrap gap-2">
-            {tags.map((tag) => (
+            {languages.map((tag) => (
               <Badge
                 key={tag}
                 variant="secondary"
