@@ -246,6 +246,22 @@ export const GOODTOOLSANDWEBSITES: GoodToolsProps[] = [
     href: 'https://supabase.com/ui',
     tags: ['UI'],
   },
+  {
+    title: 'Shadcnblocks shadcn/ui blocks & components',
+    description:
+      'Hundreds of new shadcn/ui blocks and Shadcn components. A premium UI library built with Shadcn UI, React & Tailwind.',
+    imageSrc: '/good-tools-and-websites/shadcnblocks.ico',
+    href: 'https://www.shadcnblocks.com/',
+    tags: ['UI'],
+  },
+  {
+    title: 'Shadcn UI Blocks',
+    description:
+      'Discover more than 330 fully responsive UI blocks and 120+ versatile components that effortlessly integrate into your Shadcn UI projects.',
+    imageSrc: '/good-tools-and-websites/shadcn-ui-blocks.ico',
+    href: 'https://shadcn-ui-blocks.vercel.app/',
+    tags: ['UI'],
+  },
 ];
 
 export const DOCUMENTATION: DocItem[] = [
