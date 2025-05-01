@@ -1,6 +1,5 @@
 'use client';
 
-import { glob } from 'glob';
 import { FocusCards } from '@/components/ui/focus-cards';
 import { Button } from '@/components/ui/button';
 import {
@@ -10,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const GalleryClient = ({ items }: { items: GalleryProps[] }) => {
   const count = 10;
@@ -34,6 +33,11 @@ const GalleryClient = ({ items }: { items: GalleryProps[] }) => {
       Math.min(prevCount + count, filteredItems.length),
     ); // Ensure we don't exceed the valid items count
   };
+
+  // Reset visibleCount to default when the filter changes
+  useEffect(() => {
+    setVisibleCount(count);
+  }, [filter]);
 
   return (
     <div className="mx-auto mt-8 max-w-5xl px-6 pb-10">
