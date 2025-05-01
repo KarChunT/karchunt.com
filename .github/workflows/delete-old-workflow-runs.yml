@@ -4,6 +4,17 @@ on:
     # Run monthly, at 00:00 on the 1st day of month.
     - cron: '0 0 1 * *'
   workflow_dispatch:
+    inputs:
+      retain_days:
+        description: 'Number of days to retain workflow runs'
+        required: false
+        default: 7
+        type: number
+      keep_minimum_runs:
+        description: 'Minimum number of workflow runs to keep'
+        required: false
+        default: 3
+        type: number
 
 jobs:
   del_workflow_runs:
@@ -17,4 +28,5 @@ jobs:
         with:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
-          retain_days: 7
+          retain_days: ${{ github.event.inputs.retain_days }}
+          keep_minimum_runs: ${{ github.event.inputs.keep_minimum_runs }}
