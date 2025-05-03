@@ -74,7 +74,9 @@ const Page = async (props: { params: Promise<{ slug: string }> }) => {
             <p className="font-medium">{page.data.author}</p>
           </div>
           <div>
-            <p className="text-fd-muted-foreground mb-1 text-sm">At</p>
+            <p className="text-fd-muted-foreground mb-1 text-sm">
+              Last Updated
+            </p>
             <p className="font-medium">
               {new Date(page.data.date ?? page.file.name).toDateString()}
             </p>
