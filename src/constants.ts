@@ -300,13 +300,13 @@ export const DOCUMENTATION: DocItem[] = [
       'Kubernetes, also known as k8s, is an open source system to deploy, scalwe, and manage containerized applications.',
     link: '/docs/kubernetes',
   },
-  {
-    icon: '🍐',
-    title: 'Data Structures and Algorithms',
-    description:
-      'Data structures are used to organize, store, and manipulate data in memory, while algorithms are used to solve specific problems.',
-    link: '/docs/data-structures-and-algorithms',
-  },
+  // {
+  //   icon: '🍐',
+  //   title: 'Data Structures and Algorithms',
+  //   description:
+  //     'Data structures are used to organize, store, and manipulate data in memory, while algorithms are used to solve specific problems.',
+  //   link: '/docs/data-structures-and-algorithms',
+  // },
   // {
   //   title: '🥑 Design Pattern',
   //   description: 'Solving typical software design problems.',
