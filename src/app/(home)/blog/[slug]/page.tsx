@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import { blog } from '@/lib/source';
 import { createMetadata } from '@/lib/metadata';
@@ -15,6 +16,7 @@ import { TypeTable } from 'fumadocs-ui/components/type-table';
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 import { Control } from '@/components/page/blog/control';
 import Comments from '@/components/Comments';
+import { Badge } from '@/components/ui/badge';
 
 const Page = async (props: { params: Promise<{ slug: string }> }) => {
   const params = await props.params;
@@ -63,6 +65,8 @@ const Page = async (props: { params: Promise<{ slug: string }> }) => {
               DynamicCodeBlock,
               GithubInfo,
               TypeTable,
+              Image,
+              ImageZoom,
               img: (props) => <ImageZoom {...(props as any)} />,
               strong: (props) => <strong className="text-primary" {...props} />,
             }}
@@ -80,6 +84,15 @@ const Page = async (props: { params: Promise<{ slug: string }> }) => {
             <p className="font-medium">
               {new Date(page.data.date ?? page.file.name).toDateString()}
             </p>
+          </div>
+
+          <div>
+            <p className="text-fd-muted-foreground mb-1">Tags</p>
+            <div className="flex flex-wrap gap-2">
+              {page.data.tags.map((tag) => (
+                <Badge key={tag}>{tag}</Badge>
+              ))}
+            </div>
           </div>
           <Control url={page.url} />
         </div>

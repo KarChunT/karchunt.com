@@ -5,8 +5,18 @@ import { useState } from 'react';
 import { APPNAME } from '@/constants';
 import { blog } from '@/lib/source';
 import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 export default function Page(): React.ReactElement {
+  const myBlogs = blog.getPages();
+  const [filter, setFilter] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const posts = [...blog.getPages()].sort(
     (a, b) =>
@@ -14,8 +24,19 @@ export default function Page(): React.ReactElement {
       new Date(a.data.date ?? a.file.name).getTime(),
   );
 
-  const filteredPosts = posts.filter((post) =>
-    post.data.title.toLowerCase().includes(searchTerm.toLowerCase()),
+  const uniqueTags = [
+    'All',
+    ...Array.from(
+      new Set(
+        myBlogs.flatMap((item) => item.data.tags), // Flatten the tags array
+      ),
+    ),
+  ];
+
+  const filteredPosts = myBlogs.filter(
+    (project) =>
+      project.data.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (filter === 'All' || project.data.tags.includes(filter)),
   );
 
   const svg = `<svg viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'>
@@ -60,7 +81,7 @@ export default function Page(): React.ReactElement {
           that thrive.
         </p>
 
-        <div className="pt-4">
+        <div className="flex flex-col gap-4 pt-4 sm:flex-row">
           <Input
             type="search"
             placeholder="Search posts..."
@@ -69,6 +90,18 @@ export default function Page(): React.ReactElement {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
+          <Select value={filter} onValueChange={setFilter}>
+            <SelectTrigger className="w-full sm:w-[180px]">
+              <SelectValue placeholder="Select tag" />
+            </SelectTrigger>
+            <SelectContent>
+              {uniqueTags.map((category) => (
+                <SelectItem key={category} value={category}>
+                  {category}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
       </div>
       <div className="grid grid-cols-1 border md:grid-cols-3 lg:grid-cols-4">
@@ -78,14 +111,26 @@ export default function Page(): React.ReactElement {
             href={post.url}
             className="bg-fd-card hover:bg-fd-accent hover:text-fd-accent-foreground flex flex-col p-4 transition-colors"
           >
-            <p className="font-medium">{post.data.title}</p>
-            <p className="text-fd-muted-foreground text-sm">
+            <p className="font-bold">{post.data.title}</p>
+            {/* <p className="text-muted-foreground mb-4">
               {post.data.description}
-            </p>
-
-            <p className="text-fd-muted-foreground mt-auto pt-4 text-xs">
-              {new Date(post.data.date ?? post.file.name).toDateString()}
-            </p>
+            </p> */}
+            <div className="mt-auto flex flex-col gap-3">
+              <div className="mt-3 flex flex-wrap gap-2">
+                {post.data.tags.map((tag) => (
+                  <Badge
+                    key={tag}
+                    variant="secondary"
+                    className="bg-primary text-black"
+                  >
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
+              <p className="text-fd-muted-foreground text-xs">
+                {new Date(post.data.date ?? post.file.name).toDateString()}
+              </p>
+            </div>
           </Link>
         ))}
       </div>
