@@ -15,7 +15,6 @@ import {
 } from '@/components/ui/select';
 
 export default function Page(): React.ReactElement {
-  const myBlogs = blog.getPages();
   const [filter, setFilter] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const posts = [...blog.getPages()].sort(
@@ -28,15 +27,15 @@ export default function Page(): React.ReactElement {
     'All',
     ...Array.from(
       new Set(
-        myBlogs.flatMap((item) => item.data.tags), // Flatten the tags array
+        posts.flatMap((item) => item.data.tags), // Flatten the tags array
       ),
     ),
   ];
 
-  const filteredPosts = myBlogs.filter(
-    (project) =>
-      project.data.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (filter === 'All' || project.data.tags.includes(filter)),
+  const filteredPosts = posts.filter(
+    (post) =>
+      post.data.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (filter === 'All' || post.data.tags.includes(filter)),
   );
 
   const svg = `<svg viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'>
