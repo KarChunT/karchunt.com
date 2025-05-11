@@ -8,6 +8,7 @@ on:
       - .husky/**
       - .vscode/**
       - template/**
+      - documentation/**
   workflow_call:
   workflow_dispatch:
 
