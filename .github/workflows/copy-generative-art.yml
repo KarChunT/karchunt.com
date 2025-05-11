@@ -1,0 +1,63 @@
+name: Copy generative art
+
+on:
+  schedule:
+    - cron: '0 12 * * *' # Every day at 12 AM
+  workflow_dispatch:
+
+concurrency:
+  group: 'copy-art-group'
+  cancel-in-progress: false
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  copy_generate_art:
+    runs-on: ubuntu-latest
+    env:
+      GENERATIVE_ART_REPO: 'KarChunT/generative-art'
+      GENERATIVE_ART_REPO_PATH: 'generative-art'
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: true
+          token: ${{ secrets.PAT }}
+
+      - name: Checkout Generative Art Repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.GENERATIVE_ART_REPO }}
+          path: ${{ env.GENERATIVE_ART_REPO_PATH }}
+          # token: ${{ secrets.PAT }}
+
+      - name: Copy and Rename Generative Art
+        run: |
+          # Create a temporary directory for renaming
+          mkdir -p temp-gallery
+
+          # Copy files to the temporary directory
+          cp -r ${{ env.GENERATIVE_ART_REPO_PATH }}/output/images/* temp-gallery/
+
+          # Rename files in the temporary directory
+          for file in temp-gallery/*; do
+            mv "$file" "temp-gallery/art-$(basename "$file")"
+          done
+
+          # Move renamed files to the public/gallery directory
+          mv temp-gallery/* public/gallery/
+
+          # Clean up temporary directory and original generative-art directory
+          rm -rf temp-gallery ${{ env.GENERATIVE_ART_REPO_PATH }}
+
+      - name: Commit and Push Generated Art
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+          git add .
+          git commit -m "art: copy generative art on $(date)"
+          git push
