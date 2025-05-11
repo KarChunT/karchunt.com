@@ -23,14 +23,17 @@ export default function Page(): React.ReactElement {
       new Date(a.data.date ?? a.file.name).getTime(),
   );
 
-  const uniqueTags = [
-    'All',
-    ...Array.from(
-      new Set(
-        posts.flatMap((item) => item.data.tags), // Flatten the tags array
-      ),
-    ),
-  ];
+  const uniqueTags = ['All'];
+  const tagSet = new Set(uniqueTags);
+  for (const post of posts) {
+    for (const tag of post.data.tags) {
+      const normalizedTag = tag.replaceAll(' ', '-').toLowerCase();
+      if (!tagSet.has(normalizedTag)) {
+        tagSet.add(normalizedTag);
+        uniqueTags.push(tag);
+      }
+    }
+  }
 
   const filteredPosts = posts.filter(
     (post) =>

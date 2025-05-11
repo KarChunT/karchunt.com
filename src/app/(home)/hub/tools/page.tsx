@@ -18,10 +18,17 @@ const Page = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('All');
 
-  const uniqueTags = [
-    'All',
-    ...Array.from(new Set(GOODTOOLSANDWEBSITES.flatMap((item) => item.tags))),
-  ];
+  const uniqueTags = ['All'];
+  const tagSet = new Set(uniqueTags);
+  for (const tools of GOODTOOLSANDWEBSITES) {
+    for (const tag of tools.tags) {
+      const normalizedTag = tag.replaceAll(' ', '-').toLowerCase();
+      if (!tagSet.has(normalizedTag)) {
+        tagSet.add(normalizedTag);
+        uniqueTags.push(tag);
+      }
+    }
+  }
 
   const filteredTools = GOODTOOLSANDWEBSITES.filter(
     (tool) =>

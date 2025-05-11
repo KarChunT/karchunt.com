@@ -16,10 +16,17 @@ const GalleryClient = ({ items }: { items: GalleryProps[] }) => {
   const [filter, setFilter] = useState('All');
   const [visibleCount, setVisibleCount] = useState(count); // Number of items to display initially
 
-  const uniqueCategories = [
-    'All',
-    ...Array.from(new Set(items.map((item) => item.category))),
-  ];
+  const uniqueCategories = ['All'];
+  const tagSet = new Set(uniqueCategories);
+
+  for (const item of items) {
+    const tag = item.category;
+    const normalizedTag = tag.replaceAll(' ', '-').toLowerCase();
+    if (!tagSet.has(normalizedTag)) {
+      tagSet.add(normalizedTag);
+      uniqueCategories.push(tag);
+    }
+  }
 
   const filteredItems = items.filter(
     (item) => filter === 'All' || item.category === filter,

@@ -17,14 +17,17 @@ const Page = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('All');
 
-  const uniqueLanguages = [
-    'All',
-    ...Array.from(
-      new Set(
-        myProjects.flatMap((item) => item.data.languages), // Flatten the tags array
-      ),
-    ),
-  ];
+  const uniqueLanguages = ['All'];
+  const tagSet = new Set(uniqueLanguages);
+  for (const project of myProjects) {
+    for (const tag of project.data.languages) {
+      const normalizedTag = tag.replaceAll(' ', '-').toLowerCase();
+      if (!tagSet.has(normalizedTag)) {
+        tagSet.add(normalizedTag);
+        uniqueLanguages.push(tag);
+      }
+    }
+  }
 
   const filteredProject = myProjects.filter(
     (project) =>
