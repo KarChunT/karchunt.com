@@ -34,24 +34,13 @@ jobs:
           path: ${{ env.GENERATIVE_ART_REPO_PATH }}
           # token: ${{ secrets.PAT }}
 
-      - name: Copy and Rename Generative Art
+      - name: Copy Generative Art
         run: |
-          # Create a temporary directory for renaming
-          mkdir -p temp-gallery
-
           # Copy files to the temporary directory
-          cp -r ${{ env.GENERATIVE_ART_REPO_PATH }}/output/images/* temp-gallery/
+          cp -r ${{ env.GENERATIVE_ART_REPO_PATH }}/output/images/* public/gallery/art
 
-          # Rename files in the temporary directory
-          for file in temp-gallery/*; do
-            mv "$file" "temp-gallery/art-$(basename "$file")"
-          done
-
-          # Move renamed files to the public/gallery directory
-          mv temp-gallery/* public/gallery/
-
-          # Clean up temporary directory and original generative-art directory
-          rm -rf temp-gallery ${{ env.GENERATIVE_ART_REPO_PATH }}
+          # Clean up original generative-art directory
+          rm -rf ${{ env.GENERATIVE_ART_REPO_PATH }}
 
       - name: Commit and Push Generated Art
         run: |
