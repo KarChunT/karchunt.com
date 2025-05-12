@@ -38,6 +38,7 @@ jobs:
         run: |
           # Remove existing art files
           rm -rf public/gallery/art
+          mkdir -p public/gallery/art
 
           # Copy files to the temporary directory
           cp -r ${{ env.GENERATIVE_ART_REPO_PATH }}/output/images/* public/gallery/art
