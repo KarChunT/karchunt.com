@@ -36,6 +36,9 @@ jobs:
 
       - name: Copy Generative Art
         run: |
+          # Remove existing art files
+          rm -rf public/gallery/art
+
           # Copy files to the temporary directory
           cp -r ${{ env.GENERATIVE_ART_REPO_PATH }}/output/images/* public/gallery/art
 
