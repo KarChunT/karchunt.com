@@ -300,6 +300,13 @@ export const DOCUMENTATION: DocItem[] = [
       'Kubernetes, also known as k8s, is an open source system to deploy, scalwe, and manage containerized applications.',
     link: '/docs/kubernetes',
   },
+  {
+    icon: '🍋',
+    title: 'Taskfile',
+    description:
+      'Taskfile is a task runner / build tool that simplifies the automation of routine development tasks.',
+    link: '/docs/taskfile',
+  },
   // {
   //   icon: '🍐',
   //   title: 'Data Structures and Algorithms',
