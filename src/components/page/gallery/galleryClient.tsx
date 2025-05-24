@@ -12,7 +12,7 @@ import {
 import { useState, useEffect } from 'react';
 
 const GalleryClient = ({ items }: { items: GalleryProps[] }) => {
-  const count = 10;
+  const count = 50;
   const [filter, setFilter] = useState('All');
   const [visibleCount, setVisibleCount] = useState(count); // Number of items to display initially
 
