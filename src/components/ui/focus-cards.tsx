@@ -15,18 +15,35 @@ export const Card = React.memo(
     index: number;
     hovered: number | null;
     setHovered: React.Dispatch<React.SetStateAction<number | null>>;
-  }) => (
-    <div
-      onMouseEnter={() => setHovered(index)}
-      onMouseLeave={() => setHovered(null)}
-      className={cn(
-        'relative mx-auto overflow-hidden rounded-lg transition-all duration-300 ease-out',
-        hovered !== null && hovered !== index && 'scale-[0.98] blur-sm',
-      )}
-    >
-      <ImageZoom src={card.src} alt={`${index}`} width={500} height={500} />
-    </div>
-  ),
+  }) => {
+    const [loading, setLoading] = useState(true);
+    return (
+      <div
+        // onMouseEnter={() => setHovered(index)}
+        // onMouseLeave={() => setHovered(null)}
+        className={cn(
+          'relative mx-auto overflow-hidden rounded-lg transition-all duration-300 ease-out',
+          hovered !== null && hovered !== index && 'scale-[0.98] blur-sm',
+        )}
+        style={{ minHeight: 300 }}
+      >
+        {loading && (
+          <div className="absolute inset-0 z-10 animate-pulse bg-gray-200">
+            <div className="bg-gray-300" />
+          </div>
+        )}
+        <span style={{ opacity: loading ? 0 : 1, display: 'block' }}>
+          <ImageZoom
+            src={card.src}
+            alt={`${index}`}
+            width={500}
+            height={500}
+            onLoad={() => setLoading(false)}
+          />
+        </span>
+      </div>
+    );
+  },
 );
 
 Card.displayName = 'Card';
