@@ -17,8 +17,9 @@ jobs:
   copy_generate_art:
     runs-on: ubuntu-latest
     env:
-      GENERATIVE_ART_REPO: 'KarChunT/generative-art'
-      GENERATIVE_ART_REPO_PATH: 'generative-art'
+      GENERATIVE_ART_REPO: 'KarChunT/i-love-i-like-i-build'
+      GENERATIVE_ART_REPO_PATH: 'i-love-i-like-i-build'
+      GENERATIVE_ART_PROJECT_PATH: 'project/generative-art'
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -41,7 +42,7 @@ jobs:
           mkdir -p public/gallery/art
 
           # Copy files to the temporary directory
-          cp -r ${{ env.GENERATIVE_ART_REPO_PATH }}/output/images/* public/gallery/art
+          cp -r ${{ env.GENERATIVE_ART_REPO_PATH }}/${{ env.GENERATIVE_ART_PROJECT_PATH }}/output/images/* public/gallery/art
 
           # Clean up original generative-art directory
           rm -rf ${{ env.GENERATIVE_ART_REPO_PATH }}
