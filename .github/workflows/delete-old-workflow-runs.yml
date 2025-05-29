@@ -8,12 +8,12 @@ on:
       retain_days:
         description: 'Number of days to retain workflow runs'
         required: false
-        default: 7
+        default: 0 # 0 means no retention
         type: number
       keep_minimum_runs:
         description: 'Minimum number of workflow runs to keep'
         required: false
-        default: 3
+        default: 0 # 0 means no minimum runs to keep
         type: number
 
 jobs:
