@@ -17,6 +17,7 @@ import { GithubInfo } from 'fumadocs-ui/components/github-info';
 import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { InlineTOC } from 'fumadocs-ui/components/inline-toc';
 import { TypeTable } from 'fumadocs-ui/components/type-table';
 import { Heading } from 'fumadocs-ui/components/heading';
 import Comments from '@/components/Comments';
@@ -35,6 +36,7 @@ export default async function Page(props: {
   const page = source.getPage(params.slug);
   if (!page) notFound();
 
+  const toc = page.data.toc;
   const MDXContent = page.data.body;
 
   return (
@@ -51,6 +53,8 @@ export default async function Page(props: {
     >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
+      {toc.length > 0 && <InlineTOC className="xl:hidden" items={toc} />}
+
       <DocsBody>
         <MDXContent
           components={{
