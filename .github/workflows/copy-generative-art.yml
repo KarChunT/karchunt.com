@@ -19,7 +19,7 @@ jobs:
     env:
       GENERATIVE_ART_REPO: 'KarChunT/i-love-i-like-i-build'
       GENERATIVE_ART_REPO_PATH: 'i-love-i-like-i-build'
-      GENERATIVE_ART_PROJECT_PATH: 'project/generative-art'
+      GENERATIVE_ART_PROJECT_PATH: 'projects/generative-art'
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
