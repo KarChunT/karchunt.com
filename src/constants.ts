@@ -307,6 +307,13 @@ export const DOCUMENTATION: DocItem[] = [
       'Taskfile is a task runner / build tool that simplifies the automation of routine development tasks.',
     link: '/docs/taskfile',
   },
+  {
+    icon: '🍌',
+    title: 'Python Object-Oriented Programming (OOP)',
+    description:
+      'Object-Oriented Programming (OOP) is a programming paradigm that uses objects and classes to structure software programs.',
+    link: '/docs/python-oop',
+  },
   // {
   //   icon: '🍐',
   //   title: 'Data Structures and Algorithms',
