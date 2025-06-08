@@ -16,6 +16,7 @@ import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock';
 import { GithubInfo } from 'fumadocs-ui/components/github-info';
 import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Card, Cards } from 'fumadocs-ui/components/card';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 import { InlineTOC } from 'fumadocs-ui/components/inline-toc';
 import { TypeTable } from 'fumadocs-ui/components/type-table';
@@ -91,6 +92,8 @@ export default async function Page(props: {
             // you can add other MDX components here
             Accordion,
             Accordions,
+            Card,
+            Cards,
             File,
             Files,
             Folder,
