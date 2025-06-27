@@ -1,8 +1,9 @@
 name: Copy generative art
 
 on:
-  schedule:
-    - cron: '0 12 * * 1' # Every Monday at 12 PM UTC
+  # # off this service
+  # schedule:
+  #   - cron: '0 12 * * 1' # Every Monday at 12 PM UTC
   workflow_dispatch:
 
 concurrency:
