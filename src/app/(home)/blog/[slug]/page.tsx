@@ -17,6 +17,7 @@ import defaultMdxComponents from 'fumadocs-ui/mdx';
 import { Control } from '@/components/page/blog/control';
 import Comments from '@/components/Comments';
 import { Badge } from '@/components/ui/badge';
+import GenericComponent from '@/components/GenericComponent';
 
 const Page = async (props: { params: Promise<{ slug: string }> }) => {
   const params = await props.params;
@@ -67,6 +68,7 @@ const Page = async (props: { params: Promise<{ slug: string }> }) => {
               TypeTable,
               Image,
               ImageZoom,
+              GenericComponent,
               img: (props) => <ImageZoom {...(props as any)} />,
               strong: (props) => <strong className="text-primary" {...props} />,
             }}

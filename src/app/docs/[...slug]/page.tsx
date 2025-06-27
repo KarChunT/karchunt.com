@@ -27,6 +27,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from '@/components/ui/hover-card';
+import GenericComponent from '@/components/GenericComponent';
 
 export const revalidate = false;
 
@@ -105,6 +106,7 @@ export default async function Page(props: {
             DynamicCodeBlock,
             GithubInfo,
             TypeTable,
+            GenericComponent,
             img: (props) => <ImageZoom {...(props as any)} />,
             strong: (props) => <strong className="text-primary" {...props} />,
             h1: (props) => <Heading as="h1" {...props} />,
