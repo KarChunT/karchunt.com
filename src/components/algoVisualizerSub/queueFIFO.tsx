@@ -55,7 +55,7 @@ const QueueFIFOVisualizer = () => {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         <Button onClick={enqueueRandom} disabled={isAnimating} size="sm">
           <IconPlus className="mr-1 h-4 w-4" />
           Enqueue
