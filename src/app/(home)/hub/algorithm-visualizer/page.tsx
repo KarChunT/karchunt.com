@@ -1,8 +1,9 @@
 'use client';
 
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
-import BubbleSortVisualizer from '@/components/algoVisualizerSub/bubbleSort';
 import AlgorithmCard from '@/components/algoVisualizerSub/algorithmCard';
+import BubbleSortVisualizer from '@/components/algoVisualizerSub/bubbleSort';
+import QueueFIFOVisualizer from '@/components/algoVisualizerSub/queueFIFO';
 
 const algorithms: AlgorithmVisualizerSchema = {
   Sorting: {
@@ -11,6 +12,14 @@ const algorithms: AlgorithmVisualizerSchema = {
       description:
         "Watch how bubble sort compares adjacent elements and swaps them if they're in the wrong order. Red bars indicate elements being compared, green bars are sorted.",
       VisualizerComponent: BubbleSortVisualizer,
+    },
+  },
+  Queue: {
+    'Queue FIFO': {
+      title: 'Queue FIFO Algorithm',
+      description:
+        'Visualize the First-In-First-Out (FIFO) behavior of a queue. Elements are added to the rear (enqueue) and removed from the front (dequeue).',
+      VisualizerComponent: QueueFIFOVisualizer,
     },
   },
 };
