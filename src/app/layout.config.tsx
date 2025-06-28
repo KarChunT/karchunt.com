@@ -13,6 +13,7 @@ import {
   IconCertificate2,
   IconColorFilter,
   IconTools,
+  IconHierarchy3,
 } from '@tabler/icons-react';
 
 const allDocItems = DOCUMENTATION.map((doc, index) => ({
@@ -101,6 +102,16 @@ export const baseOptions: BaseLayoutProps = {
           icon: <IconTools />,
           menu: {
             className: 'lg:col-start-1',
+          },
+        },
+        {
+          text: 'Algorithm Visualizer',
+          description:
+            'Interactive animations of data structures and algorithms.',
+          url: '/hub/algorithm-visualizer',
+          icon: <IconHierarchy3 />,
+          menu: {
+            className: 'lg:col-start-2',
           },
         },
       ],
