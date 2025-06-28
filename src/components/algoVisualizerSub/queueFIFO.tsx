@@ -64,6 +64,7 @@ const QueueFIFOVisualizer = () => {
           onClick={dequeue}
           disabled={isAnimating || queue.length === 0}
           size="sm"
+          className="bg-red-600 hover:bg-red-700"
         >
           <IconMinus className="mr-1 h-4 w-4" />
           Dequeue
