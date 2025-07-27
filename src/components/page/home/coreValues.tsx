@@ -100,14 +100,14 @@ const items = [
     description:
       'Learn directly from top engineers and founders with real-world experience, pushing you to not just create but improve and innovate.',
     icon: <NotebookPen className="size-6" />,
-    size: 'large' as const,
+    size: 'small' as const,
   },
   {
     title: 'Discover the beauty of coding and architecture design',
     description:
       'Exploring the synergy between coding and architectural design is the beauty of the software system in terms of principles of structure, creativity, and problem-solving.',
     icon: <PenTool className="size-6" />,
-    size: 'small' as const,
+    size: 'large' as const,
   },
 ];
 
@@ -123,7 +123,7 @@ export default function BentoGrid1() {
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-4 pt-12 pb-24">
+    <div className="mx-auto max-w-6xl px-4 pb-24">
       <motion.div
         className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-6"
         variants={containerVariants}
