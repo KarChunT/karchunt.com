@@ -186,6 +186,12 @@
   }
 }
 
+article ul li a,
+article p a {
+  /* @apply text-primary; */
+  text-decoration-color: hsl(var(--primary));
+}
+
 code {
   counter-reset: step;
   counter-increment: step 0;
