@@ -56,7 +56,6 @@ export const baseOptions: BaseLayoutProps = {
     {
       type: 'menu',
       text: 'Docs',
-      url: '/docs',
       items: allDocItems,
     },
     {
