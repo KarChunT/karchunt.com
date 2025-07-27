@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { APPNAME } from '@/constants';
+import { APP_NAME } from '@/constants';
 import { blog } from '@/lib/source';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -76,7 +76,7 @@ export default function Page(): React.ReactElement {
         // }}
       >
         <h1 className="border-fd-foreground mb-4 border-b-4 pb-2 text-4xl font-bold md:text-5xl">
-          {APPNAME} Blog
+          {APP_NAME} Blog
         </h1>
         <p className="text-sm md:text-base">
           Deep roots, vibrant growth. Explore ideas that inspire and stories
