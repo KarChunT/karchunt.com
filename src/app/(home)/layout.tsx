@@ -5,7 +5,7 @@ import Footer from '@/components/footer';
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <HomeLayout {...baseOptions}>
+    <HomeLayout className="p-0" {...baseOptions}>
       {children}
       <Footer />
     </HomeLayout>
