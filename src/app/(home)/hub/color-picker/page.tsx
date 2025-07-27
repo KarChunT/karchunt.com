@@ -141,7 +141,7 @@ export default function ColorPicker() {
   }, []);
 
   return (
-    <div className="mx-auto w-full max-w-4xl">
+    <div className="mx-auto mt-16 w-full max-w-4xl">
       <CardContent className="space-y-6 p-6">
         <div className="grid gap-6 md:grid-cols-1">
           <div className="space-y-4">
