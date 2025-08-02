@@ -192,6 +192,10 @@ article p a {
   text-decoration-color: hsl(var(--primary));
 }
 
+[data-theme-toggle] {
+  display: none !important;
+}
+
 code {
   counter-reset: step;
   counter-increment: step 0;
