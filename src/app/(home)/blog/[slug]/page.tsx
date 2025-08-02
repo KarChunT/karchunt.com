@@ -40,10 +40,10 @@ const Page = async (props: { params: Promise<{ slug: string }> }) => {
           backgroundBlendMode: 'multiply, multiply, normal',
         }}
       >
-        <h1 className="mb-2 text-3xl font-bold text-white">
+        <h1 className="mb-2 text-3xl font-bold text-black">
           {page.data.title}
         </h1>
-        <p className="mb-4 text-white/80">{page.data.description}</p>
+        <p className="mb-4 text-black/80">{page.data.description}</p>
       </div>
 
       <article className="flex flex-col px-0 py-8 lg:flex-row">
