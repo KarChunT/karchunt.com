@@ -27,28 +27,37 @@ const Page = async (props: { params: Promise<{ slug: string }> }) => {
   const { body: Mdx, toc } = page.data;
 
   return (
-    <div className="container py-4 lg:py-8">
+    <div className="container mt-16 py-4 lg:py-8">
       <div
         className="rounded-xl border px-8 py-12"
+        // style={{
+        //   backgroundColor: 'black',
+        //   backgroundImage: [
+        //     'linear-gradient(140deg, hsla(220,94%,54%,0.3), transparent 50%)',
+        //     'linear-gradient(to left top, hsla(160,90%,50%,0.8), transparent 50%)',
+        //     'radial-gradient(circle at 100% 100%, hsla(280,100%,82%,1), hsla(280,40%,40%,1) 17%, hsla(280,40%,40%,0.5) 20%, transparent)',
+        //   ].join(', '),
+        //   backgroundBlendMode: 'difference, difference, normal',
+        // }}
         style={{
-          backgroundColor: 'black',
+          backgroundColor: '#fef9c3', // light yellow
           backgroundImage: [
-            'linear-gradient(140deg, hsla(220,94%,54%,0.3), transparent 50%)',
-            'linear-gradient(to left top, hsla(160,90%,50%,0.8), transparent 50%)',
-            'radial-gradient(circle at 100% 100%, hsla(280,100%,82%,1), hsla(280,40%,40%,1) 17%, hsla(280,40%,40%,0.5) 20%, transparent)',
+            'linear-gradient(140deg, hsla(50,100%,70%,0.3), transparent 50%)',
+            'linear-gradient(to left top, hsla(45,98%,60%,0.8), transparent 50%)',
+            'radial-gradient(circle at 100% 100%, hsla(48,100%,85%,1), hsla(48,80%,60%,1) 17%, hsla(48,80%,60%,0.5) 20%, transparent)',
           ].join(', '),
-          backgroundBlendMode: 'difference, difference, normal',
+          backgroundBlendMode: 'multiply, multiply, normal',
         }}
       >
-        <h1 className="mb-2 text-3xl font-bold text-white">
+        <h1 className="mb-2 text-3xl font-bold text-black">
           {page.data.title}
         </h1>
-        <p className="mb-4 text-white/80">{page.data.description}</p>
+        <p className="mb-4 text-black/80">{page.data.description}</p>
       </div>
 
       <article className="flex flex-col px-0 py-8 lg:flex-row">
         <div className="prose min-w-0 flex-1 p-4">
-          {toc.length > 0 && <InlineTOC items={toc} />}
+          {toc.length > 0 && <InlineTOC defaultOpen items={toc} />}
           <Mdx
             components={{
               ...defaultMdxComponents,

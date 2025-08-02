@@ -109,7 +109,7 @@ const BubbleSortVisualizer = () => {
                 ? 'bg-green-500'
                 : currentIndices.includes(index)
                   ? 'bg-red-500'
-                  : 'bg-blue-500'
+                  : 'bg-yellow-500'
             }`}
             style={{ height: `${(value / 100) * 200}px` }}
             animate={{ height: `${(value / 100) * 200}px` }}

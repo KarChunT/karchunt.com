@@ -3,7 +3,7 @@ import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 import {
   GITHUBURL,
   LINKEDINURL,
-  APPNAME,
+  APP_NAME,
   APPICON,
   DOCUMENTATION,
 } from '@/constants';
@@ -43,7 +43,7 @@ export const baseOptions: BaseLayoutProps = {
     title: (
       <>
         <Image src={APPICON} width={24} height={24} alt="Penguin-KarChunT" />
-        {APPNAME}
+        {APP_NAME}
       </>
     ),
   },
@@ -56,7 +56,6 @@ export const baseOptions: BaseLayoutProps = {
     {
       type: 'menu',
       text: 'Docs',
-      url: '/docs',
       items: allDocItems,
     },
     {

@@ -1,5 +1,5 @@
 export const APPICON: string = '/penguin-nobg.webp';
-export const APPNAME: string = 'KarChunT';
+export const APP_NAME: string = 'KarChunT';
 export const JOBPOSITION: string = 'Infrastructure and DevOps Engineer';
 export const JOBCOMPANY: string = 'Intel';
 export const GITHUBURL: string = 'https://github.com/KarChunT/karchunt.com';
@@ -24,65 +24,42 @@ export const CHANNELS = {
   },
 };
 
-export const RAININGIMG: string = '/penguin-nobg.webp';
-export const FLIPWORDS: Array<string> = ['World', 'Industry', 'Technology'];
+export const TOP_TAGLINE = [
+  { text: 'Welcome', delay: 0 },
+  { text: 'to', delay: 200 },
+  { text: <b>{APP_NAME}</b>, delay: 400 },
+  { text: '—', delay: 600 },
+  { text: 'Public', delay: 800 },
+  { text: 'Engineering', delay: 1000 },
+  { text: 'digital', delay: 1200 },
+  { text: 'notebook', delay: 1400 },
+];
 
-export const COREVALUES = {
-  'core-1': {
-    title: 'Build with Passion',
-    content:
-      'Passion means everything to me, as part of my passion and motivation, I love to inspire people and my ambition is to develop a new technology that can revolutionize the world.',
-    srcImage: '/core-values/build-with-passion.png',
-  },
-  'core-2': {
-    title: 'Discover the beauty of coding and architecture design',
-    content:
-      'Exploring the synergy between coding and architectural design is the beauty of the software system in terms of principles of structure, creativity, and problem-solving.',
-    srcImage: '/core-values/beauty-of-coding.png',
-  },
-  'core-3': {
-    title: 'Learn, build, and apply',
-    content:
-      'I learn technical skills from many sources, and then I will document them, but the main thing for me is understanding and knowing how to apply them.',
-    srcImage: '/core-values/learn-apply.png',
-  },
-};
+export const MAIN_HEADLINE = [
+  { text: 'Blending', delay: 1600 },
+  { text: 'and', delay: 1750 },
+  { text: 'amplifying', delay: 1900 },
+  { text: 'each', delay: 2050 },
+  { text: "skill's", delay: 2200 },
+  { text: 'strength', delay: 2350 },
+];
 
-export const SKILLS_SLUGS = [
-  'typescript',
-  'java',
-  'react',
-  'html5',
-  'css3',
-  'nextdotjs',
-  'postgresql',
-  'docker',
-  'git',
-  'jira',
-  'github',
-  'gitlab',
-  'sonarqube',
-  'dotenv',
-  'terraform',
-  'python',
-  'fastapi',
-  'argo',
-  'trivy',
-  'istio',
-  'grafana',
-  'prometheus',
-  'githubactions',
-  'gnubash',
-  'kubernetes',
-  'linux',
-  'ubuntu',
-  'jenkins',
-  'ansible',
-  'vagrant',
-  'tailwindcss',
-  'gitlfs',
-  'javascript',
-  'snyk',
+export const HERO_SUB_HEADLINE = [
+  { text: 'Reinforces', delay: 2600 },
+  { text: 'continuous', delay: 2750 },
+  { text: 'growth', delay: 2900 },
+  { text: 'and', delay: 3050 },
+  { text: 'adaptation', delay: 3200 },
+];
+
+export const HERO_BOTTOM_TAGLINE = [
+  { text: 'Curated', delay: 3500 },
+  { text: 'hub', delay: 3650 },
+  { text: 'for', delay: 3800 },
+  { text: 'documentating', delay: 3950 },
+  { text: '—', delay: 4050 },
+  { text: 'my', delay: 4100 },
+  { text: 'journeys', delay: 4250 },
 ];
 
 export const PERSONAL = [

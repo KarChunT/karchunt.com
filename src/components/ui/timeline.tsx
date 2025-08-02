@@ -22,7 +22,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
   const handleClick = () => {
     const end = Date.now() + 3 * 1000; // 3 seconds
-    const colors = ['#a786ff', '#fd8bbc', '#eca184', '#f8deb1'];
+    const colors = ['#ffe066', '#fd8bbc', '#38ef7d', '#11998e']; // changed yellow to green/blue
 
     const frame = () => {
       if (Date.now() > end) return;
@@ -73,7 +73,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         </h1>
 
         <p className="mt-6 max-w-sm text-sm leading-5 text-neutral-700 first:mt-0 md:text-base dark:text-neutral-300">
-          Here&apos;s a timeline of my certification journey. Let us enjoy the
+          Here&apos;s a timeline of my certification journey. Let us enjoy my
           journey together.
         </p>
 
@@ -116,7 +116,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               height: heightTransform,
               opacity: opacityTransform,
             }}
-            className="absolute inset-x-0 top-0 w-[2px] rounded-full bg-gradient-to-t from-[#11998e] from-[0%] via-[#38ef7d] via-[10%] to-transparent"
+            className="absolute inset-x-0 top-0 w-[2px] rounded-full bg-gradient-to-t from-[#ffe066] from-[0%] via-[#e2d62f] via-[10%] to-transparent"
           />
         </div>
       </div>

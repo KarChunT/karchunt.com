@@ -20,7 +20,7 @@ const Highlight = ({
   return (
     <span
       className={cn(
-        'text-primary bg-emerald-100 px-1 py-0.5 font-bold dark:bg-emerald-700/[0.2]',
+        'text-primary bg-emerald-100 px-1 py-0.5 font-bold dark:bg-yellow-700/[0.2]',
         className,
       )}
     >
@@ -33,7 +33,7 @@ const page = () => {
   const flipWords = ['Meee', 'Iii', 'Myselfff'];
 
   return (
-    <div className="container px-2 py-4 lg:py-8">
+    <div className="container mt-16 px-2 py-4 lg:py-8">
       <div className="mx-auto max-w-[58rem] px-4">
         <h1 className="mt-2 text-4xl font-bold tracking-tight">
           <FlipWords className="px-0" words={flipWords} />
@@ -60,7 +60,7 @@ const page = () => {
           world. As part of my motivation to inspire people, this site shares
           what I have learned and studied previously. It would be the greatest
           thing I could ever hope for if someone looked at me and said,{' '}
-          <Highlight>Thanks to you, I didn&apos;t give up</Highlight>.🥳
+          <Highlight>Thanks to you, I didn&apos;t give up</Highlight>🥳.
         </p>
 
         <p className="mt-6 leading-7 first:mt-0">
