@@ -55,7 +55,9 @@ export default async function Page(props: {
     >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
-      {toc.length > 0 && <InlineTOC className="xl:hidden" items={toc} />}
+      {toc.length > 0 && (
+        <InlineTOC className="xl:hidden" defaultOpen items={toc} />
+      )}
 
       <DocsBody>
         <MDXContent
