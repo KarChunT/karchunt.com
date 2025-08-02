@@ -38,7 +38,7 @@ const page = () => {
   }));
 
   return (
-    <div className="container px-2 py-4 lg:py-8">
+    <div className="container mt-16 px-2 py-4 lg:py-8">
       <div className="mx-auto max-w-[58rem] overflow-hidden px-4">
         <Timeline data={certificates} />
       </div>
