@@ -6,7 +6,7 @@ import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
 
 const page = () => {
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative mt-16 overflow-hidden">
       <Spotlight />
       <div className="@container container mx-auto max-w-5xl px-6 py-4 lg:py-8">
         <div className="px-4 text-center">
@@ -14,9 +14,18 @@ const page = () => {
             My <span className="text-primary">Kubestronaut</span> Journey.
           </h1>
           <div className="mt-4 flex flex-col items-center justify-center gap-2">
-            <b>#8 Kubestronaut in Malaysia, the world&apos;s #1300+🌍</b>
-            <b>#1 Kubestronaut in Penang, Malaysia</b>
-            <b>#1 Kubestronaut at Intel Corporation</b>
+            <b>
+              <span className="text-primary">#8</span> Kubestronaut in Malaysia,
+              the world&apos;s <span className="text-primary">#1300+</span>🌍
+            </b>
+            <b>
+              <span className="text-primary">#1</span> Kubestronaut in Penang,
+              Malaysia
+            </b>
+            <b>
+              <span className="text-primary">#1</span> Kubestronaut at Intel
+              Corporation
+            </b>
             <b>
               Refer my{' '}
               <Link
