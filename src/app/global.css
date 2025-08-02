@@ -172,6 +172,8 @@
   --border: 47.9 14.4% 15.9%;
   --input: 47.9 14.4% 15.9%;
   --ring: 47.9 95.8% 53.1%;
+
+  --color-fd-primary: hsl(var(--primary));
 }
 
 @layer base {
@@ -186,11 +188,10 @@
   }
 }
 
-article ul li a,
+/* article ul li a,
 article p a {
-  /* @apply text-primary; */
   text-decoration-color: hsl(var(--primary));
-}
+} */
 
 [data-theme-toggle] {
   display: none !important;
