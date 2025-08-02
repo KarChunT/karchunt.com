@@ -37,7 +37,7 @@ const Page = () => {
   );
 
   return (
-    <div>
+    <div className="mt-16">
       <div className="@container container mx-auto max-w-5xl px-6 py-4 lg:py-8">
         <div className="px-4 text-center">
           <h1 className="mt-2 text-4xl font-bold tracking-tight">
