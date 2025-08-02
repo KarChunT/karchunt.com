@@ -15,6 +15,21 @@ export default function Layout({ children }: { children: ReactNode }) {
       themeSwitch={{
         enabled: false,
       }}
+      sidebar={{
+        tabs: {
+          transform(option, node) {
+            const meta = source.getNodeMeta(node);
+            if (!meta || !meta.data.icon) return option;
+
+            return {
+              ...option,
+              icon: (
+                <div className="rounded-lg border p-2">{meta.data.icon}</div>
+              ),
+            };
+          },
+        },
+      }}
     >
       {children}
     </DocsLayout>
