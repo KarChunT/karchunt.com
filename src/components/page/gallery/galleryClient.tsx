@@ -1,6 +1,5 @@
 'use client';
 
-import { FocusCards } from '@/components/ui/focus-cards';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -9,6 +8,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Card, CardContent } from '@/components/ui/card';
+import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
 import { useState, useEffect } from 'react';
 
 const GalleryClient = ({ items }: { items: GalleryProps[] }) => {
@@ -47,7 +48,7 @@ const GalleryClient = ({ items }: { items: GalleryProps[] }) => {
   }, [filter]);
 
   return (
-    <div className="mx-auto mt-8 max-w-5xl px-6 pb-10">
+    <div className="mx-auto mt-24 max-w-5xl px-6 pb-10">
       <div className="flex justify-center pb-8">
         <Select value={filter} onValueChange={setFilter}>
           <SelectTrigger className="w-full sm:w-[180px]">
@@ -63,8 +64,27 @@ const GalleryClient = ({ items }: { items: GalleryProps[] }) => {
         </Select>
       </div>
 
-      <FocusCards cards={visibleItems} />
-
+      <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-4 md:grid-cols-3">
+        {visibleItems.map((item, index) => {
+          const [loading, setLoading] = useState(true);
+          return (
+            <Card key={index} className={`p-0 ${loading ? 'bg-gray-300' : ''}`}>
+              <CardContent className="p-0">
+                <span style={{ opacity: loading ? 0 : 1, display: 'block' }}>
+                  <ImageZoom
+                    src={item.src}
+                    alt={`${index}`}
+                    width={500}
+                    height={500}
+                    onLoad={() => setLoading(false)}
+                    className="rounded-lg"
+                  />
+                </span>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
       {visibleCount < filteredItems.length && ( // Show button only if there are more items to load
         <div className="mt-6 flex justify-center">
           <Button onClick={handleLoadMore}>Load More</Button>
