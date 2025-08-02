@@ -31,13 +31,13 @@ const Page = async (props: { params: Promise<{ slug: string }> }) => {
       <div
         className="rounded-xl border px-8 py-12"
         style={{
-          backgroundColor: 'black',
+          backgroundColor: '#fef9c3', // light yellow
           backgroundImage: [
-            'linear-gradient(140deg, hsla(50,100%,50%,0.3), transparent 50%)',
-            'linear-gradient(to left top, hsla(45,100%,60%,0.8), transparent 50%)',
-            'radial-gradient(circle at 100% 100%, hsla(55,100%,82%,1), hsla(55,40%,40%,1) 17%, hsla(55,40%,40%,0.5) 20%, transparent)',
+            'linear-gradient(140deg, hsla(50,100%,70%,0.3), transparent 50%)',
+            'linear-gradient(to left top, hsla(45,98%,60%,0.8), transparent 50%)',
+            'radial-gradient(circle at 100% 100%, hsla(48,100%,85%,1), hsla(48,80%,60%,1) 17%, hsla(48,80%,60%,0.5) 20%, transparent)',
           ].join(', '),
-          backgroundBlendMode: 'difference, difference, normal',
+          backgroundBlendMode: 'multiply, multiply, normal',
         }}
       >
         <h1 className="mb-2 text-3xl font-bold text-white">
