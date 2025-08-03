@@ -17,4 +17,7 @@ export const blog = loader({
 export const projects = loader({
   baseUrl: '/projects',
   source: createMDXSource(myProjects),
+  url(slugs, locale) {
+    return '/hub/' + ['projects', ...slugs].join('/');
+  },
 });

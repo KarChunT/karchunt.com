@@ -14,6 +14,8 @@ import {
   IconColorFilter,
   IconTools,
   IconHierarchy3,
+  IconImageInPicture,
+  IconBriefcase,
 } from '@tabler/icons-react';
 
 const allDocItems = DOCUMENTATION.map((doc, index) => ({
@@ -57,11 +59,6 @@ export const baseOptions: BaseLayoutProps = {
       type: 'menu',
       text: 'Docs',
       items: allDocItems,
-    },
-    {
-      text: 'Projects',
-      url: '/projects',
-      active: 'nested-url',
     },
     {
       type: 'menu',
@@ -113,17 +110,31 @@ export const baseOptions: BaseLayoutProps = {
             className: 'lg:col-start-2',
           },
         },
+        {
+          text: 'Gallery',
+          description: 'A collection of images.',
+          url: '/hub/gallery',
+          icon: <IconImageInPicture />,
+          menu: {
+            className: 'lg:col-start-3',
+          },
+        },
+        {
+          text: 'Projects',
+          description: 'A collection of my projects.',
+          url: '/hub/projects',
+          icon: <IconBriefcase />,
+          active: 'nested-url',
+          menu: {
+            className: 'lg:col-start-1',
+          },
+        },
       ],
     },
     {
       text: 'Blog',
       url: '/blog',
       active: 'nested-url',
-    },
-    {
-      text: 'Gallery',
-      url: '/gallery',
-      active: 'url',
     },
     {
       type: 'icon',
