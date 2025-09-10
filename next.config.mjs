@@ -8,6 +8,9 @@ const withNextra = nextra({
   readingTime: true,
   staticImage: true,
   latex: true,
+  search: {
+    codeblocks: true,
+  },
 });
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
