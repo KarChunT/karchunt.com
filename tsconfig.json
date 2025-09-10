@@ -1,33 +1,22 @@
 {
   "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
-    "target": "ESNext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "strict": false,
     "noEmit": true,
-    "noImplicitAny": false,
-    "esModuleInterop": true,
+    "incremental": true,
     "module": "esnext",
+    "esModuleInterop": true,
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true,
-    "paths": {
-      "@/.source": [
-        "./.source/index.ts"
-      ],
-      "@/*": [
-        "./src/*"
-      ]
-    },
     "plugins": [
       {
         "name": "next"
@@ -35,13 +24,13 @@
     ]
   },
   "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    "next-env.d.ts",
-    "dist/types/**/*.ts"
+    "src/app/_meta.ts",
+    "src/app/hub/projects/page.tsx",
+    "src/app/[[...mdxPath]]/page.jsx"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

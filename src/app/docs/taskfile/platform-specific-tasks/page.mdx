@@ -1,0 +1,70 @@
+# Platform-Specific Tasks
+
+<Callout title="Supported Platforms & Architectures">
+  Refer here for the [list of supported platforms and architectures](https://github.com/golang/go/blob/master/src/internal/syslist/syslist.go)
+</Callout>
+
+You can **create platform-specific tasks in Taskfile to run commands based on the operating system**. This is useful when you need to **perform different actions on different platforms**, such as installing software or running scripts.
+
+**If there is no OS match, the task will not run (no error will be thrown).**
+
+## Restrict to Specific Platforms
+
+```yaml filename="Taskfile.yml"
+version: '3'
+
+tasks:
+  hello:windows:
+    desc: Say hello from Windows
+    platforms: [windows]
+    cmds:
+      - echo "Hello from Windows!"
+
+  hello:linux:
+    desc: Say hello from Linux and Darwin
+    platforms: [linux, darwin]
+    cmds:
+      - echo "Hello from Linux and Darwin!"
+```
+**Remember multiple platforms are supported.**
+
+## Restrict to Specific Architectures
+
+```yaml filename="Taskfile.yml"
+version: '3'
+
+tasks:
+  hello:amd64:
+    desc: Say hello from amd64
+    platforms: [amd64]
+    cmds:
+      - echo "Hello from amd64!"
+```
+
+## Restrict to Specific Platforms and/or Architectures
+
+```yaml filename="Taskfile.yml"
+version: '3'
+tasks:
+  hello:windows:amd64:
+    desc: Say hello from Windows amd64
+    platforms: [windows/amd64]
+    cmds:
+      - echo "Hello from Windows amd64!"
+```
+
+## Restrict to Specific Platforms and/or Architectures within an individual commands
+
+```yaml filename="Taskfile.yml"
+version: '3'
+tasks:
+  hello:
+    cmds:
+      - cmd: echo "Hello from Windows!"
+        platforms: [windows]
+      - cmd: echo "Hello from Windows!"
+        platforms: [linux, amd64]
+      - cmd: |-
+          echo "Running on all platforms!"
+          echo "This will run regardless of the platform."
+```

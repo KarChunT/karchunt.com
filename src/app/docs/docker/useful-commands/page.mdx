@@ -1,0 +1,44 @@
+# Useful commands
+
+## Docker system events
+
+[Reference](https://docs.docker.com/reference/cli/docker/system/events/)
+
+It will get **real-time events** that were logged from the server. So, all changes that are made to containers or networks are logged under this command.
+
+```bash
+docker system events --since 60m
+docker system events --since 2024-05-30
+docker system events --filter '<key>=<value>'
+docker system events --filter 'container=588a23dac085'
+```
+
+## Disk usage metrics for docker objects
+
+It will display the **actual size** of the **different objects** that are managed by Docker.
+
+```bash
+docker system df
+docker system df -v
+```
+
+## Copy
+
+<Callout type="info">
+  Make sure the directory exists for both side paths. You can copy entire folder
+  too.
+</Callout>
+
+**Host to container**
+
+```bash
+docker container cp <local-path> <container>:<container-path>
+docker container cp /home/username/config.yaml apiapp:/etc/api/config.yaml
+```
+
+**Container to host**
+
+```bash
+docker container cp <container>:<container-path> <local-path>
+docker container cp apiapp:/etc/api/config.yaml /home/username/config.yaml
+```

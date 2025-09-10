@@ -1,0 +1,28 @@
+# Silent Mode
+
+Silent Mode in Taskfile allows you to **run tasks without displaying their output**, which can be useful for background tasks or when you want to **keep the console clean**. To enable silent mode, you can use the `--silent` flag when running a task or use `silent: true` in the Taskfile.
+
+There are **four ways** to enable silent mode:
+- at **command** level
+- at **task** level
+- **globally at taskfile** level or using `--slient` flag
+- **redirect the output** to `/dev/null`
+
+```yaml filename="Taskfile.yaml"
+version: '3'
+
+silent: true # global silent mode
+
+tasks:
+  silent-command-task:
+    cmds:
+      - cmd: echo "This will not be displayed in silent mode"
+        silent: true
+  silent-task:
+    silent: true
+    cmds:
+      - echo "This will not be displayed in silent mode"
+  silent-task-with-redirect:
+    cmds:
+      - echo "This will not be displayed in silent mode" > /dev/null
+```

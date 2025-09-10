@@ -1,0 +1,84 @@
+# Abstraction
+
+## Concept
+
+<Callout title="What is the difference between abstraction and encapsulation?">
+  - **Abstraction** is about **hiding complexity** and **showing only essential features**.
+  - **Encapsulation** is about **hiding data** and **controlling access to the internal state** of an object.
+</Callout>
+
+**Hiding complex internal implementation details** and showing only the **essential features** of the object. It allows the developer to **focus on "what to do" (focus on what an object does)** rather than **"how to do it" (how it achieves its functionality)**.
+
+| Types of Abstraction | Description |
+|-----------------------|-------------|
+| Data Abstraction | **Hides the details of data representation** and focuses on the essential properties of the data. |
+| Process Abstraction | **Hides the implementation of operations** and focuses on the essential features of the process. |
+| Control Abstraction | **Hides the complexity of control flow** and focuses on the essential features of control structures. |
+
+## Implementation
+
+Remember Abstract classes **cannot be instantiated directly**. They are meant to be subclassed, and the **subclasses must implement the abstract methods** defined in the abstract class. It can **contain both abstract methods** (without implementation) and **concrete methods** (with implementation).
+
+```python filename="shapes.py"
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+  @abstractmethod
+  def area(self):
+    pass
+
+  @abstractmethod
+  def perimeter(self):
+    pass
+
+class Circle(Shape):
+  def __init__(self, radius):
+    self.radius = radius
+
+  def area(self):
+    return 3.14159 * self.radius ** 2
+
+  def perimeter(self):
+    return 2 * 3.14159 * self.radius
+
+# This will raise TypeError:
+# shape = Shape() # Can't instantiate abstract class
+
+circle = Circle(5)
+print(circle.area())
+```
+
+Let me give you another example of abstraction.
+
+```python filename="database.py"
+class DatabaseConnection(ABC):
+  @abstractmethod
+  def connect(self):
+    pass
+
+  @abstractmethod
+  def execute_query(self, query):
+    pass
+
+  def get_user(self, user_id):
+    query = f"SELECT * FROM users WHERE id = {user_id}"
+    return self.execute_query(query)
+
+class MySQLConnection(DatabaseConnection):
+  def connect(self):
+    # MySQL-specific connection logic
+    pass
+
+  def execute_query(self, query):
+    # MySQL-specific query execution
+    pass
+
+class PostgreSQLConnection(DatabaseConnection):
+  def connect(self):
+    # PostgreSQL-specific connection logic
+    pass
+
+  def execute_query(self, query):
+    # PostgreSQL-specific query execution
+    pass
+```

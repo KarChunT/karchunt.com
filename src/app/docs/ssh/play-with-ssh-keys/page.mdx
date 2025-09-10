@@ -1,0 +1,86 @@
+# Play with SSH Keys
+
+## Generating an SSH Key Pair
+
+Your first step should be creating a **new SSH key pair** on your computer, then you can connect **without a password** to a remote server.
+
+```bash
+# You can leave those settings as default by pressing ENTER
+ssh-keygen
+ssh-keygen -t dsa -C "Comment" -b 4096
+
+# make sure your private key file exists
+ssh-keygen -p # remove or change passphrase on private key
+ssh-keygen -l # display the SSH key fingerprint
+```
+
+For your information, private key's **passphrase** is just to **secure** the private key, so that no one will **gain access** to the remote server even they have your private key, but you have to enter your private key's passphrase everytime if you want to initiate a SSH connection, but this can avoid by using [SSH agent](#using-an-ssh-agent-to-avoid-typing-your-private-key-passphrase).
+
+It will generate `id_rsa` and `id_rsa.pub` key file to `/home/<username>/.ssh` hidden directory.
+
+- `id_rsa` = private key
+- `id_rsa.pub` = public key
+
+### Optional Parameters
+
+| Parameters | Description                                                                        | Example                         |
+| ---------- | ---------------------------------------------------------------------------------- | ------------------------------- |
+| -t         | Type of cryptographic algorithms. Default is RSA.                                  | rsa, dsa, ecdsa, ed25519        |
+| -C         | Comment                                                                            | simple comment                  |
+| -b         | The number of bits, default is 2048 bits                                           | 4096                            |
+| -p         | Removing or changing passphrase on private key (make sure private key file exists) | Your password or leave it empty |
+| -l         | Displaying the SSH key fingerprint (make sure private key file exists)             | -                               |
+
+## Copy the public SSH key to the server
+
+You can authenticate yourself to the server without a password (**passwordless**), but you have to copy your public key to the server. There are multiple ways to do it.
+
+### Using `ssh-copy-id` command
+
+```bash
+ssh-copy-id <username>@<remote-server-ip-address/name>
+
+# You can specify the public key through through "-i" option
+ssh-copy-id -i <public-key-path> <username>@<remote-server-ip-address/name>
+```
+
+After you type the remote server password, it will copy your public key from your local file `~/.ssh/id_rsa.pub` to remote server `~/.ssh/authorized_keys` file.
+
+### Manually copy SSH public key from local to a server
+
+```bash
+# You can copy your local public key through any methods you like
+cat ~/.ssh/id_rsa.pub
+mkdir -p ~/.ssh
+echo "<public_key>" >> ~/.ssh/authorized_keys
+
+# combination
+cat ~/.ssh/id_rsa.pub | ssh <username>@<remote-server-ip-address/name> "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+```
+
+## Using an SSH agent to avoid typing your private key passphrase
+
+Assume you had set your private SSH key with a passphrase, but you want to **eliminate** the typing of the private key passphrase. **SSH Agent** comes into the play to solve this kind of problem.
+
+Once the passphrase is entered for the first time, the SSH agent will **store** your **private key** to the agent so you don't have to reenter it again.
+
+```bash
+# start SSH agent
+eval $(ssh-agent)
+
+ssh-add # add your private key to agent, default to id_rsa
+ssh-add <private-key-path> # You can specify the private key path
+```
+
+## Forward SSH credentials to use on a server
+
+In order to connect to one server without a password from within another, you must **forward the SSH key information**.
+
+Before you proceed, you need to make sure your SSH agent starts and your SSH key is added to the agent ([ssh-add](#using-an-ssh-agent-to-avoid-typing-your-private-key-passphrase)).
+
+```bash
+# forwards your credentials to the server for this session
+ssh -A <username>@<remote-server-ip-address/name>
+```
+
+This will allow you to SSH into any other host that your SSH key has permission to access because the server that you are connected to right now will **"know"** your private SSH key on this server.

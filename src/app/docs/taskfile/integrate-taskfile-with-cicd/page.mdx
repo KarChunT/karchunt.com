@@ -1,0 +1,53 @@
+# Integrate Taskfile with CI/CD
+
+When you want to integrate Taskfile with your CI/CD pipeline, there are multiple ways that you can **reference the remote Taskfile**.
+- `https://raw.githubusercontent.com/<username>/<repo>/<branch>/<path>/Taskfile.yml`
+- `https://github.com/<username>/<repo>.git//<path>/Taskfile.yml?ref=main`
+  - `//<path>` make sure to include the `//` before the path.
+- `git@github.com/<username>/<repo>.git//<path>/Taskfile.yml?ref=main`
+
+<Steps>
+
+### Enable this remote experiment feature
+
+```bash
+# Set the environment variable to download the remote taskfile
+export TASK_X_REMOTE_TASKFILES=1 
+```
+
+### Include remote Taskfile or execute from CLI directly
+
+```bash
+task --taskfile https://raw.githubusercontent.com/go-task/task/main/website/static/Taskfile.yml
+```
+
+**OR**
+
+```yaml filename="Taskfile.yml"
+version: '3'
+
+includes:
+  # without authentication
+  app-remote: https://raw.githubusercontent.com/go-task/task/main/website/static/Taskfile.yml
+  # with authentication
+  app-remote-auth: https://{{.TOKEN}}@raw.githubusercontent.com/go-task/task/main/website/static/Taskfile.yml
+```
+
+```bash
+task app-remote
+
+export TOKEN=<your-token>
+task app-remote-auth
+```
+
+### [Optional]: Force download the remote Taskfile**
+
+By default, the cache will be stored in the `.task` directory. But if you want to make sure the remote Taskfile always up-to-date, you can force download it by using the `--download` flag or you can use `--clear-cache` to clear all remote cache.
+
+```bash
+# Choose one of the following commands that suits your needs
+task --download -y # force download the remote Taskfile
+task --clear-cache # clear all remote cache
+```
+
+</Steps>

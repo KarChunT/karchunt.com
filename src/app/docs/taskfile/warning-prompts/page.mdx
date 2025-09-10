@@ -1,0 +1,61 @@
+# Warning Prompts
+
+You can **prompt the user for confirmation** before running a task by using the `prompt` field in the Taskfile. This is useful for tasks that might have **significant consequences**, such as deleting files or making changes to a production environment.
+
+```yaml filename="Taskfile.yaml"
+version: '3'
+
+tasks:
+  example:
+    cmds:
+      - task: not-dangerous
+      - task: dangerous
+      - task: super-dangerous
+      - task: another-not-dangerous
+
+  not-dangerous:
+    internal: true
+    cmds:
+      - echo 'not dangerous command'
+
+  another-not-dangerous:
+    internal: true
+    cmds:
+      - echo 'another not dangerous command'
+
+  dangerous:
+    internal: true
+    prompt: This is a dangerous command... Do you want to continue?
+    cmds:
+      - echo 'dangerous command'
+
+  super-dangerous:
+    prompt:
+      - This is a dangerous command... Do you want to continue?
+      - Please confirm your action.
+    cmds:
+      - echo 'super dangerous command'
+```
+- the `prompt` field can be a **list** as well.
+
+
+```bash filename="Demo and Output"
+ubuntu@touted-mite:~/nodejsfun$ task example 
+task: [not-dangerous] echo 'not dangerous command'
+not dangerous command
+This is a dangerous command... Do you want to continue? [y/N]: n
+task: Failed to run task "example": task: Task "dangerous" cancelled by user
+
+ubuntu@touted-mite:~/nodejsfun$ task example 
+task: [not-dangerous] echo 'not dangerous command'
+not dangerous command
+This is a dangerous command... Do you want to continue? [y/N]: y
+task: [dangerous] echo 'dangerous command'
+dangerous command
+This is a dangerous command... Do you want to continue? [y/N]: y
+Please confirm your action. [y/N]: y
+task: [super-dangerous] echo 'super dangerous command'
+super dangerous command
+task: [another-not-dangerous] echo 'another not dangerous command'
+another not dangerous command
+```

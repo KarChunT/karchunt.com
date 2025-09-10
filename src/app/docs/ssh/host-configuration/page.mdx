@@ -1,0 +1,44 @@
+# Host Configuration
+
+## Host Specific Configuration file
+
+Create a config filename `config` in your local `~/.ssh` directory.
+
+```bash
+nano ~/.ssh/config
+```
+
+You can define each individual SSH configuration options into this file. You can find all the SSH configuration options from this [ssh_config](https://man.cx/ssh_config).
+
+```text filename="~/.ssh/config"
+Host * # all hosts
+  ServerAliveInterval 180
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+
+Host <remove-alias>
+  HostName <remote-host/ipaddress>
+  Port <port-number>
+  User <username>
+
+Host <remote-alias>
+  HostName <remote-host/ipaddress>
+  Port <port-number>
+
+# sample
+Host server1
+  HostName 192.168.0.1
+  Port 22
+  User karchunt
+```
+
+| Declaration           | Description                                                                                                                |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Host \*               | All hosts                                                                                                                  |
+| Host `remote-alias`   | You can name `remote-alias` whatever you want                                                                              |
+| ServerAliveInterval   | If set 180, then every 3 minutes, send a packet to the server to let it know not to close the connection                   |
+| StrictHostKeyChecking | If set "no", it will disable host checking and it will auto-add new hosts to the `known_hosts` file (fingerprint) directly |
+| UserKnownHostsFile    | Not warn on new or changed hosts                                                                                           |
+| HostName              | remove host name or IP Address                                                                                             |
+| Port                  | Port number to access                                                                                                      |
+| User                  | Username used to access                                                                                                    |

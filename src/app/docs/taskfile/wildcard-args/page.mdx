@@ -1,0 +1,39 @@
+# Wildcard Arguments
+
+Normally you can [pass arguments to a command](/docs/taskfile/forward-cli-arguments-to-cmd) in Taskfile, but sometimes you may want to **pass multiple arguments at once**. In such cases, you can use wildcard arguments.
+
+The **arguments are stored** in `.MATCH` variable.
+
+```yaml filename="Taskfile.yaml"
+version: '3'
+tasks:
+  service:*:*:
+    vars:
+      SERVICE_NAME: "{{index .MATCH 0}}"
+      REPLICAS: "{{index .MATCH 1}}"
+    cmds:
+      - 'echo Service Name: {{.SERVICE_NAME}}'
+      - 'echo Replicas: {{.REPLICAS}}'
+  service:*:
+    vars:
+      SERVICE_NAME: "{{index .MATCH 0}}"
+    cmds:
+      - 'echo Service Name: {{.SERVICE_NAME}}'
+```
+
+```bash filename="Demo and Output"
+ubuntu@touted-mite:~$ task service:nginx
+task: [service:*] echo Service Name: nginx
+Service Name: nginx
+
+ubuntu@touted-mite:~$ task service:nginx:2
+task: [service:*:*] echo Service Name: nginx
+Service Name: nginx
+task: [service:*:*] echo Replicas: 2
+Replicas: 2
+```
+
+```bash
+# You can alsop use whitespace in the arguments as long as you quote them
+task "service:nginx hello-world"
+```

@@ -1,0 +1,349 @@
+# Include Other Taskfiles
+
+## Including Other Taskfiles
+
+This feature allows you to include other Taskfiles in your main Taskfile, which is **useful for modularizing** and **reusing tasks** across different projects or directories. What you need to do is just using the `includes` keyword in your Taskfile.
+
+Here is the scenario, in your **root directory**, you have a `Taskfile.yml` that need to **include other Taskfiles** from `app` directory and `docker-task.yml` file.
+
+<Files>
+  <Folder name="app" defaultOpen>
+    <File name="Taskfile.yml" />
+  </Folder>
+  <File name="Taskfile.yml" />
+  <File name="docker-task.yml" />
+</Files>
+
+<Tabs items={['app/Taskfile.yml', 'docker-task.yml']}>
+  <Tab value="app/Taskfile.yml">
+    ```yaml
+    version: '3'
+    tasks:
+      get-app-version:
+        desc: "Get the version of the app"
+        cmds:
+          - 'echo "App version is 1.0.0"'
+    ```
+  </Tab>
+  <Tab value="docker-task.yml">
+    ```yaml
+    version: '3'
+    tasks:
+      get-docker-version:
+        desc: "Get the version of the docker"
+        cmds:
+          - docker --version
+    ```
+  </Tab>
+</Tabs>
+
+```yaml filename="~/Taskfile.yml"
+version: '3'
+
+includes:
+  # You can provide any namespace you want
+  app: ./app # this will look for ./app/Taskfile.yml
+  docker: ./docker-task.yml
+```
+In this case, you can run the `<namespace>:<task>` to **execute the tasks** from the included Taskfiles.
+
+```bash filename="Demo and output"
+ubuntu@touted-mite:~$ task app:get-app-version 
+task: [app:get-app-version] echo "App version is 1.0.0"
+App version is 1.0.0
+
+ubuntu@touted-mite:~$ task docker:get-docker-version 
+task: [docker:get-docker-version] docker --version
+Docker version 28.1.1, build 4eba377
+```
+
+## Include other Taskfile tasks in tasks and variables of included Task
+
+You can also **include other Taskfile tasks in your Taskfile tasks**. This is useful when you want to **reuse tasks** from other Taskfiles without duplicating the code.
+
+<Files>
+  <Folder name="app" defaultOpen>
+    <File name="Taskfile.yml" />
+  </Folder>
+  <File name="Taskfile.yml" />
+  <File name="docker-task.yml" />
+</Files>
+
+<Tabs items={['app/Taskfile.yml', 'docker-task.yml']}>
+  <Tab value="app/Taskfile.yml">
+    ```yaml
+    version: '3'
+    tasks:
+      get-app-version:
+        desc: "Get the version of the app"
+        cmds:
+          - 'echo "App version is 1.0.0"'
+    ```
+  </Tab>
+  <Tab value="docker-task.yml">
+    ```yaml
+    version: '3'
+    tasks:
+      get-docker-version:
+        desc: "Get the version of the docker"
+        cmds:
+          - docker --version
+      build-docker-image:
+        cmds:
+          - docker build -t {{.NAME}} {{.SRC_DIR}}
+    ```
+  </Tab>
+</Tabs>
+
+```yaml filename="~/Taskfile.yml"
+version: '3'
+includes:
+  app: ./app
+  docker: ./docker-task.yml
+tasks:
+  app:build:
+    cmds:
+      - task: docker:build-docker-image
+        vars:
+          SRC_DIR: "app"
+          NAME: "my-app"
+```
+- You can use `default` keyword to set the default task for the included Taskfile, then you can override the variable values in the `vars` keyword. Refer [here](/docs/taskfile/variables#set-default-values-for-variables)
+
+## OS-Specific Taskfiles
+
+You can also include Taskfiles based on the **operating system** by using **special variable**.
+
+```yaml filename="Taskfile.yml"
+version: '3'
+includes:
+  build: ./Taskfile_{{OS}}.yml
+```
+
+## Include other taskfile to run on different directory
+
+Now, we know that included Taskfiles are run in the **current directory**, even the Taskfile is included from another directory. But you can actually **run the Taskfile tasks in another directory** by using the `dir` keyword.
+
+<Files>
+  <Folder name="app" defaultOpen>
+    <File name="Taskfile.yml" />
+  </Folder>
+  <Folder name="app1" />
+  <File name="Taskfile.yml" />
+</Files>
+
+```yaml filename="app/Taskfile.yml"
+version: '3'
+tasks:
+  get-app-version:
+    desc: "Get the version of the app"
+    cmds:
+      - 'echo "App version is 1.0.0"'
+      - pwd
+```
+
+```yaml filename="~/Taskfile.yml"
+version: '3'
+includes:
+  app:
+    taskfile: ./app/Taskfile.yml
+    dir: ./app1 # this will run the included Taskfile in the ./app1 directory
+```
+- If the directory does not exist, Task will create it.
+
+```bash filename="Demo and output" {5}
+ubuntu@touted-mite:~$ task app:get-app-version 
+task: [app:get-app-version] echo "App version is 1.0.0"
+App version is 1.0.0
+task: [app:get-app-version] pwd
+/home/ubuntu/app1
+```
+
+## Optional includes
+
+Optional includes allow you to include Taskfiles that **may not exist**, **without causing an error if they are missing**.
+
+```yaml filename="Taskfile.yml"
+version: '3'
+includes:
+  missing:
+    taskfile: ./missing/Taskfile.yml
+    optional: true
+tasks:
+  test:
+    cmds:
+      - echo "This task runs even if the included Taskfile is missing"
+```
+
+## Internal includes
+
+Internal includes allow you to **include utility tasks that are not intended to be run directly by users**.
+
+<Files>
+  <Folder name="app" defaultOpen>
+    <File name="Taskfile.yml" />
+  </Folder>
+  <File name="Taskfile.yml" />
+</Files>
+
+```yaml filename="app/Taskfile.yml"
+version: '3'
+tasks:
+  get-app-version:
+    desc: "Get the version of the app"
+    cmds:
+      - 'echo "App version is 1.0.0"'
+      - pwd
+```
+
+```yaml filename="~/Taskfile.yml"
+version: '3'
+includes:
+  app:
+    taskfile: ./app/Taskfile.yml
+    internal: true # this will not be listed in the task list
+tasks:
+  test:
+    cmds:
+      - echo "Hello World"
+```
+
+```bash filename="Demo and output"
+# app:get-app-version will not be listed in the task list
+ubuntu@touted-mite:~$ task --list-all
+task: Available tasks for this project:
+* test:       
+
+# if you try to run the internal task, it will not work
+ubuntu@touted-mite:~$ task app:get-app-version
+task: Task "app:get-app-version" is internal
+```
+
+## Flatten includes
+
+<Callout>
+  Make sure the tasks **do not have same name** across the included Taskfiles, otherwise it will provide an error.
+</Callout>
+
+Flatten includes allow you to **include tasks from other Taskfiles without the need to specify the namespace**.
+
+<Files>
+  <Folder name="app" defaultOpen>
+    <File name="Taskfile.yml" />
+  </Folder>
+  <File name="Taskfile.yml" />
+</Files>
+
+```yaml filename="app/Taskfile.yml"
+version: '3'
+tasks:
+  get-app-version:
+    desc: "Get the version of the app"
+    cmds:
+      - 'echo "App version is 1.0.0"'
+      - pwd
+```
+
+```yaml filename="~/Taskfile.yml"
+version: '3'
+includes:
+  app:
+    taskfile: ./app/Taskfile.yml
+    flatten: true # You can call the tasks without the namespace
+tasks:
+  test:
+    cmds:
+      - echo "Hello World"
+      - task: get-app-version
+```
+
+```bash filename="Demo and output"
+ubuntu@touted-mite:~$ task -a
+task: Available tasks for this project:
+* get-app-version:       Get the version of the app
+* test:                  
+
+ubuntu@touted-mite:~$ task get-app-version 
+task: [get-app-version] echo "App version is 1.0.0"
+App version is 1.0.0
+task: [get-app-version] pwd
+/home/ubuntu
+```
+
+## Exclude Tasks from Includes
+
+You can **exclude specific tasks from being included** by using the `exclude` keyword.
+
+<Files>
+  <Folder name="app" defaultOpen>
+    <File name="Taskfile.yml" />
+  </Folder>
+  <File name="Taskfile.yml" />
+</Files>
+
+```yaml filename="app/Taskfile.yml"
+version: '3'
+tasks:
+  get-app-version:
+    desc: "Get the version of the app"
+    cmds:
+      - 'echo "App version is 1.0.0"'
+      - pwd
+  get-secret:
+    cmds:
+      - 'echo "This is a secret task"'
+```
+
+```yaml filename="~/Taskfile.yml"
+version: '3'
+includes:
+  app:
+    taskfile: ./app/Taskfile.yml
+    excludes: [get-secret]
+```
+
+```bash filename="Demo and output"
+ubuntu@touted-mite:~$ task -a
+task: Available tasks for this project:
+* app:get-app-version:       Get the version of the app
+```
+
+## Vars of included Taskfiles
+
+You can also use the `vars` keyword to pass variables to the included Taskfiles. This is useful when you want to **customize the behavior of the included tasks**.
+
+```yaml filename="app/Taskfile.yml"
+version: '3'
+tasks:
+  build-docker-image:
+    cmds:
+      - docker build -t {{.NAME}} {{.SRC_DIR}}
+```
+
+```yaml filename="~/Taskfile.yml"
+version: '3'
+includes:
+  app:
+    taskfile: ./app/Taskfile.yml
+    vars:
+      NAME: "my-app"
+      SRC_DIR: "app"
+```
+- You can use `default` keyword to set the default task for the included Taskfile, then you can override the variable values in the `vars` keyword. Refer [here](/docs/taskfile/variables#set-default-values-for-variables)
+
+## Namespace aliases (Shortform)
+
+You can also use the `alias` keyword to create **short aliases for namespaces**. This is useful when you want to **reduce the typing effort**.
+
+```yaml filename="~/Taskfile.yml"
+version: '3'
+includes:
+  app:
+    taskfile: ./app/Taskfile.yml
+    aliases: [a]
+```
+
+```bash filename="Demo and output"
+ubuntu@touted-mite:~$ task a
+a:get-app-version    a:get-secret         app:get-app-version  app:get-secret
+```

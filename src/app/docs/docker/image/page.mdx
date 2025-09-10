@@ -1,0 +1,402 @@
+# Image
+
+## Image Operations
+
+### List images
+
+```bash
+# All these commands are the same
+docker image ls
+docker image list
+docker images
+```
+
+### Search images
+
+[Reference](https://docs.docker.com/reference/cli/docker/search/)
+
+```bash
+docker search <image>
+docker search --limit 2 <image>
+docker search --filter stars=2 --filter is-official=true <image>
+```
+
+### Pull / Download the image
+
+```bash
+docker image pull <image>
+docker pull <image>
+```
+
+### Push image
+
+```bash
+docker image push <image>
+docker push <image>
+```
+
+### Tag image
+
+```bash
+# same as docker tag
+docker image tag <image:tag> <newimage:newtag>
+docker image tag <image:tag> <newimage>
+
+docker image tag ubuntu:22.10 gcr.io/karchunt/ubuntu:latest
+```
+
+### Inspect image
+
+It will display detailed information on one or more images.
+
+```json filename="Sample JSON after you docker image inspect"
+[
+  {
+    "Id": "sha256:bf3dc08bfed031182827888bb15977e316ad797ee2ccb63b4c7a57fdfe7eb31d",
+    "ContainerConfig": {
+      "Hostname": "4329d013a36a",
+      "Domainname": "",
+      ...
+    },
+    "Architecture": "amd64",
+    "Os": "linux",
+    ...
+  }
+]
+```
+
+```bash
+docker image inspect <image>
+docker image inspect <image> -f '{{.Os}}' # retrieve OS
+docker image inspect <image> -f '{{.ContainerConfig.Hostname}}'
+```
+
+### Remove image and remove all unused image
+
+Before deleting an image, all containers must be removed or deleted first, as they are dependent on that image.
+
+```bash
+docker image rm <image>
+docker image prune -a
+```
+
+### Display image layers
+
+```bash
+docker image history <image>
+docker history <image>
+```
+
+### Save or load image
+
+Imagine you are in an environment without access to Wifi to download the image. With **image save** commands, you can **convert** your image into a tar file, copy that to your environment, and then extract it.
+
+```bash
+docker image save <image> -o <tarfile-path>
+docker image load -i <tarfile-path>
+
+# example
+docker image save ubuntu:latest -o ubuntu.tar
+docker image load -i ubuntu.tar
+```
+
+### Convert container into image in a tar format using Import and Export operations
+
+<Callout type="info">
+  Make or modify the image to a single layer.
+</Callout>
+
+With **import and export** commands, basically, we are **flattening** a Docker image into a single layer, therefore, we will get a **smaller size** of the image.
+
+<Callout type="info">
+  You can also export the exited container as well.
+</Callout>
+
+It only **exports** the contents of the directory, without the contents of the **volume**.
+
+```bash
+# You will see a lot of layers inside, for example: ubuntu
+docker image history <image>
+
+# run the container
+docker container run <image>
+
+# export a container as a tar archive
+docker container export <container> > <tarfile-path>
+docker container export <container> -o <tarfile-path>
+docker container export ubuntu_container_name > ubuntu.tar
+
+# import tar archive into image
+docker image import <tarfile-path> <new-image>
+docker image import ubuntu.tar newubuntu:latest
+```
+
+## Image naming convention and Authenticate to registries
+
+[Reference](https://docs.docker.com/reference/cli/docker/login/)
+
+It's made up of a **slash-separated** name components. Before you push those images to respective registries, you have to **perform authentication** to the registry that you want to push.
+
+For example;
+
+- Harbor: `"harbor_address"/project/repository`
+  - `"karchunt.registry.com/python/auto-deploy"`
+- Dockerhub: `"docker.io/username/repository"`
+  - `"docker.io/karchunt/maven-with-docker"`
+
+```bash
+# By default us docker.io
+docker login
+docker login <registry-address/server>
+
+# example
+docker login karchunt.registry.com
+```
+
+Once you login successfully, those credentials will be stored in `$HOME/.docker/config.json` on Linux or `%USERPROFILE%/.docker/config.json` on Windows.
+
+| Naming                                   | registry              | project/user/account | image/repository  |
+| ---------------------------------------- | --------------------- | -------------------- | ----------------- |
+| karchunt.registry.com/python/auto-deploy | karchunt.registry.com | python               | auto-deploy       |
+| docker.io/karchunt/maven-with-docker     | docker.io             | karchunt             | maven-with-docker |
+
+## Dockerfile (Build a custom image)
+
+[Reference](https://docs.docker.com/reference/dockerfile/)
+
+Dockerfile is a text file that will consist of all the steps that are required to build a custom image. Here is a very basic and sample Dockerfile to dockerize Flask application.
+
+```dockerfile filename="Dockerfile"
+FROM python:3.11.0-slim-bullseye
+
+ARG PORT=5000
+
+WORKDIR /app
+COPY requirements.txt ./
+
+RUN pip install -r requirements.txt
+
+COPY ./ ./
+EXPOSE $PORT
+
+ENTRYPOINT ["python"]
+CMD ["app.py"]
+```
+
+When you run the `docker build` command, all files under the build context are **transferred** to the **Docker Daemon**. It stores them in `/var/lib/docker/tmp` for **temporary** storage. Docker looks for `Dockerfile` at whatever path is specified in the **build context**.
+
+```bash
+docker image build -t <name:tag or just name> <PATH>
+docker build -t <name:tag or just name> <PATH>
+# ARG (available inside of Dockerfile)
+docker build --build-arg <key>=<value> <PATH>
+
+# "." or any path is build context
+docker build -f <Dockerfile-path> <folder>
+
+# build with no cache
+docker build --no-cache <PATH>
+
+# Get Dockerfile from repo
+docker build <repo-url>
+docker build <repo-url#<branch>>
+docker build <repo-url:<folder>>
+
+# build the image for only 1 or more stages
+docker build --target <stage-name> <PATH>
+
+# Example
+docker build -t order-api:v0.0.1 .
+docker build --build-arg PORT=8000 ./
+docker build https://github.com/karchunt/app
+docker build https://github.com/karchunt/app#develop
+docker build https://github.com/karchunt/app:manifests
+docker build -f Dockerfile.prod /folder1
+docker build --target deployment ./
+```
+
+- You can also create `.dockerignore` file to tell the build context to **exclude** or **ignore** those files or directories.
+
+### Dockerfile explanation
+
+| Instruction | Description                                                                                                                                           |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ADD         | Add local or remote files and directories.                                                                                                            |
+| ARG         | Use build-time variables. This argument will be used during the `docker build` section, to remove those hardcoded values                              |
+| CMD         | Specify default commands should be executed when container is running.                                                                                |
+| COPY        | Copy files and directories.                                                                                                                           |
+| ENTRYPOINT  | Specify default executable.                                                                                                                           |
+| ENV         | Set environment variables.                                                                                                                            |
+| EXPOSE      | Describe which ports your application is listening on. It does not actually publish the port.                                                         |
+| FROM        | Create a new build stage from a base image. Our image will be customized using this initial set of programs or tools                                  |
+| HEALTHCHECK | Check a container's health on startup.                                                                                                                |
+| LABEL       | Add metadata to an image and it's a key value pair.                                                                                                   |
+| MAINTAINER  | Specify the author of an image.                                                                                                                       |
+| ONBUILD     | Specify instructions for when the image is used in a build.                                                                                           |
+| RUN         | Execute build commands.                                                                                                                               |
+| SHELL       | Set the default shell of an image.                                                                                                                    |
+| STOPSIGNAL  | Specify the system call signal for exiting a container.                                                                                               |
+| USER        | Set user and group ID.                                                                                                                                |
+| VOLUME      | Create volume mounts that need specified folder to be persistent inside container. We also need to specify `docker run -v <path>:<path-in-container>` |
+| WORKDIR     | Change working directory.                                                                                                                             |
+
+#### WORKDIR
+
+It can be used multiple times in a `Dockerfile`.
+
+```dockerfile
+WORKDIR /app
+WORKDIR main # it will display warning as the path is absolute
+
+RUN pwd # output = /app/main, it will stack
+```
+
+#### HEALTHCHECK
+
+Basically, it will **check a container's health** on startup by telling the platform on how to test the application is healthy. It will also **monitor** the container process when it's running.
+
+Parameters for HEALTHCHECK
+
+- `--interval=DURATION` (default: 30s)
+- `--timeout=DURATION` (default: 30s)
+- `--start-period=DURATION` (default: 0s)
+- `--retries=N` (default: 3)
+
+| Exit status | Description                         |
+| ----------- | ----------------------------------- |
+| 0           | success                             |
+| 1           | failure                             |
+| 2           | reserved (do not use the exit code) |
+
+#### COPY vs ADD
+
+<Callout type="info">
+  In Dockerfile, `COPY` is recommended over `ADD` to reduce layer count
+</Callout>
+
+Both of them are just copying files, but the `ADD` instruction will have more usage compared to `COPY`. `COPY` just lets you **copy**, while `ADD` can **auto extract** the **tar** file into the path inside the image. For **URL**, it will **only download**, but **does not perform** the **extraction**.
+
+```dockerfile filename="Dockerfile"
+FROM ubuntu
+
+COPY myfile.txt /app
+
+ADD newfile.txt /app
+ADD archive.tar /app
+ADD https://mysamplearchive.tar /app
+```
+
+#### CMD vs ENTRYPOINT (Utility container)
+
+A lot of people confuse `CMD` and `ENTRYPOINT` instructions.
+
+```dockerfile filename="Dockerfile"
+FROM ubuntu
+ENTRYPOINT ["sleep"]
+CMD ["5"]
+```
+
+ENTRYPOINT
+
+- Specify the **default executable**, which means setting the image's **main command**. It **cannot be overridden**.
+
+CMD
+
+- Able to **override**, for example `docker run <image> 7`, "7" will be replaced `CMD` command that you specify in `Dockerfile`.
+
+### Build cache
+
+Every **layer** in the Dockerfile has a **cache**. It will **compare instructions** in Dockerfile and **checksums** of files in `ADD` or `COPY`. If the instructions have been modified, then it will **rebuild** that layer.
+
+```bash
+docker build <PATH> # with cache
+docker build --no-cache <PATH> # build with no cache
+```
+
+### Multi-stage builds
+
+Multi-stage builds will help to **generate smaller images**. It makes the developers **easy to read and maintain** as you only keep the required dependencies, therefore resulting in a **more secure container**.
+
+```dockerfile filename="Dockerfile"
+###### build stage
+FROM python:3.11.0-slim-bullseye as build
+
+ENV VIRTUAL_ENV=/app
+ENV PATH="$VIRTUAL_ENV/venv/bin:$PATH"
+
+WORKDIR $VIRTUAL_ENV
+
+RUN apt-get update \
+	&& apt-get install -y libpq-dev python3-psycopg2 \
+	&& python -m venv $VIRTUAL_ENV/venv
+
+COPY requirements.txt .
+
+RUN pip install --upgrade pip \
+	&& pip install --no-cache-dir --upgrade -r requirements.txt
+
+###### base environment
+FROM python:3.11.0-slim-bullseye as base
+
+# Create system user and group
+RUN groupadd -g 999 apiuser \
+	&& useradd -r -u 999 -g apiuser apiuser
+
+RUN mkdir /app && chown apiuser:apiuser /app
+WORKDIR /app
+
+# 0 means build stage
+# You can also use 0, COPY --chown=apiuser:apiuser --from=0 /app/venv ./venv
+COPY --chown=apiuser:apiuser --from=build /app/venv ./venv
+COPY --chown=apiuser:apiuser . .
+
+# system user
+USER 999
+
+EXPOSE 8000
+
+ENV PATH="/app/venv/bin:$PATH"
+
+###### testing environment
+FROM base as test
+RUN pip install --no-cache-dir --upgrade -r requirements-test.txt
+ENTRYPOINT [ "pytest" ]
+CMD ["-v", "--disable-pytest-warnings"]
+
+##### development environment
+FROM python:3.11.0-slim-bullseye as development
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+###### deployment environment
+FROM base as deployment
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ "curl", "-f", "http://localhost:8000/healthcheck" ]
+```
+
+## Create custom image from running container
+
+[Reference](https://docs.docker.com/reference/cli/docker/container/commit/)
+
+<Callout type="warn">
+  Create custom image from running container is not recommended. Please use Dockerfile instead.
+</Callout>
+
+When you change files or settings inside the container, `docker commit` command can be useful to **commit** them to **a new image**. Do take note that, the processes within the container will be paused when the image is being committed.
+
+```bash
+docker container commit <container-id> <new-image-name>
+# change the default command in container
+docker container commit -a "Author" -c 'CMD ["sleep", "5"]' <container-id> <new-image-name>
+```
+
+The `--change` or `-c` option will apply `Dockerfile` instructions to the image that is created, it's supported `Dockerfile` instructions.
+
+- `CMD`
+- `ENTRYPOINT`
+- `ENV`
+- `EXPOSE`
+- `LABEL`
+- `ONBUILD`
+- `USER`
+- `VOLUME`
+- `WORKDIR`

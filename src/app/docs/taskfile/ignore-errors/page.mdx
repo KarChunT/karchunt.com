@@ -1,0 +1,24 @@
+# Ignore Errors
+
+You can use the `ignore_error: true` attribute in your Taskfile to **ignore errors** during task execution. This allows subsequent tasks to **continue running even if a previous task fails**.
+
+```yaml filename="Taskfile.yaml"
+version: '3'
+tasks:
+  lint:
+    internal: true
+    ignore_error: true
+    cmds:
+      - exit 1
+  deploy:
+    cmds:
+      - task: lint
+      - echo "This will run even if lint fails"
+```
+
+```bash filename="Demo and Output"
+ubuntu@touted-mite:~$ task deploy 
+task: [lint] exit 1
+task: [deploy] echo "This will run even if lint fails"
+This will run even if lint fails
+```

@@ -1,9 +1,10 @@
 'use client';
 
-import { IconArrowLeft, IconArrowRight } from '@tabler/icons-react';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { getBasePath } from '@/lib/utils';
 
 type Testimonial = {
   quote: string;
@@ -18,6 +19,7 @@ export const AnimatedTestimonials = ({
   testimonials: Testimonial[];
   autoplay?: boolean;
 }) => {
+  const basePath = getBasePath();
   const [active, setActive] = useState(0);
 
   const handleNext = () => {
@@ -80,7 +82,7 @@ export const AnimatedTestimonials = ({
                   className="absolute inset-0 origin-bottom"
                 >
                   <Image
-                    src={testimonial.src}
+                    src={`${basePath}${testimonial.src}`}
                     alt={testimonial.name}
                     width={500}
                     height={500}
@@ -149,13 +151,13 @@ export const AnimatedTestimonials = ({
               onClick={handlePrev}
               className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
             >
-              <IconArrowLeft className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400" />
+              <FaArrowLeft className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400" />
             </button>
             <button
               onClick={handleNext}
               className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
             >
-              <IconArrowRight className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400" />
+              <FaArrowRight className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400" />
             </button>
           </div>
         </div>

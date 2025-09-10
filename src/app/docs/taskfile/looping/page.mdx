@@ -1,0 +1,253 @@
+# Looping
+
+## Loop a static list / Loop the tasks
+
+Assuming you have a Taskfile with a task to build the Docker images. You can use a loop to iterate over a static list of applications and build each one.
+
+```yaml filename="Taskfile.yml"
+version: '3'
+tasks:
+  image:build:
+    vars:
+      REPOSITORY: '{{.REPOSITORY}}'
+      SRC: '{{.SRC}}'
+    cmds:
+      - docker build -t {{.REPOSITORY}}:latest {{.SRC}}
+  build-all:
+    cmds:
+      - for:
+          - app1
+          - app2
+        task: image:build
+        vars:
+          REPOSITORY: "{{.ITEM}}" # refer to app1, app2
+          SRC: "{{.ITEM}}" # refer to app1, app2
+  # run different atsks based on the loop value
+  task-test:
+    cmds:
+      - echo "Running task test"
+  task-build:
+    cmds:
+      - echo "Running task build"
+  test-start:
+    cmds:
+      - for: [test, build]
+        task: task-{{ .ITEM }} # refer to task-test, task-build
+```
+
+```bash filename="Demo and output"
+ubuntu@touted-mite:~$ task build-all 
+task: [image:build] docker build -t app1:latest app1
+[+] Building 5.9s (5/5) FINISHED                                docker:default
+ => [internal] load build definition from Dockerfile                      0.0s
+ => => transferring dockerfile: 56B                                       0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:latest          3.2s
+ => [internal] load .dockerignore                                         0.0s
+ => => transferring context: 2B                                           0.0s
+ => [1/1] FROM docker.io/library/ubuntu:latest@sha256:6015f66923d7afbc53  2.5s
+ => => resolve docker.io/library/ubuntu:latest@sha256:6015f66923d7afbc53  0.0s
+ => => sha256:6015f66923d7afbc53558d7ccffd325d43b4e249f4 6.69kB / 6.69kB  0.0s
+ => => sha256:dc17125eaac86538c57da886e494a34489122fb6a3ebb6 424B / 424B  0.0s
+ => => sha256:a0e45e2ce6e6e22e73185397d162a64fcf2f80a41c 2.30kB / 2.30kB  0.0s
+ => => sha256:0622fac788edde5d30e7bbd2688893e5452a19ff 29.72MB / 29.72MB  1.7s
+ => => extracting sha256:0622fac788edde5d30e7bbd2688893e5452a19ff237a2e4  0.6s
+ => exporting to image                                                    0.0s
+ => => exporting layers                                                   0.0s
+ => => writing image sha256:a3a57681676475ef2e0d451fcfd3daaca8d23d3ad42b  0.0s
+ => => naming to docker.io/library/app1:latest                            0.0s
+
+task: [image:build] docker build -t app2:latest app2
+[+] Building 0.5s (5/5) FINISHED                                docker:default
+ => [internal] load build definition from Dockerfile                      0.0s
+ => => transferring dockerfile: 56B                                       0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:latest          0.3s
+ => [internal] load .dockerignore                                         0.0s
+ => => transferring context: 2B                                           0.0s
+ => CACHED [1/1] FROM docker.io/library/ubuntu:latest@sha256:6015f66923d  0.0s
+ => exporting to image                                                    0.0s
+ => => exporting layers                                                   0.0s
+ => => writing image sha256:a3a57681676475ef2e0d451fcfd3daaca8d23d3ad42b  0.0s
+ => => naming to docker.io/library/app2:latest                            0.0s
+ubuntu@touted-mite:~$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+app1          latest    a3a576816764   4 weeks ago    78.1MB
+app2          latest    a3a576816764   4 weeks ago    78.1MB
+```
+
+## Loop a matrix
+
+You can also **loop over a matrix of values**. This is useful when you have multiple variables that need to be **combined in each iteration**.
+
+**You can also reference the matrix to other variables as long as they are lists.**
+
+```yaml filename="Taskfile.yml"
+version: '3'
+tasks:
+  image:build:
+    vars:
+      REPOSITORY: '{{.REPOSITORY}}'
+      SRC: '{{.SRC}}'
+      TAG: '{{.TAG}}'
+    cmds:
+      - docker build -t {{.REPOSITORY}}:{{.TAG}} {{.SRC}}
+  build-all:
+    cmds:
+      - for:
+          matrix:
+            REPOSITORY: [app1, app2]
+            TAG: [latest, v1.0]
+        task: image:build
+        vars:
+          REPOSITORY: "{{.ITEM.REPOSITORY}}" # refer to app1, app2
+          SRC: "{{.ITEM.REPOSITORY}}" # refer to app1, app2
+          TAG: "{{.ITEM.TAG}}" # refer to latest, v1.0
+```
+This will generate the following images:
+- `app1:latest`
+- `app1:v1.0`
+- `app2:latest`
+- `app2:v1.0`
+
+```bash filename="Demo and output"
+ubuntu@touted-mite:~$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+app1          latest    a3a576816764   4 weeks ago    78.1MB
+app1          v1.0      a3a576816764   4 weeks ago    78.1MB
+app2          latest    a3a576816764   4 weeks ago    78.1MB
+app2          v1.0      a3a576816764   4 weeks ago    78.1MB
+```
+
+## Loop the task's `sources` or `generated` files
+
+It is the same concept as above, but you can use the `sources` or `generated` files to loop over a list of files.
+
+<Tabs items={['Sources', 'Generates']}>
+  <Tab value="Sources">
+  ```yaml filename="Taskfile.yml"
+  version: '3'
+  tasks:
+    default:
+      sources:
+        - foo.txt
+        - bar.txt
+      cmds:
+        - for: sources
+          cmd: cat {{ .ITEM }}
+  ```
+  </Tab>
+  <Tab value="Generates">
+  ```yaml filename="Taskfile.yml"
+  version: '3'
+  tasks:
+    default:
+      generates:
+        - foo.txt
+        - bar.txt
+      cmds:
+        - for: generates
+          cmd: cat {{ .ITEM }}
+  ```
+  </Tab>
+</Tabs>
+
+## Loop the variables
+
+If you want to loop over the variables, you can use the `vars` keyword. This is useful when you have a list of variables that need to be iterated over.
+
+```yaml filename="Taskfile.yml"
+version: '3'
+tasks:
+  loop1: # loop over a single variable
+    vars:
+      MY_VAR: hello world
+    cmds:
+      - for: { var: MY_VAR }
+        cmd: echo {{ .ITEM }}
+  loop2: # split and loop
+    vars:
+      MY_VAR: hello,world
+    cmds:
+      - for: { var: MY_VAR, split: ','}
+        cmd: echo {{ .ITEM }}
+  loop3: # loop over a list of variables
+    vars:
+      LIST: [hello, world]
+    cmds:
+      - for:
+          var: LIST
+        cmd: echo {{ .ITEM }}
+  loop4: # loop over a map
+    vars:
+      MY_MAP:
+        map:
+          key1: hello
+          key2: world
+    cmds:
+      - for:
+          var: MY_MAP
+        cmd: echo {{.KEY}} {{ .ITEM }} # KEY is the key, ITEM is the value
+  loop5: # loop with dynamic variablses
+    vars:
+      MY_VAR:
+        sh: find -type f -name '*.txt'
+    cmds:
+      - for: { var: MY_VAR }
+        cmd: echo {{ .ITEM }}
+```
+
+```bash filename="Demo and output"
+ubuntu@touted-mite:~$ task loop1 loop2 loop3 loop4
+task: [loop1] echo hello
+hello
+task: [loop1] echo world
+world
+task: [loop2] echo hello
+hello
+task: [loop2] echo world
+world
+task: [loop3] echo hello
+hello
+task: [loop3] echo world
+world
+task: [loop4] echo hello key1
+hello key1
+task: [loop4] echo world key2
+world key2
+```
+
+## Loop and rename variables
+
+When you **loop over a list of variables**, you can also **rename the variables** using the `as` keyword.
+
+```yaml filename="Taskfile.yml"
+version: '3'
+tasks:
+  loop-rename:
+    vars:
+      LIST: [hello, world]
+    cmds:
+      - for:
+          var: LIST
+          as: MESSAGE
+        cmd: echo {{ .MESSAGE }} # MESSAGE is the renamed variable
+```
+
+## Loop the dependencies
+
+Remember `deps` are **run in parallel**, so the **iterations are not guaranteed** to run in order.
+
+```yaml filename="Taskfile.yml"
+version: '3'
+
+tasks:
+  default:
+    deps:
+      - for: [foo, bar]
+        task: my-task
+        vars:
+          FILE: '{{.ITEM}}'
+
+  my-task:
+    cmds:
+      - echo '{{.FILE}}'
+```

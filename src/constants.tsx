@@ -1,18 +1,29 @@
-export const APPICON: string = '/penguin-nobg.webp';
+import Icon from '@mdi/react';
+import { mdiSsh } from '@mdi/js';
+import { TbNumber12Small, TbBrandDocker } from 'react-icons/tb';
+import { FaGitAlt, FaPython } from 'react-icons/fa';
+import { BiCube } from 'react-icons/bi';
+import { SiKubernetes } from 'react-icons/si';
+
 export const APP_NAME: string = 'KarChunT';
-export const JOBPOSITION: string = 'Infrastructure and DevOps Engineer';
-export const JOBCOMPANY: string = 'Intel';
-export const GITHUBURL: string = 'https://github.com/KarChunT/karchunt.com';
-export const LINKEDINURL: string = 'https://www.linkedin.com/in/karchuntan';
-export const CREDLYURL: string = 'https://www.credly.com/users/kar-chun-tan';
+export const APP_ICON: string = '/penguin-nobg.webp';
+export const JOB_POSITION: string = 'Infrastructure and DevOps Engineer';
+export const JOB_COMPANY: string = 'Intel';
+export const GITHUB_URL: string = 'https://github.com/KarChunT/karchunt.com';
+export const DOCS_REPO_BASE: string = `${GITHUB_URL}/tree/main`;
+export const LINKEDIN_URL: string = 'https://www.linkedin.com/in/karchuntan';
+export const CREDLY_URL: string = 'https://www.credly.com/users/kar-chun-tan';
+export const PERSONAL_IMAGE: string = '/personal/karchunt.webp';
+export const NAME: string = 'Kar Chun Tan';
+
 export const CHANNELS = {
   github: {
     title: 'GitHub',
-    href: GITHUBURL,
+    href: GITHUB_URL,
   },
   linkedin: {
     title: 'Linkedin',
-    href: LINKEDINURL,
+    href: LINKEDIN_URL,
   },
   newsletter: {
     title: 'Newsletter',
@@ -23,6 +34,16 @@ export const CHANNELS = {
     href: 'mailto:karchuntan.1999@gmail.com',
   },
 };
+
+export const PERSONAL = [
+  {
+    quote:
+      'Passion is the key to success. Passion means everything to me, as part of my passion and motivation, I love to inspire people and my ambition is to develop a new technology that can revolutionize the world.',
+    name: 'Tan Kar Chun',
+    designation: 'Infrastructure & DevOps Engineer',
+    src: '/personal/anotherme.webp',
+  },
+];
 
 export const TOP_TAGLINE = [
   { text: 'Welcome', delay: 0 },
@@ -62,15 +83,40 @@ export const HERO_BOTTOM_TAGLINE = [
   { text: 'journeys', delay: 4250 },
 ];
 
-export const PERSONAL = [
-  {
-    quote:
-      'Passion is the key to success. Passion means everything to me, as part of my passion and motivation, I love to inspire people and my ambition is to develop a new technology that can revolutionize the world.',
-    name: 'Tan Kar Chun',
-    designation: 'Infrastructure & DevOps Engineer',
-    src: '/personal/anotherme.webp',
+export const HUB_ITEMS = {
+  journey: {
+    title: 'Journey',
+    href: '/hub/journey',
   },
-];
+  kubestronaut: {
+    title: 'Kubestronaut',
+    href: '/hub/kubestronaut',
+  },
+  'color-picker': {
+    title: 'Color Picker',
+    href: '/hub/color-picker',
+  },
+  gallery: {
+    title: 'Gallery',
+    href: '/hub/gallery',
+  },
+  projects: {
+    title: 'Projects',
+    href: '/hub/projects',
+  },
+  tools: {
+    title: 'Tools',
+    href: '/hub/tools',
+  },
+  'md-playground': {
+    title: 'MarkDown Playground',
+    href: '/hub/md-playground',
+  },
+  'algorithm-visualizer': {
+    title: 'Algorithm Visualizer',
+    href: '/hub/algorithm-visualizer',
+  },
+};
 
 export const KUBESTRONAUT = {
   certificates: [
@@ -175,11 +221,11 @@ export const CERTIFICATES = [
   },
 ];
 
-export const GOODTOOLSANDWEBSITES: GoodToolsProps[] = [
+export const GOOD_TOOLS_AND_WEBSITES: GoodToolsProps[] = [
   {
     title: 'Magic UI',
     description:
-      'UI library for Design Engineers. 150+ free and open-source animated components and effects built with React, Typescript, Tailwind CSS, and Motion',
+      'UI library for Design Engineers. 150+ free and open-source animated components and effects built with React, Typescript, Tailwind CSS, and Motion.',
     imageSrc: '/good-tools-and-websites/magicui.ico',
     href: 'https://magicui.design/',
     tags: ['UI'],
@@ -218,7 +264,7 @@ export const GOODTOOLSANDWEBSITES: GoodToolsProps[] = [
   },
   {
     title: 'Supabase UI Library',
-    description: 'Provides a library of components for your project',
+    description: 'Provides a library of components for your project.',
     imageSrc: '/good-tools-and-websites/Supabase UI Library.ico',
     href: 'https://supabase.com/ui',
     tags: ['UI'],
@@ -241,66 +287,66 @@ export const GOODTOOLSANDWEBSITES: GoodToolsProps[] = [
   },
 ];
 
-export const DOCUMENTATION: DocItem[] = [
-  {
-    icon: '🍇',
-    title: 'SSH',
-    description:
-      'SSH stands for Secure Shell (SSH) Protocol that is mainly used to connect to a Linux server remotely.',
-    link: '/docs/ssh',
-  },
-  {
-    icon: '🍈',
-    title: 'Git',
-    description:
-      'Git is a distributed version control system that tracks file changes.',
-    link: '/docs/git',
-  },
-  {
-    icon: '🍉',
-    title: 'Docker',
-    description:
-      'Docker is an open platform for developing, shipping, and running applications.',
-    link: '/docs/docker',
-  },
-  {
-    icon: '🍊',
+export const DOCUMENTATION = {
+  '12 Factor App': {
     title: '12 Factor App',
+    href: '/docs/12-factor-app',
     description:
       'It is a methodology for building software-as-a-service applications with best practices.',
-    link: '/docs/twelve-factor-app',
+    icon: TbNumber12Small,
   },
-  {
-    icon: '🍍',
-    title: 'Kubernetes',
+  Docker: {
+    title: 'Docker',
+    href: '/docs/docker/what-is-docker',
     description:
-      'Kubernetes, also known as k8s, is an open source system to deploy, scalwe, and manage containerized applications.',
-    link: '/docs/kubernetes',
+      'Docker is an open platform for developing, shipping, and running applications.',
+    icon: TbBrandDocker,
   },
-  {
-    icon: '🍋',
-    title: 'Taskfile',
+  SSH: {
+    title: 'SSH',
+    href: '/docs/ssh/ssh-overview',
     description:
-      'Taskfile is a task runner / build tool that simplifies the automation of routine development tasks.',
-    link: '/docs/taskfile',
+      'SSH stands for Secure Shell (SSH) Protocol that is mainly used to connect to a Linux server remotely.',
+    icon: () => (
+      <Icon
+        className="rounded-md border border-[#2e2c23] p-[6px]"
+        path={mdiSsh}
+        size={1.5}
+      />
+    ),
   },
-  {
-    icon: '🍌',
-    title: 'Python Object-Oriented Programming (OOP)',
+  Git: {
+    title: 'Git',
+    href: '/docs/git/what-is-git',
+    description:
+      'Git is a distributed version control system that tracks file changes.',
+    icon: FaGitAlt,
+  },
+  'Python OOP': {
+    title: 'Python OOP',
+    href: '/docs/python-oop/concepts-of-oop',
     description:
       'Object-Oriented Programming (OOP) is a programming paradigm that uses objects and classes to structure software programs.',
-    link: '/docs/python-oop',
+    icon: FaPython,
   },
-  // {
-  //   icon: '🍐',
-  //   title: 'Data Structures and Algorithms',
-  //   description:
-  //     'Data structures are used to organize, store, and manipulate data in memory, while algorithms are used to solve specific problems.',
-  //   link: '/docs/data-structures-and-algorithms',
-  // },
-  // {
-  //   title: '🥑 Design Pattern',
-  //   description: 'Solving typical software design problems.',
-  //   link: '/docs/design-pattern',
-  // },
-];
+  Taskfile: {
+    title: 'Taskfile',
+    href: '/docs/taskfile/what-is-taskfile',
+    description:
+      'Taskfile is a task runner / build tool that simplifies the automation of routine development tasks.',
+    icon: BiCube,
+  },
+  Kubernetes: {
+    title: 'Kubernetes',
+    href: '/docs/kubernetes/what-is-kubernetes',
+    description:
+      'Kubernetes, also known as k8s, is an open source system for automating deployment, scaling, and management of containerized applications.',
+    icon: SiKubernetes,
+  },
+};
+
+//   title: 'Data Structures and Algorithms',
+//   description:
+//     'Data structures are used to organize, store, and manipulate data in memory, while algorithms are used to solve specific problems.',
+//   title: 'Design Pattern',
+//   description: 'Solving typical software design problems.',

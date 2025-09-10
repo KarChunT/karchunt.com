@@ -1,0 +1,39 @@
+# Stashing
+
+## Git Stash
+
+Let's say that the Developer A is working on a third story on the **develop** branch. Suddenly, the Developer B says that there are some critical bugs that needs to be corrected immediately on the **main** branch.
+
+Before the Developer A checkout to the **main** branch, it's necessary to place the changes made to the third story somewhere in order to have a clean working area if we want to solve the bugs on the **main** branch. As the story isn't finished yet, the Developer A don't want to commit it to his branch (develop).
+
+In this case, we can use `git stash` command to stash all changes in the working area. We can keep on pushing the changes to the stash and the changes will simlpy pile up (treat like queue FIFO).
+
+```bash
+# Stash the changes
+git stash
+git stash push
+git stash save "message"
+
+# Apply the stash changes
+git stash apply # re-applying the stashed changes without pop it
+git stash pop
+git stash pop stash@{1}
+git stash branch branch-name stash@{1} # creating a branch from your stash, as you may run into conflicts when popping or applying your stash
+
+# List all the stash
+git stash list
+
+# Show the differences between the current and a stash
+git stash show
+git stash show -p # view the full diff of a stash
+
+# clear or drop stash
+git stash clear # clear all the stashes
+git stash drop stash@{1}
+```
+
+### stash push
+
+![git-sim-stash-push](/docs/git/git-sim-stash-push.png)
+
+[Watch animation](/docs/git/git-sim-stash-push.webm)

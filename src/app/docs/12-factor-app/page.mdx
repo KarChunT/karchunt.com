@@ -1,0 +1,372 @@
+---
+asIndexPage: true
+theme:
+  sidebar: false
+  layout: 'full'
+---
+
+# 12 Factor App
+
+<Callout title="Documentation">
+  [12factor.net](https://12factor.net/)
+</Callout>
+
+## What is 12 Factor App?
+
+It's a **methodology** for building **software-as-a-service (SaaS) or Cloud Native applications** by providing a set of **best practices** to create web apps that are easy to deploy, scalable, maintainable, portable, and resilient.
+
+- App can run in different execution environments without having the change the source code (Portability).
+- Suitable for deployment on modern cloud platforms
+- Minimize divergence between development and production
+- Enable continuous deployment
+- Easy to scale up
+
+## The Twelve Factors
+
+Developers should consider **12 factors** when building SaaS applications in accordance with this methodology. Of course, this methodology is not limited to building SaaS applications, instead, it can apply to other applications as well.
+
+### Codebase
+
+In summary, a codebase is always **tracked in a version control system** such as Git, and every **app** has **only one codebase**, but it will be **deployed many times**.
+
+- **Codebase = repository**
+- **One to one relationship between codebase and app**
+- I'm referring **app = service**
+
+Imagine that you have a food web application that collaborates with multiple developers. So far, it only offers food ordering service. However, you need to ensure that the codebase of all developers is the same so that all deployments are consistent. In this case, **Git** will help all developers work on the same application at the same time, since everyone will push or pull changes from a central location like GitHub, GitLab, etc.
+
+<FileTree>
+  <FileTree.Folder name="Food web application" defaultOpen>
+    <FileTree.Folder name="ordering-service" defaultOpen>
+      <FileTree.File name="source_code.py" />
+    </FileTree.Folder>
+    <FileTree.Folder name="delivery-service" defaultOpen>
+      <FileTree.File name="source_code.py" />
+    </FileTree.Folder>
+    <FileTree.Folder name="payment-service" defaultOpen>
+      <FileTree.File name="source_code.py" />
+    </FileTree.Folder>
+  </FileTree.Folder>
+</FileTree>
+
+In the future, we may have delivery service, payment service, etc, but now the **codebase** has **all the related services**. When you have multiple application services, it's a **distributed system** and multiple application services **sharing the same codebase** already **violates** the _12 Factor_.
+
+![codebase-deployments](/docs/twelve-factor-app/codebase.gif)
+
+So, we can **separate** those services into its **own codebase**, and within that codebase, we can have multiple deploys. Therefore, each service in a distributed system can **comply with** (obey) 12 factor.
+
+### Dependencies
+
+In summary, all **dependencies** should be **explicitly declare** and **isolate dependencies**. It **does not rely** on **implicit existence of system tools** or **libraries** or **packages**.
+
+```python {1} filename="api.py"
+from fastapi import FastAPI
+
+app = FastAPI(
+  title='Notifications',
+  description='This is notification API',
+  version='0.1.0'
+)
+
+notifications = [
+  {'name': 'Raymond Melton', 'message': 'Fight and road more hard whose.'},
+  {'name': 'Kevin Dunn', 'message': 'Ten environmental soldier often.'},
+]
+
+@app.get("/notifications")
+def get_all_notifications():
+  return notifications
+```
+
+Let's take a look on this example. We're building a backend services using FastAPI Python web framework. Before you start coding, you have to install this FastAPI Python web framework first.
+
+If we based on the 12 factor Dependencies concept.
+
+> It **does not rely** on **implicit existence of system tools** or **libraries** or **packages**.
+
+That means, there is no guarantee that dependencies such as FastAPI will exist on the system where your application will be run. So, you have to declare all dependencies and isolate the dependencies as well. In Python;
+
+- **pip** is used for **declaration**: `pip install -r requirements.txt`
+  ```python "requirements.txt"
+  fastapi==0.45.0
+  ```
+
+- **virtualenv** is used for **isolation**: `python -m venv venv`. As a result, we will be able to create an isolated environment for each application with its own version of dependencies.
+
+However, how about those `curl`, `wget`, and other tools that are dependent on the system. What we can do, is using Docker, as Docker container is a standalone or executable package of software that has everything like application source code, tools, libraries, dependencies, etc that you need to run an application.
+
+### Config
+
+In summary, we will need to **store config** in the **environment variables**, as **configuration** may be **different** between **deployments**.
+
+```python filename="api.py" {11-16}
+from fastapi import FastAPI
+import mysql.connector
+
+app = FastAPI(
+  title='Notifications',
+  description='This is notification API',
+  version='0.1.0'
+)
+
+# Creating connection object
+mydb = mysql.connector.connect(
+  host = "localhost",
+  user = "username",
+  password = "password",
+  database = "test"
+)
+
+cursorObject = mydb.cursor()
+
+@app.get("/notifications")
+def get_all_notifications():
+  query = "SELECT * FROM NOTIFICATIONS"
+  cursorObject.execute(query)
+  myresult = cursorObject.fetchall()
+  return myresult
+```
+
+Let's take a look on this example. Right now, we're hard-coded the mysql host, user, password, and database values in the code. This already **violates** the 12 factor methodology concept, as the **database configuration** may be different between deployments.
+
+```txt filename=".env"
+HOST=localhost
+USER=username
+PASSWORD=password
+DATABASE=test
+```
+
+So, we have to keep those configuration separately. What we can do is creating an `.env` file with those config values and inject this `.env` file into environment variable in the code.
+
+```python filename="api.py" {7, 16-21}
+import os
+import mysql.connector
+
+from fastapi import FastAPI
+from dotenv import load_dotenv
+
+load_dotenv()
+
+app = FastAPI(
+  title='Notifications',
+  description='This is notification API',
+  version='0.1.0'
+)
+
+# Creating connection object
+mydb = mysql.connector.connect(
+  host = os.getenv('HOST'),
+  user = os.getenv('USER'),
+  password = os.getenv('PASSWORD'),
+  database = os.getenv('DATABASE')
+)
+
+cursorObject = mydb.cursor()
+
+@app.get("/notifications")
+def get_all_notifications():
+  query = "SELECT * FROM NOTIFICATIONS"
+  cursorObject.execute(query)
+  myresult = cursorObject.fetchall()
+  return myresult
+```
+
+With this setup, we can use **different configurations** for **different deployments**, **without compromising** any **credentials**.
+
+### Backing Services
+
+<Callout title="What is backing services?">
+  Any service the app consumes over the network.
+</Callout>
+
+In summary, we will **treat** all **backing services** as **attached resources**.
+
+Example of Backing services;
+
+- database (MySQL, PostgreSQL)
+- caching (Redis)
+- Messaging/queueing systems (Kafka, RabbitMQ)
+- SMTP
+- etc
+
+> It makes no distinction between local and third party services
+>
+> — 12factor.net
+
+![backing-services](/docs/twelve-factor-app/backing-services.gif)
+
+Imagine you have integrated PostgreSQL service to your application to store your data. A PostgreSQL database is an attached resource to your app, which can be run locally, in the cloud, or on a server. If it is hosted somewhere, it will work without having to change the application code since all the configurations, such as URL, credentials, etc., are stored in a config file like `.env`.
+
+### Build, release, run
+
+In summary, we will need to **strictly separate** the stage of **building, release, and running**.
+
+![build-release-run](/docs/twelve-factor-app/build-release-run.gif)
+
+- build stage
+
+  - **Transform** or **convert** the code into an **executable** or **binary** format. For example, you have a Python application that's going to run on Windows or Linux server, you can use setup tools to build the application, while in Java, you can use maven or etc to build the application. Of course you can use Docker as well.
+  - The build stage **compiles** assets and binaries based on vendor dependencies and the code.
+
+- release stage
+
+  - It **combines** the **executable** file and **config** file to become the release object.
+    - executable + config = release object
+  - Every release should have a **unique** release Id. For example, timestamp (2024-05-11-13-30-10) or incrementing number (v1, v2, v3)
+  - Any changes to the codebase **must create a new release** and once a **release** has been **created**, it **cannot** be **modified**.
+
+- run stage (also known as "runtime")
+  - **Run the release object** in the respective **environment**. You can deploy and run the release object into different environments and this will ensure that all environments will have the same codebase as they're coming from the same release object.
+
+With that said, we can **easily roll back** to the **previous releases** based on the **build artifacts** that generated from the build stage.
+
+### Processes
+
+In summary, applications should be **deployed** as **one or more stateless processes** (persist data stored on a backing service) and **share-nothing**.
+
+```python filename="api.py" {4}
+from flask import Flask
+
+app = Flask(__name__)
+total_visit = 0
+
+@app.route("/")
+def homepage():
+  global total_visit
+  total_visit += 1
+  return "Welcome to my homepage"
+
+if __name__ == "__main__":
+  app.run(host="0.0.0.0")
+```
+
+![processes-violation](/docs/twelve-factor-app/processes-violation.gif)
+
+Let's take a look on this example. Right now, we have a `total_visit` global variable, it will increase it each time when the request/user comes in, but this only works with one application. **Having multiple applications** means they will each have their own version of this variable and they will **not sync with each other** (record everything separately), as the **memory state is different** (single-transaction cache).
+
+The another scenario is that when the user login to the website, normally we will **cache** the **user session** data. But, if we store all these **user sessions data** in the **process memory** or **filesystem** of the app, then when the user is **redirected** to another application, what will happen is that the **user session data isn't available**. Of course, it is possible to use **sticky sessions** to redirect the same user to the same application using load balancers. However, there is the possibility that the application may crash. In that case, all the data or sessions will be lost.
+
+![processes-correct](/docs/twelve-factor-app/processes-correct.gif)
+
+**Sticky sessions are a violation of 12 factor and should never be used or relied upon**. So, we should **store** all the data and session information on a **backing service** like database or caching system. Redis is a good option for storing session state data as it offers time-expiration.
+
+### Port binding
+
+In summary, we have to **export services** via **port binding**, as 12 factor app is **completely self-contained** (services) and does **not rely** on a specific web server to function. This means that by **declaring the port** your application uses, the runtime and development environment know **where to access your services**. You must do this to ensure **portability** across platforms and environments.
+
+```python filename="api.py" {11}
+import os
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def hello_world():
+	return "<p>Hello, World!</p>"
+
+if __name__ == '__main__':
+  app.run(debug=True, port=os.environ.get("PORT", 5000))
+```
+
+For example, Flask application is using port **5000** by default. So, in the web application, HTTP is exported as a service by binding to a port **5000** and listening for requests. That means in local development environment, you can visit a service url like `http://localhost:5000` to access the service exported by their app.
+
+### Concurrency
+
+In summary, we have to **scale out via the process model**. So the applications should **scale out horizontally** and **not vertically** by running multiple instances of the application concurrently.
+
+![concurrency](/docs/twelve-factor-app/concurrency.gif)
+
+As an example, you currently have one instance of your application serving multiple users. What if you have more users visiting your application? It's possible to scale your **resources vertically** by adding resources (RAM, Storage, etc) to the server, but that means the server must be taken down. This approach isn't good.
+
+![horizontal-scaling](/docs/twelve-factor-app/horizontal-scaling.gif)
+
+Because processes are the **first class citizens** of the twelve-factor app, we should **scale out horizontally** by **adding/provisioning more servers** so we can spin more instances. Of course, you can have a **load balancer** as well to balance your load across the instances of the application.
+
+### Disposability
+
+In summary, we will need to **maximize robustness** of a system with **fast startup** and **graceful shutdown**, as 12 factor app's processes are **disposable**, meaning they can be started or stopped at a moment's notice.
+
+![disposability](/docs/twelve-factor-app/disposability.gif)
+
+It's important for processes to make an effort to **minimize startup time** by **avoiding complex startup scripts** for **provisioning** the application and this concept also applies to reduce instances of the application.
+
+> Processes shut down gracefully when they receive a SIGTERM signal from the process manager.
+>
+> — 12factor.net
+
+![disposability-2](/docs/twelve-factor-app/disposability-2.gif)
+
+Here is an example, when executing the `docker stop` command for Docker containers, Docker initiates the **SIGTERM** signal to the container initially. If the container does not stop within a grace period, Docker will then send the **SIGKILL** signal to forcibly terminate the process running within the container.
+
+<Callout>
+  SIGTERM -> SIGKILL -> Terminate container process
+</Callout>
+
+These **two signals** will allow the application to **gracefully shutdown** by **stopping** the acceptance of new requests and **ensuring** the completion of all ongoing requests. Therefore, this will **prevent any impact** on users who are waiting for a response from the application.
+
+### Dev/prod parity
+
+In summary, we have to **keep development, staging, and production environments** as **similar** as possible by applying CI/CD concept.
+
+![dev-prod-parity](/docs/twelve-factor-app/dev-prod-parity.gif)
+
+Typically, there is a **disconnect** between the **development** and **production** environments, **leading to gaps** that can be **categorized** into **three distinct areas**
+
+- Time gap
+
+  - It could take the developer **days, weeks, or even months** to finalize code modifications and move them to production.
+
+- Personnel gap
+
+  - Developers are responsible for **writing code**, while Ops engineers **handle the deployment of changes**. However, in most cases, they have **limited** or **no knowledge** about the new changes, making it **difficult to identify issues** caused by these new changes.
+
+- Tools gap
+
+  - **Different tools** used in **different environments**, often leading to **unforeseen outcomes** (consequences). For instance, developers may use SQLite and Nginx in development environment, whereas MySQL and HAProxy use in production environment.
+
+> The twelve-factor app is designed for continuous deployment by keeping the gap between development and production small. The twelve-factor developer resists the urge to use different backing services between development and production.
+>
+> — 12factor.net
+
+By applying **Continuous Integration, Continuous Delivery, and Continuous Deployment**. We can
+
+- make the time gap small, as the developer can write code and deploy it in a matter of hours or even minutes.
+- make the personnel gap small, the developer who writes the code is actively involved in deploying it and monitoring its behavior in production.
+- make the tools gap small, we must ensure the tools as similar as possible that are being used in development and production environment. (Example: Docker)
+
+| Areas     | Traditional app                               | 12-factor app          |
+| --------- | --------------------------------------------- | ---------------------- |
+| Time      | Weeks or Months                               | Hours or minutes       |
+| Personnel | Different people, Developer and Ops Engineers | Same people, Developer |
+| Tools     | Different                                     | As similar as possible |
+
+### Logs
+
+In summary, we need to **treat logs as event streams** and leave the execution environment to **aggregate**.
+
+![logs-1](/docs/twelve-factor-app/logs-1.gif)
+Logs **give insight into how a running app behaves**, such as detecting errors in code and recording all incoming requests. Normally, we save logs in a local file called `logfile`. However, this method has a **drawback**. In the era of containers, the container could be **terminated** at any moment, causing the **logs** to **disappear**.
+
+![logs-2](/docs/twelve-factor-app/logs-2.gif)
+In a different situation, an application may choose to **send logs** to a **centralized logging system** like fluentd. Although this is encouraged, it is **not advisable to tightly couple** or **rely exclusively** on that particular logging solution for the application.
+
+> A twelve-factor app never concerns itself with routing or storage of its output stream.
+>
+> — 12factor.net
+
+![logs-3](/docs/twelve-factor-app/logs-3.gif)
+
+We should
+
+- **Ensure** your logs are **stored** in a **structured format (JSON)** and **kept** in a **centralized location** for easy access. An agent can **easily transfer** log data to a central location for querying, consolidating, and analyzing.
+- **Avoid writing** to a particular file or **being restricted** to a specific logging system.
+
+### Admin processes
+
+In summary, **admin/management tasks** should be **run as one-time processes**, stored in **source control**, and **separate** them from application processes and they should be **running** on the same systems as the production application.
+
+![admin-processes](/docs/twelve-factor-app/admin-processes.gif)
+
+Let's say you discover that the total number of visits recorded in your webpage's PostgreSQL database is **inaccurate**. In such cases, you can **reset** the count. To do this, you can create a script that **performs the reset** as a **one-time task**. This process is similar to other tasks like database migration or fixing specific issues.
+
+**You need to ensure the admin task is running on the same systems as the production application, but as a separate process.**

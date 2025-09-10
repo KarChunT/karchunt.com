@@ -1,0 +1,111 @@
+# Resource Limits
+
+## CPU
+
+[Reference](https://docs.docker.com/config/containers/resource_constraints/#cpu)
+
+<Callout type="info">
+  By default, each container's access to the host machine's CPU cycles is unlimited. Docker us using [default Completely Fair Scheduler (CFS)](https://docs.docker.com/config/containers/resource_constraints/#configure-the-default-cfs-scheduler), but it also supports [Real-time Scheduler](https://docs.docker.com/config/containers/resource_constraints/#configure-the-real-time-scheduler).
+</Callout>
+
+### CPU Shares
+
+![cpu-shares](/docs/docker/cpu-shares.png)
+
+By default, the Docker Host will **assign** a CPU share of **1024** to each container. You can **modify** that by using `--cpu-shares` option while creating the container.
+
+```bash
+docker run --cpu-shares=<amount> <image>
+docker run --cpu-shares=512 ubuntu
+```
+
+`--cpu-shares` - It specifies how the host's total CPU resources are shared among its containers.
+
+### CPU Sets
+
+It **limits the specific CPUs or cores** a container can use. A **comma-separated list** or **hyphen-separated** range of CPUs a container can use. Let's said that you have more than one CPU. Then the first cpu is numbered 0.
+
+- 1st CPU is numbered 0
+- 2nd CPU is numbered 1
+
+Value of **0-3** means, use the first, second, third, and fourth CPU.  
+Value of **1,3** means, use the second, and fourth CPU.
+
+```bash
+docker run --cpuset-cpus=<value> <image>
+
+# example
+docker run --cpuset-cpus=0-1 ubuntu # this container can use first and second CPU
+docker run --cpuset-cpus=1,3 ubuntu # this container can use second and fourth CPU
+```
+
+`cpuset-cpus` - It specifies the CPU numbers to use.
+
+### CPU Count
+
+<Callout title="What happens when a container tries to consume more CPUs?" type="warn">
+  Containers can consume all CPU resources available on the host, which can even affect other processes running on the host, such as other containers and Docker Daemons.
+</Callout>
+
+It **specifies how much of the available CPU resources** a container can use. If host has 2 CPUs and if you set 1 CPU, then the container is **guaranteed** at most one CPU.
+
+```bash
+docker run --cpus=<value> <image>
+
+# example
+# Let's say you have 4 CPUs, you specify 2.5, that means the container can only use as much as 2.5 out of 4.
+docker run --cpus=2.5 ubuntu
+```
+
+## Memory
+
+[Reference](https://docs.docker.com/config/containers/resource_constraints/#memory)
+
+We want to set the maximum amount of memory the container can use.
+
+```bash
+docker run -m/--memory <size> <image>
+
+# example
+docker run -m 512m ubuntu
+docker run --memory=512m ubuntu
+```
+
+- m = megabytes
+- g = gigabytes
+
+So, setting `512m` will allocate 512MB of memory for the container. By default, the container will use the **same amount of memory** that is specified as **swap space**, that means when the container **consumes more** than 512MB, it can also **consume** another 512MB as **swap space**. Therefore, the container will get **1GB** of memory, which effectively **combines memory and swap space**.
+
+<Callout title="Calculation">
+  **Sum of memory = memory + swap space**
+</Callout>
+
+You can **limit** the container's **use of swap space** by specifying the `--memory-swap` option while creating the container.
+
+```bash
+docker run --memory=<size> --memory-swap=<size> <image>
+docker run --memory=512m --memory-swap=512m ubuntu
+```
+
+In this case, there is **no swap space configured** because the `--memory` and `--memory-swap` options are the same.
+
+**Swap space = 512m - 512m = 0m**
+
+If you want to allocate 256 megabytes for swap space, you have to set `--memory-swap=768m`.
+
+```bash
+docker run --memory=512m --memory-swap=768m ubuntu
+```
+
+**Swap space = 768m - 512m = 256m**
+
+### Additional add-on
+
+```bash
+docker run --memory=512m --memory-swap=-1 ubuntu # unlimited memory swap(infinity)
+
+# Docker will ensure the memory allocated to this container
+docker run --memory=512m --memory-swap=-1 --memory-reservation=100m ubuntu
+```
+
+`--memory-reservation` = Allows you to specify a soft limit smaller than --memory which is activated when Docker **detects contention or low memory** on the host machine. It must be **set lower** than `--memory` for it to takje precedence. Because it is a soft limit, it **doesn't guarantee** that the container **doesn't exceed the limit**.

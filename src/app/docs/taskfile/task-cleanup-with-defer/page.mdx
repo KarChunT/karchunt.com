@@ -1,0 +1,51 @@
+# Task cleanup with Defer
+
+<Callout>
+  If you have multiple deferred commands, they will run in the **reverse order**. This means the last deferred command will run first, followed by the second last, and so on. This is useful for tasks that require a specific order of cleanup actions.
+</Callout>
+
+You can use the `defer` feature in Taskfile to **ensure that a cleanup command runs after the main task**, regardless of whether the task succeeded or failed. This is particularly useful for tasks that **require cleanup actions**, such as removing temporary files or directories.
+
+```yaml filename="Taskfile.yaml"
+version: '3'
+tasks:
+  install:
+    cmds:
+      - npm install
+      - defer: rm -rf .cache
+      - echo "Installation complete"
+      - defer: echo "Cleanup task executed"
+```
+From this example, the `rm -rf .cache` command will run after the `echo "Installation complete"` command. `defer` will **always run at the end of the task**.
+
+```bash filename="Demo and Output"
+ubuntu@touted-mite:~/nodejsfun$ task install 
+task: [install] npm install
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'ansi-escapes@6.2.1',
+npm WARN EBADENGINE   required: { node: '>=14.16' },
+npm WARN EBADENGINE   current: { node: 'v12.22.9', npm: '8.5.1' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'marked-terminal@5.2.0',
+npm WARN EBADENGINE   required: { node: '>=14.13.1 || >=16.0.0' },
+npm WARN EBADENGINE   current: { node: 'v12.22.9', npm: '8.5.1' }
+npm WARN EBADENGINE }
+
+up to date, audited 185 packages in 1s
+
+78 packages are looking for funding
+  run `npm fund` for details
+
+9 vulnerabilities (4 moderate, 5 high)
+
+Some issues need review, and may require choosing
+a different dependency.
+
+Run `npm audit` for details.
+task: [install] echo "Installation complete"
+Installation complete
+task: [install] echo "Cleanup task executed"
+Cleanup task executed
+task: [install] rm -rf .cache
+```

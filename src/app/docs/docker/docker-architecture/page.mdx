@@ -1,0 +1,118 @@
+# Docker Architecture
+
+## Docker Engine Architecture
+
+![Docker architecture](/docs/docker/architecture.gif)
+
+Docker Engine is the **heart** of the container and it consists of **3 core elements**;
+
+- Docker CLI
+  - A **command line interface** that the user will use to run the **commands** to **manage Docker objects**.
+- REST API
+  - Enables the **communication** between applications and Docker and gives **Dockerd instructions**.
+- Docker Daemon (dockerd) ---> Server
+  - It's the **server responsible** for **creating** and **managing** **objects**.
+  - It's the **heart** of Docker.
+
+### containerd
+
+<Callout title="What is Open Container Initiative (OCI)?">
+  A set of open industry standards around **container formats** and **runtime**. OCI created two specifications to make the creation of container standards more efficient.
+  - Runtime-spec
+  - Image-spec
+
+  These two specifications mainly defines the **lifecycle** of a container/image technology. For example, delete command should delete a container/image, etc.
+</Callout>
+
+It **manages the container lifecycle** (start, stop, pause, delete), **image distribution** (push, pull to/from registries).
+
+When the user makes a request to **dockerd**, **containerd** will push/pull the image to/from registries, and **convert** the image that was **downloaded** into an **OCI compliance bundle**.
+
+### libcontainer/runC
+
+![runC](/docs/docker/runc.gif)
+
+At the very beginning, Docker has a **monolithic architecture** and used [LXC (Linix Container)](https://linuxcontainers.org/lxc/introduction/) technology to **build environments** for applications. After a while, the architecture of Docker was modified to a **modular design**, allowing for quicker innovation. Also, they **replaced LXC with libcontainer** as the default execution environment, now known as **runC**.
+
+<Callout title="What is cgroups and namespaces?" type="info">
+  **cgroups** - Resource allocation for a given process can be easily monitored and managed via Linux OS, and **resource limits** can be set for memory, CPU, and network resources.
+
+  **namespaces** - **Isolating** processes from one another. In each container, processes will run in their own namespace and won't be able to access anything outside of its namespaces. (Docker containers have network isolation (via libnetwork), allowing separate virtual interfaces and IP addresses for each container, that means that the container will have its own virtual interfaces, routing and ARP tables).
+
+  Docker use namespaces to isolate
+  - Process Id (pid) - Two proccesses cannot have the same process Id, with the help of namespaces, each process can have multiple process IDs associated with it.
+  - Unix Timesharing Systems (UTS)
+  - Mount (mnt)
+  - Inter-Process Communication (IPC)
+  - Network (net)
+</Callout>
+
+runC is a **lightweight CLI** and it's used to **create and run containers**. The user can use the CLI to spawn and run the containers without Docker, so it can be easily integrated with higher-level container orchestration systems like Kubernetes.
+
+- It will **interact with the cgroups and namespaces** on the kernel levels to create and run a container.
+- In each execution, `/tmp/docker/[uuid]/` is created as the container's root file system.
+
+### containerd-shim
+
+containerd-shim is mainly use to **make the containers daemon less**, **monitors the state** of the container, and it is in charge of handling input (STDIN) and output (STDOUT) and notifying the Docker Daemon about the exit status.
+
+It mainly **takes care** of the containers when the daemon is down or restarted. That means, the containers will run in the background and will be attached back to the daemon when it comes back or online.
+
+How containerd-shim make the container become **daemonless container**?
+
+- Each time a container is created, containerd **forks** an instance of runC
+- After runC creates the container, the runC process will exit, and shim will **replace** runC and become the new container **parent**.
+
+## Docker Objects
+
+Docker Objects consists of 4 core elements;
+
+- Images
+- Containers
+- Volumes
+- Networks
+
+### Images
+
+<Callout title="What is Dockerfile?">
+  A Dockerfile is a text file that will create a custom Docker image from a set of commands or instructions. Each instruction in the Dockerfile will represent a layer of the Docker image.
+</Callout>
+
+Docker image acts as **a set of instructions** to **build** a Docker container, you can say it is a read-only template.
+
+The Docker image contains all the necessary components for the application to run as a container, including the source code, tools, libraries, dependencies, and more. The user can build an image from a **Dockerfile** through `docker build` command.
+
+### Containers
+
+Docker Container is an **instance of an image running as a process**. It is a **standalone** or executable package of software that has everything like application source code, tools, libraries, dependencies, runtime, settings, etc that you need to run an application.
+
+### Volumes
+
+Docker volume is used to **persist** and **share** the container's data across containers. Folders on your host machine's hard drive are **mounted** into containers as volumes, which allows the container to write its data into the host volumes.
+
+Benefits: Volumes are **easy to backup**.
+
+### Networks
+
+Docker networking enables a container to be able to **communicate** with other containers. It can **link** a Docker container to as **many networks** as the user requires. It's used to create an **isolated environment** (provide an isolation) for Docker containers.
+
+Example of Docker network drivers;
+
+- Bridge
+- Host
+- None
+- Overlay
+- Macvlan
+
+## Registry
+
+<Callout>
+  Docker Enterprise Edition provides a private trusted registy known as Docker Trusted Registry (DTR).
+</Callout>
+
+Docker images are **stored** in a registry via `docker push` command, which enables the **sharing and publishing** of images either publicly or within a private organization.
+
+Example;
+
+- [Docker Hub](https://hub.docker.com/)
+- [Harbor](https://goharbor.io/)

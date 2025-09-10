@@ -1,0 +1,104 @@
+# Task Dependencies & Parallel Task Execution
+
+## Task Dependencies
+
+<Callout title="Run task in specific order">
+  If you want to **run tasks in a specific order** or **run serially**, then you can refer to [run task in specific order](/docs/taskfile/run-task-in-specific-order).
+</Callout>
+
+Dependencies **actually run in parallel**, so dependencies are **not guaranteed to run in order**. You can achieve this by using the `deps` keyword in your Taskfile.
+
+### Single Task Dependency
+
+```yaml filename="Taskfile.yml"
+version: '3'
+tasks:
+  build:
+    deps: [lint]
+    desc: Build the project
+    cmds:
+      - echo "Building the project..."
+
+  lint:
+    desc: Lint the code
+    cmds:
+      - echo "Linting code..."
+```
+In this case, the `lint` task will **run before** the `build task`, ensuring that the code is linted before building it.
+
+```bash filename="Demo and Output"
+ubuntu@touted-mite:~$ task build
+task: [lint] echo "Linting code..."
+Linting code...
+task: [build] echo "Building the project..."
+Building the project...
+```
+
+### Multiple Task Dependencies
+
+```yaml filename="Taskfile.yml"
+version: '3'
+tasks:
+  build:
+    desc: Build the project
+    cmds:
+      - echo "Building the project..."
+
+  test:
+    desc: Run tests
+    cmds:
+      - echo "Running tests..."
+
+  lint:
+    desc: Lint the code
+    cmds:
+      - echo "Linting code..."
+
+  all:
+    desc: Run lint, build, and test in order
+    deps:
+      - lint
+      - build
+      - test
+      # - example
+      #   vars:
+      #     EXAMPLE_VAR: "example value"
+    cmds:
+      - echo "All tasks completed!"
+```
+- You can also pass variable to dependencies. Is the same concept as passing variables to tasks.
+
+It **does not guaranteed** that `lint` will **run before** `build` or `test`, but it **ensures that all tasks are executed** before the `all` task completes.
+
+```bash filename="Demo and Output"
+ubuntu@touted-mite:~$ task all
+task: [test] echo "Running tests..."
+task: [build] echo "Building the project..."
+task: [lint] echo "Linting code..."
+Building the project...
+Running tests...
+Linting code...
+task: [all] echo "All tasks completed!"
+All tasks completed!
+```
+
+## Parallel Task Execution
+
+Parallel task execution allows you to **run multiple tasks concurrently**, which can significantly **speed up your workflow**, especially for tasks that are **independent of each other**.
+
+```yaml filename="Taskfile.yml"
+version: '3'
+tasks:
+  app:
+    dir: ./app
+    cmds:
+      - docker build -t app:latest ./
+  app1:
+    dir: ./app1
+    cmds:
+      - docker build -t app1:latest ./
+```
+
+```bash
+task --parallel app app1
+```

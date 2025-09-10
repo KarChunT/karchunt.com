@@ -1,0 +1,128 @@
+# Docker Compose
+
+<Callout type="info">
+  Use to startup multiple Docker containers at the same time.
+</Callout>
+
+## compose.yaml
+
+- [Reference](https://docs.docker.com/compose/compose-file/)  
+- [Examples](https://github.com/docker/awesome-compose/tree/master)
+
+<Callout type="info">
+  All configurations here are the same from the `docker run` command. Currently, I'm showing docker compose v2 instead of v1. So some syntax might be different due to some syntax already deprecated.
+</Callout>
+
+A default network is **created** for all the composed containers. that means all containers that are created will be **automatically added** to that network.
+
+```yaml filename="compose.yaml"
+name: apiapp
+services:
+  postgres:
+    image: postgres:14
+    networks:
+      - db
+    environment:
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: sonar
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  sonarqube:
+    image: sonarqube:lts
+    ports:
+      - '9000:9000'
+      - '9092:9092'
+    networks:
+      - db
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://postgres:5432/sonar
+      SONAR_JDBC_USERNAME: sonar
+      SONAR_JDBC_PASSWORD: sonarpasswd
+    depends_on:
+      - postgres
+  apiapplication:
+    build: ./
+    volumes:
+      - /app/node_modules
+      - ./app:/app
+    depends_on:
+      - postgres
+  server:
+    build:
+      context: ./server # system look dir to search for Dockerfile
+      dockerfile: Dockerfile.dev
+networks:
+  db:
+volumes:
+  postgres_data:
+```
+
+Additional;
+
+- If you want to specify `-it` in `compose.yaml`, you will have to specify these two fields (mandatory)
+  - `stdin_open: true` - This service needs an open input connection
+  - `tty: true` - Attaching this terminal
+  - `-it` = `stdin_open` + `tty`
+- If you want to override the `Dockerfile` entrypoint, you can specify `entrypoint` within `compose.yaml`, then it will override the entrypoint in `Dockerfile` that is defined.
+
+## Commands
+
+[Reference](https://docs.docker.com/compose/reference/)
+
+Use `docker compose` instead of `docker-compose`.
+
+### List containers
+
+```bash
+docker compose ps
+```
+
+### Build or rebuild containers
+
+It only builds containers **without starting** it.
+
+```bash
+docker compose build
+```
+
+### Create and start containers
+
+**Up = Build/rebuild + start**
+
+```bash
+docekr compose up
+docker compose up --build # rebuild containers (build images before starting containers)
+docker compose -d up # running in backgound
+docker compose -f <compose-file> up
+docker compose up <service> <service> # start only a few service
+```
+
+### Execute a command in a running container
+
+By default, it will allocate a **TTY** by default, so you can straight away get an **interactive prompt** from this command `docker compose exec apiservice bash`.
+
+```bash
+docker compose exec <service-name> <commands>
+docker compose exec -it apiservice bash # old version
+docker compose exec apiservice bash # new version
+```
+
+### Display service log output
+
+```bash
+docker compose logs
+```
+
+### Stop services
+
+Stop running containers **without removing** them. The services can be started again with `docker compose start`.
+
+```bash
+docker compose stop
+```
+
+### Stop and remove containers, networks
+
+```bash
+docker compose down
+```

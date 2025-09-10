@@ -1,0 +1,37 @@
+# Remote Server Connection
+
+## Connecting to a remote server
+
+```bash
+ssh <remote-host-ip-address/name> # Your local machine username is same as on the remote server
+ssh <username>@<remote-host-ip-address/name> # specify your username if it is different
+ssh -p <port-number> <username>@<remote-host-ip-address/name> # specify different port number
+ssh -v <username>@<remote-host-ip-address/name> # get the verbose information
+
+# running a single command on a remote host instead of spawning a shell session
+# After the command is completed running, the connection will straightaway close
+ssh <username>@<remote-host-ip-address/name> <command-to-run>
+ssh <username>@<remote-host-ip-address/name> ls -la
+```
+
+| Parameters | Description                | Example |
+| ---------- | -------------------------- | ------- |
+| -p         | Port Number                | 2222    |
+| -v         | More information (Verbose) | -       |
+
+When you SSH to a server, it will prompt you whether you want to connect by showing the fingerprint. It wuill save the fingerprint to [known_hosts](#known-hosts) file.
+
+<Callout type="info">
+  To simplify the connection process, you can create a [Host specific
+  configuration file](/docs/ssh/host-configuration)
+</Callout>
+
+## known_hosts
+
+<Callout type="info">
+  It will generate a `known_hosts` file in your local `~/.ssh` directory.
+</Callout>
+
+A fingerprint will be displayed when you SSH to a server. If you put "yes", the system will save the fingerprint to your local `~/.ssh/known_hosts` file, so you won't have to enter the same thing again next time.
+
+As a result, it can help to prevent the man-in-the-middle-attack.

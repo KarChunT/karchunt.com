@@ -1,0 +1,13 @@
+# Interactive CLI Application
+
+In some cases, your application **may need to interact with the user**. So, we can use `interactive: true` to **enable an interactive CLI application**. This allows you to prompt the user for input and handle it accordingly.
+
+```yaml filename="Taskfile.yaml"
+version: '3'
+
+tasks:
+  default:
+    cmds:
+      - vim my-file.txt
+    interactive: true
+```

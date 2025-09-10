@@ -1,0 +1,29 @@
+# Overriding Task Name
+
+You can **override the task name printed on the summary** by using the `label:` field in your Taskfile. This is useful when you want to customize how tasks are displayed in the output, especially when using variables.
+
+```yaml filename="Taskfile.yaml"
+version: '3'
+tasks:
+  display:
+    internal: true
+    label: 'display-{{.MESSAGE}}'
+    cmds:
+      - echo "{{.MESSAGE}}"
+  test:
+    cmds:
+      - task: display
+        vars:
+          MESSAGE: hello
+      - task: display
+        vars:
+          MESSAGE: world
+```
+
+```bash filename="Demo and Output"
+ubuntu@touted-mite:~$ task test 
+task: [display-hello] echo "hello"
+hello
+task: [display-world] echo "world"
+world
+```

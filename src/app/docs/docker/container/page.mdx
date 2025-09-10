@@ -1,0 +1,232 @@
+# Container
+
+<Callout type="info">
+  All changes that are made to containers or networks are logged under the [Docker System Events](/docs/docker/useful-commands#docker-system-events).
+</Callout>
+
+## Create container
+
+When we create a new container, Docker will create a new directory `/var/lib/docker/containers/<id>.json` and all the container logs will be stored under that file by default.
+
+```bash
+docker container create <image>
+docker container create ubuntu
+```
+
+After the container is created, you have to start the container.
+
+## List container details
+
+```bash
+docker container ls # same as docker ps
+docker container ls -a # list all containers, including exited containers
+docker container ls -q # only display container id
+```
+
+## Start container
+
+You can get container id from `docker container ls`.
+
+```bash
+docker container start <container-id>
+```
+
+## Run a container
+
+run container = create container + start container
+
+Some options:
+
+- `-it` = interactive terminal (creates and enter the terminal session with the command you specify. This means you can execute commands inside the container while it is still running. Useful for debugging purposes.)
+- `-d` = detach (Run container in background)
+- `--name` = container name
+- `--rm` = remove container after the process is done
+- `--hostname` = setup container hostname
+- `--user` - setup container username
+- `-p` = port mapping
+- `--env` or `-e` or `--env-file` = setup environment variables
+- `--health-cmd` and `--health-interval` = check container state
+- `--privileged` = Login as root user, the Privileged container has full access to all the host's devices and files
+- `--restart` = Restart policy
+  | Restart Options | Description |
+  | --- | --- |
+  | no | The container will never be restarted |
+  | on-failure | When the container fails, it will restart the container |
+  | always | The container will always be restarted |
+  | unless-stopped | It's very similar to "always" option, but the container will not restart when it was manually stopped and not even when the Docker Daemon restarts |
+
+```bash
+docker container run <image>
+docker container run ubuntu # same as docker run ubuntu
+
+# creates and enter the terminal session
+docker container run -it ubuntu
+
+# bash is the command that runs inside the container, it will start a new Bash shell within the container
+docker container run -it ubuntu bash
+
+# Run in background with container name = myubuntu
+docker container run -d --name=myubuntu ubuntu
+
+# remove the container after the process is done
+docker container run --rm ubuntu
+
+# set hostname
+docker container run --hostname=myubuntu ubuntu
+
+# Security - setup a username instead of root
+docker container run --user=1000 ubuntu
+
+# Port mapping
+docker container run -p <local_port>:<container_port> <image>
+docker container run -p 80:5000 ubuntu
+
+# the application is only available on the network 192.168.1.*
+docker container run -p 192.168.1.10:8000:5000 ubuntu
+
+# map the container port to a random port on the host (Ephemeral Port Range 32768 - 60999)
+docker container run -p 5000 ubuntu
+
+# Check Health intervals (liveness probe)
+# Note: You need to append health-* in front of all parameters and cmd
+docker run --health-cmd "curl -f http://localhost:8000" --health-interval=5s web-ubuntu
+
+# Define environment variables
+docker run --env <key>=<value> <image>
+docker run --env PORT=8000 ubuntu
+docker run -e PORT=8000 ubuntu
+
+# Define environment variables using env file
+docker run --env-file <filename> <image>
+docker run --env-file .env ubuntu
+
+# Privileged container
+docker run --privileged ubuntu
+
+# Restart policy
+docker run --restart=no ubuntu
+```
+
+## Expose container port (Capital P)
+
+Normally it will auto-publish the ports of the container on the host, but what port?
+
+- So with the **Capital P** option, it will **expose** all the ports configured in the Dockerfile (**expose instruction**) when the image is being built.
+- Docker uses IPTables to map a port on a container to a port on the host and it uses Docker IPTables chains to modify or configure port mapping on a host.
+
+```dockerfile filename="Dockerfile"
+FROM ubuntu:22.04
+
+RUN apt-get update
+
+...
+
+EXPOSE 8000
+```
+
+```bash
+docker run -P ubuntuWebApp
+# Add additional ports that were not specific in the Dockerfile
+docker run -P --expose=5000 ubuntuWebApp
+```
+
+## Rename container
+
+Use `docker ps` command to get the current container name.
+
+```bash
+docekr rename <old-name> <new-name>
+docker container rename <old-name> <new-name>
+```
+
+## Run a new command in a running container
+
+```bash
+docker exec <container-id> <command>
+docker container exec <container-id> <command>
+docker container exec -it <container-id> /bin/bash
+```
+
+## Attach the terminal's I/O to a running container
+
+```bash
+docker attach <container-id>
+docker container attach <container-id>
+```
+
+When you attach the terminal's I/O to a running container, you enter the command, it will display the result to all the users who attach back the container. As an example, if you exit the container, all people will leave the container at the same time.
+
+## Inspect container
+
+```bash
+docker inspect <container-id>
+docker container inspect <container-id>
+```
+
+## Display a live stream of containers resource usage statistics
+
+It will list containers with CPU, memory, network, and disk consumption.
+
+```bash
+docker stats
+docker container stats
+docker container stats <container-id>
+docker container stats <container-id> <container-id>
+```
+
+## Display running processes of a container
+
+Display the processes and their process IDs on the Docker host.
+
+```bash
+docker container top <container-id>
+```
+
+## Container Logs
+
+```bash
+docker container logs <container-id>
+docker container logs -f <container-id> # view live logs
+```
+
+## Pause and Unpause container
+
+```bash
+docker container pause <container-id>
+docker container unpause <container-id>
+```
+
+## Restart container
+
+```bash
+docker container restart <container-id>
+```
+
+## Update container
+
+<Callout type="info">
+  [Reference](https://docs.docker.com/reference/cli/docker/container/update/)
+</Callout>
+
+```bash
+docker container update --restart always <container-id>
+docker container update --cpus=1.5 <container-id>
+```
+
+## Stop, remove, and prune the container
+
+<Callout type="info">
+  SIGTERM -> SIGKILL -> Terminate container process
+</Callout>
+
+When executing the `docker stop` command for Docker containers, Docker initiates the **SIGTERM** signal to the container initially. If the container does not stop within a **grace** period, Docker will then send the **SIGKILL** signal to **forcibly terminate** the process running within the container.
+
+```bash
+docker container stop <container-id>
+docker container stop $(docker container ls -q) # stop all containers
+
+docker container rm <container-id>
+docker container rm $(docker container ls -qa) # remove all containers
+
+docker container prune # remove all stopped containers
+```

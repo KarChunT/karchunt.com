@@ -1,0 +1,89 @@
+# Polymorphism
+
+## Concept
+
+The ability to **use a single interface** to represent **different underlying data types**. It **allows methods to do different things** based on the **object** it is acting upon. Also, it allows **methods to have the same name** but **behave differently** based on the object type by using **method overriding** or **method overloading**.
+
+| Types of Polymorphism | Description |
+|-----------------------|-------------|
+| Compile-time Polymorphism (Method or operator overloading) | The method to be executed is **determined at compile time**. It **allows the same method name** to be used with **different parameters or types**. |
+| Runtime Polymorphism (Method Overriding) | The method to be executed is **determined at runtime**. It allows a subclass to **provide a specific implementation of a method** that is already defined in its superclass. |
+
+## Implementation
+
+### Method Overriding
+
+Based on the below example, the `area` method is **overridden** in the `Circle` and `Rectangle` classes to provide specific implementations for **calculating the area of each shape**. The `Shape` class serves as a base class with a generic `area` method.
+
+```python filename="shapes.py" {9, 17}
+class Shape:
+  def area(self):
+    pass
+
+class Circle(Shape):
+  def __init__(self, radius):
+    self.radius = radius
+
+  def area(self):
+    return 3.14 * self.radius ** 2
+
+class Rectangle(Shape):
+  def __init__(self, length, width):
+    self.length = length
+    self.width = width
+
+  def area(self):
+    return self.length * self.width
+
+# Runtime Polymorphism
+shapes = [Circle(5), Rectangle(4, 6)]
+for shape in shapes:
+  print(f"Area: {shape.area()}") # Calls the overridden method based on the object type
+```
+
+### Method Overloading
+
+Based on the below example, the `add` method is **overloaded** to handle different numbers of parameters. The method can accept either two or three arguments, and it will return the sum accordingly.
+
+```python filename="calculator.py"
+class Calculator:
+    def add(self, a, b):
+      return a + b
+    def add(self, a, b, c):
+      return a + b + c
+
+calculator = Calculator()
+print(calculator.add(2, 3))        # Output: 5
+print(calculator.add(2, 3, 4))      # Output: 9
+```
+
+#### Operator Overloading
+
+<Callout title="More Information">
+  Methods like `__add__`, `__str__`, `__eq__`, etc are called **dunder methods** (double underscore methods) or **magic methods**. They allow you to define how operators and built-in functions behave for user-defined classes.
+</Callout>
+
+Operator overloading allows you to **define how operators behave for user-defined classes**. For example, you can define how the `+` operator works for a custom class by implementing the `__add__` method.
+
+```python filename="vector.py"
+class Vector:
+  def __init__(self, x, y):
+    self.x = x
+    self.y = y
+  
+  def __add__(self, other):
+    return Vector(self.x + other.x, self.y + other.y)
+
+  def __str__(self):
+    return f"Vector({self.x}, {self.y})"
+  
+  def __eq__(self, other):
+    return self.x == other.x and self.y == other.y
+
+vector1 = Vector(1, 2)
+vector2 = Vector(3, 4)
+result = vector1 + vector2  # Uses the __add__ method
+
+print(result)  # Output: Vector(4, 6)
+print(vector1 == vector2)  # Uses the __eq__ method, Output: False
+```

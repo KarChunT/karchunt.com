@@ -1,0 +1,86 @@
+# Encapsulation
+
+## Concept
+
+**Bundle data (attributes)** and **methods (behaviours)** into a **single unit (class)**. It **restricts direct access** to some of the **object's components**, which can prevent the accidental modification of data. Mainly **hiding internal state** and **implementation details**.
+
+| Type of Encapsulation | Description |
+|-----------------------|-------------|
+| Public | Accessible from **anywhere**, no restrictions. |
+| Protected | Accessible **within the class and its subclasses**, but not from outside. |
+| Private | Accessible **only within the class**, not from outside or subclasses. |
+
+<CustomCards>
+  <CustomCard title="Data Protection">
+    - **Prevent direct access** to sensitive data.
+    - **Validate data** before modification.
+    - Maintains **data integrity**.
+    - **Controls** how data is accessed and modified.
+  </CustomCard>
+
+  <CustomCard title="Code Maintainability">
+    - Internal implementation can change **without affecting external code**.
+    - External interface **remains stable**.
+    - **Reduces dependencies** on internal details (**Reduces coupling** between classes).
+    - Makes code **easier to maintain and refactor**.
+  </CustomCard>
+</CustomCards>
+
+## Implementation
+
+Encapsulation can be **implemented through private, public, and protected** attributes and methods.
+
+### Get and Set Methods
+
+```python filename="bank.py"
+class BankAccount:
+  def __init__(self, owner, balance, pin):
+    self.owner = owner # Public attribute
+    self._balance = balance  # Protected attribute
+    self.__pin = pin  # Private attribute
+
+  def get_pin(self):
+    return self.__pin
+  
+  def set_pin(self, pin):
+    self.__pin = pin
+  
+  def deposit(self, amount):
+    if amount > 0:
+      self._balance += amount
+      return True
+    return False
+
+  def withdraw(self, amount):
+    if 0 < amount <= self._balance:
+      self._balance -= amount
+      return True
+    return False
+
+  def get_balance(self):
+    return self._balance
+```
+
+### Property Decorators
+
+You can use **property decorators to create getter and setter methods** for encapsulated attributes.
+
+```python filename="bank.py" {8, 12}
+class BankAccount:
+  def __init__(self, username, password, balance, pin):
+    self.username = username
+    self._balance = balance
+    self.__password = password
+    self.__pin = pin
+
+  @property
+  def balance(self):
+    return self._balance
+
+  @balance.setter
+  def balance(self, amount):
+    if amount >= 0:
+      self._balance = amount
+    else:
+      raise ValueError("Balance cannot be negative")
+```

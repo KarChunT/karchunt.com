@@ -1,1 +1,1 @@
-npm install --legacy-peer-deps
+pnpm install

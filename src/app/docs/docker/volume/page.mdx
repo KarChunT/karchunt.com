@@ -1,0 +1,89 @@
+# Volume
+
+<Callout type="info">
+  All the volumes are stored in `/var/lib/docker/volumes`.  
+  The volumes are **mounted** as **read-write** by default.
+</Callout>
+
+Docker volume is used to **persist** and **share** the container's data across containers. Folders on your host machine's hard drive are **mounted** into containers as volumes, which allows the container to write its data into the host volumes.
+
+## Volume types
+
+### Anonymous and named volumes
+
+| Volume Type | Description                                                                                                                                                                       |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Anonymous   | The volume **will only exist** as long as our **container exists**. Bind mount volumes can prevent some files from being overlapped.                                              |
+| Named       | The volume **persists** even if you **kill or close the container**. With this volume, you **can't edit the data** inside the volume, instead you can use bind mounts for editing |
+
+```bash
+# Example of Anonymous volume
+docker run -v /app/logs <image>
+
+# Example of Named volume
+docker run -v mylog:/app/logs apiapp
+docker run --mount source=mylog,destination=/app/logs apiapp
+```
+
+### Bind mounts
+
+[Reference](https://docs.docker.com/storage/bind-mounts/)
+
+<Callout title="The source and the destination must be absolute path" type="warn">
+  - macOS / Linux = `$(pwd):/app`
+  - Windows = `"%cd%":/app`
+
+  The use of bind mounts is **good for development**, but **not for production** since production might **not have the same folder structure** as development. To make managing different environments easier, I **recommend** the container has the same structure as your local.
+</Callout>
+
+Bind mounts allow you to **edit** or **reflect** your **code changes** from **local** to **container**. Bind mount volumes can **prevent** some files from being **overlapped**. It's great for **persistent**.
+
+```bash
+docker run -v <local-path>:<container-path> <image>
+docker run --mount type=<type>,source=<local-path>,destination=<container-path> <image>
+
+# example
+docker run -v /app/api:/app/api myapi
+docker run --mount type=bind,source=/app/api,destination=/app/api myapi
+```
+
+### Read-only volume
+
+Read-only volume will **prevent** the **local files** from being **modified** when the files within the **container** have been **modified**.
+
+```bash
+docker run --mount type=<type>,source=<local-path>,target=<container-path>,readonly <image>
+docker run -v "<local-path>:<container-path>:ro"
+
+# example
+docker run --mount type=bind,source=/root/logs,target=/api/logs,readonly myapi
+docker run -v "/root/logs:/api/logs:ro"
+```
+
+`readonly` and `:ro` are to **indicate** that this **volume** is only for **reading**
+
+## List volume
+
+```bash
+docker volume ls
+```
+
+## Create volume
+
+```bash
+docker volume create <volume-name>
+```
+
+## Inspect volume
+
+```bash
+docker volume inspect <volume-name>
+```
+
+## Remove volume
+
+```bash
+docker volume rm <volume-name>
+docker volume remove <volume-name>
+docker volume prune
+```

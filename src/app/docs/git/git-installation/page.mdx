@@ -1,0 +1,60 @@
+# Git Installation
+
+<Callout title="Reference">
+   [Git Installation](https://www.git-scm.com/)
+</Callout>
+
+## Install Git on Windows
+
+1. Go to this link: [Download for Windows](https://www.git-scm.com/download/win)
+
+2. Select your installer, for my case, I'm selecting **64-bit Git for Windows Setup**.
+
+   ![alt text](/docs/git/download-for-windows.png)
+
+3. Open the downloaded exe file and follow the instructions. I put all options as **default**.
+   ![alt text](/docs/git/done-installation.png)
+
+4. After you have done the installation. Open your terminal and enter the following command.
+
+   ```bash
+   git --version
+   ```
+
+   It will show the latest Git version that you have installed.
+
+5. Configure your Git **username** and **email**. Remember to replace the name and email with your own. Any commits you make will include these details.
+
+   ```bash
+   git config --global user.name "Kar Chun"
+   git config --global user.email "karchuntan.1999@gmail.com"
+   ```
+
+## Install Git on Ubuntu/Linux
+
+The typical way of installing Git, will not install the latest version. With the following commands, it will help you to install the latest Git.
+
+<Callout title="More Information">
+   [PPA Git](https://launchpad.net/~git-core/+archive/ubuntu/ppa?ref=itsfoss.com)
+</Callout>
+
+1. Install stable Git version
+
+   ```bash
+   sudo add-apt-repository ppa:git-core/ppa
+   sudo apt-get update
+   sudo apt-get install -y git
+   ```
+
+2. Check Git version
+
+   ```bash
+   git --version
+   ```
+
+3. Configure your Git **username** and **email**. Remember to replace the name and email with your own. Any commits you make will include these details.
+
+   ```bash
+   git config --global user.name "Kar Chun"
+   git config --global user.email "karchuntan.1999@gmail.com"
+   ```

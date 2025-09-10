@@ -28,5 +28,6 @@ yarn-error.log*
 next-env.d.ts
 package-lock.json
 dist/
+_pagefind/
 
-helper/
+data-structures-and-algorithms/

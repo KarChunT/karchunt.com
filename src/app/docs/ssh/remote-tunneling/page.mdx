@@ -1,0 +1,51 @@
+# Remote Tunneling
+
+## Remote tunneling to a server
+
+<Callout type="info">
+  The concept is same as local tunneling.
+</Callout>
+
+A remote tunnel makes a connection to a remote server. The remote port must be specified when creating the remote tunnel. As a result, the remote computer able to connect or access your localhost. To establish a remote tunnel to your remote server, use `-R` parameter when connecting and must provide
+
+- Remote port for accessing the tunneled connection
+- Local host IP/name
+- Local host port
+
+For general usage, connect to `localhost` on port 8080 on our local computer, then your remote machine is able to ping or make the connetion to the localhost through port 8080.
+
+```bash
+ssh -f -N -R <remote-port>:<local-host-ip-address/name>:<local-port> <username>@<remote-host-ip-address/name/gateway>
+# example
+ssh -R 8080:localhost:8080 user@remote-host-ip-address/gateway
+```
+
+Now if you go to your **remote** browser/curl to `localhost:8080`, you are able to see the content that hosted at `localhost:80`.
+
+| Parameters | Description                                     |
+| ---------- | ----------------------------------------------- |
+| -R         | establish a remote tunnel to your remote server |
+
+### Remote tunneling local network
+
+![Remote tunneling local network](/docs/ssh/remote_tunneling_local_network.gif)
+
+You can tunnel your local network to remote host. Here is the animation diagram of the local network web server and common SSH server.
+
+Here is the animation diagram of the local network web server and common SSH server.
+
+```bash
+ssh -R 8080:localhost:8080 user@remote-host-ip-address/gateway
+ssh -R 0.0.0.0:8080:localhost:8080 user@remote-host-ip-address/gateway
+```
+
+### Remote tunneling private network
+
+![Remote tunneling private network](/docs/ssh/remote_tunneling_private_network.gif)
+
+You can tunnel your local private network to remote host. Here is the animation diagram of the private network web server and common SSH server.
+
+```bash
+ssh -R 8080:<local-server-ip-address>:8080 user@remote-host-ip-address/gateway
+ssh -R 0.0.0.0:8080:<local-server-ip-address>:8080 user@remote-host-ip-address/gateway
+```

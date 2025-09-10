@@ -1,7 +1,15 @@
 {
-  "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter",
-    "editor.formatOnSave": true
+  "[javascript]": {
+    "editor.tabSize": 2,
+    "editor.indentSize": 2
+  },
+  "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.indentSize": 2
+  },
+  "[typescriptreact]": {
+    "editor.tabSize": 2,
+    "editor.indentSize": 2
   },
   "[mdx]": {
     "editor.tabSize": 2,
@@ -10,9 +18,6 @@
   "[markdown]": {
     "editor.tabSize": 2,
     "editor.wordWrap": "on"
-  },
-  "[typescript]": {
-    "editor.tabSize": 2
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true

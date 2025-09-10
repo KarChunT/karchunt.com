@@ -1,0 +1,35 @@
+# If Else Condition
+
+You can use **if-else conditions** in Taskfile to **control the execution of tasks based on certain conditions**. This allows you to create more dynamic and flexible task definitions.
+
+```yaml filename="Taskfile.yaml"
+version: '3'
+tasks:
+  example:
+    summary: |
+      An example task that uses if-else conditions
+    vars:
+      CONDITION: true
+    cmds:
+      - echo "Starting task..."
+      - |
+        {{ if .CONDITION }}
+          echo "Condition is true, executing this block"
+        {{ else }}
+          echo "Condition is false, executing this block"
+        {{ end }}
+      - echo "Task completed"
+```
+
+```bash filename="Demo and Output"
+ubuntu@touted-mite:~$ task example 
+task: [example] echo "Starting task..."
+Starting task...
+task: [example] 
+  echo "Condition is true, executing this block"
+
+
+Condition is true, executing this block
+task: [example] echo "Task completed"
+Task completed
+```

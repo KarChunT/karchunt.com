@@ -1,0 +1,52 @@
+# Git in Depth
+
+## A real Git
+
+Git is a **key-value store**. A file is hashed using the SHA-1 algorithm when it's added to a commit. This hash is then used as a key name for the folder and used to store the file.
+
+Git has **Porcelain** and **Plumbing** commands
+
+- Porcelain Commands (easy to remember)
+  - example: `git add`, `status`, `commit`, `stash`, etc
+- Plumbing Commands (get access to Git internals)
+  - example: `git hash-object`, `cat-file`, ` ls-files`, `rev-parse`, `ls-remote`, etc
+
+### hash-object
+
+The `git hash-object` command hashes the file contents.
+
+```bash
+git hash-object <filename>
+# example
+git hash-object hello
+```
+
+![hash-object](/docs/git/hash-object.png)
+
+![hash-objects](/docs/git/hash-objects.png)
+
+As you can see, the key is made up of the first two characters of the hash. The contents of this file (**hello**) will be stored in this hash file **492f47831b16c8217339fcb1449345b424c72fcb**.
+
+To see the hash file contents, you have to use [git cat-file](#cat-file) command.
+
+### cat-file
+
+The `git cat-file` command will display the contents of the hash file by using the hash value.
+
+```bash
+git cat-file -p <object-hash>
+# example
+git cat-file -p 492f47831b16c8217339fcb1449345b424c72fcb # pretty prints the contents
+```
+
+## Git Object Contents
+
+There are three types of folders in the **object** folder.
+
+1. commit
+    - A commit is simply just a commit hash.
+2. tree
+    - It's a folder associated with the repository on your file system.
+3. blob
+    - It's just a piece of data.
+    - For example, the file that hashed (**hello**) is called a blob.

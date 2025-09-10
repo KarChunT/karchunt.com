@@ -1,0 +1,15 @@
+# Forward CLI Arguments to a Command
+
+You can **forward CLI arguments to a command** in Taskfile by using the `--` syntax. This allows you to pass additional arguments directly to the command being executed.
+
+```yaml filename="Taskfile.yaml"
+version: '3'
+tasks:
+  example:
+    cmds:
+      - npm {{.CLI_ARGS}}
+```
+
+```bash
+task example -- install
+```

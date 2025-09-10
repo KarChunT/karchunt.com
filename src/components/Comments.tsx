@@ -26,7 +26,7 @@ const Comments = () => {
   useScript({
     url: 'https://utteranc.es/client.js',
     theme: 'github-dark',
-    issueTerm: 'pathname',
+    issueTerm: 'title',
     repo: 'KarChunT/posts-comments',
     ref: comment,
   });
