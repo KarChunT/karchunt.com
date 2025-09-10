@@ -99,6 +99,19 @@ export default async function RootLayout({ children }) {
           }}
         >
           {children}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.addEventListener('DOMContentLoaded', function() {
+                  document.querySelectorAll('nav a[href^="/blog"]').forEach(function(a) {
+                    if (a.textContent.trim() === 'Blog1') {
+                      a.style.display = 'none';
+                    }
+                  });
+                });
+              `,
+            }}
+          />
         </Layout>
       </body>
     </html>

@@ -52,7 +52,9 @@ const meta: MetaRecord = {
     href: '/blog',
   },
   blog: {
-    display: 'hidden',
+    title: 'Blog1',
+    type: 'page',
+    display: 'normal',
   },
   hub: {
     title: 'Hub',

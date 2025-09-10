@@ -69,8 +69,6 @@ const BlogDisplay = ({ title, description, href, date, author, tags }) => {
 };
 
 const BlogClient = ({ blogs }: { blogs: Item[] }) => {
-  console.log(blogs);
-
   const [filter, setFilter] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
 
