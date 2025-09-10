@@ -58,7 +58,7 @@ export default function ProjectsLayout({
 
           <p className="text-999 text-base font-bold">Metadata</p>
 
-          <div className="flex flex-row gap-3 lg:flex-col">
+          <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
               <TbClockEdit size={16} />{' '}
               {new Date(metadata.lastUpdate || metadata.date).toDateString()}

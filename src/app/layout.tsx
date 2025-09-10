@@ -103,9 +103,19 @@ export default async function RootLayout({ children }) {
             dangerouslySetInnerHTML={{
               __html: `
                 window.addEventListener('DOMContentLoaded', function() {
+                  // Hide <a> links with text "Blog1"
                   document.querySelectorAll('nav a[href^="/blog"]').forEach(function(a) {
                     if (a.textContent.trim() === 'Blog1') {
                       a.style.display = 'none';
+                    }
+                  });
+
+                  // Hide <li> containing <button data-href="/blog"> with text "Blog1"
+                  document.querySelectorAll('li button[data-href="/blog"]').forEach(function(btn) {
+                    if (btn.textContent.trim().startsWith('Blog1')) {
+                      var li = btn.closest('li');
+                      if (li) li.style.display = 'none';
+                      else btn.style.display = 'none';
                     }
                   });
                 });
