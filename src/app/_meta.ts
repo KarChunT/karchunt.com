@@ -51,6 +51,9 @@ const meta: MetaRecord = {
     type: 'page',
     href: '/blog',
   },
+  blog: {
+    display: 'hidden',
+  },
   hub: {
     title: 'Hub',
     type: 'menu',
