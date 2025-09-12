@@ -68,22 +68,21 @@ const BlogDisplay = ({ title, description, href, date, author, tags }) => {
   );
 };
 
-const BlogClient = ({ blogs }: { blogs: Item[] }) => {
+const BlogClient = ({
+  blogs,
+  allTags,
+}: {
+  blogs: Item[];
+  allTags: Record<string, number>;
+}) => {
   const [filter, setFilter] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
 
-  const uniqueTags = ['All'];
-  const tagSet = new Set(uniqueTags);
-  blogs.forEach((blog) => {
-    blog.frontMatter.tags.forEach((tag) => {
-      const normalizedTag = tag.replaceAll(' ', '-').toLowerCase();
-      if (!tagSet.has(normalizedTag)) {
-        tagSet.add(normalizedTag);
-        uniqueTags.push(tag);
-      }
-    });
-  });
-
+  const totalCount = Object.values(allTags).reduce(
+    (sum, count) => sum + count,
+    0,
+  );
+  const uniqueTags = ['All', ...Object.keys(allTags)];
   const filteredBlogs = blogs.filter(
     (blog) =>
       blog.frontMatter.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -118,6 +117,9 @@ const BlogClient = ({ blogs }: { blogs: Item[] }) => {
             {uniqueTags.map((category) => (
               <SelectItem key={category} value={category}>
                 {category}
+                <span className="text-muted-foreground text-xs">
+                  ({category === 'All' ? totalCount : allTags[category]})
+                </span>
               </SelectItem>
             ))}
           </SelectContent>

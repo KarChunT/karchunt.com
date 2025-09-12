@@ -15,3 +15,9 @@ export async function getBlogs() {
         new Date(a.frontMatter.date).getTime(),
     );
 }
+
+export async function getTags() {
+  const posts = await getBlogs();
+  const tags = posts.flatMap((post) => post.frontMatter.tags);
+  return tags;
+}
