@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { getBlogs, getTags } from '../../blog/getBlogs';
 
-// export async function generateMetadata(props) {
-//   const params = await props.params
-//   return {
-//     title: `Posts Tagged with “${decodeURIComponent(params.tag)}”`
-//   }
-// }
+export async function generateMetadata(props) {
+  const params = await props.params;
+  return {
+    title: decodeURIComponent(params.tag),
+  };
+}
 
 export async function generateStaticParams() {
   const allTags = await getTags();
@@ -17,8 +17,6 @@ const page = async ({ params }) => {
   const tag = decodeURIComponent(params.tag);
   const blogs = await getBlogs();
   const allPosts = blogs.filter((blog) => blog.frontMatter.tags.includes(tag));
-
-  console.log(allPosts);
   return (
     <div className="@container container mx-auto min-h-screen max-w-5xl px-6 py-4 lg:py-8">
       <div>
