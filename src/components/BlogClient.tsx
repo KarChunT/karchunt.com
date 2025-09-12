@@ -44,13 +44,11 @@ const BlogDisplay = ({ title, description, href, date, author, tags }) => {
         <div className="mt-auto flex flex-col gap-3">
           <div className="mb-2 flex flex-wrap gap-2">
             {tags.map((tag) => (
-              <Badge
-                key={tag}
-                variant="secondary"
-                className="bg-primary text-black"
-              >
-                {tag}
-              </Badge>
+              <Link key={tag} href={`/tags/${encodeURIComponent(tag)}`}>
+                <Badge variant="secondary" className="bg-primary text-black">
+                  {tag}
+                </Badge>
+              </Link>
             ))}
           </div>
 

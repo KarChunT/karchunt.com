@@ -70,9 +70,15 @@ export default function ProjectsLayout({
                 {(metadata.languages && metadata.languages.length > 0
                   ? metadata.languages
                   : metadata.tags || []
-                ).map((tag) => (
-                  <Badge key={tag}>{tag}</Badge>
-                ))}
+                ).map((tag) =>
+                  metadata.tags ? (
+                    <Link key={tag} href={`/tags/${encodeURIComponent(tag)}`}>
+                      <Badge>{tag}</Badge>
+                    </Link>
+                  ) : (
+                    <Badge key={tag}>{tag}</Badge>
+                  ),
+                )}
               </div>
             </div>
 
