@@ -1,4 +1,5 @@
 import './globals.css';
+import Link from 'next/link';
 import Image from 'next/image';
 import { Footer, Layout, Navbar } from 'nextra-theme-docs';
 import { Banner, Head } from 'nextra/components';
@@ -13,6 +14,7 @@ import {
   LINKEDIN_URL,
 } from '@/constants';
 import 'nextra-theme-docs/style.css';
+import { FaRss } from 'react-icons/fa';
 import { TfiLinkedin } from 'react-icons/tfi';
 import { createMetadata } from '@/lib/metadata';
 
@@ -47,6 +49,13 @@ const navbar = (
     chatLink={LINKEDIN_URL}
     chatIcon={<TfiLinkedin />}
     projectLink={GITHUB_URL}
+    children={
+      <div>
+        <Link href="/rss.xml">
+          <FaRss />
+        </Link>
+      </div>
+    }
   />
 );
 const footer = (
