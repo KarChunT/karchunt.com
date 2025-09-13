@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
 import { getBlogs, getTags } from '../../blog/getBlogs';
 
 export async function generateMetadata(props) {
@@ -19,14 +20,15 @@ const page = async ({ params }) => {
   const allPosts = blogs.filter((blog) => blog.frontMatter.tags.includes(tag));
   return (
     <div className="@container container mx-auto min-h-screen max-w-5xl px-6 py-4 lg:py-8">
-      <div>
-        <h1 className="mt-2 text-4xl font-bold tracking-tight">
-          <span className="text-primary">
-            {tag} ({allPosts.length})
-          </span>
-        </h1>
+      <div className="mt-2">
+        <Badge
+          variant="secondary"
+          className="bg-primary text-2xl font-bold tracking-tight text-black"
+        >
+          {tag} ({allPosts.length})
+        </Badge>
       </div>
-      <div className="mt-8 flex flex-col gap-4">
+      <div className="mt-8 flex flex-col gap-4 pl-5">
         {allPosts.map((post) => (
           <div key={post.name} className="w-full text-lg font-medium">
             -{' '}
