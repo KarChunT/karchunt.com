@@ -9,7 +9,7 @@ import { FaRegClock, FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { IoLibraryOutline } from 'react-icons/io5';
 import { VscSymbolKeyword } from 'react-icons/vsc';
 import { TbClockEdit } from 'react-icons/tb';
-import { getBasePath } from '@/lib/utils';
+import { getBasePath, tagToSlug } from '@/lib/utils';
 
 export default function ProjectsLayout({
   children,
@@ -72,7 +72,7 @@ export default function ProjectsLayout({
                   : metadata.tags || []
                 ).map((tag) =>
                   metadata.tags ? (
-                    <Link key={tag} href={`/tags/${encodeURIComponent(tag)}`}>
+                    <Link key={tag} href={`/tags/${tagToSlug(tag)}`}>
                       <Badge>{tag}</Badge>
                     </Link>
                   ) : (

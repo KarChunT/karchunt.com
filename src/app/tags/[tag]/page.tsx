@@ -1,24 +1,40 @@
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { getBlogs, getTags } from '../../blog/getBlogs';
+import { tagToSlug } from '@/lib/utils';
 
 export async function generateMetadata(props) {
   const params = await props.params;
+  const allTags = await getTags();
+  // Find the real tag name by matching the slug
+  const realTag =
+    allTags.find((t) => tagToSlug(t) === decodeURIComponent(params.tag)) ||
+    decodeURIComponent(params.tag);
   return {
-    title: decodeURIComponent(params.tag),
+    title: realTag,
   };
 }
 
 export async function generateStaticParams() {
   const allTags = await getTags();
-  return [...new Set(allTags)].map((tag) => ({ tag: encodeURIComponent(tag) }));
+  return [...new Set(allTags)].map((tag) => ({ tag: tagToSlug(tag) }));
 }
 
 const page = async ({ params }) => {
   const awaitedParams = await params;
-  const tag = decodeURIComponent(awaitedParams.tag);
+  const tagSlug = awaitedParams.tag;
+
   const blogs = await getBlogs();
-  const allPosts = blogs.filter((blog) => blog.frontMatter.tags.includes(tag));
+  const allTags = await getTags();
+  // Find the real tag name by matching the slug
+  const realTag =
+    allTags.find((t) => tagToSlug(t) === decodeURIComponent(tagSlug)) ||
+    decodeURIComponent(tagSlug);
+
+  // Filter blogs by matching the slug of each tag
+  const allPosts = blogs.filter((blog) =>
+    blog.frontMatter.tags.some((t) => tagToSlug(t) === tagSlug),
+  );
   return (
     <div className="@container container mx-auto min-h-screen max-w-5xl px-6 py-4 lg:py-8">
       <div className="mt-2">
@@ -26,7 +42,7 @@ const page = async ({ params }) => {
           variant="secondary"
           className="bg-primary text-2xl font-bold tracking-tight text-black"
         >
-          {tag} ({allPosts.length})
+          {realTag} ({allPosts.length})
         </Badge>
       </div>
       <div className="mt-8 flex flex-col gap-4 pl-5">

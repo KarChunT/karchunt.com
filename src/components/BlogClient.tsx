@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { IconArrowRight, IconCalendar, IconUser } from '@tabler/icons-react';
 import { Item } from 'nextra/normalize-pages';
+import { tagToSlug } from '@/lib/utils';
 
 const BlogDisplay = ({ title, description, href, date, author, tags }) => {
   return (
@@ -44,7 +45,7 @@ const BlogDisplay = ({ title, description, href, date, author, tags }) => {
         <div className="mt-auto flex flex-col gap-3">
           <div className="mb-2 flex flex-wrap gap-2">
             {tags.map((tag) => (
-              <Link key={tag} href={`/tags/${encodeURIComponent(tag)}`}>
+              <Link key={tag} href={`/tags/${tagToSlug(tag)}`}>
                 <Badge variant="secondary" className="bg-primary text-black">
                   {tag}
                 </Badge>

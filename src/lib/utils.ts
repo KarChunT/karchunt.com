@@ -44,3 +44,7 @@ export function generateRandomArray(size: number): number[] {
     () => Math.floor(Math.random() * 100) + 1,
   );
 }
+
+export function tagToSlug(tag: string) {
+  return tag.trim().toLowerCase().replace(/\s+/g, '-');
+}
