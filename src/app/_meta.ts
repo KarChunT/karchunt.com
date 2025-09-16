@@ -61,6 +61,9 @@ const meta: MetaRecord = {
     type: 'menu',
     items: hubItems,
   },
+  tags: {
+    display: 'hidden',
+  },
 };
 
 export default meta;
