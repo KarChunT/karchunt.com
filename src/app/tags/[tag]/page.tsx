@@ -15,7 +15,8 @@ export async function generateStaticParams() {
 }
 
 const page = async ({ params }) => {
-  const tag = decodeURIComponent(params.tag);
+  const awaitedParams = await params;
+  const tag = decodeURIComponent(awaitedParams.tag);
   const blogs = await getBlogs();
   const allPosts = blogs.filter((blog) => blog.frontMatter.tags.includes(tag));
   return (
