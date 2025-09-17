@@ -61,7 +61,7 @@ export default function ProjectsLayout({
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
               <TbClockEdit size={16} />{' '}
-              {new Date(metadata.lastUpdate || metadata.date).toDateString()}
+              {new Date(metadata.lastUpdated || metadata.date).toDateString()}
             </div>
 
             <div className="flex items-center gap-2">
