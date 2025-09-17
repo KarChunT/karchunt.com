@@ -1,3 +1,4 @@
+import path from 'path';
 import { glob } from 'glob';
 import GalleryClient from '@/components/GalleryClient';
 
@@ -7,10 +8,16 @@ export const metadata = {
 
 const Gallery = () => {
   const images = glob.sync('public/gallery/**/*.webp');
-  const items: GalleryProps[] = images.map((image) => ({
-    src: image.replace('public', ''),
-    category: image.replace('public\\gallery\\', '').split('\\')[0],
-  }));
+  const items: GalleryProps[] = images.map((image) => {
+    const relative = image.replace('public' + path.sep, '');
+    // Replace all backslashes with forward slashes and ensure leading slash
+    const src = '/' + relative.replace(/\\/g, '/').replace(/^\/+/, '');
+    const parts = relative.split(path.sep);
+    return {
+      src,
+      category: parts[1],
+    };
+  });
   return <GalleryClient items={items} />;
 };
 
