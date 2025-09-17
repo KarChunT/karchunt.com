@@ -266,7 +266,6 @@ export const GOOD_TOOLS_AND_WEBSITES: GoodToolsProps[] = [
     title: 'Magic UI',
     description:
       'UI library for Design Engineers. 150+ free and open-source animated components and effects built with React, Typescript, Tailwind CSS, and Motion.',
-    imageSrc: '/good-tools-and-websites/magicui.ico',
     href: 'https://magicui.design/',
     tags: ['UI'],
   },
@@ -274,7 +273,6 @@ export const GOOD_TOOLS_AND_WEBSITES: GoodToolsProps[] = [
     title: 'Aceternity UI',
     description:
       'Beautiful Tailwind CSS and Framer Motion Components, built with Next.js and TypeScript.',
-    imageSrc: '/good-tools-and-websites/aceternity.ico',
     href: 'https://ui.aceternity.com/',
     tags: ['UI'],
   },
@@ -282,7 +280,6 @@ export const GOOD_TOOLS_AND_WEBSITES: GoodToolsProps[] = [
     title: 'Cult UI',
     description:
       'Shadcn templates & components that you can copy and paste into react apps. Customizable. Open Source. Typed.',
-    imageSrc: '/good-tools-and-websites/cultui.ico',
     href: 'https://www.cult-ui.com/',
     tags: ['UI'],
   },
@@ -290,7 +287,6 @@ export const GOOD_TOOLS_AND_WEBSITES: GoodToolsProps[] = [
     title: 'ui-layouts',
     description:
       'Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.',
-    imageSrc: '/good-tools-and-websites/ui-layouts.ico',
     href: 'https://www.ui-layouts.com/',
     tags: ['UI'],
   },
@@ -298,22 +294,19 @@ export const GOOD_TOOLS_AND_WEBSITES: GoodToolsProps[] = [
     title: 'Shadcn Marketing Blocks',
     description:
       'Speed up your workflow with responsive, pre-built UI blocks designed for marketing websites.',
-    imageSrc: '/good-tools-and-websites/Shadcn Marketing Blocks.ico',
     href: 'https://nsui.irung.me',
     tags: ['UI'],
   },
   {
     title: 'Supabase UI Library',
     description: 'Provides a library of components for your project.',
-    imageSrc: '/good-tools-and-websites/Supabase UI Library.ico',
     href: 'https://supabase.com/ui',
     tags: ['UI'],
   },
   {
-    title: 'Shadcnblocks shadcn/ui blocks & components',
+    title: 'Shadcnblocks',
     description:
       'Hundreds of new shadcn/ui blocks and Shadcn components. A premium UI library built with Shadcn UI, React & Tailwind.',
-    imageSrc: '/good-tools-and-websites/shadcnblocks.ico',
     href: 'https://www.shadcnblocks.com/',
     tags: ['UI'],
   },
@@ -321,7 +314,6 @@ export const GOOD_TOOLS_AND_WEBSITES: GoodToolsProps[] = [
     title: 'Shadcn UI Blocks',
     description:
       'Discover more than 330 fully responsive UI blocks and 120+ versatile components that effortlessly integrate into your Shadcn UI projects.',
-    imageSrc: '/good-tools-and-websites/shadcn-ui-blocks.ico',
     href: 'https://shadcn-ui-blocks.vercel.app/',
     tags: ['UI'],
   },

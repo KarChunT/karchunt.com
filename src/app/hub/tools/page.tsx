@@ -89,7 +89,7 @@ const Page = () => {
             >
               <Card className="border-[oklch(1 0 0/10%)] mx-auto flex h-full w-full flex-col border-[#2e2c23]">
                 <CardHeader className="flex flex-1 flex-col">
-                  <div>
+                  {/* <div>
                     <Image
                       className="rounded-md border border-[#2e2c23] p-[6px]"
                       width={36}
@@ -97,7 +97,7 @@ const Page = () => {
                       src={`${basePath}${item.imageSrc}`}
                       alt={item.title}
                     />
-                  </div>
+                  </div> */}
                   <CardTitle className="text-primary mt-1">
                     {item.title}
                   </CardTitle>
