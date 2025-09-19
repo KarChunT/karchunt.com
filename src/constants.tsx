@@ -116,6 +116,10 @@ export const HUB_ITEMS = {
     title: 'Algorithm Visualizer',
     href: '/hub/algorithm-visualizer',
   },
+  'software-glossary': {
+    title: 'Software Glossary',
+    href: '/hub/software-glossary',
+  },
 };
 
 export const KUBESTRONAUT = {

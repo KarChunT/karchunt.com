@@ -21,3 +21,9 @@ interface AlgorithmVisualizerSchema {
     };
   };
 }
+
+interface GlossaryItem {
+  term: string;
+  definition: string;
+  category: string;
+}
