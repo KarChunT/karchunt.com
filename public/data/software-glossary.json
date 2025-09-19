@@ -10,7 +10,7 @@
     "category": "Software development and methodology"
   },
   {
-    "term": "Continuous Integration/Continuous Deployment (CI/CD)",
+    "term": "Continuous Integration / Continuous Deployment (CI/CD)",
     "definition": "A practice that automates the integration of code changes and the deployment of new software updates. It helps teams identify and resolve integration issues early.",
     "category": "Software development and methodology"
   },
