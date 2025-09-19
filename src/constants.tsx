@@ -16,6 +16,8 @@ export const CREDLY_URL: string = 'https://www.credly.com/users/kar-chun-tan';
 export const PERSONAL_IMAGE: string = '/personal/karchunt.webp';
 export const NAME: string = 'Kar Chun Tan';
 
+export const SOFTWARE_GLOSSARY_JSON_PATH = '/data/software-glossary.json';
+
 export const CHANNELS = {
   github: {
     title: 'GitHub',

@@ -4,12 +4,15 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { columns } from './columns';
 import { DataTable } from './data-table';
+import { getBasePath } from '@/lib/utils';
+import { SOFTWARE_GLOSSARY_JSON_PATH } from '@/constants';
 
 const page = () => {
+  const basePath = getBasePath();
   const [glossary, setGlossary] = useState<GlossaryItem[]>([]);
 
   useEffect(() => {
-    fetch('/data/software-glossary.json')
+    fetch(`${basePath}${SOFTWARE_GLOSSARY_JSON_PATH}`)
       .then((res) => res.json())
       .then((data) => setGlossary(data));
   }, []);
