@@ -77,10 +77,8 @@ const BlogClient = ({
   const [filter, setFilter] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
 
-  const totalCount = Object.values(allTags).reduce(
-    (sum, count) => sum + count,
-    0,
-  );
+  const totalCount = blogs.length;
+
   const uniqueTags = ['All', ...Object.keys(allTags)];
   const filteredBlogs = blogs.filter(
     (blog) =>
