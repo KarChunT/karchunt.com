@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from 'clsx';
 import { ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { join } from 'path';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -47,4 +48,8 @@ export function generateRandomArray(size: number): number[] {
 
 export function tagToSlug(tag: string) {
   return tag.trim().toLowerCase().replace(/\s+/g, '-');
+}
+
+export function getFileFullPath(filePath: string) {
+  return join(process.cwd(), 'public', filePath);
 }

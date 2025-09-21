@@ -16,6 +16,8 @@ export const CREDLY_URL: string = 'https://www.credly.com/users/kar-chun-tan';
 export const PERSONAL_IMAGE: string = '/personal/karchunt.webp';
 export const NAME: string = 'Kar Chun Tan';
 
+export const GOOD_TOOLS_AND_WEBSITES_JSON_PATH =
+  '/data/good-tools-and-websites.json';
 export const SOFTWARE_GLOSSARY_JSON_PATH = '/data/software-glossary.json';
 
 export const CHANNELS = {
@@ -45,44 +47,6 @@ export const PERSONAL = [
     designation: 'Infrastructure & DevOps Engineer',
     src: '/personal/anotherme.webp',
   },
-];
-
-export const TOP_TAGLINE = [
-  { text: 'Welcome', delay: 0 },
-  { text: 'to', delay: 200 },
-  { text: <b>{APP_NAME}</b>, delay: 400 },
-  { text: '—', delay: 600 },
-  { text: 'Public', delay: 800 },
-  { text: 'Engineering', delay: 1000 },
-  { text: 'digital', delay: 1200 },
-  { text: 'notebook', delay: 1400 },
-];
-
-export const MAIN_HEADLINE = [
-  { text: 'Blending', delay: 1600 },
-  { text: 'and', delay: 1750 },
-  { text: 'amplifying', delay: 1900 },
-  { text: 'each', delay: 2050 },
-  { text: "skill's", delay: 2200 },
-  { text: 'strength', delay: 2350 },
-];
-
-export const HERO_SUB_HEADLINE = [
-  { text: 'Reinforces', delay: 2600 },
-  { text: 'continuous', delay: 2750 },
-  { text: 'growth', delay: 2900 },
-  { text: 'and', delay: 3050 },
-  { text: 'adaptation', delay: 3200 },
-];
-
-export const HERO_BOTTOM_TAGLINE = [
-  { text: 'Curated', delay: 3500 },
-  { text: 'hub', delay: 3650 },
-  { text: 'for', delay: 3800 },
-  { text: 'documentating', delay: 3950 },
-  { text: '—', delay: 4050 },
-  { text: 'my', delay: 4100 },
-  { text: 'journeys', delay: 4250 },
 ];
 
 export const HUB_ITEMS = {
@@ -265,64 +229,6 @@ export const ALLOWED_TAGS = [
   'Ubuntu',
   'venv',
   'Windows',
-];
-
-export const GOOD_TOOLS_AND_WEBSITES: GoodToolsProps[] = [
-  {
-    title: 'Magic UI',
-    description:
-      'UI library for Design Engineers. 150+ free and open-source animated components and effects built with React, Typescript, Tailwind CSS, and Motion.',
-    href: 'https://magicui.design/',
-    tags: ['UI'],
-  },
-  {
-    title: 'Aceternity UI',
-    description:
-      'Beautiful Tailwind CSS and Framer Motion Components, built with Next.js and TypeScript.',
-    href: 'https://ui.aceternity.com/',
-    tags: ['UI'],
-  },
-  {
-    title: 'Cult UI',
-    description:
-      'Shadcn templates & components that you can copy and paste into react apps. Customizable. Open Source. Typed.',
-    href: 'https://www.cult-ui.com/',
-    tags: ['UI'],
-  },
-  {
-    title: 'ui-layouts',
-    description:
-      'Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.',
-    href: 'https://www.ui-layouts.com/',
-    tags: ['UI'],
-  },
-  {
-    title: 'Shadcn Marketing Blocks',
-    description:
-      'Speed up your workflow with responsive, pre-built UI blocks designed for marketing websites.',
-    href: 'https://nsui.irung.me',
-    tags: ['UI'],
-  },
-  {
-    title: 'Supabase UI Library',
-    description: 'Provides a library of components for your project.',
-    href: 'https://supabase.com/ui',
-    tags: ['UI'],
-  },
-  {
-    title: 'Shadcnblocks',
-    description:
-      'Hundreds of new shadcn/ui blocks and Shadcn components. A premium UI library built with Shadcn UI, React & Tailwind.',
-    href: 'https://www.shadcnblocks.com/',
-    tags: ['UI'],
-  },
-  {
-    title: 'Shadcn UI Blocks',
-    description:
-      'Discover more than 330 fully responsive UI blocks and 120+ versatile components that effortlessly integrate into your Shadcn UI projects.',
-    href: 'https://shadcn-ui-blocks.vercel.app/',
-    tags: ['UI'],
-  },
 ];
 
 export const DOCUMENTATION = {

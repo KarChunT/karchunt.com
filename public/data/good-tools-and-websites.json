@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Magic UI",
+    "description": "UI library for Design Engineers. 150+ free and open-source animated components and effects built with React, Typescript, Tailwind CSS, and Motion.",
+    "href": "https://magicui.design/",
+    "tags": ["UI"]
+  },
+  {
+    "title": "Aceternity UI",
+    "description": "Beautiful Tailwind CSS and Framer Motion Components, built with Next.js and TypeScript.",
+    "href": "https://ui.aceternity.com/",
+    "tags": ["UI"]
+  },
+  {
+    "title": "Cult UI",
+    "description": "Shadcn templates & components that you can copy and paste into react apps. Customizable. Open Source. Typed.",
+    "href": "https://www.cult-ui.com/",
+    "tags": ["UI"]
+  },
+  {
+    "title": "ui-layouts",
+    "description": "Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.",
+    "href": "https://www.ui-layouts.com/",
+    "tags": ["UI"]
+  },
+  {
+    "title": "Shadcn Marketing Blocks",
+    "description": "Speed up your workflow with responsive, pre-built UI blocks designed for marketing websites.",
+    "href": "https://nsui.irung.me",
+    "tags": ["UI"]
+  },
+  {
+    "title": "Supabase UI Library",
+    "description": "Provides a library of components for your project.",
+    "href": "https://supabase.com/ui",
+    "tags": ["UI"]
+  },
+  {
+    "title": "Shadcnblocks",
+    "description": "Hundreds of new shadcn/ui blocks and Shadcn components. A premium UI library built with Shadcn UI, React & Tailwind.",
+    "href": "https://www.shadcnblocks.com/",
+    "tags": ["UI"]
+  },
+  {
+    "title": "Shadcn UI Blocks",
+    "description": "Discover more than 330 fully responsive UI blocks and 120+ versatile components that effortlessly integrate into your Shadcn UI projects.",
+    "href": "https://shadcn-ui-blocks.vercel.app/",
+    "tags": ["UI"]
+  }
+]

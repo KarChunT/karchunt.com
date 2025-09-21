@@ -1,8 +1,7 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Card,
   CardDescription,
@@ -19,16 +18,27 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { getBasePath } from '@/lib/utils';
-import { GOOD_TOOLS_AND_WEBSITES } from '@/constants';
+import { GOOD_TOOLS_AND_WEBSITES_JSON_PATH } from '@/constants';
 
 const Page = () => {
-  const basePath = getBasePath();
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('All');
 
   const uniqueTags = ['All'];
   const tagSet = new Set(uniqueTags);
-  for (const tools of GOOD_TOOLS_AND_WEBSITES) {
+
+  const basePath = getBasePath();
+  const [good_tools_and_websites, setGoodToolsAndWebsites] = useState<
+    GoodToolsProps[]
+  >([]);
+
+  useEffect(() => {
+    fetch(`${basePath}${GOOD_TOOLS_AND_WEBSITES_JSON_PATH}`)
+      .then((res) => res.json())
+      .then((data) => setGoodToolsAndWebsites(data));
+  }, []);
+
+  for (const tools of good_tools_and_websites) {
     for (const tag of tools.tags) {
       const normalizedTag = tag.replaceAll(' ', '-').toLowerCase();
       if (!tagSet.has(normalizedTag)) {
@@ -38,7 +48,7 @@ const Page = () => {
     }
   }
 
-  const filteredTools = GOOD_TOOLS_AND_WEBSITES.filter(
+  const filteredTools = good_tools_and_websites.filter(
     (tool) =>
       tool.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
       (filter === 'All' || tool.tags.includes(filter)),

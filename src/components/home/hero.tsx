@@ -1,13 +1,46 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import {
-  TOP_TAGLINE,
-  MAIN_HEADLINE,
-  HERO_SUB_HEADLINE,
-  HERO_BOTTOM_TAGLINE,
-} from '@/constants';
 import CoreValues from '@/components/home/coreValues';
+import { APP_NAME } from '@/constants';
+
+export const TOP_TAGLINE = [
+  { text: 'Welcome', delay: 0 },
+  { text: 'to', delay: 200 },
+  { text: <b>{APP_NAME}</b>, delay: 400 },
+  { text: '—', delay: 600 },
+  { text: 'Public', delay: 800 },
+  { text: 'Engineering', delay: 1000 },
+  { text: 'digital', delay: 1200 },
+  { text: 'notebook', delay: 1400 },
+];
+
+export const MAIN_HEADLINE = [
+  { text: 'Blending', delay: 1600 },
+  { text: 'and', delay: 1750 },
+  { text: 'amplifying', delay: 1900 },
+  { text: 'each', delay: 2050 },
+  { text: "skill's", delay: 2200 },
+  { text: 'strength', delay: 2350 },
+];
+
+export const HERO_SUB_HEADLINE = [
+  { text: 'Reinforces', delay: 2600 },
+  { text: 'continuous', delay: 2750 },
+  { text: 'growth', delay: 2900 },
+  { text: 'and', delay: 3050 },
+  { text: 'adaptation', delay: 3200 },
+];
+
+export const HERO_BOTTOM_TAGLINE = [
+  { text: 'Curated', delay: 3500 },
+  { text: 'hub', delay: 3650 },
+  { text: 'for', delay: 3800 },
+  { text: 'documentating', delay: 3950 },
+  { text: '—', delay: 4050 },
+  { text: 'my', delay: 4100 },
+  { text: 'journeys', delay: 4250 },
+];
 
 const colors = {
   50: '#fffbe6',

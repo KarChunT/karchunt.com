@@ -1,14 +1,12 @@
-import React from 'react';
 import { columns } from './columns';
 import { DataTable } from './data-table';
 import { readFile } from 'fs/promises';
-import { join } from 'path';
+import { getFileFullPath } from '@/lib/utils';
 import { SOFTWARE_GLOSSARY_JSON_PATH } from '@/constants';
 
 const page = async () => {
-  const filePath = join(process.cwd(), 'public', SOFTWARE_GLOSSARY_JSON_PATH);
-  const fileContents = await readFile(filePath, 'utf8');
-  const glossary: GlossaryItem[] = JSON.parse(fileContents);
+  const fullPath = getFileFullPath(SOFTWARE_GLOSSARY_JSON_PATH);
+  const glossary: GlossaryItem[] = JSON.parse(await readFile(fullPath, 'utf8'));
 
   return (
     <div className="min-h-screen">
