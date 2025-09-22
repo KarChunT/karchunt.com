@@ -217,4 +217,19 @@ To reference this external schema in your main schema, you can use the `$ref` ke
   "required": ["name", "age", "isStudent"]
 }
 ```
+
+## Reference schema in JSON data
+
+To reference the schema in your JSON data, you can use the `$schema` keyword at the top of your JSON file.
+
+```json filename="student.json" {2}
+{
+  "$schema": "./student-schema.json", // local or use the full URL if hosted online
+  "name": "John",
+  "age": 30,
+  "isStudent": false,
+  "courses": ["Math", "Science", "History"]
+}
+```
+
 <Comments />
