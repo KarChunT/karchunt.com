@@ -96,7 +96,7 @@ export default async function RootLayout({ children }) {
           sidebar={{
             autoCollapse: true,
           }}
-          banner={banner}
+          // banner={banner}
           navbar={navbar}
           pageMap={await getPageMap()}
           docsRepositoryBase={DOCS_REPO_BASE}
