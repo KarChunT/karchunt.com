@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Control } from '@/components/ui/control';
 import { useActivePageMetadata } from '@/hooks/useActivePageMetadata';
 import { NAME, PERSONAL_IMAGE } from '@/constants';
+import { FaBook } from 'react-icons/fa6';
 import { FaRegClock, FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { IoLibraryOutline } from 'react-icons/io5';
 import { VscSymbolKeyword } from 'react-icons/vsc';
@@ -19,6 +20,26 @@ export default function ProjectsLayout({
   const basePath = getBasePath();
   const metadata = useActivePageMetadata();
   const url = usePathname();
+  const links = [
+    {
+      condition: metadata.documentation,
+      icon: <FaBook size={16} />,
+      href: metadata.documentation,
+      label: 'Documentation',
+    },
+    {
+      condition: metadata.repoUrl,
+      icon: <FaGithub size={16} />,
+      href: metadata.repoUrl,
+      label: 'Source Code',
+    },
+    {
+      condition: metadata.demoUrl,
+      icon: <FaExternalLinkAlt size={16} />,
+      href: metadata.demoUrl,
+      label: 'Live Demo',
+    },
+  ];
 
   return (
     <div className="container mx-auto mt-8 px-4">
@@ -91,31 +112,20 @@ export default function ProjectsLayout({
               <p>{metadata.readingTime.words} words</p>
             </div>
 
-            {metadata.repoUrl && (
-              <div className="flex items-center gap-2">
-                <FaGithub size={16} />
-                <Link
-                  href={metadata.repoUrl}
-                  target="_blank"
-                  className="!text-primary !font-medium !underline-offset-8 hover:underline"
-                >
-                  Source Code
-                </Link>
-              </div>
-            )}
-
-            {metadata.demoUrl && (
-              <div className="flex items-center gap-2">
-                <FaExternalLinkAlt size={16} />
-                <Link
-                  href={metadata.demoUrl}
-                  target="_blank"
-                  className="!text-primary !font-medium !underline-offset-8 hover:underline"
-                >
-                  Live Demo
-                </Link>
-              </div>
-            )}
+            {links
+              .filter((item) => item.condition)
+              .map((item, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  {item.icon}
+                  <Link
+                    href={item.href}
+                    target="_blank"
+                    className="!text-primary !font-medium !underline-offset-8 hover:underline"
+                  >
+                    {item.label}
+                  </Link>
+                </div>
+              ))}
           </div>
           <Control url={url} />
         </div>
