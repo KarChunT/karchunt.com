@@ -138,9 +138,11 @@ export const ALLOWED_TAGS = [
   'self-hosted',
   'Troubleshooting',
   'TypeScript',
+  'Tutorial',
   'Ubuntu',
   'venv',
   'Windows',
+  'Youtube',
 ];
 
 export const DOCUMENTATION = {
