@@ -1,16 +1,19 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { CERTIFICATES } from '@/constants';
 import { Timeline } from '@/components/ui/timeline';
-import { getBasePath } from '@/lib/utils';
+import { readFile } from 'fs/promises';
+import { getBasePath, getFileFullPath } from '@/lib/utils';
+import { CERTIFICATES_JSON_PATH } from '@/constants';
 
 export const metadata = {
   title: 'Journey',
 };
 
-const page = () => {
+const page = async () => {
   const basePath = getBasePath();
-  const certificates = CERTIFICATES.map((cert) => ({
+  const fullPath = getFileFullPath(CERTIFICATES_JSON_PATH);
+  const allCertificates = JSON.parse(await readFile(fullPath, 'utf8'));
+  const certificates = allCertificates.map((cert) => ({
     title: cert.year,
     content: (
       <div key={cert.year}>

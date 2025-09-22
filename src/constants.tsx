@@ -19,6 +19,7 @@ export const NAME: string = 'Kar Chun Tan';
 export const GOOD_TOOLS_AND_WEBSITES_JSON_PATH =
   '/data/good-tools-and-websites.json';
 export const SOFTWARE_GLOSSARY_JSON_PATH = '/data/software-glossary.json';
+export const CERTIFICATES_JSON_PATH = '/data/certificates.json';
 
 export const CHANNELS = {
   github: {
@@ -101,95 +102,6 @@ export const KUBESTRONAUT = {
     'https://www.linkedin.com/posts/karchuntan_im-happy-to-share-that-ive-obtained-a-new-activity-7305101498244288512-Osxo?utm_source=share&utm_medium=member_desktop&rcm=ACoAADHh4I0BsleIJAHeRMGtjJ7CEb5NduAUtYg',
   cncfImage: '/kubestronaut/cncf-kubestronaut.png',
 };
-
-export const CERTIFICATES = [
-  {
-    year: '2025',
-    certificates: [
-      {
-        name: 'Certified Kubernetes Administrator (CKA)',
-        src: '/certificates/cka.png',
-        link: 'https://www.credly.com/badges/8fff7b8d-3415-4263-b4fe-4f96ff52484e',
-        certified: true,
-      },
-      {
-        name: 'Certified Kubernetes Security Specialist (CKS)',
-        src: '/certificates/cks.png',
-        link: 'https://www.credly.com/badges/d044d10b-35b0-4103-8c39-cbc956320578',
-        certified: true,
-      },
-      {
-        name: 'Kubernetes and Cloud Native Associate (KCNA)',
-        src: '/certificates/kcna.png',
-        link: 'https://www.credly.com/badges/66e3e661-2a7f-44ba-b137-a4ecab838370',
-        certified: true,
-      },
-      {
-        name: 'Kubernetes and Cloud Native Security Associate (KCSA)',
-        src: '/certificates/kcsa.png',
-        link: 'https://www.credly.com/badges/c97c8086-4abc-4450-84ca-1f33d8cc5824',
-        certified: true,
-      },
-      {
-        name: 'Kubestronaut',
-        src: '/certificates/kubestronaut.png',
-        link: 'https://www.credly.com/badges/e22d7205-9c6f-40d5-b62f-d94a2e5a805a',
-        certified: true,
-      },
-    ],
-  },
-  {
-    year: '2024',
-    certificates: [
-      {
-        name: 'LFD121: Developing Secure Software',
-        src: '/certificates/lfd121.png',
-        link: 'https://www.credly.com/badges/cad91d1d-0327-46d8-aa99-21ccaf91c589',
-        certified: true,
-      },
-    ],
-  },
-  {
-    year: '2023',
-    certificates: [
-      {
-        name: 'Professional Scrum Master™ I (PSM I)',
-        src: '/certificates/psm1.png',
-        link: 'https://www.credly.com/badges/a9a3bcd4-bfec-44bf-be2f-fb91579c0ee6',
-        certified: true,
-      },
-      {
-        name: 'CKAD: Certified Kubernetes Application Developer',
-        src: '/certificates/ckad.png',
-        link: 'https://www.credly.com/badges/0cf9e91e-2736-46cb-a987-f558e099b30e',
-        certified: true,
-      },
-    ],
-  },
-  {
-    year: '2022',
-    certificates: [
-      {
-        name: 'Certified Jenkins Engineer 2022',
-        src: '/certificates/cje.png',
-        link: 'https://certificates.cloudbees.com/dc763bc8-1f25-4335-9bfd-f8f13ae03cf4#acc.jet6FUmf',
-        certified: true,
-      },
-      {
-        name: '[PCAP-31-03] PCAP™ – Certified Associate Python Programmer',
-        src: '/certificates/pcap.png',
-        link: 'https://www.credly.com/badges/c2d73e1d-d0b4-4e27-a4fa-2a805f202fbc',
-        certified: true,
-      },
-      {
-        name: '[PCEP-30-01] PCEP – Certified Entry-Level Python Programmer',
-        src: '/certificates/pcep.png',
-        link: 'https://www.credly.com/badges/3bac6f7f-53dd-40d8-a195-61284a31d8fd',
-        certified: true,
-      },
-    ],
-  },
-];
 
 export const ALLOWED_TAGS = [
   'Chinese',
