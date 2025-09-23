@@ -135,6 +135,7 @@ export const ALLOWED_TAGS = [
   'NPM',
   'PowerShell',
   'Python',
+  'PDF',
   'Schema',
   'Sphinx',
   'self-hosted',
