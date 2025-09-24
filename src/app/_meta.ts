@@ -1,16 +1,18 @@
 import type { MetaRecord } from 'nextra';
 import { DOCUMENTATION, HUB_ITEMS } from '@/constants';
 
-const docsItems = Object.entries(DOCUMENTATION).reduce(
-  (acc, [key, item]) => {
-    acc[key] = {
-      title: item.title,
-      href: item.href,
-    };
-    return acc;
-  },
-  {} as Record<string, { title: string; href: string }>,
-);
+const docsItems = Object.entries(DOCUMENTATION)
+  .sort(([, a], [, b]) => a.title.localeCompare(b.title))
+  .reduce(
+    (acc, [key, item]) => {
+      acc[key] = {
+        title: item.title,
+        href: item.href,
+      };
+      return acc;
+    },
+    {} as Record<string, { title: string; href: string }>,
+  );
 
 const hubItems = Object.entries(HUB_ITEMS).reduce(
   (acc, [key, item]) => {
