@@ -32,9 +32,11 @@ const page = async ({ params }) => {
     decodeURIComponent(tagSlug);
 
   // Filter blogs by matching the slug of each tag
-  const allPosts = blogs.filter((blog) =>
-    blog.frontMatter.tags.some((t) => tagToSlug(t) === tagSlug),
-  );
+  const allPosts = blogs
+    .filter((blog) =>
+      blog.frontMatter.tags.some((t) => tagToSlug(t) === tagSlug),
+    )
+    .sort((a, b) => a.frontMatter.title.localeCompare(b.frontMatter.title));
   return (
     <div className="@container container mx-auto min-h-screen max-w-5xl px-6 py-4 lg:py-8">
       <div className="mt-2">

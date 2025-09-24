@@ -20,9 +20,11 @@ const page = async () => {
       {/* Main content */}
       <div className="flex-1">
         {Object.entries(sortedTags).map(([tag, count]) => {
-          const taggedBlogs = blogs.filter((blog) =>
-            blog.frontMatter.tags.includes(tag),
-          );
+          const taggedBlogs = blogs
+            .filter((blog) => blog.frontMatter.tags.includes(tag))
+            .sort((a, b) =>
+              a.frontMatter.title.localeCompare(b.frontMatter.title),
+            );
           if (taggedBlogs.length === 0) return null;
           return (
             <div key={tag} id={`tag-${tag}`} className="mt-6 scroll-mt-24">
