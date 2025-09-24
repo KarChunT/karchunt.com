@@ -1,6 +1,6 @@
 import Icon from '@mdi/react';
 import { mdiSsh } from '@mdi/js';
-import { TbNumber12Small, TbBrandDocker } from 'react-icons/tb';
+import { TbNumber12Small, TbBrandDocker, TbBinaryTree } from 'react-icons/tb';
 import { FaGitAlt, FaPython } from 'react-icons/fa';
 import { BiCube } from 'react-icons/bi';
 import { SiKubernetes } from 'react-icons/si';
@@ -204,10 +204,11 @@ export const DOCUMENTATION = {
       'Kubernetes, also known as k8s, is an open source system for automating deployment, scaling, and management of containerized applications.',
     icon: SiKubernetes,
   },
+  'Data Structures & Algorithms': {
+    title: 'Data Structures & Algorithms',
+    href: '/docs/data-structures-and-algorithms/what-is-data-structures-and-algorithms',
+    description:
+      'Data structures are used to organize, store, and manipulate data in memory, while algorithms are used to solve specific problems.',
+    icon: TbBinaryTree,
+  },
 };
-
-//   title: 'Data Structures and Algorithms',
-//   description:
-//     'Data structures are used to organize, store, and manipulate data in memory, while algorithms are used to solve specific problems.',
-//   title: 'Design Pattern',
-//   description: 'Solving typical software design problems.',
