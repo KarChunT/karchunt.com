@@ -51,6 +51,13 @@
   --color-color-4: hsl(var(----color-4));
   --color-color-5: hsl(var(----color-5));
 
+  /* RAM-specific colors */
+  --color-ram-read: var(--ram-read);
+  --color-ram-write: var(--ram-write);
+  --color-ram-idle: var(--ram-idle);
+  --color-ram-active: var(--ram-active);
+  --color-ram-grid: var(--ram-grid);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -128,6 +135,45 @@
       transform: translate(-50%, -50%) scale(0.9);
     }
   }
+
+  /* RAM Animation Keyframes */
+  @keyframes pulse-read {
+    0%,
+    100% {
+      background-color: var(--ram-read);
+      box-shadow: 0 0 10px var(--ram-read);
+    }
+    50% {
+      background-color: var(--ram-idle);
+      box-shadow: 0 0 5px var(--ram-idle);
+    }
+  }
+
+  @keyframes pulse-write {
+    0%,
+    100% {
+      background-color: var(--ram-write);
+      box-shadow: 0 0 10px var(--ram-write);
+    }
+    50% {
+      background-color: var(--ram-idle);
+      box-shadow: 0 0 5px var(--ram-idle);
+    }
+  }
+
+  @keyframes data-flow {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
 }
 
 :root {
@@ -151,6 +197,12 @@
   --border: 47.9 14.4% 90%;
   --input: 47.9 14.4% 90%;
   --ring: 47.9 95.8% 53.1%;
+
+  --ram-read: hsl(var(--primary));
+  --ram-write: oklch(0.6 0.2 15);
+  --ram-idle: oklch(0.7 0.15 60);
+  --ram-active: oklch(0.75 0.12 280);
+  --ram-grid: oklch(0.2 0 0);
 }
 
 .dark {
@@ -391,4 +443,16 @@ footer {
   align-items: center;
   justify-content: center;
   font-weight: bold;
+}
+
+.ram-cell-read {
+  animation: pulse-read 0.8s ease-in-out;
+}
+
+.ram-cell-write {
+  animation: pulse-write 0.8s ease-in-out;
+}
+
+.data-flow {
+  animation: data-flow 1s ease-in-out;
 }

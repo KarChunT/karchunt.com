@@ -23,6 +23,9 @@ const meta: MetaRecord = {
   'what-is-data-structures-and-algorithms': {
     title: 'What is Data Structures and Algorithms?',
   },
+  ram: {
+    title: 'Memory (RAM)',
+  },
 };
 
 export default meta;

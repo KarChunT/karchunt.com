@@ -12,6 +12,7 @@ import { CustomCard, CustomCards } from '@/components/CustomCard';
 import { DocsOverview } from '@/components/DocsOverview';
 import Comments from '@/components/Comments';
 import CustomMermaid from '@/components/CustomMermaid';
+import RAMVisualization from '@/components/algoVisualizerSub/ram';
 
 // Get the default MDX components
 const themeComponents = getThemeComponents();
@@ -48,6 +49,7 @@ export function useMDXComponents(components) {
     ImageZoom,
     // CustomCallout,
     CustomMermaid,
+    RAMVisualization,
     ...components,
   };
 }
