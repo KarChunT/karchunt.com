@@ -57,7 +57,9 @@ export function CustomCallout({
   children: React.ReactNode;
 }) {
   return (
-    <Alert className={`my-4 flex items-start gap-3 ${borderColorMap[type]}`}>
+    <Alert
+      className={`my-4 flex items-start gap-3 ${borderColorMap[type]} overflow-x-auto`}
+    >
       {iconMap[type]}
       <div>
         {title && (
