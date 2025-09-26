@@ -5,6 +5,7 @@ import {
   CheckCircle2 as SuccessIcon,
   XCircle as ErrorIcon,
   Star as ImportantIcon,
+  CircleQuestionMark as QuestionIcon,
 } from 'lucide-react';
 
 const textColorMap = {
@@ -13,6 +14,7 @@ const textColorMap = {
   warn: 'text-yellow-500',
   error: 'text-red-500',
   important: 'text-purple-500',
+  question: 'text-orange-500',
 };
 
 const iconMap = {
@@ -31,6 +33,9 @@ const iconMap = {
   important: (
     <ImportantIcon className="!h-4 !max-h-4 !min-h-4 !w-4 !max-w-4 !min-w-4 !text-purple-500" />
   ),
+  question: (
+    <QuestionIcon className="!h-4 !max-h-4 !min-h-4 !w-4 !max-w-4 !min-w-4 !text-orange-500" />
+  ),
 };
 
 const borderColorMap = {
@@ -39,6 +44,7 @@ const borderColorMap = {
   warn: 'border-yellow-400',
   error: 'border-red-400',
   important: 'border-purple-400',
+  question: 'border-orange-400',
 };
 
 export function CustomCallout({
@@ -51,7 +57,9 @@ export function CustomCallout({
   children: React.ReactNode;
 }) {
   return (
-    <Alert className={`my-4 flex items-start gap-3 ${borderColorMap[type]}`}>
+    <Alert
+      className={`my-4 flex items-start gap-3 ${borderColorMap[type]} overflow-x-auto`}
+    >
       {iconMap[type]}
       <div>
         {title && (
