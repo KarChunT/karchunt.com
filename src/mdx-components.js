@@ -13,6 +13,7 @@ import { DocsOverview } from '@/components/DocsOverview';
 import Comments from '@/components/Comments';
 import CustomMermaid from '@/components/CustomMermaid';
 import RAMVisualization from '@/components/algoVisualizerSub/ram';
+import StaticArrayVisualization from '@/components/algoVisualizerSub/staticArray';
 
 // Get the default MDX components
 const themeComponents = getThemeComponents();
@@ -50,6 +51,7 @@ export function useMDXComponents(components) {
     // CustomCallout,
     CustomMermaid,
     RAMVisualization,
+    StaticArrayVisualization,
     ...components,
   };
 }

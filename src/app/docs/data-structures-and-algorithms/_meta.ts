@@ -26,6 +26,9 @@ const meta: MetaRecord = {
   ram: {
     title: 'Memory (RAM)',
   },
+  'static-array': {
+    title: 'Static Array',
+  },
 };
 
 export default meta;
