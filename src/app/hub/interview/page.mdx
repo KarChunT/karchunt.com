@@ -1,0 +1,33 @@
+---
+theme:
+  sidebar: false
+  timestamp: false
+  breadcrumb: false
+  pagination: false
+  layout: 'full'
+---
+
+# Interview
+
+This interview page is the **central hub for all interview-related content**. Here, you can find a variety of resources to help you prepare for interviews. Also, this page includes my **personal experiences** and **insights** from interviews I've conducted or participated in.
+
+## Technical interviews
+
+### Sorting
+
+Write a function that takes a list of numbers and sorts them in ascending order.
+
+```python filename="sort.py"
+numbers = [50, 10, 20, 40, 30]
+
+def bubble_sort(arr: list) -> list:
+    n = len(arr)
+    for i in range(n - 1):
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    return arr
+
+sorted_numbers = bubble_sort(numbers)
+print(sorted_numbers)  # Output: [10, 20, 30, 40, 50]
+```

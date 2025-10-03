@@ -87,6 +87,10 @@ export const HUB_ITEMS = {
     title: 'Software Glossary',
     href: '/hub/software-glossary',
   },
+  interview: {
+    title: 'Interview',
+    href: '/hub/interview',
+  },
 };
 
 export const KUBESTRONAUT = {
