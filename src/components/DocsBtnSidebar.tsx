@@ -94,13 +94,15 @@ const DocsBtnSidebar = ({ pageMap }: { pageMap: PageMapItem[] }) => {
           'main h1, main h2, main h3, main h4, main h5, main h6',
         ),
       ) as HTMLHeadingElement[];
-      const tocItems = headings.map((heading) => ({
-        id: heading.id,
-        text: heading.innerText,
-        level: Number(heading.tagName.replace('H', '')),
-        href: `#${heading.id}`,
-      }));
-
+      const tocItems = headings
+        .filter((heading) => heading.innerText.trim() !== '')
+        .filter((heading) => heading.id !== '')
+        .map((heading) => ({
+          id: heading.id,
+          text: heading.innerText,
+          level: Number(heading.tagName.replace('H', '')),
+          href: `#${heading.id}`,
+        }));
       setToc(tocItems);
     }, 0);
 
@@ -283,16 +285,16 @@ const DocsBtnSidebar = ({ pageMap }: { pageMap: PageMapItem[] }) => {
       <ul className="space-y-1">
         {sections.map((section) => (
           <li key={section.id}>
-            <button
-              className="hover:bg-accent w-full rounded-md px-3 py-2 text-left text-sm transition-colors"
-              style={{ paddingLeft: `${section.level * 12}px` }}
+            <Link
+              href={section.level >= 2 && section.href ? section.href : '#'}
             >
-              {section.level === 2 ? (
-                <Link href={section.href}>{section.title}</Link>
-              ) : (
-                section.title
-              )}
-            </button>
+              <button
+                className="hover:bg-accent w-full rounded-md px-3 py-2 text-left text-sm transition-colors"
+                style={{ paddingLeft: `${section.level * 12}px` }}
+              >
+                {section.title}
+              </button>
+            </Link>
             {section.children && (
               <div className="mt-1">{renderHierarchy(section.children)}</div>
             )}
@@ -309,16 +311,14 @@ const DocsBtnSidebar = ({ pageMap }: { pageMap: PageMapItem[] }) => {
       <ul className="space-y-1">
         {toc.map((item) => (
           <li key={item.id}>
-            <button
-              className="hover:bg-accent w-full rounded-md px-3 py-2 text-left text-sm transition-colors"
-              style={{ paddingLeft: `${item.level * 12}px` }}
-            >
-              {item.level === 1 ? (
-                item.text
-              ) : (
-                <Link href={item.href}>{item.text}</Link>
-              )}
-            </button>
+            <Link href={item.level === 1 ? '#' : item.href || '#'}>
+              <button
+                className="hover:bg-accent w-full rounded-md px-3 py-2 text-left text-sm transition-colors"
+                style={{ paddingLeft: `${item.level * 12}px` }}
+              >
+                {item.text}
+              </button>
+            </Link>
           </li>
         ))}
       </ul>
@@ -334,31 +334,25 @@ const DocsBtnSidebar = ({ pageMap }: { pageMap: PageMapItem[] }) => {
         />
       )}
 
-      {(hierarchy.length !== 0 || toc.length > 1) && (
-        <Button
-          ref={buttonRef}
-          size="icon"
-          className="bg-primary hover:bg-primary/90 fixed z-50 h-14 w-14 cursor-move rounded-full shadow-lg transition-transform hover:scale-105"
-          style={{
-            left: `${fixedX}px`,
-            top: `${positionY}px`,
-            cursor: isDragging ? 'grabbing' : isOpen ? 'default' : 'grab',
-          }}
-          // style={{
-          //   left: `${position.x}px`,
-          //   top: `${position.y}px`,
-          //   cursor: isDragging ? 'grabbing' : isOpen ? 'default' : 'grab',
-          // }}
-          onMouseDown={handleMouseDown}
-          onClick={() => !isDragging && setIsOpen(!isOpen)}
-        >
-          {isOpen ? (
-            <X className="h-5 w-5" />
-          ) : (
-            <BookOpen className="h-5 w-5" />
-          )}
-        </Button>
-      )}
+      <Button
+        ref={buttonRef}
+        size="icon"
+        className="bg-primary hover:bg-primary/90 fixed z-50 h-14 w-14 cursor-move rounded-full shadow-lg transition-transform hover:scale-105"
+        style={{
+          left: `${fixedX}px`,
+          top: `${positionY}px`,
+          cursor: isDragging ? 'grabbing' : isOpen ? 'default' : 'grab',
+        }}
+        // style={{
+        //   left: `${position.x}px`,
+        //   top: `${position.y}px`,
+        //   cursor: isDragging ? 'grabbing' : isOpen ? 'default' : 'grab',
+        // }}
+        onMouseDown={handleMouseDown}
+        onClick={() => !isDragging && setIsOpen(!isOpen)}
+      >
+        {isOpen ? <X className="h-5 w-5" /> : <BookOpen className="h-5 w-5" />}
+      </Button>
 
       {isOpen && (
         <Card
