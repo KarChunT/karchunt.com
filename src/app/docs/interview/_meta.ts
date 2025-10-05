@@ -19,13 +19,10 @@ const meta: MetaRecord = {
   welcome: {
     title: 'Welcome',
   },
-  technical: {
+  '#': {
+    type: 'separator', // or 'doc' if it's a document
     title: 'Technical',
   },
-  // '#': {
-  //   type: 'separator', // or 'doc' if it's a document
-  //   title: 'Technical',
-  // },
 };
 
 export default meta;
