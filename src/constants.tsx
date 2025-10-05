@@ -4,6 +4,7 @@ import { TbNumber12Small, TbBrandDocker, TbBinaryTree } from 'react-icons/tb';
 import { FaGitAlt, FaPython } from 'react-icons/fa';
 import { BiCube } from 'react-icons/bi';
 import { SiKubernetes } from 'react-icons/si';
+import { FaPeopleArrows } from 'react-icons/fa6';
 
 export const APP_NAME: string = 'KarChunT';
 export const APP_ICON: string = '/penguin-nobg.webp';
@@ -86,10 +87,6 @@ export const HUB_ITEMS = {
   'software-glossary': {
     title: 'Software Glossary',
     href: '/hub/software-glossary',
-  },
-  interview: {
-    title: 'Interview',
-    href: '/hub/interview',
   },
 };
 
@@ -214,5 +211,12 @@ export const DOCUMENTATION = {
     description:
       'Data structures are used to organize, store, and manipulate data in memory, while algorithms are used to solve specific problems.',
     icon: TbBinaryTree,
+  },
+  interview: {
+    title: 'Interview',
+    href: '/docs/interview/welcome',
+    description:
+      'A collection of commonly asked interview questions and answers in the software industry.',
+    icon: FaPeopleArrows,
   },
 };
