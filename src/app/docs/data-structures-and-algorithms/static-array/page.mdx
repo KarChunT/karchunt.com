@@ -44,7 +44,7 @@ A static array can be initialized in two ways:
   **O(1)** - If the number of operations does not grow as the input size grows, then we say that the algorithm runs in constant time, or **O(1)** time.
 </Callout>
 
-To read from a static array, you can use the index of the element you want to access. T index starts from **0**. Now, accessing the element in a static array is done in **constant time O(1)**, because each **index maps directly to a specific memory location**.
+To read from a static array, you can use the index of the element you want to access. The index starts from **0**. Now, accessing the element in a static array is done in **constant time O(1)**, because each **index maps directly to a specific memory location**.
 
 ```python
 static_array = [1, 2, 3, 4, 5]
@@ -144,7 +144,7 @@ def insert(index: int, value: int) -> None:
     ```python filename="static_array.py"
     class StaticArray:
         def __init__(self, capacity: int) -> None:
-            if not isinstance(capacity: int) or capacity <= 0:
+            if not isinstance(capacity, int) or capacity <= 0:
                 raise ValueError("Capacity must be a positive integer.")
             self._items = [None] * capacity
             self._capacity = capacity
@@ -156,7 +156,7 @@ def insert(index: int, value: int) -> None:
         # this method is called when you do array[index]
         def __getitem__(self, index: int) -> int:
             if not 0 <= index < self._count:
-                raise IndexError("Index out of bounds.")>>
+                raise IndexError("Index out of bounds.")
             return self._items[index]
 
         def __setitem__(self, index: int, value: int) -> None:
