@@ -14,6 +14,7 @@ import Comments from '@/components/Comments';
 import CustomMermaid from '@/components/CustomMermaid';
 import RAMVisualization from '@/components/algoVisualizerSub/ram';
 import StaticArrayVisualization from '@/components/algoVisualizerSub/staticArray';
+import DynamicArrayVisualization from '@/components/algoVisualizerSub/dynamicArray';
 
 // Get the default MDX components
 const themeComponents = getThemeComponents();
@@ -52,6 +53,7 @@ export function useMDXComponents(components) {
     CustomMermaid,
     RAMVisualization,
     StaticArrayVisualization,
+    DynamicArrayVisualization,
     ...components,
   };
 }

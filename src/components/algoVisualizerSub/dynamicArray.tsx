@@ -1,12 +1,21 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { RotateCcw, Plus, Minus, Search, ArrowRight, Zap } from 'lucide-react';
+import {
+  Play,
+  Pause,
+  RotateCcw,
+  Plus,
+  Minus,
+  Search,
+  ArrowRight,
+  Zap,
+} from 'lucide-react';
 
 type ArrayElement = {
   value: number;
@@ -17,27 +26,26 @@ type ArrayElement = {
   isNew?: boolean;
 };
 
-const MAX_ARRAY_SIZE = 8;
-const BASE_MEMORY_ADDRESS = 0x1000; // Starting memory address
-
 type Operation =
   | { type: 'read'; index: number }
   | { type: 'traverse'; index: number }
   | { type: 'delete'; index: number }
   | { type: 'insert'; index: number; value: number }
-  | { type: 'insertEnd'; value: number };
+  | { type: 'insertEnd'; value: number }
+  | { type: 'resize'; newCapacity: number };
 
-const StaticArrayVisualization = () => {
+const INITIAL_CAPACITY = 4;
+const BASE_MEMORY_ADDRESS = 0x2000; // Different base address for dynamic array
+
+const DynamicArrayVisualization = () => {
   const [array, setArray] = useState<ArrayElement[]>([
-    { value: 10, id: '1' },
-    { value: 25, id: '2' },
-    { value: 8, id: '3' },
-    { value: 42, id: '4' },
-    { value: 17, id: '5' },
-    { value: 33, id: '6' },
-    { value: 91, id: '7' },
-    { value: 56, id: '8' },
+    { value: 15, id: '1' },
+    { value: 32, id: '2' },
+    { value: 7, id: '3' },
+    { value: 48, id: '4' },
   ]);
+  const [capacity, setCapacity] = useState(INITIAL_CAPACITY);
+  const [baseAddress, setBaseAddress] = useState(BASE_MEMORY_ADDRESS);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentOperation, setCurrentOperation] = useState<Operation | null>(
@@ -54,41 +62,30 @@ const StaticArrayVisualization = () => {
   const [insertEndValue, setInsertEndValue] = useState('');
 
   const getMemoryAddress = (index: number) => {
-    return `0x${(BASE_MEMORY_ADDRESS + index * 4).toString(16).toUpperCase()}`;
-  };
-
-  const startTraversal = () => {
-    const traverseOps: Operation[] = array.map((_, index) => ({
-      type: 'traverse',
-      index,
-    }));
-    setOperationQueue(traverseOps);
-    setIsPlaying(true); // Automatically start playing
+    return `0x${(baseAddress + index * 4).toString(16).toUpperCase()}`;
   };
 
   const resetArray = useCallback(() => {
     setArray([
-      { value: 10, id: '1' },
-      { value: 25, id: '2' },
-      { value: 8, id: '3' },
-      { value: 42, id: '4' },
-      { value: 17, id: '5' },
-      { value: 33, id: '6' },
-      { value: 91, id: '7' },
-      { value: 56, id: '8' },
+      { value: 15, id: '1' },
+      { value: 32, id: '2' },
+      { value: 7, id: '3' },
+      { value: 48, id: '4' },
     ]);
+    setCapacity(INITIAL_CAPACITY);
+    setBaseAddress(BASE_MEMORY_ADDRESS);
     setCurrentOperation(null);
     setOperationQueue([]);
     setIsPlaying(false);
   }, []);
 
-  const addToQueue = (operation: Operation) => {
-    // setOperationQueue((prev) => [...prev, operation]);
-    setOperationQueue((prev) => [operation]);
-    if (!isPlaying && !currentOperation) {
-      setIsPlaying(true);
-    }
-  };
+  const resizeArray = useCallback(() => {
+    const newCapacity = capacity * 2;
+    const newBaseAddress = baseAddress + 0x100; // Simulate new memory allocation
+
+    setCapacity(newCapacity);
+    setBaseAddress(newBaseAddress);
+  }, [capacity, baseAddress]);
 
   const executeOperation = useCallback(
     (operation: Operation) => {
@@ -135,6 +132,29 @@ const StaticArrayVisualization = () => {
               prev.filter((_, idx) => idx !== operation.index),
             );
           }, 500);
+          break;
+
+        case 'resize':
+          // Show all elements as active during resize
+          setArray((prev) =>
+            prev.map((item) => ({
+              ...item,
+              isHighlighted: false,
+              isActive: true,
+              isDeleted: false,
+              isNew: false,
+            })),
+          );
+
+          setTimeout(() => {
+            resizeArray();
+            setArray((prev) =>
+              prev.map((item) => ({
+                ...item,
+                isActive: false,
+              })),
+            );
+          }, speed / 2);
           break;
 
         case 'insert':
@@ -188,8 +208,37 @@ const StaticArrayVisualization = () => {
         setCurrentOperation(null);
       }, speed);
     },
-    [speed],
+    [speed, resizeArray],
   );
+
+  const addToQueue = (operation: Operation) => {
+    // Check if we need to resize before insert operations
+    if (
+      (operation.type === 'insert' || operation.type === 'insertEnd') &&
+      array.length >= capacity
+    ) {
+      setOperationQueue((prev) => [
+        ...prev,
+        { type: 'resize', newCapacity: capacity * 2 },
+        operation,
+      ]);
+    } else {
+      setOperationQueue((prev) => [...prev, operation]);
+    }
+
+    if (!isPlaying && !currentOperation) {
+      setIsPlaying(true);
+    }
+  };
+
+  const startTraversal = () => {
+    const traverseOps: Operation[] = array.map((_, index) => ({
+      type: 'traverse',
+      index,
+    }));
+    setOperationQueue(traverseOps);
+    setIsPlaying(true);
+  };
 
   // Auto mode execution
   useEffect(() => {
@@ -208,13 +257,16 @@ const StaticArrayVisualization = () => {
     return () => clearTimeout(timer);
   }, [isPlaying, operationQueue, currentOperation, executeOperation, speed]);
 
+  // Render empty slots for unused capacity
+  const emptySlots = capacity - array.length;
+
   return (
     <div className="mt-6 space-y-6">
       {/* Array Visualization */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <span>Array Visualization (32-bit Integers)</span>
+            <span>Dynamic Array Visualization (32-bit Integers)</span>
             {currentOperation && (
               <Badge variant="secondary" className="ml-auto">
                 {currentOperation.type === 'read' &&
@@ -227,6 +279,8 @@ const StaticArrayVisualization = () => {
                   `Inserting ${currentOperation.value} at index ${currentOperation.index}`}
                 {currentOperation.type === 'insertEnd' &&
                   `Inserting ${currentOperation.value} at end`}
+                {currentOperation.type === 'resize' &&
+                  `Resizing array to capacity ${currentOperation.newCapacity}`}
               </Badge>
             )}
           </CardTitle>
@@ -251,11 +305,27 @@ const StaticArrayVisualization = () => {
                 </div>
               </div>
             ))}
+            {Array.from({ length: emptySlots }).map((_, index) => (
+              <div
+                key={`empty-${index}`}
+                className="flex flex-col items-center gap-1"
+              >
+                <div className="text-muted-foreground font-mono text-xs">
+                  {getMemoryAddress(array.length + index)}
+                </div>
+                <div className="text-muted-foreground font-mono text-xs">
+                  [{array.length + index}]
+                </div>
+                <div className="border-muted-foreground/30 text-muted-foreground flex h-16 w-16 items-center justify-center rounded-lg border-2 border-dashed font-mono text-xs">
+                  empty
+                </div>
+              </div>
+            ))}
           </div>
 
           <div className="text-muted-foreground text-center text-sm">
-            Array Length: {array.length}/{MAX_ARRAY_SIZE} | Each cell: 4 bytes
-            (32-bit integer) |
+            Array Length: {array.length} | Capacity: {capacity} | Each cell: 4
+            bytes (32-bit integer) |
             <span className="ml-2 inline-flex items-center gap-1">
               <div className="border-chart-2 bg-chart-2/20 h-3 w-3 rounded"></div>
               Read
@@ -273,6 +343,12 @@ const StaticArrayVisualization = () => {
               Delete
             </span>
           </div>
+          {array.length === capacity && (
+            <div className="mt-2 text-center text-sm text-amber-500">
+              Array is at full capacity. Next insertion will trigger automatic
+              resize (double capacity).
+            </div>
+          )}
         </CardContent>
       </Card>
 
@@ -296,6 +372,7 @@ const StaticArrayVisualization = () => {
                 />
               </div>
             </div>
+
             <div className="flex gap-2">
               <Button
                 onClick={startTraversal}
@@ -406,19 +483,15 @@ const StaticArrayVisualization = () => {
                       setInsertValue('');
                     }
                   }}
-                  disabled={
-                    !insertIndex ||
-                    !insertValue ||
-                    array.length >= MAX_ARRAY_SIZE
-                  }
+                  disabled={!insertIndex || !insertValue}
                 >
                   <Plus className="mr-2 h-4 w-4" />
                   Insert
                 </Button>
               </div>
-              {array.length >= MAX_ARRAY_SIZE && (
-                <p className="text-muted-foreground text-xs">
-                  Array is at maximum capacity ({MAX_ARRAY_SIZE})
+              {array.length === capacity && (
+                <p className="text-xs text-amber-500">
+                  Will auto-resize to capacity {capacity * 2}
                 </p>
               )}
             </div>
@@ -441,15 +514,15 @@ const StaticArrayVisualization = () => {
                       setInsertEndValue('');
                     }
                   }}
-                  disabled={!insertEndValue || array.length >= MAX_ARRAY_SIZE}
+                  disabled={!insertEndValue}
                 >
                   <Zap className="mr-2 h-4 w-4" />
                   Push
                 </Button>
               </div>
-              {array.length >= MAX_ARRAY_SIZE && (
-                <p className="text-muted-foreground text-xs">
-                  Array is at maximum capacity ({MAX_ARRAY_SIZE})
+              {array.length === capacity && (
+                <p className="text-xs text-amber-500">
+                  Will auto-resize to capacity {capacity * 2}
                 </p>
               )}
             </div>
@@ -460,4 +533,4 @@ const StaticArrayVisualization = () => {
   );
 };
 
-export default StaticArrayVisualization;
+export default DynamicArrayVisualization;
