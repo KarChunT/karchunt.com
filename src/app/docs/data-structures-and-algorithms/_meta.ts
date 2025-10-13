@@ -26,8 +26,18 @@ const meta: MetaRecord = {
   ram: {
     title: 'Memory (RAM)',
   },
+  '##': {
+    type: 'separator', // or 'doc' if it's a document
+    title: 'Linear Data Structures',
+  },
   'static-array': {
     title: 'Static Array',
+  },
+  'dynamic-array': {
+    title: 'Dynamic Array',
+  },
+  stack: {
+    title: 'Stack',
   },
 };
 
