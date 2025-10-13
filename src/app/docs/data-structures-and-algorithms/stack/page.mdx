@@ -1,0 +1,127 @@
+# Stack
+
+## What is Stack?
+
+Stack is a **Last In First Out (LIFO)** data structure, meaning that the **last element added** will be the **first element to be removed**.
+
+<Callout>
+  Stack can be implemented using arrays or linked lists.
+</Callout>
+
+Key operations of a stack include:
+
+- **Push**: Add an element to the top of the stack.
+- **Pop**: Remove and return the top element of the stack.
+- **Peek**: Return the top element without removing it.
+
+| Operation | Big-O Time |
+| --------- | ---------- |
+| Push | O(1) |
+| Pop | O(1) |
+| Peek / Top | O(1) |
+
+<Callout type="success" title="Real-World Applications of Stack">
+  - Undo/Redo functionality in text editors
+  - Browser history
+  - Recursion
+</Callout>
+
+<Callout type="important" title="Advantages and Disadvantages of Stack">
+  **Advantages**:
+  - Simple to implement and use, with **O(1)** time complexity for push and pop operations
+  - Efficient for certain algorithms (e.g., depth-first search)
+  - Useful for specific applications like recursion, expression evaluation, and backtracking
+
+  **Disadvantages**:
+  - Limited access to elements (only the top element is accessible)
+  - Fixed size if implemented using arrays (unless using dynamic arrays)
+  - Not suitable for random access of elements
+  - Can lead to underflow if popping from an empty stack
+</Callout>
+
+## Stack Class Implementation
+
+<Tabs items={['Python']}>
+  <Tab>
+    <Tabs items={['Built-in List methods', 'Traditional Implementation']}>
+      <Tab>
+      ```python filename="stack.py"
+      class Stack:
+          def __init__(self) -> None:
+              self.stack = []
+      ```
+      </Tab>
+
+      <Tab>
+      ```python filename="stack.py"
+      class Stack:
+          def __init__(self) -> None:
+              self.stack = []
+      ```
+      </Tab>
+    </Tabs>
+  </Tab>
+</Tabs> 
+
+## Stack Visualization
+
+```python
+class Stack:
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.array = [None] * capacity  # Initialize array with None values
+        self.top = -1  # Index of the top element; -1 indicates an empty stack
+
+    def is_empty(self):
+        """Checks if the stack is empty."""
+        return self.top == -1
+
+    def push(self, item):
+        """Adds an item to the top of the stack."""
+        self.top += 1
+        self.array[self.top] = item
+
+    def pop(self):
+        """Removes and returns the item from the top of the stack."""
+        if self.is_empty():
+            raise IndexError("Stack Underflow: Cannot pop, stack is empty.")
+        item = self.array[self.top]
+        self.array[self.top] = None  # Optional: clear the reference
+        self.top -= 1
+        return item
+
+    def peek(self):
+        """Returns the item at the top of the stack without removing it."""
+        if self.is_empty():
+            raise IndexError("Stack is empty, no top element.")
+        return self.array[self.top]
+
+    def size(self):
+        """Returns the number of elements in the stack."""
+        return self.top + 1
+
+    def __str__(self):
+        """String representation of the stack."""
+        # Only show elements up to 'top'
+        return str(self.array[:self.top + 1])
+```
+
+{/*
+
+class Stack:
+    def __len__(self) -> int:
+        return len(self.stack)
+
+    def push(self, n) -> None:
+        self.stack.append(n)
+
+    def pop(self):
+        if len(self) == 0:
+            raise Exception("Stack is empty")
+        return self.stack.pop()
+
+    def peek(self):
+        if len(self) == 0:
+            raise Exception("Stack is empty")
+        return self.stack[-1]
+*/}
