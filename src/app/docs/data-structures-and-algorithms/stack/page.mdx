@@ -43,12 +43,46 @@ Key operations of a stack include:
 
 <Tabs items={['Python']}>
   <Tab>
-    <Tabs items={['Built-in List methods', 'Traditional Implementation']}>
+    <Tabs items={['Built-in List methods', 'Traditional Implementation', 'Linked List Implementation']}>
       <Tab>
       ```python filename="stack.py"
       class Stack:
           def __init__(self) -> None:
-              self.stack = []
+              self.items = []
+
+          def __len__(self) -> int:
+              return len(self.items)
+
+          def __str__(self) -> str:
+              return str(self.items)
+
+          def is_empty(self) -> bool:
+              return len(self.items) == 0
+
+          def push(self, item: int) -> None:
+              self.items.append(item)
+
+          def pop(self) -> int:
+              if self.is_empty():
+                  raise IndexError("Stack Underflow: Cannot pop from an empty stack")
+              return self.items.pop()
+          
+          def peek(self) -> int:
+              if self.is_empty():
+                  raise IndexError("Stack Underflow: Cannot pop from an empty stack")
+              return self.items[-1]
+
+      stack = Stack()
+      stack.push(1)
+      stack.push(2)
+      stack.push(3)
+
+      print(len(stack))
+      print(stack)
+
+      print(stack.pop())
+      print(stack.peek())
+      print(stack)
       ```
       </Tab>
 
@@ -56,7 +90,104 @@ Key operations of a stack include:
       ```python filename="stack.py"
       class Stack:
           def __init__(self) -> None:
-              self.stack = []
+              self.items = []
+              self.top = -1  # Index of the top element; -1 indicates an empty stack
+
+          def __len__(self) -> int:
+              return self.top + 1
+
+          def __str__(self) -> str:
+              return str(self.items[:self.top + 1])
+
+          def is_empty(self) -> bool:
+              return self.top == -1
+
+          def push(self, item: int) -> None:
+              self.top += 1
+              self.items += [item]  # manually extend the list
+
+          def pop(self) -> int:
+              if self.is_empty():
+                  raise IndexError("Stack Underflow: Cannot pop from an empty stack")
+              item = self.items[self.top]
+              self.top -= 1
+              return item
+          
+          def peek(self) -> int:
+              if self.is_empty():
+                  raise IndexError("Stack Underflow: Cannot pop from an empty stack")
+              return self.items[self.top]
+
+      stack = Stack()
+      stack.push(1)
+      stack.push(2)
+      stack.push(3)
+
+      print(len(stack))
+      print(stack)
+
+      print(stack.pop())
+      print(stack.peek())
+      print(stack)
+      ```
+      </Tab>
+
+      <Tab>
+      ```python filename="stack.py"
+      class Node:
+          def __init__(self, value):
+              self.value = value
+              self.next = None
+
+      class Stack:
+          def __init__(self):
+              self.top = None
+              self.size = 0
+
+          def __len__(self) -> int:
+              return self.size
+
+          def __str__(self) -> str:
+              result = []
+              current = self.top
+              while current:
+                  result.append(current.value)
+                  current = current.next
+              return str(result)
+
+          def is_empty(self) -> bool:
+              return self.size == 0
+
+          def push(self, item: int) -> None:
+              new_node = Node(item)
+              new_node.next = self.top
+              self.top = new_node
+              self.size += 1
+
+          def pop(self) -> int:
+              if self.is_empty():
+                  raise IndexError("Stack Underflow: Cannot pop from an empty stack")
+              popped_value = self.top.value
+              self.top = self.top.next
+              self.size -= 1
+              return popped_value
+
+          def peek(self) -> int:
+              if self.is_empty():
+                  raise IndexError("Stack Underflow: Cannot pop from an empty stack")
+              return self.top.value
+
+      stack = Stack()
+      stack.push(1)
+      stack.push(2)
+      stack.push(3)
+
+      print(len(stack))
+      print(stack)
+
+      print(stack.pop())
+      print(stack.peek())
+      print(stack)
       ```
       </Tab>
     </Tabs>
@@ -65,63 +196,6 @@ Key operations of a stack include:
 
 ## Stack Visualization
 
-```python
-class Stack:
-    def __init__(self, capacity):
-        self.capacity = capacity
-        self.array = [None] * capacity  # Initialize array with None values
-        self.top = -1  # Index of the top element; -1 indicates an empty stack
+Interactive visualization of stack operations.
 
-    def is_empty(self):
-        """Checks if the stack is empty."""
-        return self.top == -1
-
-    def push(self, item):
-        """Adds an item to the top of the stack."""
-        self.top += 1
-        self.array[self.top] = item
-
-    def pop(self):
-        """Removes and returns the item from the top of the stack."""
-        if self.is_empty():
-            raise IndexError("Stack Underflow: Cannot pop, stack is empty.")
-        item = self.array[self.top]
-        self.array[self.top] = None  # Optional: clear the reference
-        self.top -= 1
-        return item
-
-    def peek(self):
-        """Returns the item at the top of the stack without removing it."""
-        if self.is_empty():
-            raise IndexError("Stack is empty, no top element.")
-        return self.array[self.top]
-
-    def size(self):
-        """Returns the number of elements in the stack."""
-        return self.top + 1
-
-    def __str__(self):
-        """String representation of the stack."""
-        # Only show elements up to 'top'
-        return str(self.array[:self.top + 1])
-```
-
-{/*
-
-class Stack:
-    def __len__(self) -> int:
-        return len(self.stack)
-
-    def push(self, n) -> None:
-        self.stack.append(n)
-
-    def pop(self):
-        if len(self) == 0:
-            raise Exception("Stack is empty")
-        return self.stack.pop()
-
-    def peek(self):
-        if len(self) == 0:
-            raise Exception("Stack is empty")
-        return self.stack[-1]
-*/}
+<StackVisualization />
