@@ -39,6 +39,9 @@ const meta: MetaRecord = {
   stack: {
     title: 'Stack',
   },
+  'singly-linked-lists': {
+    title: 'Singly Linked List',
+  },
 };
 
 export default meta;
