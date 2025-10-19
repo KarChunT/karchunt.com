@@ -31,6 +31,12 @@ Modern computers typically come with **at least 8GB of RAM**. The **more RAM** a
 
 ### Components of RAM
 
+<Callout title="What is contiguous block of data?" type="question">
+  A contiguous block of data means that the data is stored in a **continuous sequence of memory addresses**, without any gaps. For example, if you have an array of integers, the first element is stored at a certain memory address (**1000**) and each element **takes up a fixed amount of space** (4 bytes for an integer). So the second element will be stored at the next memory address (**1004**), the third at **1008**, and so on.
+
+  This allows **fast access by index**, because you can **calculate the address of any element** directly.
+</Callout>
+
 RAM can be considered as a **contiguous block of data** (memory is allocated to a process or file needing it), which means that it has two components:
 - value - the **actual data being stored** (e.g., an integer, character, etc.).
 - address - the **location where the value is stored in memory** and is **used to access the value**.

@@ -47,7 +47,7 @@ const page = () => {
         <p className="mt-6 leading-7 first:mt-0">
           Hi, I&apos;m Kar Chun! I&apos;m an{' '}
           <span className="text-primary">{JOB_POSITION}</span> at{' '}
-          <span className="text-intel">{JOB_COMPANY}</span>. Welcome to my
+          <span className="text-primary">{JOB_COMPANY}</span>. Welcome to my
           website, visit my{' '}
           <Link
             className="text-primary decoration-from-font [text-underline-position:from-font] hover:underline"

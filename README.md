@@ -1,6 +1,6 @@
 <h1>karchunt.com</h1>
 
-![GitHub Release](https://img.shields.io/github/v/release/karchunt/karchunt.com)
+<!-- ![GitHub Release](https://img.shields.io/github/v/release/karchunt/karchunt.com) -->
 ![Deploy and Release workflow](https://github.com/KarChunT/karchunt.com/actions/workflows/build-and-deploy.yml/badge.svg?branch=main)
 <!-- [![Super-Linter](https://github.com/KarChunT/karchunt.com/actions/workflows/pr-checker.yml/badge.svg)](https://github.com/marketplace/actions/super-linter) -->
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
