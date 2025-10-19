@@ -24,25 +24,9 @@ flowchart TD
 
 <Callout type="success" title="More information">
   I want to point out that **linked list** is a **linear data structure** like **array** but they are **not the same in terms of memory allocation**.
-  - **Array** - 
-  - **Linked List** - 
+  - **Array** - Store elements in **contiguous memory locations** (all elements are next to each other in memory, for example: 1000, 1004, 1008, etc)
+  - **Linked List** - Store nodes (elements) **anywhere in memory**; each node points to the next, so they are not necessarily stored contiguously.
 </Callout>
-
-Arrays store elements in contiguous memory locations (all elements are next to each other in memory).
-Linked lists store nodes anywhere in memory; each node points to the next, so they are not necessarily stored contiguously.
-Improved version:
-
-Arrays are stored in contiguous memory locations, but linked lists do not need to be stored this way; each node in a linked list can be located anywhere in memory.
-
-![ListNode2](/docs/data-structures-and-algorithms/listnode2.png)
-
-{/* 
-
-<Callout type="info">
-    Array are stored the same way in memory but linked list does not necessarily to store the same way in memory like array.
-</Callout>
-
-**Head** is the **1st node**, while **Tail** is the **last node**. Make sure you **adjust Head/Tail node** when **appending** a new node or **removing** the node.
 
 | Operation | Big-O Time | Notes |
 | --------- | ---------- | ----- |
@@ -50,90 +34,171 @@ Arrays are stored in contiguous memory locations, but linked lists do not need t
 | Search | O(n) | - |
 | Insert | O(1) | Reference to the node (position) |
 | Delete | O(1) | Reference to the node (position) |
+| Display | O(n) | Traverse all nodes to collect values |
 
+<Callout title="Real-World Applications">
+- Implementation of stacks and queues
+- Dynamic memory allocation
+- Web browsers (Navigation history)
+- Music or video playlists
+</Callout>
 
-How it works
-- Nodes are linked together in a chain through the "next" pointers. 
-- To move through the list, you start at the head and follow the next pointers from one node to the next until you reach null. 
-- Operations like insertion and deletion can be performed by changing these next pointers
+### How it works?
 
-Example              
-Imagine a list of numbers like 
-1 -> 2 -> 3 -> 4
-- The "head" points to the node containing 1
-- The node for \(1\) has a "next" pointer that points to the node with \(2\)
-- This continues until the node with \(4\), whose "next" pointer is null
+Nodes are **linked together in a chain** through the **"next" pointers**. You will start at the **head** and follow the pointers from one node to the next until you reach the **null** (end of the list).
 
-<Tabs items={['Python']}>
+Imagine we have a list of numbers like;
+
+```mermaid
+flowchart
+  subgraph ListNode
+    direction LR
+    a["1"] --> b["2"] --> c["3"] --> d["4"] --> e["null"]
+  end
+```
+- The **head** points to the node `1`
+- The **tail** points to `null`
+- The node for `1` has a **"next"** pointer that points to the node with `2`. This continues until the node with `4`, whose **"next"** pointer is `null`
+
+## Singly Linked List Implementation
+
+<Tabs items={['Singly Linked List', 'Circular Linked List']}>
   <Tab>
-    ```python
+    ```python filename="singly_linked_list.py"
     class Node:
-        def __init__(self, val) -> None:
-            self.val = val
+        def __init__(self, value) -> None:
+            self.value = value
             self.next = None
 
     class LinkedList:
         def __init__(self) -> None:
             self.head = None
+            self.size = 0
+
+        def append(self, data) -> None:
+            new_node = Node(data)
+            if not self.head:
+                self.head = new_node
+            else:
+                current = self.head
+                while current.next:
+                    current = current.next
+                current.next = new_node
+            self.size += 1
+
+        def insert(self, index: int, data) -> None:
+            if index < 0 or index > self.size:
+                raise IndexError("Index out of bounds")
+
+            new_node = Node(data)
+            current = self.head
+            if index == 0:
+                self.prepend(data)
+            else:
+                # You need to find the previous node before the index
+                # and adjust the pointers accordingly
+                prev = None
+                for _ in range(index):
+                    prev = current
+                    current = current.next
+                prev.next = new_node
+                new_node.next = current
+            self.size += 1
 
         def get(self, index: int):
-            if self.head is None:
-                return -1
-            else:
-                i = 0
-                curr_node = self.head
-                while curr_node:
-                    if i == index:
-                        return curr_node.val
-                    i += 1
-                    curr_node = curr_node.next
+            if index < 0 or index >= self.size:
+                raise IndexError("Index out of bounds")
 
-        def insert_head(self, val) -> None:
-            new_node = Node(val)
-            if self.head is None:
-                self.head = new_node
-            else:
-                new_node.next = self.head
-                self.head = new_node
-
-        def insert(self, val) -> None:
-            new_node = Node(val)
-            if self.head is None:
-                self.head = new_node
-            else:
-                curr_node = self.head
-                while curr_node.next:
-                    curr_node = curr_node.next
-                curr_node.next = new_node
+            current = self.head
+            i = 0
+            while current:
+                if i == index:
+                    return current.value
+                i += 1
+                current = current.next
 
         def remove(self, index: int):
-            curr_node = self.head
-            if index == 0 and curr_node:
-                self.head = curr_node.next
+            if index < 0 or index >= self.size:
+                raise IndexError("Index out of bounds")
+            if not self.head:
+                raise IndexError("Pop from empty list")
+
+            current = self.head
+            if index == 0:
+                self.head = current.next
             else:
                 i = 0
-                prev_node = None
-                while curr_node:
+                prev = None
+                while current:
                     if i == index:
-                        prev_node.next = curr_node.next
+                        prev.next = current.next
                         break
                     else:
-                        i += 1 
-                        prev_node = curr_node
-                        curr_node = curr_node.next
+                        i += 1
+                        prev = current
+                        current = current.next
 
-        def display(self) -> list:
-            curr_node = self.head
+        def prepend(self, data) -> None:
+            new_node = Node(data)
+            if self.head:
+                new_node.next = self.head
+            self.head = new_node
+            self.size += 1
+
+        def push(self, data) -> None:
+            self.prepend(data)
+
+        def pop(self):
+            if not self.head:
+                raise IndexError("Pop from empty list")
+            prev = None
+            current = self.head
+            while current.next:
+                prev = current
+                current = current.next
+
+            # current is tail
+            if prev:
+                prev.next = None
+            else:
+                # only one element
+                self.head = None
+            self.size -= 1
+
+        def is_empty(self) -> bool:
+            return self.size == 0
+
+        def __len__(self) -> int:
+            return self.size
+
+        def display(self) -> None:
+            current = self.head
             res = []
-            while curr_node:
-                res.append(curr_node.val)
-                curr_node = curr_node.next
-            return res
+            while current:
+                res.append(str(current.value))
+                current = current.next
+            print(" -> ".join(res))
+
+    linked_list = LinkedList()
+    linked_list.append(10)
+    linked_list.append(20)
+    linked_list.append(30)
+    linked_list.display()
+
+    linked_list.insert(1, 15)
+    linked_list.display()
+
+    linked_list.prepend(5)
+    linked_list.display()
+
+    linked_list.pop()
+    linked_list.display()
+
+    linked_list.remove(1)
+    linked_list.display()
     ```
   </Tab>
-</Tabs> */}
-
-## Singly Linked List Implementation
+</Tabs>
 
 ## Singly Linked List Visualization
 
