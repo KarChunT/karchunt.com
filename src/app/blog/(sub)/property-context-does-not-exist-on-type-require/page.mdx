@@ -8,7 +8,12 @@ tags: [TypeScript]
 
 ## Property 'context' does not exist on type 'Require'
 
+The error **Property 'context' does not exist on type 'Require'** typically occurs in TypeScript projects that use Webpack `require.context`. This happens because TypeScript by default **does not recognize** the `context` property on the `Require` type.
+
+To resolve this issue, you need to **install the type definitions** for Webpack.
+
 ```bash
 npm i -D @types/webpack-env
 ```
+
 <Comments />

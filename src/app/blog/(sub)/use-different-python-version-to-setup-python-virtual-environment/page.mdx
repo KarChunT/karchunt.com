@@ -6,27 +6,34 @@ author: KarChunT
 tags: [Python]
 ---
 
-## Steps to use different Python version to setup Python virtual environment
+## Use different Python version to setup Python virtual environment
 
-**Docs**
+<Callout title="Docs">
+  - [virtualenv docs](https://virtualenv.pypa.io/en/latest/)
+  - [virtualenv pypi](https://pypi.org/project/virtualenv/)
+</Callout>
 
-- [virtualenv docs](https://virtualenv.pypa.io/en/latest/)
-- [virtualenv pypi](https://pypi.org/project/virtualenv/)
+### Linux
 
 ```bash
-# Linux
 pip install virtualenv
 virtualenv venv --python=/usr/local/bin/python
 virtualenv venv --python=/usr/local/bin/python3
+```
 
-# Windows
+### Windows
+
+I highly recommend to use **method 2** to create virtual environment in Windows, as I faced missing files issue when using **method 1**.
+
+```bash
 ##  Method 1 - I don't recommend to use virtualenv as it will have some missing files
 pip install virtualenv
 virtualenv venv -p `which python`
 virtualenv venv -p `which python3`
-virtual venv -p "C:\Users\karchunt\AppData\Local\Programs\Python\Python312\python.exe"
+virtualenv venv -p "C:\Users\karchunt\AppData\Local\Programs\Python\Python312\python.exe"
 
-##  Method 2
+##  Method 2 - Recommended way to create virtual environment
 "C:\Users\karchunt\AppData\Local\Programs\Python\Python312\python.exe" -m venv venv
 ```
+
 <Comments />

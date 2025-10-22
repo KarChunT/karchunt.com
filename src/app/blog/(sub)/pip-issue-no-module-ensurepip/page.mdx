@@ -16,6 +16,8 @@ Error: Command '['/home/kc/Desktop/projects/pretty/venv/bin/python3.11', '-m', '
 
 The error indicates that the `ensurepip` module failed to set up `pip` in your virtual environment. This can happen if the **Python installation is incomplete or corrupted**, or if the **virtual environment was not created properly**.
 
+Assuming you are using **Python 3.11** on a **Linux** system, here are the steps to resolve this issue:
+
 <Steps>
 
 ### Ensure Python is Properly Installed
@@ -25,7 +27,13 @@ python3.11 --version
 python3.11 -m ensurepip --version
 ```
 
-### If the above commands fail, **reinstall Python 3.11**
+### If the above commands fail, reinstall Python 3.11
+
+For your information, many Linux distributions disable the bundled `ensurepip` module to force use of system packaging. To fix this, you can reinstall Python along with the `venv` and `dev` packages.
+
+<Callout type="important">
+  If your system package name differs (eg, `python3.11-venv`), adjust accordingly.
+</Callout>
 
 ```bash
 sudo apt update
@@ -33,6 +41,8 @@ sudo apt install --reinstall python3.11 python3.11-venv python3.11-dev
 ```
 
 ### Recreate the virtual environment
+
+Now, delete the existing virtual environment and create a new one.
 
 ```bash
 python3.11 -m venv venv
