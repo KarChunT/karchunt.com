@@ -30,11 +30,14 @@ flowchart TD
 
 | Operation | Big-O Time | Notes |
 | --------- | ---------- | ----- |
-| Access | O(n) | Have to loop to find the exact |
-| Search | O(n) | - |
-| Insert | O(1) | Reference to the node (position) |
-| Delete | O(1) | Reference to the node (position) |
-| Display | O(n) | Traverse all nodes to collect values |
+| Access (by index) | O(n) | Must traverse from head (avg ~ n/2 → O(n)) |
+| Search (by value) | O(n) | Linear scan |
+| Insert (at head) | O(1) | Update head pointer |
+| Insert (at tail) | O(n) | O(1) if you maintain a tail pointer |
+| Insert (given previous node) | O(1) | Insert after a known node; otherwise O(n) |
+| Delete (given previous node / head) | O(1) | O(1) when you have the previous node; deleting by node-only ref can be O(1) using the copy-trick but can't remove tail |
+| Delete (by index/value) | O(n) | Must locate node (and previous) first |
+| Display / Traverse | O(n) | Visit every node |
 
 <Callout title="Real-World Applications">
 - Implementation of stacks and queues
@@ -106,6 +109,7 @@ flowchart
             current = self.head
             if index == 0:
                 self.prepend(data)
+                return
             else:
                 # You need to find the previous node before the index
                 # and adjust the pointers accordingly
