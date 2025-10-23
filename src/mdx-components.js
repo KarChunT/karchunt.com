@@ -18,6 +18,7 @@ import {
   DynamicArrayVisualization,
   StackVisualization,
   SinglyLinkedListVisualization,
+  DoublyLinkedListVisualization,
 } from '@/components/algoVisualizerSub/visualizers';
 
 // Get the default MDX components
@@ -59,6 +60,7 @@ export function useMDXComponents(components) {
     StaticArrayVisualization,
     DynamicArrayVisualization,
     SinglyLinkedListVisualization,
+    DoublyLinkedListVisualization,
     StackVisualization,
     ...components,
   };
