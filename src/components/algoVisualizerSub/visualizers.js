@@ -4,6 +4,7 @@ import DynamicArrayVisualization from '@/components/algoVisualizerSub/dynamicArr
 import StackVisualization from '@/components/algoVisualizerSub/stack';
 import SinglyLinkedListVisualization from '@/components/algoVisualizerSub/singlyLinkedList';
 import DoublyLinkedListVisualization from '@/components/algoVisualizerSub/doublyLinkedList';
+import BubbleSortVisualization from '@/components/algoVisualizerSub/bubbleSort';
 
 export {
   RAMVisualization,
@@ -11,5 +12,6 @@ export {
   DynamicArrayVisualization,
   SinglyLinkedListVisualization,
   DoublyLinkedListVisualization,
+  BubbleSortVisualization,
   StackVisualization,
 };
