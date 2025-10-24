@@ -80,10 +80,6 @@ export const HUB_ITEMS = {
     title: 'MarkDown Playground',
     href: '/hub/md-playground',
   },
-  'algorithm-visualizer': {
-    title: 'Algorithm Visualizer',
-    href: '/hub/algorithm-visualizer',
-  },
   'software-glossary': {
     title: 'Software Glossary',
     href: '/hub/software-glossary',
