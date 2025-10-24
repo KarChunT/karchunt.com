@@ -27,7 +27,7 @@ const Comments = () => {
     url: 'https://utteranc.es/client.js',
     theme: 'github-dark',
     issueTerm: 'title',
-    repo: 'KarChunT/posts-comments',
+    repo: 'KarChunT/karchunt.com',
     ref: comment,
   });
 
