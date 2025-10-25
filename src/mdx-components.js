@@ -20,6 +20,7 @@ import {
   SinglyLinkedListVisualization,
   DoublyLinkedListVisualization,
   BubbleSortVisualization,
+  LinearSearchVisualization,
 } from '@/components/algoVisualizerSub/visualizers';
 
 // Get the default MDX components
@@ -64,6 +65,7 @@ export function useMDXComponents(components) {
     DoublyLinkedListVisualization,
     StackVisualization,
     BubbleSortVisualization,
+    LinearSearchVisualization,
     ...components,
   };
 }

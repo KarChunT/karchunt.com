@@ -49,6 +49,9 @@ const meta: MetaRecord = {
   sorting: {
     title: 'Sorting',
   },
+  searching: {
+    title: 'Searching',
+  },
 };
 
 export default meta;
