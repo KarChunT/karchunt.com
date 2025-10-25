@@ -32,40 +32,43 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const basePath = getBasePath();
-const navbar = (
-  <Navbar
-    logo={
-      <div className="flex items-center justify-center gap-2">
-        <Image
-          src={`${basePath}${APP_ICON}`}
-          alt="Logo"
-          width={24}
-          height={24}
-        />
-        <b>KarChunT</b>
-      </div>
-    }
-    align="right"
-    chatLink={LINKEDIN_URL}
-    chatIcon={<TfiLinkedin />}
-    projectLink={GITHUB_URL}
-    children={
-      <div>
-        <Link href="/rss.xml">
-          <FaRss />
-        </Link>
-      </div>
-    }
-  />
-);
-const footer = (
-  <Footer>
-    Copyright © {new Date().getFullYear()} {APP_NAME}. All rights reserved.
-  </Footer>
-);
 
 export default async function RootLayout({ children }) {
   const updatedAt = await getUpdatedAt();
+  const pageMap = await getPageMap();
+
+  const navbar = (
+    <Navbar
+      logo={
+        <div className="flex items-center justify-center gap-2">
+          <Image
+            src={`${basePath}${APP_ICON}`}
+            alt="Logo"
+            width={24}
+            height={24}
+          />
+          <b>KarChunT</b>
+        </div>
+      }
+      align="right"
+      chatLink={LINKEDIN_URL}
+      chatIcon={<TfiLinkedin />}
+      projectLink={GITHUB_URL}
+      children={
+        <div>
+          <Link href="/rss.xml">
+            <FaRss />
+          </Link>
+        </div>
+      }
+    />
+  );
+
+  const footer = (
+    <Footer>
+      Copyright © {new Date().getFullYear()} {APP_NAME}. All rights reserved.
+    </Footer>
+  );
 
   const banner = (
     <Banner storageKey={generateRandomKey()}>
@@ -98,7 +101,7 @@ export default async function RootLayout({ children }) {
           }}
           // banner={banner}
           navbar={navbar}
-          pageMap={await getPageMap()}
+          pageMap={pageMap}
           docsRepositoryBase={DOCS_REPO_BASE}
           footer={footer}
           darkMode={true}
