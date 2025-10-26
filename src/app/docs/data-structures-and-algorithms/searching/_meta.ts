@@ -19,6 +19,9 @@ const meta: MetaRecord = {
   'linear-search': {
     title: 'Linear Search',
   },
+  'binary-search': {
+    title: 'Binary Search',
+  },
 };
 
 export default meta;
