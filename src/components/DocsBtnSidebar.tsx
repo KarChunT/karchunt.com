@@ -44,31 +44,63 @@ const DocsBtnSidebar = ({ pageMap }: { pageMap: PageMapItem[] }) => {
   const currentDocRoot = pageMap.find(
     (item) => 'route' in item && (item as any).route === docsRootPath,
   );
-  const currentDocRootChildren = (currentDocRoot as any)?.children;
+  const currentDocRootChildren = (currentDocRoot as any)?.children ?? [];
+  console.log(currentDocRootChildren);
 
-  let section: DocSection | null = null;
   const hierarchy: DocSection[] = [];
 
-  (currentDocRootChildren ?? []).slice(1).forEach((item) => {
+  const convertItem = (item: any, level: number): DocSection => {
+    const node: DocSection = {
+      id: item.name ?? item.title ?? Math.random().toString(),
+      title: item.title ?? item.name ?? '',
+      level,
+      href: item.route,
+      children: [],
+    };
+
+    if (item.children && Array.isArray(item.children) && item.children.length) {
+      // skip the first child like the top-level behavior
+      const childItems = item.children.slice(1);
+      if (childItems.length) {
+        node.children = childItems.map((child: any) =>
+          convertItem(child, level + 1),
+        );
+      } else {
+        delete node.children;
+      }
+    } else {
+      // remove empty children to keep shape clean
+      delete node.children;
+    }
+
+    return node;
+  };
+
+  let currentSection: DocSection | null = null;
+
+  // keep previous behavior of skipping first element if present
+  (currentDocRootChildren ?? []).slice(1).forEach((item: any) => {
     if (item.type === 'separator') {
-      // start a new session
-      section = {
+      // start a new section group
+      currentSection = {
         id: item.name,
         title: item.title,
         level: 1,
         children: [],
       };
-      hierarchy.push(section);
-    } else if (section) {
-      section.children?.push({
-        id: item.name,
-        title: item.title,
-        href: item.route,
-        level: 2,
-      });
+      hierarchy.push(currentSection);
+    } else {
+      // convert the item (and its nested children) into DocSection(s)
+      const node = convertItem(item, currentSection ? 2 : 1);
+      if (currentSection) {
+        currentSection.children = currentSection.children || [];
+        currentSection.children.push(node);
+      } else {
+        // no active separator — push as top-level entry
+        hierarchy.push(node);
+      }
     }
   });
-
   const updateFixedX = () => {
     const padding = 24;
     const buttonSize = 56;
