@@ -69,6 +69,11 @@ export function CustomCallout({
   const [maxHeight, setMaxHeight] = useState<string | undefined>(undefined);
   const regionId = useId();
 
+  // If there's no title, when collapsed we keep a single-line preview visible
+  const collapsedPreviewHeight = !title ? '1.5rem' : '0px';
+  // aria-hidden should only hide the content for screen readers when the region is truly collapsed (title case).
+  const ariaHidden = collapsible ? !open && !!title : undefined;
+
   useEffect(() => {
     if (!collapsible) return;
     const el = contentRef.current;
@@ -79,14 +84,21 @@ export function CustomCallout({
       const t = setTimeout(() => setMaxHeight('none'), 200); // allow transition then unset
       return () => clearTimeout(t);
     } else {
-      // collapse: set fixed px then 0 so transition animates
+      // collapse: set fixed px then to desired collapsed height so transition animates
       setMaxHeight(`${el.scrollHeight}px`);
-      // next tick -> 0
+      // next tick -> collapsed height (either 0px when title exists, or a single-line preview when no title)
       requestAnimationFrame(() =>
-        requestAnimationFrame(() => setMaxHeight('0px')),
+        requestAnimationFrame(() => setMaxHeight(collapsedPreviewHeight)),
       );
     }
-  }, [open, collapsible, children]);
+  }, [open, collapsible, children, collapsedPreviewHeight]);
+  const regionStyle = collapsible
+    ? {
+        maxHeight: maxHeight === 'none' ? undefined : maxHeight,
+        overflow: 'hidden',
+        transition: 'max-height 200ms ease',
+      }
+    : undefined;
 
   return (
     <Alert
@@ -100,6 +112,25 @@ export function CustomCallout({
               {title}
             </AlertTitle>
           )}
+
+          {/* When there's no title, render the description inline on the same row */}
+          {!title && (
+            <div
+              id={regionId}
+              role={collapsible ? 'region' : undefined}
+              aria-hidden={ariaHidden}
+              ref={contentRef}
+              style={regionStyle}
+              className="flex-1"
+            >
+              <AlertDescription
+                className={`text-white ${!open ? 'line-clamp-1' : ''}`}
+              >
+                {children}
+              </AlertDescription>
+            </div>
+          )}
+
           {collapsible && (
             <button
               aria-expanded={open}
@@ -117,25 +148,20 @@ export function CustomCallout({
           )}
         </div>
 
-        <div
-          id={regionId}
-          role={collapsible ? 'region' : undefined}
-          aria-hidden={collapsible ? !open : undefined}
-          ref={contentRef}
-          style={
-            collapsible
-              ? {
-                  maxHeight: maxHeight === 'none' ? undefined : maxHeight,
-                  overflow: 'hidden',
-                  transition: 'max-height 200ms ease',
-                }
-              : undefined
-          }
-        >
-          <AlertDescription className={`${title ? 'pt-1' : ''} text-white`}>
-            {children}
-          </AlertDescription>
-        </div>
+        {/* When title exists, keep the description below the title */}
+        {title && (
+          <div
+            id={regionId}
+            role={collapsible ? 'region' : undefined}
+            aria-hidden={ariaHidden}
+            ref={contentRef}
+            style={regionStyle}
+          >
+            <AlertDescription className={`${title ? 'pt-1' : ''} text-white`}>
+              {children}
+            </AlertDescription>
+          </div>
+        )}
       </div>
     </Alert>
   );
