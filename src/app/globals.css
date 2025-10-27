@@ -12,6 +12,7 @@
 /* @variant dark (&:where(.dark *)); */
 
 @theme inline {
+  --my-theme-color: #facc15;
   --color-999: #999;
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
