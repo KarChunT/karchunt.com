@@ -9,6 +9,7 @@ import {
 } from '@/constants';
 import { FlipWords } from '@/components/ui/flip-words';
 import { AnimatedTestimonials } from '@/components/ui/animated-testimonials';
+import { Highlighter } from '@/components/ui/highlighter';
 
 export const metadata = {
   title: 'About',
@@ -63,8 +64,11 @@ const page = () => {
           My ambition is to develop a new technology that can revolutionize the
           world. As part of my motivation to inspire people, this site shares
           what I have learned and studied previously. It would be the greatest
-          thing I could ever hope for if someone looked at me and said,{' '}
-          <Highlight>Thanks to you, I didn&apos;t give up</Highlight>🥳.
+          thing I could ever hope for if someone looked at me and said,
+          {/* <Highlight>Thanks to you, I didn&apos;t give up</Highlight>🥳. */}
+          <Highlighter action="underline" color="#facc15">
+            Thanks to you, I didn&apos;t give up 🥳.
+          </Highlighter>
         </p>
 
         <p className="mt-6 leading-7 first:mt-0">
