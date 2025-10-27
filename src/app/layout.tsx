@@ -17,6 +17,7 @@ import 'nextra-theme-docs/style.css';
 import { FaRss } from 'react-icons/fa';
 import { TfiLinkedin } from 'react-icons/tfi';
 import { createMetadata } from '@/lib/metadata';
+import MusicToggleButton from '@/components/MusicClient';
 
 export const metadata = createMetadata({
   title: {
@@ -55,10 +56,11 @@ export default async function RootLayout({ children }) {
       chatIcon={<TfiLinkedin />}
       projectLink={GITHUB_URL}
       children={
-        <div>
+        <div className="flex items-center gap-2">
           <Link href="/rss.xml">
             <FaRss />
           </Link>
+          <MusicToggleButton />
         </div>
       }
     />
