@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import CoreValues from '@/components/home/coreValues';
 import { APP_NAME } from '@/constants';
+import CrowdCanvas from '@/components/CrowdCanvas';
 
 export const TOP_TAGLINE = [
   { text: 'Welcome', delay: 0 },
@@ -416,7 +417,7 @@ export default function Hero() {
       </div>
 
       <CoreValues />
-
+      <CrowdCanvas />
       <div
         id="mouse-gradient"
         ref={gradientRef}
