@@ -20,8 +20,6 @@ export const NAME: string = 'Kar Chun Tan';
 export const AUDIO_PATH: string =
   '/audio/lofi-study-calm-peaceful-chill-hop.mp3';
 
-export const CROWD_IMAGE_PATH: string = '/peeps/all-peeps.png';
-
 export const GOOD_TOOLS_AND_WEBSITES_JSON_PATH =
   '/data/good-tools-and-websites.json';
 export const SOFTWARE_GLOSSARY_JSON_PATH = '/data/software-glossary.json';

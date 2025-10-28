@@ -89,9 +89,6 @@ importers:
       glob:
         specifier: ^11.0.3
         version: 11.0.3
-      gsap:
-        specifier: ^3.13.0
-        version: 3.13.0
       husky:
         specifier: ^9.1.7
         version: 9.1.7
@@ -2607,9 +2604,6 @@ packages:
   graphql@16.11.0:
     resolution: {integrity: sha512-mS1lbMsxgQj6hge1XZ6p7GPhbrtFwUFYi3wRzXAC/FmYnyXMTvvI3td3rjmQ2u8ewXueaSvRPWaEcgVVOT9Jnw==}
     engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
-
-  gsap@3.13.0:
-    resolution: {integrity: sha512-QL7MJ2WMjm1PHWsoFrAQH/J8wUeqZvMtHO58qdekHpCfhvhSL4gSiz6vJf5EeMP0LOn3ZCprL2ki/gjED8ghVw==}
 
   hachure-fill@0.5.2:
     resolution: {integrity: sha512-3GKBOn+m2LX9iq+JC1064cSFprJY4jL1jCXTcpnfER5HYE2l/4EfWSGzkPa/ZDBmYI0ZOEj5VHV/eKnPGkHuOg==}
@@ -6957,8 +6951,6 @@ snapshots:
       ws: 8.18.3
 
   graphql@16.11.0: {}
-
-  gsap@3.13.0: {}
 
   hachure-fill@0.5.2: {}
 
