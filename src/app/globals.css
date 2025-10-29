@@ -443,14 +443,6 @@ button[title='Change theme'] {
   display: none !important;
 }
 
-footer {
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-}
-
 .ram-cell-read {
   animation: pulse-read 0.8s ease-in-out;
 }
