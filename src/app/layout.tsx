@@ -1,7 +1,8 @@
 import './globals.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Footer, Layout, Navbar } from 'nextra-theme-docs';
+// import { Footer, Layout, Navbar } from 'nextra-theme-docs';
+import { Layout, Navbar } from 'nextra-theme-docs';
 import { Banner, Head } from 'nextra/components';
 import { getPageMap } from 'nextra/page-map';
 import { JetBrains_Mono } from 'next/font/google';
@@ -14,10 +15,11 @@ import {
   LINKEDIN_URL,
 } from '@/constants';
 import 'nextra-theme-docs/style.css';
-import { FaRss } from 'react-icons/fa';
+// import { FaRss } from 'react-icons/fa';
 import { TfiLinkedin } from 'react-icons/tfi';
 import { createMetadata } from '@/lib/metadata';
 import MusicToggleButton from '@/components/MusicClient';
+import Footer from '@/components/Footer';
 
 export const metadata = createMetadata({
   title: {
@@ -57,20 +59,20 @@ export default async function RootLayout({ children }) {
       projectLink={GITHUB_URL}
       children={
         <div className="flex items-center gap-2">
-          <Link href="/rss.xml">
+          {/* <Link href="/rss.xml">
             <FaRss />
-          </Link>
+          </Link> */}
           <MusicToggleButton />
         </div>
       }
     />
   );
 
-  const footer = (
-    <Footer>
-      Copyright © {new Date().getFullYear()} {APP_NAME}. All rights reserved.
-    </Footer>
-  );
+  // const footer = (
+  //   <Footer>
+  //     Copyright © {new Date().getFullYear()} {APP_NAME}. All rights reserved.
+  //   </Footer>
+  // );
 
   const banner = (
     <Banner storageKey={generateRandomKey()}>
@@ -105,7 +107,8 @@ export default async function RootLayout({ children }) {
           navbar={navbar}
           pageMap={pageMap}
           docsRepositoryBase={DOCS_REPO_BASE}
-          footer={footer}
+          footer={<Footer />}
+          // footer={footer}
           darkMode={true}
           nextThemes={{
             defaultTheme: 'dark',

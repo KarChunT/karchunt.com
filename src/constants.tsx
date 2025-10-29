@@ -55,37 +55,9 @@ export const PERSONAL = [
 ];
 
 export const HUB_ITEMS = {
-  journey: {
-    title: 'Journey',
-    href: '/hub/journey',
-  },
-  kubestronaut: {
-    title: 'Kubestronaut',
-    href: '/hub/kubestronaut',
-  },
-  'color-picker': {
-    title: 'Color Picker',
-    href: '/hub/color-picker',
-  },
-  gallery: {
-    title: 'Gallery',
-    href: '/hub/gallery',
-  },
   projects: {
     title: 'Projects',
     href: '/hub/projects',
-  },
-  tools: {
-    title: 'Tools',
-    href: '/hub/tools',
-  },
-  'md-playground': {
-    title: 'MarkDown Playground',
-    href: '/hub/md-playground',
-  },
-  'software-glossary': {
-    title: 'Software Glossary',
-    href: '/hub/software-glossary',
   },
 };
 
