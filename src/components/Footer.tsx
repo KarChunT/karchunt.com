@@ -41,7 +41,7 @@ const footerLinks = [
 const Footer = () => {
   return (
     <footer className="nextra-border border-t bg-neutral-900">
-      <div className="mx-auto flex max-w-[1440px] flex-col justify-start px-8 lg:px-16">
+      <div className="mx-auto flex max-w-[1440px] flex-col justify-start px-4">
         <div className="grid grid-cols-2 gap-8 py-8 md:grid-cols-4">
           {footerLinks.map((item) => (
             <div key={item.title}>
