@@ -1,25 +1,15 @@
 import './globals.css';
-import Link from 'next/link';
-import Image from 'next/image';
-// import { Footer, Layout, Navbar } from 'nextra-theme-docs';
-import { Layout, Navbar } from 'nextra-theme-docs';
+
+import { Layout } from 'nextra-theme-docs';
 import { Banner, Head } from 'nextra/components';
 import { getPageMap } from 'nextra/page-map';
 import { JetBrains_Mono } from 'next/font/google';
-import { getUpdatedAt, generateRandomKey, getBasePath } from '@/lib/utils';
-import {
-  APP_NAME,
-  APP_ICON,
-  DOCS_REPO_BASE,
-  GITHUB_URL,
-  LINKEDIN_URL,
-} from '@/constants';
+import { getUpdatedAt, generateRandomKey } from '@/lib/utils';
+import { DOCS_REPO_BASE } from '@/constants';
 import 'nextra-theme-docs/style.css';
-// import { FaRss } from 'react-icons/fa';
-import { TfiLinkedin } from 'react-icons/tfi';
 import { createMetadata } from '@/lib/metadata';
-import MusicToggleButton from '@/components/MusicClient';
 import Footer from '@/components/Footer';
+import NavBar from '@/components/NavBar';
 
 export const metadata = createMetadata({
   title: {
@@ -34,45 +24,9 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
 });
 
-const basePath = getBasePath();
-
 export default async function RootLayout({ children }) {
   const updatedAt = await getUpdatedAt();
   const pageMap = await getPageMap();
-
-  const navbar = (
-    <Navbar
-      logo={
-        <div className="flex items-center justify-center gap-2">
-          <Image
-            src={`${basePath}${APP_ICON}`}
-            alt="Logo"
-            width={24}
-            height={24}
-          />
-          <b>KarChunT</b>
-        </div>
-      }
-      align="right"
-      chatLink={LINKEDIN_URL}
-      chatIcon={<TfiLinkedin />}
-      projectLink={GITHUB_URL}
-      children={
-        <div className="flex items-center gap-2">
-          {/* <Link href="/rss.xml">
-            <FaRss />
-          </Link> */}
-          <MusicToggleButton />
-        </div>
-      }
-    />
-  );
-
-  // const footer = (
-  //   <Footer>
-  //     Copyright © {new Date().getFullYear()} {APP_NAME}. All rights reserved.
-  //   </Footer>
-  // );
 
   const banner = (
     <Banner storageKey={generateRandomKey()}>
@@ -104,7 +58,7 @@ export default async function RootLayout({ children }) {
             autoCollapse: true,
           }}
           // banner={banner}
-          navbar={navbar}
+          navbar={<NavBar pageMap={pageMap} />}
           pageMap={pageMap}
           docsRepositoryBase={DOCS_REPO_BASE}
           footer={<Footer />}
@@ -116,7 +70,7 @@ export default async function RootLayout({ children }) {
           }}
         >
           {children}
-          <script
+          {/* <script
             dangerouslySetInnerHTML={{
               __html: `
                 window.addEventListener('DOMContentLoaded', function() {
@@ -138,7 +92,7 @@ export default async function RootLayout({ children }) {
                 });
               `,
             }}
-          />
+          /> */}
         </Layout>
       </body>
     </html>
