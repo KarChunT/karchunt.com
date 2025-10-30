@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-import { getBlogs, getTags } from '../../blog/getBlogs';
+import { getBlogs, getTags } from '../../../blog/getBlogs';
 import { tagToSlug } from '@/lib/utils';
 
 export async function generateMetadata(props) {

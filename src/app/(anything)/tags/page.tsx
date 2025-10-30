@@ -6,7 +6,7 @@ import {
   getTags,
   getTagCounts,
   getSortedTagCounts,
-} from '../blog/getBlogs';
+} from '../../blog/getBlogs';
 import Link from 'next/link';
 
 const page = async () => {
