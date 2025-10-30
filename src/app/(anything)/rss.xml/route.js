@@ -1,6 +1,6 @@
 export const dynamic = 'force-static';
 
-import { getBlogs } from '../blog/getBlogs';
+import { getBlogs } from '../../blog/getBlogs';
 
 const CONFIG = {
   title: 'KarChunt - RSS Feed',
