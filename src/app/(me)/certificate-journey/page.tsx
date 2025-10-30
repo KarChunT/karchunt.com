@@ -6,7 +6,7 @@ import { getBasePath, getFileFullPath } from '@/lib/utils';
 import { CERTIFICATES_JSON_PATH } from '@/constants';
 
 export const metadata = {
-  title: 'Journey',
+  title: 'Certificate Journey',
 };
 
 const page = async () => {
