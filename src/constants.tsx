@@ -54,13 +54,6 @@ export const PERSONAL = [
   },
 ];
 
-export const HUB_ITEMS = {
-  projects: {
-    title: 'Projects',
-    href: '/hub/projects',
-  },
-};
-
 export const KUBESTRONAUT = {
   certificates: [
     '/certificates/kcna.png',
@@ -105,6 +98,7 @@ export const ALLOWED_TAGS = [
   'Nginx',
   'NodeJS',
   'NPM',
+  'Project',
   'PowerShell',
   'Python',
   'PDF',
