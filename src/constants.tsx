@@ -73,6 +73,7 @@ export const ALLOWED_TAGS = [
   'Chrome',
   'Customization',
   'DevOps',
+  'Development',
   'Docker',
   'Docker Compose',
   'Documentation',
@@ -111,6 +112,7 @@ export const ALLOWED_TAGS = [
   'Ubuntu',
   'venv',
   'Windows',
+  'WSL',
   'Youtube',
 ];
 
