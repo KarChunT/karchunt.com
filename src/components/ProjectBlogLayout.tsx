@@ -6,7 +6,12 @@ import { Control } from '@/components/ui/control';
 import { useActivePageMetadata } from '@/hooks/useActivePageMetadata';
 import { NAME, PERSONAL_IMAGE } from '@/constants';
 import { FaBook } from 'react-icons/fa6';
-import { FaRegClock, FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import {
+  FaReadme,
+  FaRegClock,
+  FaGithub,
+  FaExternalLinkAlt,
+} from 'react-icons/fa';
 import { IoLibraryOutline } from 'react-icons/io5';
 import { VscSymbolKeyword } from 'react-icons/vsc';
 import { TbClockEdit } from 'react-icons/tb';
@@ -81,9 +86,15 @@ export default function ProjectsLayout({
 
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
-              <TbClockEdit size={16} />{' '}
-              {new Date(metadata.lastUpdated || metadata.date).toDateString()}
+              <FaRegClock size={16} /> {new Date(metadata.date).toDateString()}
             </div>
+
+            {metadata.lastUpdated && (
+              <div className="flex items-center gap-2">
+                <TbClockEdit size={16} />{' '}
+                {new Date(metadata.lastUpdated).toDateString()}
+              </div>
+            )}
 
             <div className="flex items-center gap-2">
               <IoLibraryOutline size={16} className="shrink-0" />{' '}
@@ -104,7 +115,7 @@ export default function ProjectsLayout({
             </div>
 
             <div className="flex items-center gap-2">
-              <FaRegClock size={16} /> <p>{metadata.readingTime.text}</p>
+              <FaReadme size={16} /> <p>{metadata.readingTime.text}</p>
             </div>
 
             <div className="flex items-center gap-2">

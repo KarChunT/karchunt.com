@@ -130,7 +130,7 @@ const BlogClient = ({
               title={blog.frontMatter.title}
               description={blog.frontMatter.description || ''}
               href={blog.route}
-              date={blog.frontMatter.date}
+              date={blog.frontMatter.lastUpdated || blog.frontMatter.date}
               author={blog.frontMatter.author || 'KarChunT'}
               tags={blog.frontMatter.tags || []}
             />
