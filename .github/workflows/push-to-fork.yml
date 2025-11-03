@@ -1,0 +1,26 @@
+name: Push to Fork
+
+on:
+  workflow_call:
+    secrets:
+      PAT:
+        required: true
+  workflow_dispatch:
+
+jobs:
+  push-to-fork:
+    runs-on: ubuntu-latest
+    env:
+      FORK_REPO: "KarChunT/karchunt.com-fork"
+      BRANCH: "main"
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BRANCH }}
+          token: ${{ secrets.PAT }}
+
+      - name: Push to fork repository
+        run: |
+          git remote set-url origin https://github.com/${{ env.FORK_REPO }}.git
+          git push -f origin ${{ env.BRANCH }}

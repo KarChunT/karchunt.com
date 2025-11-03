@@ -12,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: 'pages'
+  group: "pages"
   cancel-in-progress: false
 
 jobs:
@@ -39,7 +39,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'pnpm'
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install
@@ -79,3 +79,10 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  push-to-fork:
+    needs: [deploy]
+    uses: ./.github/workflows/push-to-fork.yml
+    if: ${{ !contains(github.event.repository.name, 'fork') }}
+    secrets:
+      PAT: ${{ secrets.PAT }}
