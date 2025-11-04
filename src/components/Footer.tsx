@@ -5,7 +5,6 @@ const footerLinks = [
   {
     title: 'More from me',
     links: [
-      { href: '/about', label: 'About' },
       { href: '/work-experiences', label: 'Work Experiences' },
       { href: '/gallery', label: 'Gallery' },
       { href: '/certificate-journey', label: 'Certificate Journey' },
@@ -34,7 +33,14 @@ const footerLinks = [
   },
   {
     title: 'Additional Links',
-    links: [{ href: '/rss.xml', label: 'RSS Feed' }],
+    links: [
+      { href: '/rss.xml', label: 'RSS Feed' },
+      { href: 'https://karchunt.github.io/karchunt-wiki/', label: 'Old Wiki' },
+      {
+        href: 'https://karchunt.github.io/karchunt.com-fork/',
+        label: 'Forked Site',
+      },
+    ],
   },
 ];
 
