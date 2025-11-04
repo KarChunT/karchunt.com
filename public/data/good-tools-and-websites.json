@@ -100,5 +100,11 @@
     "description": "Explore smooth animated UI components for React, powered by TailwindCSS and Framer Motion. shadcn/ui compatible components for modern web development.",
     "href": "https://smoothui.dev/",
     "tags": ["UI"]
+  },
+  {
+    "title": "RepoFlow",
+    "description": "Simplify package management for npm, PyPI, Docker, Go, Helm, and more. Try it for free with 10GB storage, 10GB bandwidth, 100 packages, and unlimited users in the cloud, or self-hosted for personal use only.",
+    "href": "https://selfhostedworld.com/software/repoflow/",
+    "tags": ["self-hosted"]
   }
 ]
