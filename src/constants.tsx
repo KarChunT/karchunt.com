@@ -107,6 +107,8 @@ export const ALLOWED_TAGS = [
   'PDF',
   'Schema',
   'Sphinx',
+  'Services',
+  'System Administration',
   'self-hosted',
   'Troubleshooting',
   'TypeScript',
