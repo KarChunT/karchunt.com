@@ -34,6 +34,10 @@ Download and install Multipass from the [Microsoft Store](https://apps.microsoft
 
 ## What I experienced?
 
+<Callout type="warn" title="Note">
+  Based on my experience, I don't recommend setting up Multipass on Windows, as it tends to consume a lot of CPU resources, especially the `multipassd` process.
+</Callout>
+
 When I first installed Multipass on Windows, I encountered some issues 
 - **Unable to launch instances** due to using the **Hyper-V** virtualization backend. I had tried to enabled **Hyper-V** in the Windows Features, unfortunately, it didn't work as expected on my machine. Therefore, I had to switch to the **VirtualBox** backend.
 - Unable to **shell, ssh, or exec** into the VM instance when you're on **VPN network like Cisco GlobalProtect**. I had tried to **route the VPN traffic from host to VM** using `route add` command, but it didn't work as expected. This probably need company IT team to provide the subnet and open the subnet. Here are the references where you can route multipass VM traffic over VPN.
