@@ -142,5 +142,45 @@ type: kubernetes.io/service-account-token
 ```bash
 kubectl get secret/data-sa-secret -o jsonpath='{.data.token}' | base64 -d
 ```
-
 </Steps>
+
+## Add ImagePullSecrets to Service Account
+
+You can **add imagePullSecrets** to a **service account** so that any pod using that service account can use the specified secret to **pull images from a private registry**.
+
+Assuming, you have a secret named `my-registry` that contains the credentials for your private Docker registry.
+
+Now you can add this secret to your service account as follows:
+
+```bash
+kubectl patch serviceaccount <name-of-service-account> -p '{"imagePullSecrets": [{"name": "<secret-name>"}]}'
+# example
+kubectl patch serviceaccount data-sa -p '{"imagePullSecrets": [{"name": "my-registry"}]}'
+```
+
+---
+Of course, you can also achieve the same output by editing the service account object directly:
+
+```bash
+kubectl edit serviceaccount <name-of-service-account>
+# example
+kubectl edit serviceaccount data-sa
+```
+This will open the service account in your default text editor. You can then add the `imagePullSecrets` field under the `secrets` field like this:
+
+```yaml filename="data-sa.yaml" {6-7}
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: data-sa
+  ...
+imagePullSecrets:
+  - name: my-registry
+```
+
+Now, you can cross-verify that `imagePullSecrets` are set for new pods using this service account:
+
+```bash
+kubectl run nginx --image=nginx --serviceaccount=data-sa
+kubectl get pod nginx -o jsonpath='{.spec.imagePullSecrets[0].name}{"\n"}'
+```

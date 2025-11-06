@@ -2,6 +2,10 @@
 
 ## Usage and Concept of pulling image with secret
 
+<Callout title="ImagePullSecrets in Service Account" type="info">
+  Refer this [Link](/docs/kubernetes/service-account/#add-imagepullsecrets-to-service-account) for more details.
+</Callout>
+
 When you want to **pull an image** from a **private registry**, you need to **provide the credentials** to **authenticate** with the **registry**. Therefore, you need to **create a secret** that contains the credentials and then use that secret to pull the image.
 
 <Steps>
