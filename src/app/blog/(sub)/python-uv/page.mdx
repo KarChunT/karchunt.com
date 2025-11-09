@@ -1,0 +1,122 @@
+---
+title: Python UV Tutorial
+description: Learn how to use Python UV for your projects.
+date: 2025-11-08
+author: KarChunT
+tags: [Python, UV, Tutorial]
+documentation: https://docs.astral.sh/uv/
+---
+
+## What is Python UV?
+
+UV is a **fast**, modern Python package manager written in **Rust**. It's designed as a drop-in replacement for `pip`, `pip-tools`, and other package managers, offering **significantly better performance** (10-100x faster than `pip`) while **maintaining compatibility** with the Python ecosystem.
+
+<Callout title="Key Features">
+  - **Run Scripts**
+  - **Python version management**
+  - **Speed**
+  - **Dependency management**
+</Callout>
+
+## Installation
+
+There are multiple ways to install Python UV. I will demonstrate only the most common methods here. For more information, please refer to the [official documentation](https://docs.astral.sh/uv/getting-started/installation/).
+
+### Standalone installer
+
+<Tabs items={['Linux/macOS', 'Windows']}>
+  <Tab>
+  ```bash
+  curl -LsSf https://astral.sh/uv/install.sh | sh
+  ```
+  </Tab>
+
+  <Tab>
+  ```powershell
+  powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+  ```
+  </Tab>
+</Tabs>
+
+### PyPI
+
+Just to let you know that, `uv` is also available on [PyPI](https://pypi.org/project/uv/).
+
+```bash
+pip install uv
+```
+
+## Shell autocompletion
+
+After installing UV, I highly recommend setting up shell autocompletion for a better user experience.
+
+<Tabs items={['Bash', 'PowerShell']}>
+  <Tab>
+  ```bash
+  echo 'eval "$(uv generate-shell-completion bash)"' >> ~/.bashrc
+  ```
+  </Tab>
+
+  <Tab>
+  ```powershell
+  if (!(Test-Path -Path $PROFILE)) {
+    New-Item -ItemType File -Path $PROFILE -Force
+  }
+  Add-Content -Path $PROFILE -Value '(& uv generate-shell-completion powershell) | Out-String | Invoke-Expression'
+  ```
+  </Tab>
+</Tabs>
+
+
+
+## Guides
+
+### Install Python
+
+UV will **detect and use the system Python** by default. However, you can also install and also manage multiple Python versions using UV.
+
+```bash
+# Install the latest Python version
+uv python install
+
+# Install a specific Python version
+uv python install <version>
+uv python install 3.14 
+
+# Reinstall all previously installed Python versions, useful when there are updates available
+uv python install --reinstall
+
+# View installed Python versions
+uv python list 
+
+# Upgrade all installed Python versions
+uv python upgrade
+
+# Upgrade a Python version
+uv python upgrade <version>
+uv python upgrade 3.13
+```
+
+After installation, `uv` will auto add the installed Python version to your PATH. So in your terminal, you can directly run the `python` or `pythonX.Y` command.
+
+```powershell
+PS C:\Users\karchunt> python3.13
+Python 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
+
+
+### Update UV
+
+To update UV to the latest version, you can use the following command:
+
+```bash
+uv self update
+# or
+pip install --upgrade uv
+```
+
+
+
+<Comments />
