@@ -8,8 +8,9 @@ import { FaPeopleArrows } from 'react-icons/fa6';
 
 export const APP_NAME: string = 'KarChunT';
 export const APP_ICON: string = '/penguin-nobg.webp';
-export const JOB_POSITION: string = 'Infrastructure and DevOps Engineer';
-export const JOB_COMPANY: string = 'Intel';
+export const JOB_POSITION: string =
+  'Senior Engineer, Software Development Engineering (Apps)';
+export const JOB_COMPANY: string = 'SanDisk';
 export const GITHUB_URL: string = 'https://github.com/KarChunT/karchunt.com';
 export const DOCS_REPO_BASE: string = `${GITHUB_URL}/tree/main`;
 export const LINKEDIN_URL: string = 'https://www.linkedin.com/in/karchuntan';

@@ -1,9 +1,17 @@
 import { Calendar } from 'lucide-react';
-import { SiIntel } from 'react-icons/si';
+import { SiIntel, SiSandisk } from 'react-icons/si';
 import { FaV } from 'react-icons/fa6';
 import { Badge } from '@/components/ui/badge';
 
 const experiences = [
+  {
+    title: 'Senior Engineer, Software Development Engineering (Apps)',
+    company: 'SanDisk',
+    period: '11/2025 - Present',
+    description: '',
+    technologies: [],
+    icon: SiSandisk,
+  },
   {
     title: 'Infrastructure & DevOps Engineer',
     company: 'Intel Corporation',
