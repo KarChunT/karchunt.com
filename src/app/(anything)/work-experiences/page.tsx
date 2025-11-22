@@ -75,7 +75,7 @@ const page = () => {
             A summary of my professional journey and the roles I've undertaken.
           </p>
         </div>
-        <div className="mx-auto mt-8 max-w-(--breakpoint-md) px-16">
+        <div className="mx-auto mt-8 max-w-(--breakpoint-md) px-6 md:px-16">
           <div className="relative ml-4">
             {/* Timeline line */}
             <div className="absolute inset-y-0 left-0 border-l-2" />
