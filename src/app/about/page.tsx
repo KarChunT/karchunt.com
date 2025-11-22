@@ -100,9 +100,9 @@ const page = () => {
           You can refer to my{' '}
           <Link
             className="text-primary decoration-from-font [text-underline-position:from-font] hover:underline"
-            href="/hub/journey"
+            href="/certificate-journey"
           >
-            journey
+            certificate journey
           </Link>{' '}
           in the timelime. <br />
           It is my hope that you can find something useful or helpful here.
