@@ -121,6 +121,15 @@ export const ALLOWED_TAGS = [
   'Youtube',
 ];
 
+export const QUIZ = {
+  // CKAD: {
+  //   title: 'CKAD',
+  //   href: '/quiz/ckad',
+  //   description:
+  //     'Practice for the Certified Kubernetes Application Developer (CKAD) exam with scenario-based questions.',
+  // },
+};
+
 export const DOCUMENTATION = {
   '12 Factor App': {
     title: '12 Factor App',
