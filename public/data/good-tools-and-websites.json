@@ -112,5 +112,17 @@
     "description": "An extremely fast Python package and project manager, written in Rust.",
     "href": "https://docs.astral.sh/uv/",
     "tags": ["Python"]
+  },
+  {
+    "title": "Wokwi",
+    "description": "World's most advanced ESP32 simulator",
+    "href": "https://wokwi.com/",
+    "tags": ["ESP32", "Simulator"]
+  },
+  {
+    "title": "中国家谱知识服务平台",
+    "description": "家谱检索-踏上寻根问祖的文化之旅",
+    "href": "https://jiapu.library.sh.cn/",
+    "tags": ["家谱"]
   }
 ]
