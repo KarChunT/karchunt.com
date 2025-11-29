@@ -114,6 +114,7 @@ export const ALLOWED_TAGS = [
   'Troubleshooting',
   'TypeScript',
   'Tutorial',
+  'UV',
   'Ubuntu',
   'venv',
   'Windows',
