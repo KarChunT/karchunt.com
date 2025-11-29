@@ -17,6 +17,7 @@ const footerLinks = [
     links: [
       { href: '/color-picker', label: 'Color Picker' },
       { href: '/md-playground', label: 'MarkDown Playground' },
+      { href: '/jackson-pollock', label: 'Jackson Pollock' },
     ],
   },
   {
