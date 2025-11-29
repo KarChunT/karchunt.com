@@ -112,7 +112,7 @@ const Page = () => {
                     {item.title}
                   </CardTitle>
                   <CardDescription className="text-white">
-                    <div className="py-2">
+                    <div className="flex flex-wrap gap-1 py-2">
                       {item.tags.map((tag, index) => (
                         <Badge variant="default" key={index}>
                           {tag}

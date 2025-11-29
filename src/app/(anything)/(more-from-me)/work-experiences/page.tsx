@@ -1,9 +1,17 @@
 import { Calendar } from 'lucide-react';
-import { SiIntel } from 'react-icons/si';
+import { SiIntel, SiSandisk } from 'react-icons/si';
 import { FaV } from 'react-icons/fa6';
 import { Badge } from '@/components/ui/badge';
 
 const experiences = [
+  {
+    title: 'Senior Engineer, Software Development Engineering (Apps)',
+    company: 'SanDisk',
+    period: '11/2025 - Present',
+    description: '',
+    technologies: [],
+    icon: SiSandisk,
+  },
   {
     title: 'Infrastructure & DevOps Engineer',
     company: 'Intel Corporation',
@@ -67,7 +75,7 @@ const page = () => {
             A summary of my professional journey and the roles I've undertaken.
           </p>
         </div>
-        <div className="mx-auto mt-8 max-w-(--breakpoint-md) px-16">
+        <div className="mx-auto mt-8 max-w-(--breakpoint-md) px-6 md:px-16">
           <div className="relative ml-4">
             {/* Timeline line */}
             <div className="absolute inset-y-0 left-0 border-l-2" />

@@ -28,10 +28,10 @@ const page = () => {
               <span className="text-primary">#1</span> Kubestronaut in Penang,
               Malaysia
             </b>
-            <b>
+            {/* <b>
               <span className="text-primary">#1</span> Kubestronaut at Intel
               Corporation
-            </b>
+            </b> */}
             <b>
               Refer my{' '}
               <Link
