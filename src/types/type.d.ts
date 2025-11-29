@@ -27,3 +27,9 @@ interface GlossaryItem {
   definition: string;
   category: string;
 }
+
+interface QuizItem {
+  href: string;
+  title: string;
+  description: string;
+}

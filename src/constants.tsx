@@ -122,7 +122,7 @@ export const ALLOWED_TAGS = [
   'Youtube',
 ];
 
-export const QUIZ = {
+export const QUIZ: { [key: string]: QuizItem } = {
   // CKAD: {
   //   title: 'CKAD',
   //   href: '/quiz/ckad',
