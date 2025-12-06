@@ -1,5 +1,5 @@
 import './globals.css';
-
+import Script from 'next/script';
 import { Layout } from 'nextra-theme-docs';
 import { Banner, Head } from 'nextra/components';
 import { getPageMap } from 'nextra/page-map';
@@ -23,6 +23,8 @@ export const metadata = createMetadata({
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
 });
+
+const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
 
 export default async function RootLayout({ children }) {
   const updatedAt = await getUpdatedAt();
@@ -70,6 +72,23 @@ export default async function RootLayout({ children }) {
           }}
         >
           {children}
+          {/* Google Analytics Script */}
+          {GOOGLE_ANALYTICS_ID && (
+            <>
+              <Script
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
+              />
+              <Script id="google-analytics">
+                {`
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${GOOGLE_ANALYTICS_ID}');
+                `}
+              </Script>
+            </>
+          )}
           {/* <script
             dangerouslySetInnerHTML={{
               __html: `
