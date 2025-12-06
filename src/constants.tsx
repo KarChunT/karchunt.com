@@ -70,6 +70,7 @@ export const KUBESTRONAUT = {
 };
 
 export const ALLOWED_TAGS = [
+  'Async',
   'Chinese',
   'Chrome',
   'Customization',
@@ -106,6 +107,7 @@ export const ALLOWED_TAGS = [
   'Python',
   'Proxy',
   'PDF',
+  'Sync',
   'Schema',
   'Sphinx',
   'Services',
