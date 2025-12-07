@@ -25,6 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
+const GOOGLE_ADSENSE_ID = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID;
 
 export default async function RootLayout({ children }) {
   const updatedAt = await getUpdatedAt();
@@ -52,6 +53,9 @@ export default async function RootLayout({ children }) {
         }}
       >
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {GOOGLE_ADSENSE_ID && (
+          <meta name="google-adsense-account" content={GOOGLE_ADSENSE_ID} />
+        )}
         {/* Your additional tags should be passed as `children` of `<Head>` element */}
       </Head>
       <body>

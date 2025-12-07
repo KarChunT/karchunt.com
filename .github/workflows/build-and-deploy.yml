@@ -64,6 +64,7 @@ jobs:
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ steps.setup_pages.outputs.base_path }}
           NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID }}
+          NEXT_PUBLIC_GOOGLE_ADSENSE_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_ADSENSE_ID }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
