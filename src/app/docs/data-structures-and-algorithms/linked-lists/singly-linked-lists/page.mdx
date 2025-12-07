@@ -279,6 +279,7 @@ flowchart
                     return current.value
                 i += 1
                 current = current.next
+            return current.value
 
         def remove(self, index: int):
             if index < 0 or index >= self.size:
@@ -337,6 +338,19 @@ flowchart
                 prev.next = self.head
             self.size -= 1
             return popped_value
+
+        def reverse(self):
+            prev = None
+            current = self.head
+            while current:
+                next = current.next
+                current.next = prev
+                prev = current
+                current = next
+            # You can update the head pointer if needed
+            # self.head = prev
+            # return self.head
+            return prev
 
         def is_empty(self) -> bool:
             return self.size == 0
