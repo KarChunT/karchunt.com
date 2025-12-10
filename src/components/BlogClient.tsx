@@ -26,23 +26,22 @@ const BlogDisplay = ({ title, description, href, date, author, tags }) => {
           <p className="text-muted-foreground mb-4">{description}</p>
         </Link>
 
-        <div className="text-muted-foreground mb-2 flex items-center gap-4 text-sm">
-          <span className="flex items-center gap-1">
-            <IconCalendar className="h-4 w-4" />
-            {date &&
-              new Date(date).toLocaleDateString(undefined, {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-          </span>
-          <span className="flex items-center gap-1">
-            <IconUser className="h-4 w-4" />
-            {author}
-          </span>
-        </div>
-
         <div className="mt-auto flex flex-col gap-3">
+          <div className="text-muted-foreground flex items-center gap-4 text-sm">
+            <span className="flex items-center gap-1">
+              <IconCalendar className="h-4 w-4" />
+              {date &&
+                new Date(date).toLocaleDateString(undefined, {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+            </span>
+            <span className="flex items-center gap-1">
+              <IconUser className="h-4 w-4" />
+              {author}
+            </span>
+          </div>
           <div className="mb-2 flex flex-wrap gap-2">
             {tags.map((tag) => (
               <Link key={tag} href={`/tags/${tagToSlug(tag)}`}>
