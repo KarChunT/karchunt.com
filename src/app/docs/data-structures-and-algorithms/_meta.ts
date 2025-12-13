@@ -42,6 +42,13 @@ const meta: MetaRecord = {
   'linked-lists': {
     title: 'Linked Lists',
   },
+  '####': {
+    type: 'separator', // or 'doc' if it's a document
+    title: 'Non-Linear Data Structures',
+  },
+  tree: {
+    title: 'Tree',
+  },
   '###': {
     type: 'separator', // or 'doc' if it's a document
     title: 'Algorithms',
