@@ -29,7 +29,8 @@ interface GlossaryItem {
 }
 
 interface QuizItem {
-  href: string;
   title: string;
   description: string;
+  icon: string;
+  slug?: string;
 }

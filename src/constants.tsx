@@ -125,12 +125,12 @@ export const ALLOWED_TAGS = [
 ];
 
 export const QUIZ: { [key: string]: QuizItem } = {
-  // CKAD: {
-  //   title: 'CKAD',
-  //   href: '/quiz/ckad',
-  //   description:
-  //     'Practice for the Certified Kubernetes Application Developer (CKAD) exam with scenario-based questions.',
-  // },
+  ckad: {
+    title: 'Certified Kubernetes Application Developer (CKAD)',
+    description:
+      'The Certified Kubernetes Application Developer (CKAD) exam validates your skills in designing, building, and deploying cloud-native applications on Kubernetes.',
+    icon: 'SiKubernetes',
+  },
 };
 
 export const DOCUMENTATION = {
