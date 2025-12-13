@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Control } from '@/components/ui/control';
 import { useActivePageMetadata } from '@/hooks/useActivePageMetadata';
 import { NAME, PERSONAL_IMAGE } from '@/constants';
-import { FaBook } from 'react-icons/fa6';
+import { FaBook, FaYoutube } from 'react-icons/fa6';
 import {
   FaReadme,
   FaRegClock,
@@ -43,6 +43,12 @@ export default function ProjectsLayout({
       icon: <FaExternalLinkAlt size={16} />,
       href: metadata.demoUrl,
       label: 'Live Demo',
+    },
+    {
+      condition: metadata.youtubeUrl,
+      icon: <FaYoutube size={16} />,
+      href: metadata.youtubeUrl,
+      label: 'YouTube',
     },
   ];
 
