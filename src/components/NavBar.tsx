@@ -44,10 +44,6 @@ const navigationItems = [
     label: 'Blog',
     href: '/blog',
   },
-  {
-    label: 'Quiz',
-    href: '/quiz',
-  },
 ];
 
 const additionalNavItems = [

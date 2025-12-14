@@ -27,10 +27,3 @@ interface GlossaryItem {
   definition: string;
   category: string;
 }
-
-interface QuizItem {
-  title: string;
-  description: string;
-  icon: string;
-  slug?: string;
-}

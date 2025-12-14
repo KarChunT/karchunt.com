@@ -124,15 +124,6 @@ export const ALLOWED_TAGS = [
   'Youtube',
 ];
 
-export const QUIZ: { [key: string]: QuizItem } = {
-  ckad: {
-    title: 'Certified Kubernetes Application Developer (CKAD)',
-    description:
-      'The Certified Kubernetes Application Developer (CKAD) exam validates your skills in designing, building, and deploying cloud-native applications on Kubernetes.',
-    icon: 'SiKubernetes',
-  },
-};
-
 export const DOCUMENTATION = {
   '12 Factor App': {
     title: '12 Factor App',
