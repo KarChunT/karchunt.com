@@ -12,7 +12,8 @@ const Hero2 = () => {
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent to-90%"></div>
         </div>
-        <div className="z-10 mx-auto max-w-screen-xl gap-12 px-4 pt-28 pb-2 text-gray-600 md:px-8">
+        {/* Fix padding pt-28 for small screen */}
+        <div className="z-10 mx-auto max-w-screen-xl gap-12 px-4 pt-16 text-gray-600 sm:pt-20 md:px-8">
           <div className="mx-auto max-w-3xl space-y-5 text-center">
             <h1 className="group mx-auto w-fit rounded-3xl border-[2px] border-white/5 bg-gradient-to-tr from-zinc-300/5 via-gray-400/5 to-transparent px-5 py-2 text-sm text-gray-300">
               Reinforces continuous growth and adaptation
