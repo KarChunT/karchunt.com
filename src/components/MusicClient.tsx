@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import useSound from 'use-sound';
 import { AUDIO_PATH } from '@/constants';
+import { getBasePath } from '@/lib/utils';
 
 const MusicToggleButton = () => {
+  const basePath = getBasePath();
   const bars = 5;
 
   const getRandomHeights = () => {
@@ -16,7 +18,7 @@ const MusicToggleButton = () => {
 
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const [play, { pause, sound }] = useSound(AUDIO_PATH, {
+  const [play, { pause, sound }] = useSound(`${basePath}${AUDIO_PATH}`, {
     loop: true,
     onplay: () => setIsPlaying(true),
     onend: () => setIsPlaying(false),
