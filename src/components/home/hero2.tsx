@@ -1,7 +1,9 @@
 import { Heatmap } from '@paper-design/shaders-react';
 import CoreValues from '@/components/home/coreValues';
+import { getBasePath } from '@/lib/utils';
 
 const Hero2 = () => {
+  const basePath = getBasePath();
   return (
     <div className="relative w-full">
       {/* <div className="absolute top-0 z-[0] h-full w-full bg-neutral-900/10 bg-[radial-gradient(ellipse_20%_80%_at_50%_-20%,rgba(255,230,100,0.3),rgba(255,255,255,0))]"></div> */}
@@ -33,7 +35,7 @@ const Hero2 = () => {
             <Heatmap
               width={500}
               height={500}
-              image="/penguin-nobg.webp"
+              image={`${basePath}/penguin-nobg.webp`}
               colors={['#facc14']}
               colorBack="#00000000" // transparent
               contour={0.8}
