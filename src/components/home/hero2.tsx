@@ -23,7 +23,7 @@ const Hero2 = () => {
               Curated hub for documentating — my journeys
             </p>
           </div>
-          <div className="flex items-center justify-center">
+          {/* <div className="flex items-center justify-center">
             <Heatmap
               width={500}
               height={500}
@@ -38,9 +38,11 @@ const Hero2 = () => {
               speed={1}
               scale={0.75}
             />
-          </div>
+          </div> */}
         </div>
-        <CoreValues />
+        <div className="mt-10">
+          <CoreValues />
+        </div>
       </section>
     </div>
   );
