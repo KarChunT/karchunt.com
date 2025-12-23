@@ -94,6 +94,7 @@ export const ALLOWED_TAGS = [
   'Networking',
   'NodeJS',
   'NPM',
+  'Permissions',
   'Project',
   'PowerShell',
   'Python',
