@@ -1,9 +1,30 @@
+import React from 'react';
 import { Heatmap } from '@paper-design/shaders-react';
 import CoreValues from '@/components/home/coreValues';
 import { getBasePath } from '@/lib/utils';
 
+const MemoizedHeatmap = React.memo(Heatmap);
+
 const Hero2 = () => {
   const basePath = getBasePath();
+  const heatmapProps = React.useMemo(
+    () => ({
+      width: 500,
+      height: 500,
+      image: `${basePath}/penguin-nobg.webp`,
+      colors: ['#facc14'],
+      colorBack: '#00000000',
+      contour: 0.8,
+      angle: 0,
+      noise: 0,
+      innerGlow: 0.3,
+      outerGlow: 0.3,
+      speed: 1,
+      scale: 0.75,
+    }),
+    [basePath],
+  );
+
   return (
     <div className="relative w-full">
       <section className="relative z-1 mx-auto max-w-full">
@@ -23,26 +44,11 @@ const Hero2 = () => {
               Curated hub for documentating — my journeys
             </p>
           </div>
-          {/* <div className="flex items-center justify-center">
-            <Heatmap
-              width={500}
-              height={500}
-              image={`${basePath}/penguin-nobg.webp`}
-              colors={['#facc14']}
-              colorBack="#00000000" // transparent
-              contour={0.8}
-              angle={0}
-              noise={0}
-              innerGlow={0.3}
-              outerGlow={0.3}
-              speed={1}
-              scale={0.75}
-            />
-          </div> */}
+          <div className="flex items-center justify-center">
+            <Heatmap {...heatmapProps} />
+          </div>
         </div>
-        <div className="mt-10">
-          <CoreValues />
-        </div>
+        <CoreValues />
       </section>
     </div>
   );

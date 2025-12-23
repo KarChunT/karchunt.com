@@ -1,4 +1,6 @@
 'use client';
+
+import React from 'react';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import {
@@ -42,7 +44,7 @@ const BentoGridItem = ({
         className,
       )}
     >
-      <div className="absolute top-0 -right-1/2 z-0 size-full bg-[linear-gradient(to_right,#3d16165e_1px,transparent_1px),linear-gradient(to_bottom,#3d16165e_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+      <div className="absolute top-0 -right-1/2 z-0 size-full bg-[linear-gradient(to_right,#3d16165e_1px,transparent_1px),linear-gradient(to_bottom,#3d16165e_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-[size:24px_24px]"></div>
 
       <div className="text-primary/5 group-hover:text-primary/10 absolute right-1 bottom-3 scale-[6] transition-all duration-700 group-hover:scale-[6.2]">
         {icon}
@@ -111,7 +113,8 @@ const items = [
   },
 ];
 
-export default function BentoGrid1() {
+// Memoize the component to cache it and prevent unnecessary re-renders
+const BentoGrid1 = React.memo(function BentoGrid1() {
   const containerVariants = {
     hidden: {},
     visible: {
@@ -150,4 +153,6 @@ export default function BentoGrid1() {
       </motion.div>
     </div>
   );
-}
+});
+
+export default BentoGrid1;
