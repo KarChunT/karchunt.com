@@ -17,7 +17,6 @@ import {
   LINKEDIN_URL,
 } from '@/constants';
 
-import MusicToggleButton from '@/components/MusicClient';
 import { usePathname } from 'next/navigation';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -177,7 +176,6 @@ const NavBar = ({ pageMap }: { pageMap: PageMapItem[] }) => {
           {/* Desktop: Button Group */}
           <div className="hidden md:flex md:flex-1 md:items-center md:justify-end md:gap-4">
             <Search />
-            <MusicToggleButton />
             {additionalNavItems.map((item) => {
               const Icon = item.icon;
               return (
@@ -190,7 +188,6 @@ const NavBar = ({ pageMap }: { pageMap: PageMapItem[] }) => {
 
           {/* Mobile: button group */}
           <div className="flex items-center gap-4 md:hidden">
-            <MusicToggleButton />
             {additionalNavItems.map((item) => {
               const Icon = item.icon;
               return (

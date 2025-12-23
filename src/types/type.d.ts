@@ -1,11 +1,3 @@
-interface GoodToolsProps {
-  title: string;
-  description: string;
-  imageSrc?: string;
-  href: string;
-  tags: string[];
-}
-
 interface GalleryProps {
   src: string;
   category: string;
@@ -20,10 +12,4 @@ interface AlgorithmVisualizerSchema {
       VisualizerComponent: React.ComponentType<any>;
     };
   };
-}
-
-interface GlossaryItem {
-  term: string;
-  definition: string;
-  category: string;
 }
