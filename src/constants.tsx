@@ -100,6 +100,7 @@ export const ALLOWED_TAGS = [
   'Python',
   'Proxy',
   'PDF',
+  'SSH',
   'Sync',
   'Schema',
   'Sphinx',
