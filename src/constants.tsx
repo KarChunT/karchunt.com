@@ -106,6 +106,7 @@ export const ALLOWED_TAGS = [
   'Schema',
   'Sphinx',
   'Services',
+  'Static IP',
   'System Administration',
   'self-hosted',
   'Troubleshooting',
