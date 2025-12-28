@@ -13,3 +13,10 @@ interface AlgorithmVisualizerSchema {
     };
   };
 }
+
+interface Goal {
+  title: string;
+  status: 'achieved' | 'in-progress' | 'not-started';
+  achievedDate?: string;
+  link?: string;
+}
