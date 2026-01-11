@@ -28,8 +28,8 @@ export const CHANNELS = {
     href: LINKEDIN_URL,
   },
   newsletter: {
-    title: 'Newsletter',
-    href: 'https://karchunt.substack.com/',
+    title: 'Substack - Newsletter',
+    href: 'https://softmarrow.substack.com/',
   },
   email: {
     title: 'karchuntan.1999@gmail.com',
