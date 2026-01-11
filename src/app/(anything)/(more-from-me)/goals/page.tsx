@@ -15,7 +15,7 @@ const goals: Goal[] = [
     // link: '/docs/linux',
   },
   {
-    title: 'Project: Convert image and 4k video into Polyart using Python',
+    title: 'Project: Convert various image format to webp',
     status: 'not-started',
   },
   {
@@ -23,12 +23,10 @@ const goals: Goal[] = [
     status: 'not-started',
   },
   {
-    title: 'Blog: Setup GitHub runner in Kubernetes (Arc)',
-    status: 'not-started',
-  },
-  {
     title: 'Blog: Self-hosted Docker registry',
-    status: 'not-started',
+    status: 'achieved',
+    achievedDate: '2026-01-11',
+    link: '/blog/self-hosted-docker-registry',
   },
   {
     title: 'Blog: Self-hosted Harbor',
@@ -40,10 +38,6 @@ const goals: Goal[] = [
   },
   {
     title: 'Blog: Wireguard VPN on homelab',
-    status: 'not-started',
-  },
-  {
-    title: 'Blog: Setup DNS on homelab',
     status: 'not-started',
   },
   {
