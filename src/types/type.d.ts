@@ -1,11 +1,3 @@
-interface GoodToolsProps {
-  title: string;
-  description: string;
-  imageSrc?: string;
-  href: string;
-  tags: string[];
-}
-
 interface GalleryProps {
   src: string;
   category: string;
@@ -22,8 +14,9 @@ interface AlgorithmVisualizerSchema {
   };
 }
 
-interface GlossaryItem {
-  term: string;
-  definition: string;
-  category: string;
+interface Goal {
+  title: string;
+  status: 'achieved' | 'in-progress' | 'not-started';
+  achievedDate?: string;
+  link?: string;
 }

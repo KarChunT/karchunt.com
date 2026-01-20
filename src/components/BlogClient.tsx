@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Select,
   SelectContent,
@@ -75,15 +75,31 @@ const BlogClient = ({
 }) => {
   const [filter, setFilter] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 20;
 
   const totalCount = blogs.length;
 
   const uniqueTags = ['All', ...Object.keys(allTags)];
-  const filteredBlogs = blogs.filter(
+  const filteredBlogsFull = blogs.filter(
     (blog) =>
       blog.frontMatter.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
       (filter === 'All' || blog.frontMatter.tags.includes(filter)),
   );
+
+  const pageCount = Math.max(
+    1,
+    Math.ceil(filteredBlogsFull.length / postsPerPage),
+  );
+  const startIndex = (currentPage - 1) * postsPerPage;
+  const paginatedBlogs = filteredBlogsFull.slice(
+    startIndex,
+    startIndex + postsPerPage,
+  );
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filter, searchTerm]);
 
   return (
     <div className="@container container mx-auto min-h-screen max-w-5xl px-6 py-4 lg:py-8">
@@ -123,7 +139,7 @@ const BlogClient = ({
       </div>
       <div className="mx-auto mt-8">
         <div className="grid gap-6 lg:grid-cols-2">
-          {filteredBlogs.map((blog) => (
+          {paginatedBlogs.map((blog) => (
             <BlogDisplay
               key={blog.route}
               title={blog.frontMatter.title}
@@ -134,6 +150,40 @@ const BlogClient = ({
               tags={blog.frontMatter.tags || []}
             />
           ))}
+        </div>
+
+        {/* Pagination Controls */}
+        <div className="mt-6 flex flex-col items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <Button
+              variant="secondary"
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+            >
+              Previous
+            </Button>
+            <Button
+              variant="secondary"
+              disabled={currentPage === pageCount}
+              onClick={() => setCurrentPage((p) => Math.min(pageCount, p + 1))}
+            >
+              Next
+            </Button>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            {Array.from({ length: pageCount }).map((_, i) => (
+              <Button
+                key={i}
+                size="sm"
+                variant={currentPage === i + 1 ? 'secondary' : 'ghost'}
+                onClick={() => setCurrentPage(i + 1)}
+                aria-current={currentPage === i + 1 ? 'page' : undefined}
+              >
+                {i + 1}
+              </Button>
+            ))}
+          </div>
         </div>
       </div>
     </div>

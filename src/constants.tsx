@@ -18,14 +18,6 @@ export const CREDLY_URL: string = 'https://www.credly.com/users/kar-chun-tan';
 export const PERSONAL_IMAGE: string = '/personal/karchunt.webp';
 export const NAME: string = 'Kar Chun Tan';
 
-export const AUDIO_PATH: string =
-  '/audio/lofi-study-calm-peaceful-chill-hop.mp3';
-
-export const GOOD_TOOLS_AND_WEBSITES_JSON_PATH =
-  '/data/good-tools-and-websites.json';
-export const SOFTWARE_GLOSSARY_JSON_PATH = '/data/software-glossary.json';
-export const CERTIFICATES_JSON_PATH = '/data/certificates.json';
-
 export const CHANNELS = {
   github: {
     title: 'GitHub',
@@ -36,8 +28,8 @@ export const CHANNELS = {
     href: LINKEDIN_URL,
   },
   newsletter: {
-    title: 'Newsletter',
-    href: 'https://karchunt.substack.com/',
+    title: 'Substack - Newsletter',
+    href: 'https://softmarrow.substack.com/',
   },
   email: {
     title: 'karchuntan.1999@gmail.com',
@@ -57,16 +49,16 @@ export const PERSONAL = [
 
 export const KUBESTRONAUT = {
   certificates: [
-    '/certificates/kcna.png',
-    '/certificates/kcsa.png',
-    '/certificates/cka.png',
-    '/certificates/ckad.png',
-    '/certificates/cks.png',
+    '/certificates/kcna.webp',
+    '/certificates/kcsa.webp',
+    '/certificates/cka.webp',
+    '/certificates/ckad.webp',
+    '/certificates/cks.webp',
   ],
-  kubestronautCert: '/certificates/kubestronaut.png',
+  kubestronautCert: '/certificates/kubestronaut.webp',
   linkedinPost:
     'https://www.linkedin.com/posts/karchuntan_im-happy-to-share-that-ive-obtained-a-new-activity-7305101498244288512-Osxo?utm_source=share&utm_medium=member_desktop&rcm=ACoAADHh4I0BsleIJAHeRMGtjJ7CEb5NduAUtYg',
-  cncfImage: '/kubestronaut/cncf-kubestronaut.png',
+  cncfImage: '/kubestronaut/cncf-kubestronaut.webp',
 };
 
 export const ALLOWED_TAGS = [
@@ -102,15 +94,19 @@ export const ALLOWED_TAGS = [
   'Networking',
   'NodeJS',
   'NPM',
+  'Permissions',
   'Project',
   'PowerShell',
   'Python',
   'Proxy',
   'PDF',
+  'RDP',
+  'SSH',
   'Sync',
   'Schema',
   'Sphinx',
   'Services',
+  'Static IP',
   'System Administration',
   'self-hosted',
   'Troubleshooting',
@@ -194,11 +190,11 @@ export const DOCUMENTATION = {
       'A collection of commonly asked interview questions and answers in the software industry.',
     icon: FaPeopleArrows,
   },
-  // linux: {
-  //   title: 'Linux',
-  //   href: '/docs/linux/what-is-linux',
-  //   description:
-  //     'Linux is a family of open-source Unix-like operating systems based on the Linux kernel.',
-  //   icon: FaLinux,
-  // },
+  linux: {
+    title: 'Linux',
+    href: '/docs/linux/what-is-linux',
+    description:
+      'Linux is a family of open-source Unix-like operating systems based on the Linux kernel.',
+    icon: FaLinux,
+  },
 };

@@ -1,10 +1,9 @@
 import './globals.css';
 import Script from 'next/script';
 import { Layout } from 'nextra-theme-docs';
-import { Banner, Head } from 'nextra/components';
+import { Head } from 'nextra/components';
 import { getPageMap } from 'nextra/page-map';
 import { JetBrains_Mono } from 'next/font/google';
-import { getUpdatedAt, generateRandomKey } from '@/lib/utils';
 import { DOCS_REPO_BASE } from '@/constants';
 import 'nextra-theme-docs/style.css';
 import { createMetadata } from '@/lib/metadata';
@@ -28,14 +27,7 @@ const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
 const GOOGLE_ADSENSE_ID = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID;
 
 export default async function RootLayout({ children }) {
-  const updatedAt = await getUpdatedAt();
   const pageMap = await getPageMap();
-
-  const banner = (
-    <Banner storageKey={generateRandomKey()}>
-      Last repository update {updatedAt} 🎉
-    </Banner>
-  );
 
   return (
     <html
@@ -63,8 +55,7 @@ export default async function RootLayout({ children }) {
           sidebar={{
             autoCollapse: true,
           }}
-          // banner={banner}
-          navbar={<NavBar pageMap={pageMap} />}
+          navbar={<NavBar key="unique-navbar" pageMap={pageMap} />}
           pageMap={pageMap}
           docsRepositoryBase={DOCS_REPO_BASE}
           footer={<Footer />}
@@ -93,29 +84,6 @@ export default async function RootLayout({ children }) {
               </Script>
             </>
           )}
-          {/* <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.addEventListener('DOMContentLoaded', function() {
-                  // Hide <a> links with text "Blog1"
-                  document.querySelectorAll('nav a[href^="/blog"]').forEach(function(a) {
-                    if (a.textContent.trim() === 'Blog1') {
-                      a.style.display = 'none';
-                    }
-                  });
-
-                  // Hide <li> containing <button data-href="/blog"> with text "Blog1"
-                  document.querySelectorAll('li button[data-href="/blog"]').forEach(function(btn) {
-                    if (btn.textContent.trim().startsWith('Blog1')) {
-                      var li = btn.closest('li');
-                      if (li) li.style.display = 'none';
-                      else btn.style.display = 'none';
-                    }
-                  });
-                });
-              `,
-            }}
-          /> */}
         </Layout>
       </body>
     </html>

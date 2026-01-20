@@ -9,14 +9,13 @@ const footerLinks = [
       { href: '/gallery', label: 'Gallery' },
       { href: '/certificate-journey', label: 'Certificate Journey' },
       { href: '/kubestronaut', label: 'Kubestronaut Journey' },
-      { href: '/quote', label: 'Quote' },
+      { href: '/goals', label: '2026 Goals' },
     ],
   },
   {
     title: 'Utility Tools',
     links: [
       { href: '/color-picker', label: 'Color Picker' },
-      { href: '/md-playground', label: 'MarkDown Playground' },
       { href: '/jackson-pollock', label: 'Jackson Pollock' },
     ],
   },
@@ -27,15 +26,12 @@ const footerLinks = [
         href: '/good-tools-and-websites',
         label: 'Good Tools & Websites',
       },
-      {
-        href: '/software-glossary',
-        label: 'Software Glossary',
-      },
     ],
   },
   {
     title: 'Additional Links',
     links: [
+      { href: '/sitemap.xml', label: 'Sitemap' },
       { href: '/rss.xml', label: 'RSS Feed' },
       { href: 'https://karchunt.github.io/karchunt-wiki/', label: 'Old Wiki' },
       {
@@ -48,7 +44,7 @@ const footerLinks = [
 
 const Footer = () => {
   return (
-    <footer className="nextra-border border-t bg-neutral-900">
+    <footer className="nextra-border z-10 border-t bg-neutral-900">
       <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between px-4">
         <div className="grid grid-cols-2 gap-8 py-8 md:grid-cols-4">
           {footerLinks.map((item) => (

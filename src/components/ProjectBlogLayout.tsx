@@ -11,6 +11,7 @@ import {
   FaRegClock,
   FaGithub,
   FaExternalLinkAlt,
+  FaHandshake,
 } from 'react-icons/fa';
 import { IoLibraryOutline } from 'react-icons/io5';
 import { VscSymbolKeyword } from 'react-icons/vsc';
@@ -49,6 +50,12 @@ export default function ProjectsLayout({
       icon: <FaYoutube size={16} />,
       href: metadata.youtubeUrl,
       label: 'YouTube',
+    },
+    {
+      condition: metadata.references,
+      icon: <FaHandshake size={16} />,
+      href: metadata.references,
+      label: 'Ref',
     },
   ];
 
@@ -131,18 +138,40 @@ export default function ProjectsLayout({
 
             {links
               .filter((item) => item.condition)
-              .map((item, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  {item.icon}
-                  <Link
-                    href={item.href}
-                    target="_blank"
-                    className="!text-primary !font-medium !underline-offset-8 hover:underline"
-                  >
-                    {item.label}
-                  </Link>
-                </div>
-              ))}
+              .map((item, index) => {
+                if (Array.isArray(item.href)) {
+                  return (
+                    <div key={index} className="flex items-center gap-2">
+                      {item.icon}
+                      <div className="flex flex-col gap-2">
+                        {item.href.map((href, subIndex) => (
+                          <Link
+                            key={`${index}-${subIndex}`}
+                            href={href}
+                            target="_blank"
+                            className="!text-primary !font-medium !underline-offset-8 hover:underline"
+                          >
+                            {item.label}-#{subIndex + 1}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+
+                return (
+                  <div key={index} className="flex items-center gap-2">
+                    {item.icon}
+                    <Link
+                      href={item.href}
+                      target="_blank"
+                      className="!text-primary !font-medium !underline-offset-8 hover:underline"
+                    >
+                      {item.label}
+                    </Link>
+                  </div>
+                );
+              })}
           </div>
           <Control url={url} />
         </div>
