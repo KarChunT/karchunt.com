@@ -55,7 +55,7 @@ export default async function RootLayout({ children }) {
           sidebar={{
             autoCollapse: true,
           }}
-          navbar={<NavBar pageMap={pageMap} />}
+          navbar={<NavBar key="unique-navbar" pageMap={pageMap} />}
           pageMap={pageMap}
           docsRepositoryBase={DOCS_REPO_BASE}
           footer={<Footer />}
