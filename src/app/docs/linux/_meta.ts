@@ -29,6 +29,9 @@ const meta: MetaRecord = {
   'basic-commands': {
     title: 'Basic Commands',
   },
+  'help-command': {
+    title: 'Help Command',
+  },
 };
 
 export default meta;
