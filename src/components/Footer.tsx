@@ -9,7 +9,6 @@ const footerLinks = [
       { href: '/gallery', label: 'Gallery' },
       { href: '/certificate-journey', label: 'Certificate Journey' },
       { href: '/kubestronaut', label: 'Kubestronaut Journey' },
-      { href: '/goals', label: '2026 Goals' },
     ],
   },
   {
