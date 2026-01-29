@@ -7,9 +7,9 @@ const experiences = [
   {
     title: 'Senior Engineer, Software Development Engineering (Apps)',
     company: 'SanDisk',
-    period: '11/2025 - Present',
+    period: '11/2025 - 01/2026',
     description: '',
-    technologies: [],
+    technologies: ['Python', 'Docker', 'REST API', 'Git', 'Flask'],
     icon: SiSandisk,
   },
   {
