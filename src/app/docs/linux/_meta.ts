@@ -32,6 +32,12 @@ const meta: MetaRecord = {
   'help-command': {
     title: 'Help Command',
   },
+  'bash-shell': {
+    title: 'Bash Shell',
+  },
+  'env-variables': {
+    title: 'Environment Variables',
+  },
 };
 
 export default meta;
