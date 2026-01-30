@@ -4,7 +4,7 @@ import { TbNumber12Small, TbBrandDocker, TbBinaryTree } from 'react-icons/tb';
 import { FaGitAlt, FaPython } from 'react-icons/fa';
 import { BiCube } from 'react-icons/bi';
 import { SiKubernetes } from 'react-icons/si';
-import { FaPeopleArrows } from 'react-icons/fa6';
+import { FaPeopleArrows, FaLinux } from 'react-icons/fa6';
 
 export const APP_NAME: string = 'KarChunT';
 export const APP_ICON: string = '/penguin-nobg.webp';
@@ -189,5 +189,12 @@ export const DOCUMENTATION = {
     description:
       'A collection of commonly asked interview questions and answers in the software industry.',
     icon: FaPeopleArrows,
+  },
+  linux: {
+    title: 'Linux',
+    href: '/docs/linux/what-is-linux',
+    description:
+      'Linux is a family of open-source Unix-like operating systems based on the Linux kernel.',
+    icon: FaLinux,
   },
 };
