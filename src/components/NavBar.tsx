@@ -8,7 +8,7 @@ import { IoMenu } from 'react-icons/io5';
 import { RxCross1 } from 'react-icons/rx';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
-import { getBasePath } from '@/lib/utils';
+import { getBasePath } from '@/src/lib/utils';
 import {
   APP_NAME,
   APP_ICON,
@@ -19,7 +19,7 @@ import {
 
 import { usePathname } from 'next/navigation';
 import { ChevronDown } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { cn } from '@/src/lib/utils';
 import { PageMapItem } from 'nextra';
 
 interface DocSection {

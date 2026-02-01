@@ -1,52 +1,12 @@
 import Link from 'next/link';
-import { APP_NAME } from '@/constants';
-
-const footerLinks = [
-  {
-    title: 'More from me',
-    links: [
-      { href: '/work-experiences', label: 'Work Experiences' },
-      { href: '/gallery', label: 'Gallery' },
-      { href: '/certificate-journey', label: 'Certificate Journey' },
-      { href: '/kubestronaut', label: 'Kubestronaut Journey' },
-    ],
-  },
-  {
-    title: 'Utility Tools',
-    links: [
-      { href: '/color-picker', label: 'Color Picker' },
-      { href: '/jackson-pollock', label: 'Jackson Pollock' },
-    ],
-  },
-  {
-    title: 'Developer Resources',
-    links: [
-      {
-        href: '/good-tools-and-websites',
-        label: 'Good Tools & Websites',
-      },
-    ],
-  },
-  {
-    title: 'Additional Links',
-    links: [
-      { href: '/sitemap.xml', label: 'Sitemap' },
-      { href: '/rss.xml', label: 'RSS Feed' },
-      { href: 'https://karchunt.github.io/karchunt-wiki/', label: 'Old Wiki' },
-      {
-        href: 'https://karchunt.github.io/karchunt.com-fork/',
-        label: 'Forked Site',
-      },
-    ],
-  },
-];
+import { APP_NAME, FOOTER_LINKS } from '@/src/app/constants';
 
 const Footer = () => {
   return (
     <footer className="nextra-border z-10 border-t bg-neutral-900">
       <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between px-4">
         <div className="grid grid-cols-2 gap-8 py-8 md:grid-cols-4">
-          {footerLinks.map((item) => (
+          {FOOTER_LINKS.map((item) => (
             <div key={item.title}>
               <h3 className="mb-4 text-xs">{item.title}</h3>
               <ul className="text-muted-foreground space-y-2 text-sm">
