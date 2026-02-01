@@ -1,17 +1,22 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/src/components/ui/button';
+import { Card, CardContent } from '@/src/components/ui/card';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { ImageZoom } from 'nextra/components';
-import { getBasePath } from '@/lib/utils';
+} from '@/src/components/ui/select';
+import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
+import { getBasePath } from '@/src/lib/utils';
+
+interface GalleryProps {
+  src: string;
+  category: string;
+}
 
 const GalleryClient = ({ items }: { items: GalleryProps[] }) => {
   const basePath = getBasePath();

@@ -1,15 +1,10 @@
 @import 'tailwindcss';
+/* @import 'fumadocs-ui/css/neutral.css'; */
+@import 'fumadocs-ui/css/solar.css';
+@import 'fumadocs-ui/css/preset.css';
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
-
-@plugin 'tailwindcss-animate';
-
-/* Optional: import Nextra theme styles */
-/* or nextra-theme-blog/style.css */
-/* @import 'nextra-theme-docs/style.css';  */
-
-/* @variant dark (&:where(.dark *)); */
 
 @theme inline {
   --my-theme-color: #facc15;
@@ -246,11 +241,6 @@
     @apply hover:cursor-pointer;
   }
 }
-
-/* article ul li a,
-article p a {
-  text-decoration-color: hsl(var(--primary));
-} */
 
 [data-theme-toggle] {
   display: none !important;

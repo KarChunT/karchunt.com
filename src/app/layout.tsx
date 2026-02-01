@@ -1,16 +1,11 @@
-import './globals.css';
+import type { Metadata } from 'next';
 import Script from 'next/script';
-import { Layout } from 'nextra-theme-docs';
-import { Head } from 'nextra/components';
-import { getPageMap } from 'nextra/page-map';
 import { JetBrains_Mono } from 'next/font/google';
-import { DOCS_REPO_BASE } from '@/constants';
-import 'nextra-theme-docs/style.css';
-import { createMetadata } from '@/lib/metadata';
-import Footer from '@/components/Footer';
-import NavBar from '@/components/NavBar';
+import { RootProvider } from 'fumadocs-ui/provider/next';
+import { createMetadata } from '@/src/lib/metadata';
+import './globals.css';
 
-export const metadata = createMetadata({
+export const metadata: Metadata = createMetadata({
   title: {
     template: '%s | KarChunT',
     default: 'KarChunT',
@@ -26,46 +21,25 @@ const jetbrainsMono = JetBrains_Mono({
 const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
 const GOOGLE_ADSENSE_ID = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID;
 
-export default async function RootLayout({ children }) {
-  const pageMap = await getPageMap();
-
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html
       lang="en"
-      dir="ltr"
       suppressHydrationWarning
       className={`${jetbrainsMono.className} dark`}
     >
-      <Head
-        color={{
-          hue: {
-            light: 47.9,
-            dark: 47.9,
-          },
-        }}
-      >
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <head>
         {GOOGLE_ADSENSE_ID && (
           <meta name="google-adsense-account" content={GOOGLE_ADSENSE_ID} />
         )}
-        {/* Your additional tags should be passed as `children` of `<Head>` element */}
-      </Head>
-      <body>
-        <Layout
-          sidebar={{
-            autoCollapse: true,
-          }}
-          navbar={<NavBar key="unique-navbar" pageMap={pageMap} />}
-          pageMap={pageMap}
-          docsRepositoryBase={DOCS_REPO_BASE}
-          footer={<Footer />}
-          // footer={footer}
-          darkMode={true}
-          nextThemes={{
-            defaultTheme: 'dark',
-            forcedTheme: 'dark',
-          }}
-        >
+      </head>
+
+      <body className="flex min-h-screen flex-col">
+        <RootProvider>
           {children}
           {/* Google Analytics Script */}
           {GOOGLE_ANALYTICS_ID && (
@@ -84,7 +58,7 @@ export default async function RootLayout({ children }) {
               </Script>
             </>
           )}
-        </Layout>
+        </RootProvider>
       </body>
     </html>
   );

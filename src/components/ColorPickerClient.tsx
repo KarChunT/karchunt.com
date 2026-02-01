@@ -5,15 +5,15 @@ import { Check, Copy, Lock, LockOpen, RefreshCw } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Poline, positionFunctions } from 'poline'; // @ts-ignore
 
-import { Button } from '@/components/ui/button';
-import { CardContent } from '@/components/ui/card';
+import { Button } from '@/src/components/ui/button';
+import { CardContent } from '@/src/components/ui/card';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
-import { ColorPicker as UiColorPicker } from '@/components/ui/color-picker';
+} from '@/src/components/ui/tooltip';
+import { ColorPicker as UiColorPicker } from '@/src/components/ui/color-picker';
 
 type ColorScheme = {
   [key: string]: string;
