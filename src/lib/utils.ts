@@ -12,3 +12,10 @@ export function getBasePath() {
 export function tagToSlug(tag: string) {
   return tag.trim().toLowerCase().replace(/\s+/g, '-');
 }
+
+export function generateRandomArray(size: number): number[] {
+  return Array.from(
+    { length: size },
+    () => Math.floor(Math.random() * 100) + 1,
+  );
+}
