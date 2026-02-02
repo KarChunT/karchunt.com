@@ -1,0 +1,37 @@
+---
+title: Edit hostname on Ubuntu
+description: Learn how to edit hostname on Ubuntu
+date: 2025-03-28
+author: KarChunT
+tags: [Linux]
+---
+
+## Edit hostname on Ubuntu
+
+<Steps>
+
+### Edit `/etc/hostname`
+
+```bash
+sudo nano /etc/hostname
+```
+
+### Replace any hostname you like. Save the file.
+
+```bash title="/etc/hostname"
+hello-laptop
+```
+
+### Reboot the system
+
+```bash
+sudo reboot
+```
+
+### Check your hostname
+
+```bash
+hostname
+```
+
+</Steps>

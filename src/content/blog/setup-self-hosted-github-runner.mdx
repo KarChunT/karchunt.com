@@ -1,0 +1,129 @@
+---
+title: Setup self-hosted GitHub runner
+description: Learn how to setup self-hosted GitHub runner
+date: 2025-03-28
+author: KarChunT
+tags: [GitHub, self-hosted]
+---
+
+## Steps to setup self-hosted GitHub runner
+
+> With self-hosted runners, you can create custom hardware configurations that meet your needs with processing power or memory to run larger jobs, install software available on your local network, and choose an operating system not offered by GitHub-hosted runners.
+> &mdash; <cite>[GitHub][1]</cite>
+
+**References**
+
+- [GitHub Actions documentation](https://docs.github.com/en/actions)
+- [Self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners)
+
+[1]: https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners
+
+1. Go to your repository in GitHub.
+
+2. In Settings > Actions > Runners, click on **New self-hosted runner** button.
+   ![img1](/blog/setup-self-hosted-github-runner/img1.png)
+
+3. Choose **Runner Image and Architecture**. Do take note that, the architecture is based on your device specifications. For my case is **x64**.
+   ![img2](/blog/setup-self-hosted-github-runner/img2.png)
+
+4. Download the **necessary files**. You can find all these commands on the same page where you select Runner Image and Architecture.
+
+   <details>
+   <summary>
+      <b>Windows Runner</b>
+   </summary>
+   ```ps
+   # Create a folder under the drive root
+   mkdir actions-runner; cd actions-runner
+
+   # Download the latest runner installer file
+
+   Invoke-WebRequest -Uri https://github.com/actions/runner/releases/download/v2.311.0/actions-runner-win-x64-2.311.0.zip -OutFile actions-runner-win-x64-2.311.0.zip
+
+   # Extract the installer
+
+   Add-Type -AssemblyName System.IO.Compression.FileSystem ; [System.IO.Compression.ZipFile]::ExtractToDirectory("$PWD/actions-runner-win-x64-2.311.0.zip", "$PWD")
+   ```
+   </details>
+
+   <details>
+   <summary>
+      <b>Linux Runner</b>
+   </summary>
+
+   ```bash
+   # Create a folderr under drive root
+   mkdir actions-runner && cd actions-runner
+
+   # Download the latest runner installer file
+   curl -o actions-runner-linux-x64-2.311.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.311.0/actions-runner-linux-x64-2.311.0.tar.gz
+
+   # Extract the installer
+   tar xzf ./actions-runner-linux-x64-2.311.0.tar.gz
+   ```
+
+   </details>
+
+   Here is the output after executing all these commands.
+   ![img3](/blog/setup-self-hosted-github-runner/img3.png)
+
+5. Configure and start the runner.
+
+   <details>
+   <summary>
+      <b>Windows Runner</b>
+   </summary>
+
+   ```ps
+   # Configure the runner
+   ./config.cmd --url <github-repo-url> --token <token> --labels <lists-of-label>
+
+   # Start the runner
+   ./run.cmd
+   ```
+
+   </details>
+
+   <details>
+   <summary>
+      <b>Linux Runner</b>
+   </summary>
+
+   ```bash
+   # Configure the runner
+   ./config.sh --url <github-repo-url> --token <token> --labels <lists-of-label>
+
+   # Start the runner
+   ./run.sh
+   ```
+
+   </details>
+
+   Programmatically assign [labels](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/using-labels-with-self-hosted-runners) to a self-hosted runner is optional.
+   Here is the sample configuration of the runner.
+
+   ![img5](/blog/setup-self-hosted-github-runner/img4.png)
+
+   Verify your runner being setup.
+   ![img5](/blog/setup-self-hosted-github-runner/img5.png)
+
+6. Using your self-hosted runner. Create a new file under `.github/workflows/test.yaml`.
+
+   ```yaml {6} title="test.yaml"
+   name: Test runner
+   on:
+      push:
+   jobs:
+      build:
+         runs-on: ["self-hosted"]
+         steps:
+         - name: Checkout repository
+            uses: actions/checkout@v4
+         - name: list directory
+            run: ls
+   ```
+
+   Here is the output after all the CI jobs are completed.
+   ![img6](/blog/setup-self-hosted-github-runner/img6.png)
+
+7. Optional: You can configure the [self-hosted runner application as a service](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/configuring-the-self-hosted-runner-application-as-a-service)

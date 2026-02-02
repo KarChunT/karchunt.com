@@ -1,0 +1,51 @@
+---
+title: Setup Default Python Version on Ubuntu
+description: Learn how to set the default Python version on Ubuntu
+date: 2025-04-26
+author: KarChunT
+tags: [Linux, Python]
+---
+
+## Setup Default Python Version on Ubuntu
+
+First, you have to check the installed Python versions on your system.
+
+```bash
+# copy the path to your python version
+whereis python3.13 # replace your version with the one you want to set as default
+```
+
+Then, you can set the default Python version using the `update-alternatives` command. The higher the priority value, the higher the priority of that version.
+
+```bash
+sudo update-alternatives --install /usr/bin/python3 python3 <replace-your-path> <priority-value>
+# example
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13 1
+sudo update-alternatives --config python3 # select the version you want to set as default
+```
+
+```text
+There are 2 choices for the alternative python3 (providing /usr/bin/python3).
+
+  Selection    Path                       Priority   Status
+------------------------------------------------------------
+* 0            /usr/local/bin/python3.12   2         auto mode
+  1            /usr/bin/python3.13         1         manual mode
+  2            /usr/local/bin/python3.12   2         manual mode
+
+Press <enter> to keep the current choice[*], or type selection number: 1
+```
+
+To check if the default Python version has been set correctly, you can run:
+
+```bash
+python3 --version
+```
+
+Optional: You can also set the default Python version for `python` command:
+
+```bash
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.13 1
+sudo update-alternatives --config python
+python --version
+```

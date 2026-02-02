@@ -1,0 +1,42 @@
+---
+title: Install latest Git
+description: Learn how to install latest Git
+date: 2025-03-26
+author: KarChunT
+tags: [Git]
+---
+
+## Learn how to install latest Git
+
+<Callout title="More Information">
+  [PPA Git](https://launchpad.net/~git-core/+archive/ubuntu/ppa?ref=itsfoss.com)
+</Callout>
+
+<Steps>
+
+### Install stable Git version
+
+```bash
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git
+```
+
+### Check Git version
+```bash
+git --version
+```
+
+### Optional: Configure Git
+```bash
+git config --global user.name "Your name"
+git config --global user.email "Your email"
+
+# enable color output
+git config --global color.ui author
+
+# check configuration
+git config --global --list
+```
+
+</Steps>

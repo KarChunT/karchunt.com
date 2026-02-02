@@ -1,0 +1,83 @@
+---
+title: Check which APT repo is being used
+description: Learn how to check which APT repo is being used
+date: 2025-05-10
+author: KarChunT
+tags: [Linux]
+---
+
+## How to check which APT repo is being used
+
+When you have multiple APT repositories configured for the same software, it's important to know which one is being used. This is especially relevant when you have added a new repository but the system still uses an older one.
+
+<Steps>
+
+### Check the Pinned Priority
+
+APT uses the repository with the highest priority. You can check the priority of each repository using the following command:
+
+```bash
+apt-cache policy
+```
+
+In this example, we will be looking for the `docker-ce` package (or any Docker-related package) in the output. It will show the repository URL and its priority. For example:
+
+```bash
+apt-cache policy docker-ce
+```
+
+Sample output:
+
+```text
+docker-ce:
+  Installed: (none)
+  Candidate: 5:20.10.24~3-0~ubuntu-jammy
+  Version table:
+     5:20.10.24~3-0~ubuntu-jammy 500
+        500 https://download.docker.com/linux/ubuntu jammy/stable amd64 Packages
+     5:20.10.24~3-0~ubuntu-focal 500
+        500 https://download.docker.com/linux/ubuntu focal/stable amd64 Packages
+```
+The **Candidate version** indicates **which repository is being used**.
+
+### Inspect the installed package
+
+If Docker is already installed, you can check the version and match it to the repository:
+
+```bash
+apt-cache policy docker-ce
+```
+
+The output will show the installed version and the repository it came from.
+
+### Manually check the repository
+
+If you want to ensure only one repository is used, you can comment out or remove the unwanted entry in `/etc/apt/sources.list.d/download_docker_com_linux_ubuntu.list`. For example:
+
+```bash
+sudo nano /etc/apt/sources.list.d/download_docker_com_linux_ubuntu.list
+```
+
+Comment out the line for focal if you want to use jammy:
+
+```bash
+# deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable
+```
+
+Then update the package cache:
+
+```bash
+sudo apt update
+```
+
+### Verify the repository again
+
+After making changes, verify the repository being used:
+
+```bash
+apt-cache policy docker-ce
+```
+This will ensure that the correct repository (jammy in this case) is being used.
+
+</Steps>

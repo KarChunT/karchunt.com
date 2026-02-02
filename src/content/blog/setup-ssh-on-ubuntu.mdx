@@ -1,0 +1,81 @@
+---
+title: Setup SSH on Ubuntu
+description: Learn how to set up SSH on Ubuntu for secure remote access and management.
+date: 2025-12-24
+author: KarChunT
+tags: [SSH, Ubuntu]
+---
+
+## Setup SSH on Ubuntu
+
+**SSH (Secure Shell)** is a protocol that allows **secure remote access** to a computer over an unsecured network. Today, I will guide you through the **best practices** for setting up SSH on an Ubuntu system.
+
+<Steps>
+### Step 1: Install OpenSSH Server
+
+```bash
+sudo apt-get update
+sudo apt-get install -y openssh-server
+```
+
+### Step 2: Start and Enable SSH service
+
+```bash
+sudo systemctl enable ssh
+sudo systemctl start ssh
+sudo systemctl status ssh # check if SSH is running
+```
+
+### Step 3: Configure SSH settings
+
+To enhance security, you can modify the SSH configuration file by searching the following settings:
+- `PasswordAuthentication no`: Disable password authentication to use key-based authentication.
+- `PermitRootLogin no`: Disable root login via SSH.
+- `AllowUsers your_username`: Restrict SSH access to specific users.
+- `AllowGroups your_group`: Restrict SSH access to specific groups.
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+```bash title="/etc/ssh/sshd_config"
+PasswordAuthentication no
+PermitRootLogin no
+AllowUsers user1 user2 user3
+AllowGroups sshusers
+```
+
+### Step 4: Restart SSH service
+
+```bash
+sudo systemctl restart ssh
+```
+
+### Step 5: Configure Firewall
+
+Configuring firewall is very important to secure your server. By default, Ubuntu uses **UFW (Uncomplicated Firewall)** and when you enable it, SSH connections are blocked. To allow SSH connections, run the following command:
+
+```bash
+sudo ufw allow ssh
+sudo ufw enable
+sudo ufw status
+```
+
+```bash
+kc@kcserver:~$ sudo ufw status
+Status: active
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW       Anywhere                  
+22/tcp (v6)                ALLOW       Anywhere (v6)
+```
+
+### Step 6: Reboot the server
+
+The final step is to reboot the server to ensure all changes take effect.
+
+```bash
+sudo reboot
+```
+</Steps>

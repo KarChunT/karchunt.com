@@ -1,0 +1,26 @@
+---
+title: Install Nektos Act on Ubuntu
+description: Learn how to install Nektos Act on Ubuntu.
+date: 2025-05-01
+author: KarChunT
+tags: [Nektos Act]
+---
+
+## Install Nektos Act on Ubuntu
+
+<Callout title="Documentation">
+  https://github.com/nektos/act
+</Callout>
+
+Before you begin, you need to have `docker` installed on your Ubuntu system, as Nektos Act relies on **Docker** to run GitHub Actions locally.  
+You may refer this [guide](/docs/docker/docker-installation/) to install Docker on Ubuntu.
+
+To install Nektos Act on Ubuntu, follow these steps:
+
+```bash
+cd /tmp
+wget https://github.com/nektos/act/releases/download/v0.2.76/act_Linux_x86_64.tar.gz
+sudo tar -xvf act_Linux_x86_64.tar.gz -C /usr/local/bin act
+
+act --version
+```

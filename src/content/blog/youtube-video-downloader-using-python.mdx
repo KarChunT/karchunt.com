@@ -1,0 +1,155 @@
+---
+title: YouTube Video Downloader using Python
+description: Learn how to download YouTube videos using Python.
+date: 2025-09-22
+author: KarChunT
+tags: [Python, Youtube, Tutorial]
+repoUrl: https://github.com/yt-dlp/yt-dlp
+---
+
+## YouTube Video Downloader using Python
+
+In this tutorial, we will learn how to download YouTube videos using Python. We will use the `yt-dlp` library, which makes it easy to interact with YouTube and download videos.
+
+<Callout title="pypi package">
+  https://pypi.org/project/yt-dlp/
+</Callout>
+
+Before we start, make sure you have Python installed on your machine. You can download it from [python.org](https://www.python.org/downloads/).
+
+<Steps>
+
+### Install the `yt-dlp` library
+
+<Callout title="uv package manager">
+  https://docs.astral.sh/uv/
+</Callout>
+
+I'm going to use `uv` as my package manager but you can use `pip` or any other package manager you prefer.
+
+```bash
+uv init --bare
+uv add yt-dlp
+```
+
+### Verify the installation
+
+To verify that the `yt-dlp` library has been installed correctly, you can run the following command:
+
+```bash
+uv run yt-dlp --version
+```
+
+### Install `ffmpeg`
+
+The `yt-dlp` library requires `ffmpeg` to process video and audio files. You can download it from [ffmpeg.org](https://ffmpeg.org/download.html) and follow the installation instructions for your operating system.
+
+For Windows, so I'm using `winget` to install `ffmpeg`.
+
+```bash
+winget install "FFmpeg (Essentials Build)"
+ffmpeg -version
+```
+
+For Ubuntu, you can use `apt` to install `ffmpeg`.
+
+```bash
+sudo apt update
+sudo apt install ffmpeg -y
+ffmpeg -version
+```
+
+### [Optional] Run the command to download a YouTube video
+
+<Callout title="Format Selection">
+  You can refer this [link](https://github.com/yt-dlp/yt-dlp?tab=readme-ov-file#format-selection) for more information about format selection.
+</Callout>
+
+This step is optional, but you can try run the following command to download a YouTube video. For me I'm going to download a video in `mp3` format.
+
+```bash
+uv run yt-dlp -f bestaudio/best -x --audio-format mp3 -o <path-to-save> <youtube-video-url>
+```
+
+Here is an sample output when I run the command:
+
+```powershell
+PS C:\Users\karchunt\Desktop\tutorial> uv run yt-dlp -f bestaudio/best -x --audio-format mp3 -o ./output/test.mp3 https://www.youtube.com/watch?v=IViaa3o7BbU
+[youtube] Extracting URL: https://www.youtube.com/watch?v=IViaa3o7BbU
+[youtube] IViaa3o7BbU: Downloading webpage
+[youtube] IViaa3o7BbU: Downloading tv simply player API JSON
+[youtube] IViaa3o7BbU: Downloading tv client config
+[youtube] IViaa3o7BbU: Downloading tv player API JSON
+[info] IViaa3o7BbU: Downloading 1 format(s): 251
+[download] Sleeping 5.00 seconds as required by the site...
+[download] Destination: output\test.webm
+[download] 100% of    4.11MiB in 00:00:00 at 23.39MiB/s
+[ExtractAudio] Destination: output\test.mp3
+Deleting original file output\test.webm (pass -k to keep)
+```
+
+### Create and execute a Python script to download YouTube videos
+
+Alright, now let's create a Python script that uses the `yt-dlp` library to download subsequent YouTube videos.
+
+<Tabs items={['Code', 'Subprocess']}>
+  <Tabs.Tab>
+    ```python title="yt.py"
+    import os
+    import yt_dlp
+
+    # Replace with your desired YouTube video URL
+    url = "youtube-video-url"
+    ydl_opts = {
+      'format': 'bestaudio/best',
+      'postprocessors': [{
+        'key': 'FFmpegExtractAudio',
+        'preferredcodec': 'mp3',
+        'preferredquality': '320', # 0 for highest quality VBR
+      }],
+      'outtmpl': os.path.join("./", '%(title)s.%(ext)s'),
+    }
+
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+      ydl.download([url])
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```python title="yt.py"
+    import os
+    import subprocess as s
+
+    # Replace with your desired YouTube video URL
+    url = "youtube-video-url"
+    download_format = 'bestaudio/best'
+    s.call(['yt-dlp', '-f', download_format, '-x', '--audio-format', 'mp3', '-o', os.path.join('./', '%(title)s.%(ext)s'), url])
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+The reason I set `preferredquality` to `320` is because I want to download the audio in the highest quality possible. FYI, `preferredquality` set to `0` **does not always product the highest quality audio** because of how the `FFmpeg` encoder works.
+- The parameter `0` maps to a variable **bitrate (VBR) setting** which tells the `FFMpeg` to use the **highest VBR quality**, which results in a bitrate ranging between `220-260kbps`.
+
+---
+
+However, there are some nuances:
+- **VBR is often better quality**: VBR typically produces **better quality** than CBR (Constant Bitrate) at similar file sizes because it allocates bits more efficiently based on audio complexity.
+- **320kbps CBR vs VBR comparison**: While 320kbps CBR guarantees consistent bitrate, VBR-0 (highest quality VBR) often produces **perceptually equivalent or better quality** at lower average bitrates.
+
+```python
+# For guaranteed 320kbps constant bitrate
+'preferredquality': '320'
+
+# For highest quality VBR (often better quality, smaller files)
+'preferredquality': '0'
+```
+
+So it depends on your use case. If you want guaranteed 320kbps, go with `320`. If you want the best quality possible and don't mind variable bitrate, go with `0`.
+
+Finally, run the Python script to download the YouTube video.
+
+```bash
+uv run yt.py
+```
+
+</Steps>

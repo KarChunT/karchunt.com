@@ -1,0 +1,62 @@
+---
+title: Install Python on Ubuntu
+description: Learn how to install Python on Ubuntu
+date: 2025-04-26
+author: KarChunT
+tags: [Linux]
+---
+
+## Method 1: Install Python using APT
+
+This method is the most straightforward way to install Python on Ubuntu, but it may not always provide the latest version, as it uses the version available in the Ubuntu repositories.
+
+```bash
+sudo apt-get update
+sudo apt-get install python3
+
+# check python version
+python3 --version
+```
+
+## Method 2: Install Python via PPA (Recommended)
+
+<Callout title="What is software-properties-common?">
+  The **software-properties-common** package provides an abstraction of the used `apt` repositories. It allows you to manage PPAs easily.
+</Callout>
+
+This method allows you to install the latest version of Python using a [Personal Package Archive (PPA)](https://launchpad.net/ubuntu/+ppas). This is recommended if you need a more recent version than what is available in the default repositories.
+
+```bash
+sudo apt-get update
+sudo apt-get install software-properties-common
+sudo add-apt repository ppa:deadsnakes/ppa # press enter to confirm
+
+sudo apt-get update
+sudo apt-get install python3.13 # replace with the desired version
+
+# check python version
+python3 --version
+```
+
+## Method 3: Install Python from Source
+
+This method is useful if you want to customize the installation or if the version you need is not available in the repositories.
+
+Python 3.13.1 is the latest version at the time of writing. You can check for the latest version on the [official Python website](https://www.python.org/downloads/source/).
+
+```bash
+sudo apt-get update
+sudo apt install zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev  libreadline-dev libffi-dev wget
+
+# Download the installer file to the /tmp directory
+cd /tmp
+wget https://www.python.org/ftp/python/3.13.1/Python-3.13.1.tgz
+tar -xf Python-3.13.1.tgz
+
+cd Python-3.13.1
+./configure --enable-optimizations
+sudo make install
+
+# check python version
+python3 --version
+```

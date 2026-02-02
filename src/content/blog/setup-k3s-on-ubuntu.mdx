@@ -1,0 +1,50 @@
+---
+title: Setup K3s on Ubuntu
+description: Learn how to set up K3s on Ubuntu for lightweight Kubernetes deployment.
+date: 2025-03-28
+author: KarChunT
+tags: [Linux, Kubernetes]
+---
+
+## Steps to set up K3s on Ubuntu
+
+<Callout title="More Information">
+  - [k3s Documentation](https://docs.k3s.io/)
+  - [k3s GitHub](https://github.com/k3s-io/k3s)
+</Callout>
+
+1. Install k3s as a service
+
+   ```bash
+   curl -sfL https://get.k3s.io | sh -
+   ```
+
+2. Fix k3s permission denied issues
+
+   ```bash
+   mkdir ~/.kube 2> /dev/null
+   export KUBECONFIG=~/.kube/config
+   sudo k3s kubectl config view --raw > "$KUBECONFIG"
+   chmod 600 "$KUBECONFIG"
+   ```
+
+   - More [details](https://devops.stackexchange.com/questions/16043/error-error-loading-config-file-etc-rancher-k3s-k3s-yaml-open-etc-rancher) in fixing k3s permission denied issues.
+
+3. export `KUBECONFIG=~/.kube/config` to either `~/.profile` or `~/.bashrc` to make it persist on reboot(Optional).
+
+   ```bash
+   nano ~/.bashrc
+   source ~/.bashrc
+   ```
+
+   Navigate to the last line
+
+   ```bash title="~/.bashrc"
+   # last line
+   export KUBECONFIG=~/.kube/config
+   ```
+
+4. Test connection
+   ```bash
+   kubectl get all
+   ```

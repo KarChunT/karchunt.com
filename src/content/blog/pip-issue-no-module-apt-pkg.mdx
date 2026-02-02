@@ -1,0 +1,36 @@
+---
+title: "Pip issue: No module named 'apt_pkg'"
+description: "ModuleNotFoundError: No module named 'apt_pkg'"
+date: 2025-04-26
+author: KarChunT
+tags: [Python]
+---
+
+## Issue: No module named 'apt_pkg'
+
+When you type `pip` in your terminal and see the error:
+
+```bash
+$ pip --version
+```
+
+```bash
+Traceback (most recent call last):
+  File "/usr/lib/command-not-found", line 28, in <module>
+    from CommandNotFound import CommandNotFound
+  File "/usr/lib/python3/dist-packages/CommandNotFound/CommandNotFound.py", line 19, in <module>
+    from CommandNotFound.db.db import SqliteDatabase
+  File "/usr/lib/python3/dist-packages/CommandNotFound/db/db.py", line 5, in <module>
+    import apt_pkg
+ModuleNotFoundError: No module named 'apt_pkg'
+```
+
+The error indicates that the `apt_pkg` module is not found. This can happen if the Python environment is not set up correctly.
+
+```bash
+cd /usr/lib/python3/dist-packages
+ls -l apt_pkg* # find the apt_pkg.** path
+
+sudo cp apt_pkg.cpython-<version>-<arch>.so apt_pkg.so
+sudo apt-get install --reinstall python3-pip
+```

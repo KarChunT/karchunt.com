@@ -1,0 +1,66 @@
+---
+title: Convert Sphinx Documentation to PDF
+description: A guide on how to convert Sphinx documentation into PDF format.
+date: 2025-09-23
+author: KarChunT
+tags: [Sphinx, PDF, Documentation]
+---
+
+## Convert Sphinx Documentation to PDF
+
+In this tutorial, we will explore how to **convert Sphinx documentation into PDF format**. The conversion of Sphinx documentation to PDF can be achieved through **various methods**, including using **LaTeX or other tools**.
+- Using default Sphinx's built-in LaTeX builder
+- Using `sphinx-simplepdf` extension (Recommended)
+
+Again, there are other method available, such as `rst2pdf`, `pandoc`, `sphinx-pdf-generate`, or etc, but I won't cover them here.
+
+### Using default Sphinx's built-in LaTeX builder
+
+This method is the **default way** to convert Sphinx documentation to PDF. It **first generates LaTeX files** from the **Sphinx source files** and then **compiles them into a PDF using a LaTeX distribution/engine** like **TeX Live** or **MiKTeX**.
+
+Before you start, **ensure you have a LaTeX distribution** installed on your system. You can use TeX Live (cross-platform) or MiKTeX (Windows). Else, you may **encounter errors** during the PDF generation process.
+
+```text
+'latexmk' is not recognized as an internal or external command, operable program or batch file.
+```
+
+Here is the command to generate the PDF:
+
+```bash
+make latexpdf
+```
+
+This command will **generate LaTeX source files** in the `_build/latex` directory and then attempt to compile them into a PDF.
+
+To be honest, I had encountered some **issues with Unicode characters** when I tried to generate the PDF. If you encounter similar issues, you may need to set the `latex_engine` in your `conf.py` file to `xelatex` or `lualatex`. **But trust me, this method is a bit troublesome**.
+
+```python title="conf.py"
+latex_engine = "xelatex" # or "lualatex"
+```
+
+### Using `sphinx-simplepdf` extension (Recommended)
+
+<Callout title="Reference">
+  https://sphinx-simplepdf.readthedocs.io/en/latest/
+</Callout>
+
+This method is **more straightforward** and **user-friendly**. The `sphinx-simplepdf` extension **simplifies the process of generating PDFs** from Sphinx documentation. I highly recommend this method for its ease of use and better handling of various content types.
+
+```bash
+pip install sphinx-simplepdf
+```
+
+After you install the `sphinx-simplepdf` package, make sure to install `WeasyPrint` as well, since it is a **dependency** of `sphinx-simplepdf`. Refer to the [WeasyPrint installation guide](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html) for detailed instructions.
+
+Then add `sphinx_simplepdf` to your extensions list in `conf.py` and run `make simplepdf`.
+
+```python title="conf.py"
+extensions = [
+    ...
+    'sphinx_simplepdf',
+]
+```
+
+```bash
+make simplepdf
+```

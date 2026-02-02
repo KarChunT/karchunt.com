@@ -1,7 +1,11 @@
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 import type { MDXComponents } from 'mdx/types';
 import Comments from '@/src/components/Comments';
+import * as TabsComponents from 'fumadocs-ui/components/tabs';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+import { File, Folder, Files } from 'fumadocs-ui/components/files';
 import { Step, Steps as BaseSteps } from 'fumadocs-ui/components/steps';
+import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
 import { Children, isValidElement, type ReactNode } from 'react';
 
 function CustomSteps({ children }: { children: ReactNode }) {
@@ -41,8 +45,17 @@ function CustomSteps({ children }: { children: ReactNode }) {
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
     ...defaultMdxComponents,
+    ...TabsComponents,
     ...components,
     Steps: CustomSteps,
+    FileTree: Object.assign(Files, { File, Folder }),
+    Tabs: Object.assign(TabsComponents.Tabs, { Tab: TabsComponents.Tab }),
+    img: (props) => <ImageZoom {...(props as any)} />,
+    File,
+    Folder,
+    Accordion,
+    Accordions,
+    ImageZoom,
     Comments,
   };
 }

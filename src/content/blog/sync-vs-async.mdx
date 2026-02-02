@@ -1,0 +1,156 @@
+---
+title: Sync vs Async in Programming
+description: Learn the differences between synchronous and asynchronous programming, their use cases, and how they impact application performance.
+date: 2025-11-30
+lastUpdated: 2025-12-06
+author: KarChunT
+tags: [Sync, Async, Python]
+---
+
+## Synchronous vs Asynchronous in Programming
+
+In programming, the terms **"synchronous"** and **"asynchronous"** refer to two different approaches to **handling tasks and operations**. Understanding the differences between these two paradigms is crucial for developers to write efficient, high-performance applications, especially those that are **I/O-bound** (eg. network requests, file operations, database queries, etc.) or require **concurrency**.
+
+<Callout title="Choose Synchronous When" type="info">
+  - Tasks are **CPU-bound** and **require heavy computation**. For example, mathematical calculations, data processing, training machine learning models, encrypting large files, etc
+  - The application is **simple** and **requires a straightforward** flow of execution.
+</Callout>
+
+<Callout title="Choose Asynchronous When" type="info">
+  - Tasks are **I/O-bound** and involve **waiting for input/output operations**. For example, external API calls, database queries, chat servers, file reading/writing, web scraping, etc.
+  - The application needs to **maximize resource utilization using a single thread**. It can be **scaled efficiently** to **handle many concurrent connections** or **requests**.
+</Callout>
+
+| Feature | Synchronous | Asynchronous |
+|---------|-------------|--------------|
+| Execution Model | Sequential (one task at a time) | Concurrent (multiple tasks at the same time) |
+| Blocking Behavior (I/O wait) | Blocking (puases the thread) | Non-blocking (yield control to other tasks) |
+| Complexity | Simpler, easier to read and debug | More complex, harder to read and debug |
+| Best For | CPU-bound tasks (heavy calculations, data processing) | I/O-bound tasks (web scraping, APIs, file operations, database queries, network services) | 
+| Core Tools | Standard Python functions | `asyncio`, `async/await`, `aiohttp` |
+
+<Callout title="A common misconception" type="warn">
+  **Async operations are not always faster than sync operations**, instead, they are designed to handle different type of tasks more efficiently. The choice between sync and async **depends on the specific use case** and **requirements** of the **application**.
+</Callout>
+
+## Synchronous: Blocking Operations
+
+In synchronous programming, **tasks are executed one after the other (sequentially)**. It means that a task must fully complete before the next task can begin. This approach is straightforward and easy to understand, but it can **lead to inefficiencies**, especially when dealing with **I/O-bound operations**. Key characteristics:
+- **Sequential execution**: Code runs line-by-line in the order it is written.
+- **Blocking**: When a task is waiting for an I/O operation to complete, the entire program is blocked until the task finishes.
+- **Simplicity**: Easier to read and debug due to its linear flow.
+
+<Callout title="What is I/O-bound operations?" type="idea">
+  I/O-bound operations are tasks where the computer **spends more time waiting for input/output (I/O) operations to complete**, rather than using the CPU for processing (Performing calculations or data manipulation).
+
+  The **overall performance** of these tasks is **limited by the speed of the I/O operations**. For example,
+  - Reading large data from a disk
+  - Making network request to fetch data from a server
+  - Querying a database for information
+  - Waiting for a response from network request
+</Callout>
+
+Imagine a single line of people waiting to order coffee.
+- The **barista (CPU/Process)** can only handle one **customer (Task)** at a time.
+- Now, if the first customer places an order that takes a long time, for example, **5 minutes** to complete.
+- All the other customers **must wait in line for 5 minutes** before they can place their orders.
+
+```python title="synchronous_example.py"
+import time
+
+def fetch_sync(url: str):
+    # Simulate a network request
+    print(f"Fetching {url}")
+
+    # time.sleep is used here to simulate the time spent waiting for a server response
+    # In a real app, the requests.get() call would block the thread anyway.
+    time.sleep(3)
+    return len(f"Data from {url}")
+
+def run_sync():
+    start_time = time.time()
+
+    # Task 1: Fetch endpoint A (3 seconds)
+    data_a = fetch_sync("Endpoint A")
+
+    # Task 2: Fetch endpoint B (3 seconds)
+    data_b = fetch_sync("Endpoint B")
+
+    total_time = time.time() - start_time
+    print(f"\nTotal synchronous time: {total_time:.2f} seconds")
+    print(f"Data A size: {data_a}, Data B size: {data_b}")
+
+if __name__ == "__main__":
+    run_sync()
+```
+With this setup, you'll see the total time taken to complete both tasks is approximately **6 seconds** because each task waits for the previous one to finish before starting.
+
+```powershell
+PS C:\Users\karchunt\Desktop\All\karchunt.com> uv run app.py
+Fetching Endpoint A
+Fetching Endpoint B
+
+Total synchronous time: 6.00 seconds
+Data A size: 20, Data B size: 20
+```
+
+## Asynchronous: Non-Blocking Operations
+
+In asynchronous programming, **tasks are executed concurrently**, allowing a **single thread to handle multiple tasks** at the same time. This approach is very useful for **I/O-bound operations**, as it allows the program to continue executing other tasks while waiting for I/O operations to complete. Key characteristics:
+- **Concurrent execution**: Multiple tasks can be in progress simultaneously.
+- **Non-blocking**: When a task is waiting for an I/O operation to complete, other tasks can continue executing.
+- **Complexity**: Can be more challenging to read and debug due to the non-linear flow of execution.
+
+<Callout title="Key Concepts of Async" type="idea">
+  - **Event Loop**: The heart of asynchronous programming, responsible for **monitoring tasks** and **dispatching them** when they are ready to run.
+    - **Orchestrates** when a task should pause (yield control) and when it should resume (get control back).
+  - `async` and `await`: Keywords used to define asynchronous functions and to pause their execution until a task is complete.
+    - `async def`: **Defines** an **asynchronous function** (coroutine - a function that can be paused and resumed)
+    - `await`: **Pauses** the **execution of the coroutine** (yield control to the event loop) until the awaited task is complete.
+      - When a task hits an `await` statement, it **stops blocking** the thread and it **gives up control** which allows the **event loop** to **run other waiting tasks**.
+</Callout>
+
+Imagine the same line of people waiting to order coffee, but this time the barista can take orders from multiple customers at once.
+- The **barista (thread/worker)** takes the order from the first customer and while waiting for the coffee to be prepared by the **machine (being blocked)**, the barista takes the order from the second customer.
+- Now, when the coffee machine finishes the first order, the barista can **immediately serve** it to the first customer without making the second customer wait unnecessarily for the second ordering process to complete.
+- This way, the overall waiting time for all customers is reduced.
+
+```python title="asynchronous_example.py"
+import time
+import asyncio
+
+async def fetch_async(url: str):
+    # Simulate a network request
+    print(f"Fetching {url}")
+
+    await asyncio.sleep(3)
+    return len(f"Data from {url}")
+
+async def run_async():
+    start_time = time.time()
+
+    results = await asyncio.gather(
+        fetch_async("Endpoint A"),
+        fetch_async("Endpoint B")
+    )
+
+    total_time = time.time() - start_time
+    print(f"\nTotal asynchronous time: {total_time:.2f} seconds")
+    print(f"Data A size: {results[0]}, Data B size: {results[1]}")
+
+if __name__ == "__main__":
+    asyncio.run(run_async())
+```
+With this setup, you'll see the total time taken to complete both tasks is approximately **3 seconds** because both tasks are executed concurrently.
+- `asyncio.sleep()` - simulates an asynchronous wait, allowing other tasks to run during this period (unlike `time.sleep()`).
+- `asyncio.gather()` - runs multiple asynchronous tasks concurrently and waits for all of them to complete.
+- When the first task hits `await asyncio.sleep(3)`, it yields control back to the event loop, allowing the second task to start executing immediately.
+
+```powershell
+PS C:\Users\karchunt\Desktop\All\karchunt.com> uv run app.py
+Fetching Endpoint A
+Fetching Endpoint B
+
+Total asynchronous time: 3.01 seconds
+Data A size: 20, Data B size: 20
+```

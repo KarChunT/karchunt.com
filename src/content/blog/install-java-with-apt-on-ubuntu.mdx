@@ -1,0 +1,46 @@
+---
+title: Install Java with APT on Ubuntu
+description: Learn how to install Java with APT on Ubuntu
+date: 2025-03-26
+author: KarChunT
+tags: [Java]
+---
+
+## Steps of installing Java with APT on Ubuntu
+
+<Callout title="More Information">
+  [Documentation](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-22-04)
+</Callout>
+
+<Steps>
+
+### Update apt package
+
+```bash
+sudo apt update
+```
+
+### Install JRE
+
+```bash
+sudo apt install default-jre
+```
+
+### Verify Java installation
+
+```bash
+java -version
+```
+
+### Install Java JDK
+
+```bash
+sudo apt install default-jdk
+```
+
+### Verify Java JDK installation
+```bash
+javac -version
+```
+
+</Steps>
