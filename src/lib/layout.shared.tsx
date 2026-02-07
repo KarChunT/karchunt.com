@@ -1,11 +1,17 @@
 import Image from 'next/image';
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
-import { BookIcon, PersonStandingIcon, LinkedinIcon } from 'lucide-react';
+import {
+  BookIcon,
+  BookTextIcon,
+  PersonStandingIcon,
+  LinkedinIcon,
+} from 'lucide-react';
 import {
   APP_NAME,
   APP_ICON,
   GITHUB_URL,
   LINKEDIN_URL,
+  DOCUMENTATION,
 } from '@/src/app/constants';
 import { getBasePath } from '@/src/lib/utils';
 
@@ -46,6 +52,20 @@ export function baseOptions(): BaseLayoutProps {
         url: '/blog',
         secondary: false,
         active: 'nested-url',
+      },
+      {
+        type: 'menu',
+        text: 'Docs',
+        icon: <BookTextIcon />,
+        items: Object.values(DOCUMENTATION).map((doc) => {
+          const Icon = doc.icon;
+          return {
+            text: doc.title,
+            description: doc.description,
+            url: doc.href,
+            icon: <Icon />,
+          };
+        }),
       },
       {
         icon: <LinkedinIcon />,

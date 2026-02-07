@@ -28,7 +28,7 @@ import {
   Type,
   Hash,
 } from 'lucide-react';
-import { CustomCallout } from '../CustomCallout';
+import { Callout } from 'fumadocs-ui/components/callout';
 
 interface MemoryCell {
   address: string;
@@ -316,7 +316,7 @@ const RAMVisualization = () => {
                   use Write to Selected Cell.
                 </p>
               </div>
-              <CustomCallout title="Modes">
+              <Callout title="Modes">
                 <p className="text-sm">
                   <strong>Auto Mode:</strong> Writes data sequentially in order
                   (0x000 → 0x001 → 0x002...) and stops after all 8 cells are
@@ -325,7 +325,7 @@ const RAMVisualization = () => {
                   <strong>Manual Mode:</strong> Click any cell to select it,
                   then use manual read/write buttons for random access.
                 </p>
-              </CustomCallout>
+              </Callout>
             </CardContent>
           </CardHeader>
         </Card>

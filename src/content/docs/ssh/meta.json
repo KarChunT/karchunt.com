@@ -1,0 +1,18 @@
+{
+  "title": "SSH",
+  "root": true,
+  "pages": [
+    "---Introduction---",
+    "ssh-overview",
+    "installation",
+    "---SSH Keys---",
+    "play-with-ssh-keys",
+    "---Host & Server---",
+    "remote-server-connection",
+    "host-configuration",
+    "server-configuration",
+    "---SSH Tunnels---",
+    "local-tunneling",
+    "remote-tunneling"
+  ]
+}

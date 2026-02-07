@@ -1,0 +1,280 @@
+---
+title: Basic Commands
+---
+
+<Callout title="More Information">
+  You can refer to `command --help` or `man command` for more information about any command.
+</Callout>
+
+### pwd
+
+`pwd` command stands for **print working directory**. It displays the current directory you are in.
+
+```bash
+kc@kcserver:~$ pwd
+/home/kc
+```
+
+### echo
+
+`echo` command used to **display a line of text/string** that is passed as an argument.
+
+```bash
+kc@kcserver:~$ echo "Hello World"
+Hello World
+
+kc@kcserver:~$ echo -n "Hello World" # without trailing newline
+Hello Worldkc@kcserver:~$
+```
+
+### uptime
+
+`uptime` command shows **how long the system has been running**, along with the current time, number of users, and system load averages.
+
+```bash
+kc@kcserver:~$ uptime
+ 14:23:58 up 7 min,  2 users,  load average: 0.04, 0.03, 0.00
+```
+
+### mkdir
+
+`mkdir` command is used to **create a new directory**.
+
+```bash
+karchunt@kcserver:~$ mkdir folder1 folder2
+karchunt@kcserver:~$ ls
+folder1  folder2
+```
+
+You can create a folder using **relative path** as well, but the **parent directories must exist**. If the parent directory does not exist, you can use `-p` option to create the parent directories as needed.
+
+```bash
+karchunt@kcserver:~$ mkdir folder3/innerfolder
+mkdir: cannot create directory ‘folder3/innerfolder’: No such file or directory
+
+karchunt@kcserver:~$ mkdir -p folder3/innerfolder
+karchunt@kcserver:~$ ls
+folder3
+karchunt@kcserver:~$ ls folder3
+innerfolder
+```
+
+### cd
+
+<Callout title="Absolute vs Relative Paths">
+  An **absolute path** starts from the **root directory** `/`, while a **relative path** is relative to the **current working directory**.
+</Callout>
+
+`cd` command stands for **change directory**. It is used to change the current working directory.
+
+- To **move up one level** in the directory hierarchy, you can use `..` as an argument to `cd`.
+
+  ```bash
+  karchunt@kcserver:~/folder3$ cd ..
+  karchunt@kcserver:~$
+  ```
+
+- If you want to go back to your **home directory**, you can use `cd` without any arguments or use `cd ~`.
+
+  ```bash
+  karchunt@kcserver:~/folder3$ cd
+  karchunt@kcserver:~$
+  ```
+
+- Navigate to a **specific path** by providing the full or relative path as an argument to `cd`.
+
+  ```bash
+  karchunt@kcserver:~$ cd folder3/innerfolder
+  karchunt@kcserver:~/folder3/innerfolder$
+  ```
+
+### mv
+
+`mv` command is used to **move or rename files and directories**.
+
+- To **rename a file or directory**, provide the current name and the new name as arguments.
+
+  ```bash
+  karchunt@kcserver:~$ mv oldname.txt newname.txt
+  karchunt@kcserver:~$ ls
+  newname.txt
+  ```
+
+- To **move a file or directory** to a different location, provide the source path and the destination path as arguments.
+
+  ```bash
+  karchunt@kcserver:~$ mv newname.txt folder1/
+  karchunt@kcserver:~$ ls folder1
+  newname.txt
+  ```
+
+### cp
+
+`cp` command is used to **copy files and directories**.
+
+- To **copy a file**, provide the source file and the destination file or directory as arguments.
+
+  ```bash
+  karchunt@kcserver:~$ cp folder1/newname.txt folder2/
+  karchunt@kcserver:~$ ls folder2
+  newname.txt
+  ```
+
+- To **copy a directory and its contents**, use the `-r` (recursive) option.
+
+  ```bash
+  karchunt@kcserver:~$ cp -r folder1/ folder3/
+  karchunt@kcserver:~$ ls folder3
+  newname.txt
+  ```
+
+### rm
+
+<Callout title="More Information">
+  If you face some folders **unable to delete due to permissions issues**. You can use `sudo rm -rf foldername/` to **force delete the folder with superuser privileges**. Be very careful while using `sudo rm -rf` as it can delete important system files if used incorrectly.
+</Callout>
+
+
+`rm` command is used to **remove files and directories**.
+
+- To **remove a file**, provide the file name as an argument.
+
+  ```bash
+  karchunt@kcserver:~$ rm folder2/newname.txt
+  karchunt@kcserver:~$ ls folder2
+  karchunt@kcserver:~$
+  ```
+
+- To **remove a directory and its contents**, use the `-r` (recursive) option.
+
+  ```bash
+  karchunt@kcserver:~$ rm -r folder3/
+  karchunt@kcserver:~$ ls
+  folder1  folder2
+  ```
+
+### cat
+
+`cat` command can be used to **view the contents of a file**, **create a new file**, or **concatenate multiple files**.
+
+- To **view the contents of a file**, provide the file name as an argument.
+
+  ```bash
+  karchunt@kcserver:~$ cat folder1/newname.txt
+  This is a sample text file.
+  ```
+
+- To **create a new file** and add text to it, use the following command:
+
+  ```bash
+  karchunt@DESKTOP-CCAQ09F:~$ cat > sample.txt
+  hello
+  HELLO
+  hi
+  karchunt@DESKTOP-CCAQ09F:~$ cat sample.txt
+  hello
+  HELLO
+  hi
+  ```
+  After typing the text, press `ENTER` and `CTRL + D` to save and exit.
+
+- To **concatenate multiple files** and display their contents, provide the file names as arguments.
+
+  ```bash
+  karchunt@kcserver:~$ cat file1.txt file2.txt
+  Content of file1
+  Content of file2
+  ```
+
+### touch
+
+`touch` command is used to **create an empty file**. To **create an empty file**, provide the file name as an argument.
+
+  ```bash
+  karchunt@kcserver:~$ touch newfile.txt
+  karchunt@kcserver:~$ ls
+  newfile.txt
+  ```
+
+### more
+
+`more` command is used to **view the contents of a file one screen at a time**.
+
+The key controls while using `more` are:
+- Press `SPACE` to go to the next page.
+- Press `ENTER` to go to the next line.
+- Press `q` to quit viewing.
+- Press `b` to go back one page.
+- Press `/` followed by a search term to search within the file.
+
+```bash
+karchunt@kcserver:~$ more largefile.txt
+This is line 1
+This is line 2
+```
+
+### less
+
+`less` command is similar to `more`, but it provides more advanced features for viewing file contents.
+
+The key controls while using `less` are:
+- Press `SPACE` to go to the next page.
+- Press `b` to go back one page.
+- Press `ENTER` or `Down Arrow` to go to the next line.
+- Press `Up Arrow` to go to the previous line.
+- Press `q` to quit viewing.
+- Press `/` followed by a search term to search within the file.
+- etc
+
+```bash
+karchunt@kcserver:~$ less largefile.txt
+This is line 1
+This is line 2
+```
+
+### ls
+
+`ls` command is used to **list the files and directories** in the current directory or a specified directory.
+
+- To **list files and directories** in the current directory, simply use `ls`.
+
+  ```bash
+  karchunt@kcserver:~$ ls
+  folder1  folder2  newfile.txt
+  ```
+
+- To **list files and directories** in a specific directory, provide the directory name as an argument.
+
+  ```bash
+  karchunt@kcserver:~$ ls folder1
+  newname.txt
+  ```
+
+- You can use various options with `ls` to modify its behavior. Some common options include:
+  - `-l`: Long listing format, which provides detailed information about each file and directory
+  - `-a`: Show all files, including hidden files (those starting with a dot `.`)
+  - `-h`: Human-readable file sizes (e.g., KB, MB)
+  - `-t`: Sort by modification time, with the newest files first
+  - `-r`: Reverse the order of the sort
+  ```bash
+  karchunt@DESKTOP-CCAQ09F:~$ ls -lahtr
+  total 68K
+  drwxr-xr-x 3 root     root     4.0K Nov  1 17:37 ..
+  -rw-r--r-- 1 karchunt karchunt  807 Nov  1 17:37 .profile
+  -rw-r--r-- 1 karchunt karchunt 3.7K Nov  1 17:37 .bashrc
+  -rw-r--r-- 1 karchunt karchunt  220 Nov  1 17:37 .bash_logout
+  drwx------ 2 karchunt karchunt 4.0K Nov  1 17:38 .cache
+  drwxr-xr-x 2 karchunt karchunt 4.0K Nov  2 15:05 .landscape
+  drwx------ 3 karchunt karchunt 4.0K Jan 24 17:18 .config
+  -rw-rw-r-- 1 karchunt karchunt    0 Jan 25 10:44 .motd_shown
+  -rw-r--r-- 1 karchunt karchunt    0 Jan 25 11:24 .sudo_as_admin_successful
+  drwxr-xr-x 3 karchunt karchunt 4.0K Jan 25 14:59 folder3
+  drwxr-xr-x 3 karchunt karchunt 4.0K Jan 25 15:06 folder1
+  -rw-r--r-- 1 karchunt karchunt   15 Jan 25 15:11 sample.txt
+  -rw-r--r-- 1 karchunt karchunt    6 Jan 25 15:14 sample2.txt
+  drwxr-xr-x 3 karchunt karchunt 4.0K Jan 25 15:17 .local
+  -rw-r--r-- 1 karchunt karchunt 5.4K Jan 25 15:18 largefile.txt
+  -rw------- 1 karchunt karchunt  903 Jan 25 15:20 .bash_history
+  -rw------- 1 karchunt karchunt   38 Jan 25 15:23 .lesshst
+  drwxr-x--- 8 karchunt karchunt 4.0K Jan 25 15:23 .
+  ```

@@ -412,7 +412,7 @@ const BinarySearchVisualization = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <h3 className="font-semibold">Binary Search</h3>
+              <h3 className="mt-0 font-semibold">Binary Search</h3>
               <p className="text-muted-foreground text-sm">
                 Binary Search is an efficient algorithm for finding a target
                 value in a sorted array. It works by repeatedly dividing the

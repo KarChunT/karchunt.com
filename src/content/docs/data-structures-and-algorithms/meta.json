@@ -1,0 +1,17 @@
+{
+  "title": "Data Structures and Algorithms",
+  "root": true,
+  "pages": [
+    "---Introduction---",
+    "what-is-data-structures-and-algorithms",
+    "ram",
+    "---Linear Data Structures---",
+    "static-array",
+    "dynamic-array",
+    "stack",
+    "linked-lists",
+    "---Algorithms---",
+    "sorting",
+    "searching"
+  ]
+}

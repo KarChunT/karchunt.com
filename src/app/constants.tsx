@@ -1,11 +1,18 @@
+import Icon from '@mdi/react';
+import { mdiSsh } from '@mdi/js';
+import { TbNumber12Small, TbBrandDocker, TbBinaryTree } from 'react-icons/tb';
+import { FaGitAlt, FaPython } from 'react-icons/fa';
+import { BiCube } from 'react-icons/bi';
+import { SiKubernetes } from 'react-icons/si';
+import { FaPeopleArrows, FaLinux } from 'react-icons/fa6';
+
 export const APP_NAME: string = 'KarChunT';
 export const APP_ICON: string = '/penguin-nobg.webp';
 export const CREDLY_URL: string = 'https://www.credly.com/users/kar-chun-tan';
 export const GITHUB_URL: string = 'https://github.com/KarChunT/karchunt.com';
 export const LINKEDIN_URL: string = 'https://www.linkedin.com/in/karchuntan';
-export const JOB_POSITION: string =
-  'Senior Engineer, Software Development Engineering (Apps)';
-export const JOB_COMPANY: string = 'SanDisk';
+export const JOB_POSITION: string = 'Senior IT Engineer';
+export const JOB_COMPANY: string = 'AMD';
 export const NAME: string = 'Kar Chun Tan';
 export const PERSONAL_IMAGE: string = '/personal/karchunt.webp';
 export const CHANNELS = {
@@ -90,3 +97,77 @@ export const FOOTER_LINKS = [
     ],
   },
 ];
+
+export const DOCS_REPO_BASE: string = `${GITHUB_URL}/tree/main`;
+export const DOCUMENTATION = {
+  '12 Factor App': {
+    title: '12 Factor App',
+    href: '/docs/12-factor-app',
+    description:
+      'It is a methodology for building software-as-a-service applications with best practices.',
+    icon: TbNumber12Small,
+  },
+  Docker: {
+    title: 'Docker',
+    href: '/docs/docker/what-is-docker',
+    description:
+      'Docker is an open platform for developing, shipping, and running applications.',
+    icon: TbBrandDocker,
+  },
+  SSH: {
+    title: 'SSH',
+    href: '/docs/ssh/ssh-overview',
+    description:
+      'SSH stands for Secure Shell (SSH) Protocol that is mainly used to connect to a Linux server remotely.',
+    icon: () => <Icon className="rounded-md" path={mdiSsh} size={0.65} />,
+  },
+  Git: {
+    title: 'Git',
+    href: '/docs/git/what-is-git',
+    description:
+      'Git is a distributed version control system that tracks file changes.',
+    icon: FaGitAlt,
+  },
+  'Python OOP': {
+    title: 'Python OOP',
+    href: '/docs/python-oop/concepts-of-oop',
+    description:
+      'Object-Oriented Programming (OOP) is a programming paradigm that uses objects and classes to structure software programs.',
+    icon: FaPython,
+  },
+  Taskfile: {
+    title: 'Taskfile',
+    href: '/docs/taskfile/what-is-taskfile',
+    description:
+      'Taskfile is a task runner / build tool that simplifies the automation of routine development tasks.',
+    icon: BiCube,
+  },
+  Kubernetes: {
+    title: 'Kubernetes',
+    href: '/docs/kubernetes/what-is-kubernetes',
+    description:
+      'Kubernetes, also known as k8s, is an open source system for automating deployment, scaling, and management of containerized applications.',
+    icon: SiKubernetes,
+  },
+  'Data Structures & Algorithms': {
+    title: 'Data Structures & Algorithms',
+    href: '/docs/data-structures-and-algorithms/what-is-data-structures-and-algorithms',
+    description:
+      'Data structures are used to organize, store, and manipulate data in memory, while algorithms are used to solve specific problems.',
+    icon: TbBinaryTree,
+  },
+  interview: {
+    title: 'Interview',
+    href: '/docs/interview/welcome',
+    description:
+      'A collection of commonly asked interview questions and answers in the software industry.',
+    icon: FaPeopleArrows,
+  },
+  linux: {
+    title: 'Linux',
+    href: '/docs/linux/what-is-linux',
+    description:
+      'Linux is a family of open-source Unix-like operating systems based on the Linux kernel.',
+    icon: FaLinux,
+  },
+};

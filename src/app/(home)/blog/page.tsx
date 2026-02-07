@@ -12,14 +12,12 @@ function getName(path: string) {
   return PathUtils.basename(path, PathUtils.extname(path));
 }
 
-const page = async () => {
+export const getBlogs = async () => {
   const posts = [...blog.getPages()].sort(
     (a, b) =>
       new Date(b.data.date ?? getName(b.path)).getTime() -
       new Date(a.data.date ?? getName(a.path)).getTime(),
   );
-
-  // Extract type based on user request: url, data (title, description, date, author, tags)
   const blogs: BlogPost[] = posts.map((post) => ({
     url: post.url,
     title: post.data.title,
@@ -29,8 +27,14 @@ const page = async () => {
     author: post.data.author,
     tags: post.data.tags,
   }));
+  return blogs;
+};
 
-  const tags = blogs.flatMap((post) => post.tags || []);
+export const getTags = (blogs: BlogPost[]) => {
+  return blogs.flatMap((post) => post.tags || []);
+};
+
+export const getSortedTags = (tags: string[]) => {
   const allTagsCount = tags.reduce(
     (acc, tag) => {
       acc[tag] = (acc[tag] || 0) + 1;
@@ -42,6 +46,14 @@ const page = async () => {
   const sortedTags = Object.fromEntries(
     Object.entries(allTagsCount).sort(([a], [b]) => a.localeCompare(b)),
   );
+  return sortedTags;
+};
+
+const page = async () => {
+  // Extract type based on user request: url, data (title, description, date, author, tags)
+  const blogs = await getBlogs();
+  const tags = getTags(blogs);
+  const sortedTags = getSortedTags(tags);
 
   return <DisplayBlogClient blogs={blogs} allTags={sortedTags} />;
 };

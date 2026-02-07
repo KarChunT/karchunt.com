@@ -296,7 +296,7 @@ const BubbleSortVisualization = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <h3 className="font-semibold">Bubble Sort</h3>
+              <h3 className="mt-0 font-semibold">Bubble Sort</h3>
               <p className="text-muted-foreground text-sm">
                 Bubble Sort repeatedly steps through the list, compares adjacent
                 elements and swaps them if they are in the wrong order. The pass

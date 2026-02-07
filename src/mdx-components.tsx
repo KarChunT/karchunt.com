@@ -2,11 +2,24 @@ import defaultMdxComponents from 'fumadocs-ui/mdx';
 import type { MDXComponents } from 'mdx/types';
 import Comments from '@/src/components/Comments';
 import * as TabsComponents from 'fumadocs-ui/components/tabs';
+import { DocsCards } from '@/src/components/DocsCards';
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 import { File, Folder, Files } from 'fumadocs-ui/components/files';
 import { Step, Steps as BaseSteps } from 'fumadocs-ui/components/steps';
 import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
 import { Children, isValidElement, type ReactNode } from 'react';
+import {
+  RAMVisualization,
+  StaticArrayVisualization,
+  DynamicArrayVisualization,
+  StackVisualization,
+  SinglyLinkedListVisualization,
+  DoublyLinkedListVisualization,
+  BubbleSortVisualization,
+  LinearSearchVisualization,
+  BinarySearchVisualization,
+} from '@/src/components/algoVisualizerSub/visualizers';
+import { Mermaid } from '@/src/components/mdx/mermaid';
 
 function CustomSteps({ children }: { children: ReactNode }) {
   const items = Children.toArray(children);
@@ -56,6 +69,17 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     Accordion,
     Accordions,
     ImageZoom,
+    DocsCards,
     Comments,
+    Mermaid,
+    RAMVisualization,
+    StaticArrayVisualization,
+    DynamicArrayVisualization,
+    StackVisualization,
+    SinglyLinkedListVisualization,
+    DoublyLinkedListVisualization,
+    BubbleSortVisualization,
+    LinearSearchVisualization,
+    BinarySearchVisualization,
   };
 }

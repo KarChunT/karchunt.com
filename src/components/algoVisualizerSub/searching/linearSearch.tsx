@@ -334,7 +334,7 @@ const LinearSearchVisualization = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <h3 className="font-semibold">Linear Search</h3>
+              <h3 className="mt-0 font-semibold">Linear Search</h3>
               <p className="text-muted-foreground text-sm">
                 Linear Search sequentially checks each element of the array
                 until a match is found or the entire array has been searched.

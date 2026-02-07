@@ -5,7 +5,11 @@ import {
   frontmatterSchema,
 } from 'fumadocs-mdx/config';
 import lastModified from 'fumadocs-mdx/plugins/last-modified';
-import { transformerMetaHighlight } from '@shikijs/transformers';
+import {
+  transformerMetaHighlight,
+  transformerMetaWordHighlight,
+} from '@shikijs/transformers';
+import { remarkMdxMermaid } from 'fumadocs-core/mdx-plugins';
 import { z } from 'zod';
 
 export const docs = defineDocs({
@@ -31,12 +35,16 @@ export const blog = defineCollections({
 
 export default defineConfig({
   mdxOptions: {
+    remarkPlugins: [remarkMdxMermaid],
     rehypeCodeOptions: {
       themes: {
         light: 'github-light',
         dark: 'github-dark',
       },
-      transformers: [transformerMetaHighlight()],
+      transformers: [
+        transformerMetaHighlight(),
+        transformerMetaWordHighlight(),
+      ],
     },
   },
   plugins: [lastModified()],

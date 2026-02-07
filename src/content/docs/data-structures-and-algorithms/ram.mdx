@@ -1,0 +1,187 @@
+---
+title: Memory (RAM)
+---
+
+## Introduction
+
+Before I explain what is Memory (RAM), you need to understand how computers work in a very basic level. **Computers process data in binary form**, which is represented by **bits (0s and 1s)**. These **bits are grouped together to form bytes**, and **bytes are used represent various types of data** such as integers, characters, and more complex data structures.
+
+As a developer, you will often work with **variables** in your code. These variables need to be stored somewhere in the computer's memory so that they can be accessed and manipulated during program execution. This is where **RAM (Random Access Memory)** comes into play.
+
+## What is RAM?
+
+<Callout title="Bit and Byte">
+  1 byte = 8 bits  
+  A bit is a 0 or 1
+
+  RAM is **measured in bytes (GB, MB, KB)**
+</Callout>
+
+RAM stands for **Random Access Memory**, which is a type of computer memory that is used to **store data that is actively being used** or **processed** by the computer. RAM is **volatile memory**, meaning that it **loses its contents** when the **computer is turned off**.
+
+Modern computers typically come with **at least 8GB of RAM**. The **more RAM** a computer has, the **more data it can process simultaneously**, which can **lead to better performance**. To put that into perspective:
+- 8GB of RAM = **8,589,934,592 bytes**
+  - `8 x 1024 (giga) x 1024 (mega) x 1024 (kilo) = 8,589,934,592 bytes`
+  - `8,589,934,592 bytes = 68,719,476,736 bits (8GB x 8 bits per byte)`
+  - 8GB of RAM can store approximately **2 billion integers** (assuming each integer takes up 4 bytes).
+    - Each integer takes 4 bytes, so `8,589,934,592 bytes / 4 bytes per integer = 2,147,483,648 integers`.
+- 16GB of RAM = **17,179,869,184 bytes**
+  - `16 x 1024 (giga) x 1024 (mega) x 1024 (kilo) = 17,179,869,184 bytes`
+  - `17,179,869,184 bytes = 137,438,953,472 bits (16GB x 8 bits per byte)`
+  - 16GB of RAM can store approximately **4.3 billion integers** (assuming each integer takes up 4 bytes).
+    - Each integer takes 4 bytes, so `17,179,869,184 bytes / 4 bytes per integer = 4,294,967,296 integers`.
+
+### Components of RAM
+
+<Callout title="What is contiguous block of data?" type="idea">
+  A contiguous block of data means that the data is stored in a **continuous sequence of memory addresses**, without any gaps. For example, if you have an array of integers, the first element is stored at a certain memory address (**1000**) and each element **takes up a fixed amount of space** (4 bytes for an integer). So the second element will be stored at the next memory address (**1004**), the third at **1008**, and so on.
+
+  This allows **fast access by index**, because you can **calculate the address of any element** directly.
+</Callout>
+
+RAM can be considered as a **contiguous block of data** (memory is allocated to a process or file needing it), which means that it has two components:
+- value - the **actual data being stored** (e.g., an integer, character, etc.).
+- address - the **location where the value is stored in memory** and is **used to access the value**.
+
+### Binary Representation
+
+Computers use **binary representation** to store and process data. In binary, all data is represented using only two symbols: **0** and **1**. Each digit in a binary number is called a **bit**. For example, the decimal number **5** is represented in binary as **101**.
+
+When data is stored in RAM, it is **stored as a series of bits**. Each bit can be either **0** or **1**, and **multiple bits are grouped together to form larger data types**, such as **bytes** (8 bits), words (16 bits), and double words (32 bits).
+
+<Callout title="Binary Positions and Powers of 2">
+  Binary numbers are based on **powers of 2**. Each position in a binary number represents a power of 2, starting from 2⁰ on the right.
+
+  **8-bit binary positions:**
+  ```
+  Position:  7    6    5    4    3    2    1    0
+  ================================================
+  Power:     2⁷   2⁶   2⁵   2⁴   2³   2²   2¹   2⁰
+  Value:     128  64   32   16   8    4    2    1
+  ```
+  **To convert binary to decimal:** Add up the values where the bit is 1
+</Callout>
+
+For example, the integer **5** can be represented in binary as follows:
+- Decimal: **5**
+- Binary: **00000000 00000000 00000000 00000101** (32 bits)
+
+Here is a table showing the binary representation of the first 10 decimal numbers in different bit sizes:
+
+| Decimal | 8-bit Binary | 16-bit Binary | 32-bit Binary |
+|---------|--------------|---------------|---------------|
+| 1 | 00000001 | 00000000 00000001 | 00000000 00000000 00000000 00000001 |
+| 2 | 00000010 | 00000000 00000010 | 00000000 00000000 00000000 00000010 |
+| 3 | 00000011 | 00000000 00000011 | 00000000 00000000 00000000 00000011 |
+| 4 | 00000100 | 00000000 00000100 | 00000000 00000000 00000000 00000100 |
+| 5 | 00000101 | 00000000 00000101 | 00000000 00000000 00000000 00000101 |
+| 6 | 00000110 | 00000000 00000110 | 00000000 00000000 00000000 00000110 |
+| 7 | 00000111 | 00000000 00000111 | 00000000 00000000 00000000 00000111 |
+| 8 | 00001000 | 00000000 00001000 | 00000000 00000000 00000000 00001000 |
+| 9 | 00001001 | 00000000 00001001 | 00000000 00000000 00000000 00001001 |
+| 10 | 00001010 | 00000000 00001010 | 00000000 00000000 00000000 00001010 |
+
+This binary representation is what is actually stored in RAM.
+
+## How Data is stored in RAM?
+
+### Store Array of Integers in RAM
+
+Let's say we have an array of integers. For example we have `[1, 2, 3]`. But how can we store all these integers in the RAM, as computers only **understand bits 0 or 1**.
+
+```mermaid
+graph TD
+  A["Array: [1, 2, 3]"] --> B["Convert to Binary"]
+  B --> C["Store in RAM"]
+  
+  subgraph RAM ["RAM Memory"]
+    D["Address: 100<br/>Value: 00000001<br/>(Integer: 1)"]
+    E["Address: 104<br/>Value: 00000010<br/>(Integer: 2)"]
+    F["Address: 108<br/>Value: 00000011<br/>(Integer: 3)"]
+  end
+  
+  C --> D
+  C --> E
+  C --> F
+```
+
+So the integer will be **converted into bits** like for example,
+- 1 can be represented as `00000001`
+- 2 as `00000010`
+- 3 as `00000011`.
+
+<Callout title="Important">
+  - Each element in array will be **stored continously in order**.  
+  - Do take note that, we **cannot determine and choose what location** the data will be stored into the RAM.
+</Callout>
+
+Then we can only put that into RAM. 
+
+<Callout title="Why the address is incrementing by 4?">
+  The address increments by **4** because each integer takes **4 bytes (32 bits)** of memory space.
+  - **1 integer = 4 bytes = 32 bits**
+  - Since **each memory address points** to **1 byte**, we need **4 consecutive addresses** to store one integer
+  - Therefore, the next integer must be stored **4 addresses later**
+
+  Example:
+  - Integer 1 occupies addresses: `100, 101, 102, 103`
+  - Integer 2 occupies addresses: `104, 105, 106, 107`
+  - Integer 3 occupies addresses: `108, 109, 110, 111`
+
+  This is why the addresses for the integers in the array increment by 4.
+  - `Element address = base_address + (index × element_size)`
+  - Example:
+    - `Array[0] = 100 + (0 × 4) = 100`
+    - `Array[1] = 100 + (1 × 4) = 104`
+    - `Array[2] = 100 + (2 × 4) = 108`
+</Callout>
+
+### Store Array of Characters in RAM
+
+Let's say we have an array of characters. For example we have `['a', 'b', 'c']`. But how can we store all these characters in the RAM, as computers only **understand bits 0 or 1**. Similar to integers, we need to **convert the characters into bits**.
+
+```mermaid
+graph TD
+    A["Array: ['a', 'b', 'c']"] --> B["Convert to Binary"]
+    B --> C["Store in RAM"]
+
+    subgraph RAM ["RAM Memory"]
+        D["Address: 100<br/>Value: 01100001<br/>(Character: a)"]
+        E["Address: 101<br/>Value: 01100010<br/>(Character: b)"]
+        F["Address: 102<br/>Value: 01100011<br/>(Character: c)"]
+    end
+
+    C --> D
+    C --> E
+    C --> F
+```
+
+So the character will be **converted into bits** like for example,
+- 'a' can be represented as `01100001` (decimal 97)
+- 'b' as `01100010` (decimal 98)
+- 'c' as `01100011`. (decimal 99)
+
+Do take note that, the **address is incrementing by 1** because each character takes **1 byte (8 bits)** of memory space.
+
+<Callout title="Why the address is incrementing by 1?">
+  The address increments by **1** because each character takes **1 byte (8 bits)** of memory space.
+  - **1 character = 1 byte = 8 bits**
+  - Since **each memory address points** to **1 byte**, we need **1 address** to store one character
+  - Therefore, the next character is stored at the **very next address**
+
+  Example:
+  - Character 'a' occupies address: `100`
+  - Character 'b' occupies address: `101`
+  - Character 'c' occupies address: `102`
+
+  This is why the addresses for the characters in the array increment by 1.
+  - `Element address = base_address + (index × element_size)`
+  - Example:
+    - `Array[0] = 100 + (0 × 1) = 100`
+    - `Array[1] = 100 + (1 × 1) = 101`
+    - `Array[2] = 100 + (2 × 1) = 102`
+</Callout>
+
+## RAM Visualization
+
+<RAMVisualization />
