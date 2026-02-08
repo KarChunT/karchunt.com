@@ -3,7 +3,9 @@ import { Badge } from '@/components/ui/badge';
 import { getBlogs, getTags } from '@/app/(home)/blog/page';
 import { tagToSlug } from '@/lib/utils';
 
-export async function generateMetadata(props) {
+type Params = Promise<{ tag: string }>;
+
+export async function generateMetadata(props: { params: Params }) {
   const params = await props.params;
   const blogs = await getBlogs();
   const allTags = getTags(blogs);
@@ -22,7 +24,7 @@ export async function generateStaticParams() {
   return [...new Set(allTags)].map((tag) => ({ tag: tagToSlug(tag) }));
 }
 
-const page = async ({ params }) => {
+const page = async ({ params }: { params: Params }) => {
   const awaitedParams = await params;
   const tagSlug = awaitedParams.tag;
 

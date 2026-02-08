@@ -1,0 +1,20 @@
+{
+  "title": "Git",
+  "root": true,
+  "pages": [
+    "---Introduction---",
+    "what-is-git",
+    "git-installation",
+    "git-in-depth",
+    "---Getting Started with Git---",
+    "setup-repository",
+    "save-changes",
+    "branches",
+    "remote-repositories",
+    "rebasing",
+    "reset-and-revert",
+    "stashing",
+    "---Advanced---",
+    "reflog"
+  ]
+}
