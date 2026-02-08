@@ -1,4 +1,5 @@
 import { createMDX } from 'fumadocs-mdx/next';
+import { join } from 'path';
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
@@ -19,6 +20,10 @@ const config = {
         destination: '/llms.mdx/docs/:path*',
       },
     ];
+  },
+  webpack: (config) => {
+    config.resolve.alias['@'] = join(__dirname, 'src');
+    return config;
   },
 };
 
