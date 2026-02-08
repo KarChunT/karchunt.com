@@ -1,21 +1,31 @@
 import { DOCUMENTATION } from '@/src/app/constants';
 import { Card, Cards } from 'fumadocs-ui/components/card';
+import { GraphView } from '@/src/components/graph-view';
+import { buildGraph } from '@/src/lib/build-graph';
 
 export function DocsCards() {
   return (
-    <Cards>
-      {Object.values(DOCUMENTATION).map((doc) => {
-        const Icon = doc.icon;
-        return (
-          <Card
-            key={doc.title}
-            title={doc.title}
-            description={doc.description}
-            href={doc.href}
-            icon={<Icon />}
-          />
-        );
-      })}
-    </Cards>
+    <div className="flex flex-col gap-4">
+      <Cards>
+        {Object.values(DOCUMENTATION).map((doc) => {
+          const Icon = doc.icon;
+          return (
+            <Card
+              key={doc.title}
+              title={doc.title}
+              description={doc.description}
+              href={doc.href}
+              icon={<Icon />}
+            />
+          );
+        })}
+      </Cards>
+      <hr className="mt-3 mb-1" />
+      <div>
+        Here is the graph of all the documentation. <br />
+        You can click on the nodes to navigate to the documentation.
+        <GraphView graph={buildGraph()} />
+      </div>
+    </div>
   );
 }
