@@ -10,6 +10,8 @@ import {
   transformerMetaWordHighlight,
 } from '@shikijs/transformers';
 import { remarkMdxMermaid } from 'fumadocs-core/mdx-plugins';
+import rehypeKatex from 'rehype-katex';
+import remarkMath from 'remark-math';
 import { z } from 'zod';
 
 export const docs = defineDocs({
@@ -35,7 +37,8 @@ export const blog = defineCollections({
 
 export default defineConfig({
   mdxOptions: {
-    remarkPlugins: [remarkMdxMermaid],
+    remarkPlugins: [remarkMdxMermaid, remarkMath],
+    rehypePlugins: (v) => [rehypeKatex, ...v],
     rehypeCodeOptions: {
       themes: {
         light: 'github-light',
