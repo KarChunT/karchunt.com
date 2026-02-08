@@ -15,7 +15,7 @@ import remarkMath from 'remark-math';
 import { z } from 'zod';
 
 export const docs = defineDocs({
-  dir: 'src/content/docs',
+  dir: 'content/docs',
   docs: {
     postprocess: {
       includeProcessedMarkdown: true,
@@ -26,7 +26,7 @@ export const docs = defineDocs({
 
 export const blog = defineCollections({
   type: 'doc',
-  dir: 'src/content/blog',
+  dir: 'content/blog',
   schema: frontmatterSchema.extend({
     date: z.date(),
     lastUpdated: z.date().optional(),

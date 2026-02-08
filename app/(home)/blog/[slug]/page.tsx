@@ -36,7 +36,7 @@ export default async function Page(props: PageProps<'/blog/[slug]'>) {
   const { body: Mdx, toc } = await page.data.load();
   const filePath = path.join(
     process.cwd(),
-    'src/content/blog',
+    'content/blog',
     `${params.slug}.mdx`,
   );
 
