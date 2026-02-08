@@ -10,6 +10,8 @@ import {
   DocsDescription,
   DocsPage,
   DocsTitle,
+  EditOnGitHub,
+  PageLastUpdate,
 } from 'fumadocs-ui/layouts/docs/page';
 import { notFound } from 'next/navigation';
 import { getMDXComponents } from '@/src/mdx-components';
@@ -42,6 +44,16 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
             // this allows you to link to other pages with relative file paths
             a: createRelativeLink(source, page),
           })}
+        />
+
+        {page.data.lastModified && (
+          <PageLastUpdate
+            className="border-t pt-6"
+            date={new Date(page.data.lastModified)}
+          />
+        )}
+        <EditOnGitHub
+          href={`${GITHUB_URL}/blob/main/src/content/docs/${page.path}`}
         />
       </DocsBody>
     </DocsPage>

@@ -20,6 +20,7 @@ import {
   BinarySearchVisualization,
 } from '@/src/components/algoVisualizerSub/visualizers';
 import { Mermaid } from '@/src/components/mdx/mermaid';
+import { TypeTable } from 'fumadocs-ui/components/type-table';
 
 function CustomSteps({ children }: { children: ReactNode }) {
   const items = Children.toArray(children);
@@ -69,6 +70,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     Accordion,
     Accordions,
     ImageZoom,
+    TypeTable,
     DocsCards,
     Comments,
     Mermaid,
