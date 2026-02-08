@@ -8,18 +8,18 @@ import { IoMenu } from 'react-icons/io5';
 import { RxCross1 } from 'react-icons/rx';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
-import { getBasePath } from '@/src/lib/utils';
+import { getBasePath } from '@/lib/utils';
 import {
   APP_NAME,
   APP_ICON,
   DOCUMENTATION,
   GITHUB_URL,
   LINKEDIN_URL,
-} from '@/constants';
+} from '@/app/constants';
 
 import { usePathname } from 'next/navigation';
 import { ChevronDown } from 'lucide-react';
-import { cn } from '@/src/lib/utils';
+import { cn } from '@/lib/utils';
 import { PageMapItem } from 'nextra';
 
 interface DocSection {

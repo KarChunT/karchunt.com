@@ -1,4 +1,4 @@
-import { source } from '@/src/lib/source';
+import { source } from '@/lib/source';
 import type { Graph } from '../components/graph-view';
 
 export function buildGraph(): Graph {

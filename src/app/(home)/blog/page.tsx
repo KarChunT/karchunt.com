@@ -1,8 +1,6 @@
-import { blog } from '@/src/lib/source';
+import { blog } from '@/lib/source';
 import { PathUtils } from 'fumadocs-core/source';
-import DisplayBlogClient, {
-  BlogPost,
-} from '@/src/components/DisplayBlogClient';
+import DisplayBlogClient, { BlogPost } from '@/components/DisplayBlogClient';
 
 export const metadata = {
   title: 'Blog',

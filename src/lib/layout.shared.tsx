@@ -12,8 +12,8 @@ import {
   GITHUB_URL,
   LINKEDIN_URL,
   DOCUMENTATION,
-} from '@/src/app/constants';
-import { getBasePath } from '@/src/lib/utils';
+} from '@/app/constants';
+import { getBasePath } from '@/lib/utils';
 
 const basePath = getBasePath();
 

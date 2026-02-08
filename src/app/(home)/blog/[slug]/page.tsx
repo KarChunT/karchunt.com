@@ -1,16 +1,16 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { InlineTOC } from 'fumadocs-ui/components/inline-toc';
-import { blog } from '@/src/lib/source';
-import { createMetadata } from '@/src/lib/metadata';
-import { getMDXComponents } from '@/src/mdx-components';
+import { blog } from '@/lib/source';
+import { createMetadata } from '@/lib/metadata';
+import { getMDXComponents } from '@/mdx-components';
 import Image from 'next/image';
 import path from 'node:path';
 import fs from 'node:fs/promises';
-import { PERSONAL_IMAGE, NAME } from '@/src/app/constants';
-import { getBasePath } from '@/src/lib/utils';
-import { Control } from '@/src/components/ui/control';
-import { tagToSlug } from '@/src/lib/utils';
+import { PERSONAL_IMAGE, NAME } from '@/app/constants';
+import { getBasePath } from '@/lib/utils';
+import { Control } from '@/components/ui/control';
+import { tagToSlug } from '@/lib/utils';
 import { FaBook, FaYoutube } from 'react-icons/fa6';
 import {
   FaReadme,
@@ -22,9 +22,9 @@ import {
 import { IoLibraryOutline } from 'react-icons/io5';
 import { VscSymbolKeyword } from 'react-icons/vsc';
 import { TbClockEdit } from 'react-icons/tb';
-import { Badge } from '@/src/components/ui/badge';
+import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
-import Comments from '@/src/components/Comments';
+import Comments from '@/components/Comments';
 import readingTime from 'reading-time';
 
 export default async function Page(props: PageProps<'/blog/[slug]'>) {

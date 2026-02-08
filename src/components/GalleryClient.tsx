@@ -1,17 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Button } from '@/src/components/ui/button';
-import { Card, CardContent } from '@/src/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/src/components/ui/select';
+} from '@/components/ui/select';
 import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
-import { getBasePath } from '@/src/lib/utils';
+import { getBasePath } from '@/lib/utils';
 
 interface GalleryProps {
   src: string;

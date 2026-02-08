@@ -1,8 +1,8 @@
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 import type { MDXComponents } from 'mdx/types';
-import Comments from '@/src/components/Comments';
+import Comments from '@/components/Comments';
 import * as TabsComponents from 'fumadocs-ui/components/tabs';
-import { DocsCards } from '@/src/components/DocsCards';
+import { DocsCards } from '@/components/DocsCards';
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 import { File, Folder, Files } from 'fumadocs-ui/components/files';
 import { Step, Steps as BaseSteps } from 'fumadocs-ui/components/steps';
@@ -18,8 +18,8 @@ import {
   BubbleSortVisualization,
   LinearSearchVisualization,
   BinarySearchVisualization,
-} from '@/src/components/algoVisualizerSub/visualizers';
-import { Mermaid } from '@/src/components/mdx/mermaid';
+} from '@/components/algoVisualizerSub/visualizers';
+import { Mermaid } from '@/components/mdx/mermaid';
 import { TypeTable } from 'fumadocs-ui/components/type-table';
 
 function CustomSteps({ children }: { children: ReactNode }) {

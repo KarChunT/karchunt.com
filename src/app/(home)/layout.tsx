@@ -1,7 +1,7 @@
 import { HomeLayout } from 'fumadocs-ui/layouts/home';
-import { baseOptions } from '@/src/lib/layout.shared';
+import { baseOptions } from '@/lib/layout.shared';
 import type { ReactNode } from 'react';
-import Footer from '@/src/components/Footer';
+import Footer from '@/components/Footer';
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (

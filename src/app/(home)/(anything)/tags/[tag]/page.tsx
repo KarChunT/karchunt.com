@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { Badge } from '@/src/components/ui/badge';
-import { getBlogs, getTags } from '@/src/app/(home)/blog/page';
-import { tagToSlug } from '@/src/lib/utils';
+import { Badge } from '@/components/ui/badge';
+import { getBlogs, getTags } from '@/app/(home)/blog/page';
+import { tagToSlug } from '@/lib/utils';
 
 export async function generateMetadata(props) {
   const params = await props.params;

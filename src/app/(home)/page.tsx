@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heatmap } from '@paper-design/shaders-react';
-import { getBasePath } from '@/src/lib/utils';
-import CoreValues from '@/src/components/home/CoreValues';
+import { getBasePath } from '@/lib/utils';
+import CoreValues from '@/components/home/CoreValues';
 
 const MemoizedHeatmap = React.memo(Heatmap);
 

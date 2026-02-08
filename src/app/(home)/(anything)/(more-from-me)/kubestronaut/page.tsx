@@ -1,9 +1,9 @@
 // import Image from 'next/image';
 import Link from 'next/link';
-import { KUBESTRONAUT } from '@/src/app/constants';
-import { Spotlight } from '@/src/components/ui/spotlight-new';
+import { KUBESTRONAUT } from '@/app/constants';
+import { Spotlight } from '@/components/ui/spotlight-new';
 import { ImageZoom as Image } from 'fumadocs-ui/components/image-zoom';
-import { getBasePath } from '@/src/lib/utils';
+import { getBasePath } from '@/lib/utils';
 
 export const metadata = {
   title: 'Kubestronaut',

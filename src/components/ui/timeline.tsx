@@ -7,8 +7,8 @@ import {
 } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import confetti from 'canvas-confetti';
-import { Button } from '@/src/components/ui/button';
-import { RainbowButton } from '@/src/components/ui/rainbow-button';
+import { Button } from '@/components/ui/button';
+import { RainbowButton } from '@/components/ui/rainbow-button';
 
 interface TimelineEntry {
   title: string;

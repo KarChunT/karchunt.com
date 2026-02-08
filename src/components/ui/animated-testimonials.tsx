@@ -4,7 +4,7 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { getBasePath } from '@/src/lib/utils';
+import { getBasePath } from '@/lib/utils';
 
 type Testimonial = {
   quote: string;

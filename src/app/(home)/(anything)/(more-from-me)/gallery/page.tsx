@@ -1,6 +1,6 @@
 import path from 'path';
 import { glob } from 'glob';
-import GalleryClient from '@/src/components/GalleryClient';
+import GalleryClient from '@/components/GalleryClient';
 
 export const metadata = {
   title: 'Gallery',

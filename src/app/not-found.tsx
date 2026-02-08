@@ -7,10 +7,10 @@ import {
   EmptyDescription,
   EmptyHeader,
   EmptyTitle,
-} from '@/src/components/ui/empty';
+} from '@/components/ui/empty';
 import { HomeLayout } from 'fumadocs-ui/layouts/home';
-import { baseOptions } from '@/src/lib/layout.shared';
-import Footer from '@/src/components/Footer';
+import { baseOptions } from '@/lib/layout.shared';
+import Footer from '@/components/Footer';
 
 const PRIMARY_ORB_HORIZONTAL_OFFSET = 40;
 const PRIMARY_ORB_VERTICAL_OFFSET = 20;

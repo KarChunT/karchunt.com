@@ -1,9 +1,9 @@
-import { source } from '@/src/lib/source';
+import { source } from '@/lib/source';
 import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 // import { DocsLayout } from 'fumadocs-ui/layouts/notebook';
-import { baseOptions } from '@/src/lib/layout.shared';
-import Footer from '@/src/components/Footer';
-import { DOCUMENTATION } from '@/src/app/constants';
+import { baseOptions } from '@/lib/layout.shared';
+import Footer from '@/components/Footer';
+import { DOCUMENTATION } from '@/app/constants';
 
 export default function Layout({ children }: LayoutProps<'/docs'>) {
   const base = baseOptions();

@@ -1,4 +1,4 @@
-import { source, getPageImage } from '@/src/lib/source';
+import { source, getPageImage } from '@/lib/source';
 // import {
 //   DocsBody,
 //   DocsDescription,
@@ -14,11 +14,11 @@ import {
   PageLastUpdate,
 } from 'fumadocs-ui/layouts/docs/page';
 import { notFound } from 'next/navigation';
-import { getMDXComponents } from '@/src/mdx-components';
+import { getMDXComponents } from '@/mdx-components';
 import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
-import { LLMCopyButton, ViewOptions } from '@/src/components/page-actions';
-import { GITHUB_URL } from '@/src/app/constants';
+import { LLMCopyButton, ViewOptions } from '@/components/page-actions';
+import { GITHUB_URL } from '@/app/constants';
 
 export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
   const params = await props.params;

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { APP_NAME, FOOTER_LINKS } from '@/src/app/constants';
+import { APP_NAME, FOOTER_LINKS } from '@/app/constants';
 
 const Footer = () => {
   return (

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { JetBrains_Mono } from 'next/font/google';
 import { RootProvider } from 'fumadocs-ui/provider/next';
-import { createMetadata } from '@/src/lib/metadata';
+import { createMetadata } from '@/lib/metadata';
 import './globals.css';
 import 'katex/dist/katex.css';
 

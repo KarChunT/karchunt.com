@@ -12,9 +12,9 @@ import {
   Palette,
   Paintbrush,
 } from 'lucide-react';
-import { Button } from '@/src/components/ui/button';
-import { Slider } from '@/src/components/ui/slider';
-import { cn } from '@/src/lib/utils';
+import { Button } from '@/components/ui/button';
+import { Slider } from '@/components/ui/slider';
+import { cn } from '@/lib/utils';
 
 const POLLOCK_PALETTES = [
   {

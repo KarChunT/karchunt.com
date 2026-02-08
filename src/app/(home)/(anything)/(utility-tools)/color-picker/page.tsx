@@ -1,4 +1,4 @@
-import ColorPicker from '@/src/components/ColorPickerClient';
+import ColorPicker from '@/components/ColorPickerClient';
 
 export const metadata = {
   title: 'Color Picker',

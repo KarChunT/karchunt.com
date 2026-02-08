@@ -1,6 +1,6 @@
 'use client';
 
-import { Alert, AlertTitle, AlertDescription } from '@/src/components/ui/alert';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import {
   Info as InfoIcon,
   AlertTriangle as WarningIcon,

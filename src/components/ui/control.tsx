@@ -2,14 +2,14 @@
 import { Share } from 'lucide-react';
 
 import { useState } from 'react';
-import { cn } from '@/src/lib/utils';
-import { buttonVariants } from '@/src/components/ui/button';
+import { cn } from '@/lib/utils';
+import { buttonVariants } from '@/components/ui/button';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/src/components/ui/tooltip';
+} from '@/components/ui/tooltip';
 
 export function Control({ url }: { url: string }): React.ReactElement {
   const [open, setOpen] = useState(false);

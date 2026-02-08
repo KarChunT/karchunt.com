@@ -1,7 +1,7 @@
 import { Calendar } from 'lucide-react';
 import { SiAmd, SiIntel, SiSandisk } from 'react-icons/si';
 import { FaV } from 'react-icons/fa6';
-import { Badge } from '@/src/components/ui/badge';
+import { Badge } from '@/components/ui/badge';
 
 const experiences = [
   {

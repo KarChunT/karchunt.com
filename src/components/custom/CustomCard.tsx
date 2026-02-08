@@ -4,7 +4,7 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-} from '@/src/components/ui/card';
+} from '@/components/ui/card';
 
 interface CustomCardProps {
   title: React.ReactNode;

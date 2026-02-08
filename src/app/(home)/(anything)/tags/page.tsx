@@ -1,8 +1,8 @@
-import { Badge } from '@/src/components/ui/badge';
-import { ScrollArea } from '@/src/components/ui/scroll-area';
+import { Badge } from '@/components/ui/badge';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import Link from 'next/link';
-import { getBlogs, getTags, getSortedTags } from '@/src/app/(home)/blog/page';
-import { tagToSlug } from '@/src/lib/utils';
+import { getBlogs, getTags, getSortedTags } from '@/app/(home)/blog/page';
+import { tagToSlug } from '@/lib/utils';
 
 const page = async () => {
   const blogs = await getBlogs();

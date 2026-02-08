@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Timeline } from '@/src/components/ui/timeline';
-import { getBasePath } from '@/src/lib/utils';
+import { Timeline } from '@/components/ui/timeline';
+import { getBasePath } from '@/lib/utils';
 
 export const metadata = {
   title: 'Certificate Journey',

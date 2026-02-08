@@ -1,7 +1,7 @@
-import { DOCUMENTATION } from '@/src/app/constants';
+import { DOCUMENTATION } from '@/app/constants';
 import { Card, Cards } from 'fumadocs-ui/components/card';
-import { GraphView } from '@/src/components/graph-view';
-import { buildGraph } from '@/src/lib/build-graph';
+import { GraphView } from '@/components/graph-view';
+import { buildGraph } from '@/lib/build-graph';
 
 export function DocsCards() {
   return (

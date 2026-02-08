@@ -1,8 +1,8 @@
 import { useState, useCallback } from 'react';
-import { Button } from '@/src/components/ui/button';
-import { Slider } from '@/src/components/ui/slider';
+import { Button } from '@/components/ui/button';
+import { Slider } from '@/components/ui/slider';
 import { IconPlus, IconMinus, IconTrash } from '@tabler/icons-react';
-import { generateRandomArray } from '@/src/lib/utils';
+import { generateRandomArray } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const QueueFIFOVisualizer = () => {

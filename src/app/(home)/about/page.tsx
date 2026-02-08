@@ -1,15 +1,15 @@
 import Link from 'next/link';
-import { cn } from '@/src/lib/utils';
+import { cn } from '@/lib/utils';
 import {
   PERSONAL,
   JOB_COMPANY,
   JOB_POSITION,
   CHANNELS,
   CREDLY_URL,
-} from '@/src/app/constants';
-import { FlipWords } from '@/src/components/ui/flip-words';
-import { AnimatedTestimonials } from '@/src/components/ui/animated-testimonials';
-import { Highlighter } from '@/src/components/ui/highlighter';
+} from '@/app/constants';
+import { FlipWords } from '@/components/ui/flip-words';
+import { AnimatedTestimonials } from '@/components/ui/animated-testimonials';
+import { Highlighter } from '@/components/ui/highlighter';
 
 export const metadata = {
   title: 'About',

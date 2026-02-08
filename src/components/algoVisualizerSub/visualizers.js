@@ -1,21 +1,21 @@
 // Array and RAM Visualizations
-import RAMVisualization from '@/src/components/algoVisualizerSub/ram';
-import StaticArrayVisualization from '@/src/components/algoVisualizerSub/staticArray';
-import DynamicArrayVisualization from '@/src/components/algoVisualizerSub/dynamicArray';
+import RAMVisualization from '@/components/algoVisualizerSub/ram';
+import StaticArrayVisualization from '@/components/algoVisualizerSub/staticArray';
+import DynamicArrayVisualization from '@/components/algoVisualizerSub/dynamicArray';
 
 // Stack
-import StackVisualization from '@/src/components/algoVisualizerSub/stack';
+import StackVisualization from '@/components/algoVisualizerSub/stack';
 
 // Linked List
-import SinglyLinkedListVisualization from '@/src/components/algoVisualizerSub/linkedList/singlyLinkedList';
-import DoublyLinkedListVisualization from '@/src/components/algoVisualizerSub/linkedList/doublyLinkedList';
+import SinglyLinkedListVisualization from '@/components/algoVisualizerSub/linkedList/singlyLinkedList';
+import DoublyLinkedListVisualization from '@/components/algoVisualizerSub/linkedList/doublyLinkedList';
 
 // Sorting Algorithms
-import BubbleSortVisualization from '@/src/components/algoVisualizerSub/sorting/bubbleSort';
+import BubbleSortVisualization from '@/components/algoVisualizerSub/sorting/bubbleSort';
 
 // Searching Algorithms
-import LinearSearchVisualization from '@/src/components/algoVisualizerSub/searching/linearSearch';
-import BinarySearchVisualization from '@/src/components/algoVisualizerSub/searching/binarySearch';
+import LinearSearchVisualization from '@/components/algoVisualizerSub/searching/linearSearch';
+import BinarySearchVisualization from '@/components/algoVisualizerSub/searching/binarySearch';
 
 export {
   RAMVisualization,
