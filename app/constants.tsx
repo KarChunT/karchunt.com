@@ -156,13 +156,13 @@ export const DOCUMENTATION = {
       'Data structures are used to organize, store, and manipulate data in memory, while algorithms are used to solve specific problems.',
     icon: TbBinaryTree,
   },
-  interview: {
-    title: 'Interview',
-    href: '/docs/interview/welcome',
-    description:
-      'A collection of commonly asked interview questions and answers in the software industry.',
-    icon: FaPeopleArrows,
-  },
+  // interview: {
+  //   title: 'Interview',
+  //   href: '/docs/interview/welcome',
+  //   description:
+  //     'A collection of commonly asked interview questions and answers in the software industry.',
+  //   icon: FaPeopleArrows,
+  // },
   linux: {
     title: 'Linux',
     href: '/docs/linux/what-is-linux',

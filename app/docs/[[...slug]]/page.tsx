@@ -52,9 +52,9 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
             date={new Date(page.data.lastModified)}
           />
         )}
-        <EditOnGitHub
+        {/* <EditOnGitHub
           href={`${GITHUB_URL}/blob/main/src/content/docs/${page.path}`}
-        />
+        /> */}
       </DocsBody>
     </DocsPage>
   );
