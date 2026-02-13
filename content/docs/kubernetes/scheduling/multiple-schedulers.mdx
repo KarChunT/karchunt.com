@@ -1,0 +1,398 @@
+---
+title: Multiple Schedulers
+---
+
+## Concept and Usage of Multiple Schedulers
+
+[Reference](https://kubernetes.io/docs/tasks/extend-kubernetes/configure-multiple-schedulers/)
+
+Multiple schedulers are used to **schedule pods on different nodes based on the requirements**. By default, Kubernetes uses the **default scheduler to schedule pods** on nodes using an **algorithm to distribute the pods across the nodes evenly**. But in some cases, you may want to **setup your own scheduling algorithm** or **any custom conditions** to place pods on nodes.
+
+Therefore, Kubernetes allows you to **write and deploy your own scheduler as default scheduler or as an additional scheduler**. In this case, you can **use your own custom scheduler to schedule some specific pods (applications)** on specific nodes **based on your requirements**, while **other pods** can **still be scheduled by the default scheduler**.
+
+---
+
+This is the **default scheduler**, the scheduler name is `default-scheduler` and it must be **unique** in the cluster. You can find your **default scheduler configuration on the master node** at `/etc/kubernetes/manifests/kube-scheduler.yaml`.
+
+```yaml title="scheduler-config.yaml" {4}
+apiVersion: kubescheduler.config.k8s.io/v1
+kind: KubeSchedulerConfiguration
+profiles:
+  - schedulerName: default-scheduler # unique name
+```
+
+## Steps to setup and use Multiple Schedulers
+
+<Steps>
+
+### Step 1: Create a new scheduler configuration file
+
+```yaml title="/etc/kubernetes.my-new-scheduler.yaml"
+apiVersion: kubescheduler.config.k8s.io/v1
+kind: KubeSchedulerConfiguration
+profiles:
+  - schedulerName: my-new-scheduler
+leaderElection:
+  leaderElect: true
+  resourceNamespace: kube-system
+  resourceName: lock-object-my-scheduler
+```
+- `leaderElect` - ensures that **only one instance of the scheduler is active at a time**. Assume that there are multiple instances of the scheduler running on different master nodes as a high-availability setup, only one instance will be elected (selected) as a leader to schedule the pods.
+- `resourceName` - assume you have **multiple masters**, you will need to **specify the name of the resource object used for leader election**. This is used to ensure that only one instance of the scheduler is active at a time and to avoid conflicts between multiple instances of the scheduler.
+
+### Step 2: Deploy Additional Scheduler
+
+You may choose to **deploy the scheduler** as a **Pod** or **Deployment**.
+
+#### Deploy as a Pod
+
+```yaml title="my-new-scheduler.yaml" {13-14}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-new-scheduler
+  namespace: kube-system
+spec:   
+  containers:
+    - name: my-new-scheduler
+      image: k8s.gcr.io/kube-scheduler:v1.22.0
+      command:
+        - kube-scheduler
+        # make sure these files are exists on the host
+        - --kubeconfig=/etc/kubernetes/scheduler.conf  # this file has the authentication information to access the API server
+        - --config=/etc/kubernetes.my-new-scheduler.yaml
+      volumeMounts:
+        - name: kubeconfig
+          mountPath: /etc/kubernetes
+          readOnly: true
+  volumes:
+    - name: kubeconfig
+      hostPath:
+        path: /etc/kubernetes
+```
+
+```bash
+kubectl apply -f my-new-scheduler.yaml
+```
+
+#### Deploy as a Deployment
+
+Package the Scheduler
+```bash
+git clone https://github.com/kubernetes/kubernetes.git
+cd kubernetes
+make
+```
+
+Create a new container image containing the kube-scheduler binary
+```dockerfile title="Dockerfile"
+FROM busybox
+ADD ./_output/local/bin/linux/amd64/kube-scheduler /usr/local/bin/kube-scheduler
+```
+
+Build the dockerfile
+```bash
+docker build -t gcr.io/my-gcp-project/my-kube-scheduler:1.0 .     # The image name and the repository
+gcloud docker -- push gcr.io/my-gcp-project/my-kube-scheduler:1.0 # used in here is just an example
+```
+
+Define a Kubernetes Deployment for the scheduler
+```yaml title="my-new-scheduler.yaml" {86}
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: my-scheduler
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: my-scheduler-as-kube-scheduler
+subjects:
+- kind: ServiceAccount
+  name: my-scheduler
+  namespace: kube-system
+roleRef:
+  kind: ClusterRole
+  name: system:kube-scheduler
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: my-scheduler-as-volume-scheduler
+subjects:
+- kind: ServiceAccount
+  name: my-scheduler
+  namespace: kube-system
+roleRef:
+  kind: ClusterRole
+  name: system:volume-scheduler
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: my-scheduler-extension-apiserver-authentication-reader
+  namespace: kube-system
+roleRef:
+  kind: Role
+  name: extension-apiserver-authentication-reader
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+- kind: ServiceAccount
+  name: my-scheduler
+  namespace: kube-system
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-scheduler-config
+  namespace: kube-system
+data:
+  my-scheduler-config.yaml: |
+    apiVersion: kubescheduler.config.k8s.io/v1beta2
+    kind: KubeSchedulerConfiguration
+    profiles:
+      - schedulerName: my-scheduler
+    leaderElection:
+      leaderElect: false    
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    component: scheduler
+    tier: control-plane
+  name: my-scheduler
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      component: scheduler
+      tier: control-plane
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: scheduler
+        tier: control-plane
+        version: second
+    spec:
+      serviceAccountName: my-scheduler
+      containers:
+      - command:
+        - /usr/local/bin/kube-scheduler
+        - --config=/etc/kubernetes/my-scheduler/my-scheduler-config.yaml
+        image: gcr.io/my-gcp-project/my-kube-scheduler:1.0
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 10259
+            scheme: HTTPS
+          initialDelaySeconds: 15
+        name: kube-second-scheduler
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 10259
+            scheme: HTTPS
+        resources:
+          requests:
+            cpu: '0.1'
+        securityContext:
+          privileged: false
+        volumeMounts:
+          - name: config-volume
+            mountPath: /etc/kubernetes/my-scheduler
+      hostNetwork: false
+      hostPID: false
+      volumes:
+        - name: config-volume
+          configMap:
+            name: my-scheduler-config
+```
+
+```bash
+kubectl apply -f my-new-scheduler.yaml
+```
+
+### Step 3: Verify the new scheduler is running
+
+```bash
+kubectl get pods -n kube-system
+
+# output
+NAME                                           READY     STATUS    RESTARTS   AGE
+....
+my-scheduler-lnf4s-4744f                       1/1       Running   0          2m
+...
+```
+
+### Step 4: Create a Pod with the new scheduler
+
+```yaml title="pod.yaml" {9}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-pod
+spec:
+  containers:
+    - name: sample-pod
+      image: ubuntu
+  schedulerName: my-new-scheduler # the name of the scheduler
+```
+
+When you create a pod with the `schedulerName` field, the pod will be scheduled by the specified scheduler. You can see the pod assignment events by running the following command:
+
+```bash {6}
+# method 1 ---> view the events of the pod
+kubectl get events -o wide
+
+# output
+LAST SEEN   TYPE     REASON      OBJECT       SUBOBJECT                 SOURCE                                                            MESSAGE                                                              FIRST SEEN   COUNT   NAME
+10s         Normal   Scheduled   pod/ubuntu                             custom-scheduler, custom-scheduler-kind-cluster-control-plane     Successfully assigned default/ubuntu to kind-cluster-control-plane   10s          1       ubuntu.18159790928c8e97
+10s         Normal   Pulling     pod/ubuntu   spec.containers{ubuntu}   kubelet, kind-cluster-control-plane                               Pulling image "ubuntu"                                               10s          1       ubuntu.18159790b760375c
+
+# method 2 ---> view the logs of the scheduler
+kubectl logs <your-new-scheduler-pod-name> -n kube-system
+kubectl logs my-new-scheduler -n kube-system
+
+# output
+I1229 05:00:45.515663       1 serving.go:380] Generated self-signed cert in-memory
+I1229 05:00:47.196685       1 server.go:154] "Starting Kubernetes Scheduler" version="v1.30.0"
+I1229 05:00:47.196790       1 server.go:156] "Golang settings" GOGC="" GOMAXPROCS="" GOTRACEBACK=""
+I1229 05:00:47.208976       1 secure_serving.go:213] Serving securely on 127.0.0.1:10259
+I1229 05:00:47.209676       1 tlsconfig.go:240] "Starting DynamicServingCertificateController"
+I1229 05:00:47.212183       1 configmap_cafile_content.go:202] "Starting controller" name="client-ca::kube-system::extension-apiserver-authentication::requestheader-client-ca-file"
+I1229 05:00:47.212327       1 shared_informer.go:313] Waiting for caches to sync for client-ca::kube-system::extension-apiserver-authentication::requestheader-client-ca-file
+I1229 05:00:47.212336       1 requestheader_controller.go:169] Starting RequestHeaderAuthRequestController
+I1229 05:00:47.212350       1 shared_informer.go:313] Waiting for caches to sync for RequestHeaderAuthRequestController
+I1229 05:00:47.212578       1 configmap_cafile_content.go:202] "Starting controller" name="client-ca::kube-system::extension-apiserver-authentication::client-ca-file"
+I1229 05:00:47.212627       1 shared_informer.go:313] Waiting for caches to sync for client-ca::kube-system::extension-apiserver-authentication::client-ca-file
+I1229 05:00:47.311593       1 leaderelection.go:250] attempting to acquire leader lease kube-system/my-new-scheduler...
+I1229 05:00:47.312578       1 shared_informer.go:320] Caches are synced for RequestHeaderAuthRequestController
+I1229 05:00:47.312641       1 shared_informer.go:320] Caches are synced for client-ca::kube-system::extension-apiserver-authentication::requestheader-client-ca-file
+I1229 05:00:47.312773       1 shared_informer.go:320] Caches are synced for client-ca::kube-system::extension-apiserver-authentication::client-ca-file
+I1229 05:01:05.150116       1 leaderelection.go:260] successfully acquired lease kube-system/my-new-scheduler
+```
+
+</Steps>
+
+## Scheduler Priority and Plugins
+
+We know that pods are sorted based on the **priority** defined on the pods, you can read more from this page [kube-scheduler](/docs/kubernetes/cluster-architecture#kube-scheduler).
+
+To set a priority for a pod, you need to create a priority class first and apply it to the pod. [Reference](https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/)
+
+```yaml title="priority-class.yaml" {5}
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: high-priority
+value: 1000000 # the higher the value, the higher the priority
+globalDefault: false
+description: "This priority class should be used for XYZ service pods only."
+```
+
+```yaml title="sample-pod.yaml" {6}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-pod
+spec:
+  priorityClassName: high-priority
+  containers:
+    - name: sample
+      image: ubuntu
+```
+- `priorityClassName` - It determines the **scheduling priority of the Pod**. Pods with higher priority are scheduled before Pods with lower priority.
+
+```mermaid
+flowchart LR
+  subgraph scheduler [Scheduling Queue]
+    pod1
+    pod2
+    pod3
+  end
+
+  scheduler --> filtering
+  filtering --> scoring
+  scoring --> binding
+```
+
+Steps of how a pod is scheduled:
+1. The pods with **higher priority are scheduled first by performing sorting based on values** (**beginning of the queue**).
+2. The pod will enter the **filtering phase** where the **scheduler will check the nodes** based on the **node selector** and **affinity rules**. Also, the scheduler will **check the resources (CPU, memory)** of the nodes to ensure that the pods can be scheduled on the nodes.
+3. Then the node will enter the **scoring phase** where the **scheduler will score the nodes** based on the **resources**. The **node** with the **highest score** will be selected to schedule the pod.
+4. **Binding** the pod to the node with the **highest score**.
+
+### Scheduler Plugins
+
+[Reference](https://kubernetes.io/docs/reference/scheduling/config/#scheduling-plugins)
+
+Actually, every steps that I mentioned got its **own plugins**, for example
+- **Scheduling Queue plugins**
+  - **PrioritySort** - Sort the pods based on the priority of the pods.
+
+- Filtering
+  - **NodeResourcesFit** - Identify the nodes that have enough resources to run the pod.
+  - **NodeName** - Check the pod has a specific node name mentioned in the pod spec.
+  - **NodeUnschedulable** - Check the node is unschedulable or not. You can use this command to check the node unschedulable status `kubectl describe node <node-name>`
+
+- Scoring
+  - **NodeResourcesFit** - Score the nodes based on the resources. Remember a single plugin can be used in multiple phases.
+  - **ImageLocality** - Score the nodes based on the container image that the pod runs. Meaning, it will select the node that has the container image cached. What if there is no nodes available? It will still place the pod on a node that doesn't have the container image cached.
+
+- Binding
+  - **DefaultBinder** - Bind the pod to the node.
+
+Actually, you can **write your own plugins** to extend the scheduler functionalities. We call it as **extension points**. For example, you can write a plugin to **check the node health** on the filtering phase. [Reference](https://kubernetes.io/docs/reference/scheduling/config/#extension-points)
+
+## Scheduling Profiles
+
+[Reference](https://kubernetes.io/docs/reference/scheduling/config/#multiple-profiles)
+
+```yaml title="my-new-scheduler.yaml"
+apiVersion: kubescheduler.config.k8s.io/v1
+kind: KubeSchedulerConfiguration
+profiles:
+  - schedulerName: my-new-scheduler-1
+  - schedulerName: my-new-scheduler-2
+  - schedulerName: my-new-scheduler-3
+```
+
+```yaml title="test-scheduler.yaml"
+apiVersion: kubescheduler.config.k8s.io/v1
+kind: KubeSchedulerConfiguration
+profiles:
+  - schedulerName: test-scheduler
+```
+
+Let's said we **deploy separate schedulers** each with a separate scheduler binary and **configuration file**. It's a lot of work required to **manage these separate processes** and due to separate processes, the other scheduler **may schedule a pod on a node without considering the other scheduler's decision (race condition)**.
+
+So, we can use **scheduling profiles** to **configure multiple schedulers** in a single process.
+
+```yaml title="scheduler-config.yaml"
+apiVersion: kubescheduler.config.k8s.io/v1
+kind: KubeSchedulerConfiguration
+profiles:
+  - schedulerName: default-scheduler
+  - schedulerName: my-new-scheduler-1
+    plugins:
+      score:
+        disabled: 
+          - name: TaintToleration
+        enabled:
+          - name: CustomPlugin1
+          - name: CustomPlugin2
+          - name: CustomPlugin3
+  - schedulerName: no-scoring-scheduler
+    plugins:
+      preScore:
+        disabled:
+        - name: '*'
+      score:
+        disabled:
+        - name: '*'
+```

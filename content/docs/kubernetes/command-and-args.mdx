@@ -1,0 +1,26 @@
+---
+title: Commands and Arguments
+---
+
+## Usage of commands and arguments
+
+```mermaid
+flowchart LR
+  A[Dockerfile-ENTRYPOINT] --> C
+  B[Dockerfile-CMD] --> D
+  C[YAML-command]
+  D[YAML-args]
+```
+
+```yaml title="pod.yaml"
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-name
+spec:
+  containers:
+    - name: container-name
+      image: ubuntu:22.04
+      command: ["sleep"] # entrypoint in Dockerfile
+      args: ["10"] # CMD in Dockerfile
+```

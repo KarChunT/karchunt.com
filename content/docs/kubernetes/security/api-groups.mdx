@@ -1,0 +1,135 @@
+---
+title: API Groups
+---
+
+## Concept and Usage of API Groups
+
+Refer to the [Kubernetes API Reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/) and [Kubernetes API](https://kubernetes.io/docs/reference/kubernetes-api/) for the complete list of API groups and resources.
+
+In Kubernetes, we have some endpoints that are grouped together based on their functionality. These groups are called API groups.
+- `/version` - **Provides version information** about the kube-apiserver or cluster.
+- `/healthz` - **Health check endpoint** to verify if the kube-apiserver is **running** correctly.
+- `/metrics` - **Exposes metrics** for monitoring and performance analysis.
+- `/logs` - **Provides access** to the **logs** of the kube-apiserver or to **integrate** with **third-party logging** applications.
+- `/api` - The **core API group**, which includes **core resources** such as pods, services, nodes, etc.
+- `/apis` - The **extended API group** (**named group**), which includes additional resources and features.
+
+The reason to understand this is that when you are working with RBAC (Role-Based Access Control) in Kubernetes, you need to specify the API group and resource to which the role applies.
+
+There are two ways to access the API paths:
+1. Use **cluster IP** and **port** `6443`
+    ```bash
+    # View all API paths
+    curl https://<cluster-ip>:6443
+
+    # View the core API group
+    curl https://<cluster-ip>:6443/api
+
+    # View the named API group
+    curl https://<cluster-ip>:6443/apis
+
+    # View the kube-apiserver version
+    curl https://<cluster-ip>:6443/version
+    
+    # Get the lists of pods
+    curl https://<cluster-ip>:6443/api/v1/pods
+
+    # View the service endpoint
+    curl https://<cluster-ip>:6443/api/v1/namespaces/<namespace-name>/services/<service-name>/<service-endpoint>
+    curl https://<cluster-ip>:6443/api/v1/namespaces/default/services/kubernetes/api
+
+    curl https://<cluster-ip>:6443 --key <path-to-key> --cert <path-to-cert> --cacert <path-to-ca-cert>
+    ```
+    You might need to provide authentication details to access the API paths.
+
+2. Use `kubectl proxy`
+    ```mermaid
+    flowchart LR
+      user --> k[kubectl proxy] --> kube-apiserver
+    ```
+
+    ```bash
+    kubectl proxy
+    curl http://localhost:8001
+
+    # You can also use this to access Kubernetes services
+    # the endpoint URL will end with **/proxy/
+    # this indicates that the request is being proxied to the service within the cluster
+    curl http://localhost:8001/api/v1/namespaces/default/services/service-name/proxy/
+
+    # after /proxy/ you can add the path to the service
+    # the #/ is required
+    curl http://localhost:8001/api/v1/namespaces/default/services/service-name/proxy/#/<endpoint>
+    curl http://localhost:8001/api/v1/namespaces/default/services/service-name/proxy/#/login
+    ```
+    This will **create a proxy server** that will **forward the requests** to the kube-apiserver, it will use the **kubeconfig file** to **authenticate** these requests.
+
+    kube-proxy != `kubectl proxy`
+    - `kube-proxy` is a **network proxy** that **runs on each node** in the cluster to enable **network communication** to the pods from the outside world.
+    - `kubectl proxy` is a **proxy server** that **forwards requests** to the kube-apiserver.
+
+### Core API Group
+
+The core API group is the **default API group** in Kubernetes. It includes the **core resources** such as pods, services, nodes, etc. The core API group is accessed using the `/api/v1` endpoint.
+
+```mermaid
+flowchart
+  a["/api"] --> b["/v1"] --> resources
+  subgraph resources
+    direction BT
+    pods
+    nodes
+    namespaces
+    services
+    configmaps
+    secrets
+    pv
+    pvc
+    events
+    endpoints
+    replicationcontrollers
+    bindings
+  end
+```
+
+### Named API Group
+
+The named API group is an **extended API group** that includes *additional resources and features* that can **extend the Kubernetes functionality** by adding custom resources. Besides, all the new resources and features are added to the named API group. The named API group is accessed using the `/apis/<group>/<version>` endpoint.
+
+```mermaid
+flowchart
+  a["/apis"] --> group
+
+  subgraph group["API Groups"]
+      direction BT
+      a1["/apps"]
+      a2["/extensions"]
+      a3["/networking.k8s.io"]
+      a4["/storage.k8s.io"]
+      a5["/authentication.k8s.io"]
+      a6["/certificates.k8s.io"]
+  end
+
+  a1 --> v["/v1"] --> r1
+
+  subgraph r1[Resources]
+      r11["/deployments"] 
+      r12["/replicasets"]
+      r13["/statefulsets"]
+      r14["/daemonsets"]
+  end
+
+  r11["/deployments"]  --> action
+
+  subgraph action[Actions]
+      direction BT
+      list
+      get
+      create
+      delete
+      update
+      watch
+  end
+```
+
+Each API group has its own set of resources and each resource has its own set of actions.

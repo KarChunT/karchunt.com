@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "4c-cloud-native-k8s-security",
+    "benchmarks",
+    "authentication",
+    "pull-image-with-secret",
+    "security-context",
+    "service-account",
+    "tls",
+    "cluster-components-security",
+    "certificate-api",
+    "kubeconfig",
+    "api-groups",
+    "authorization",
+    "cluster-role",
+    "pod-security-policy",
+    "pod-security-standard-and-admissions",
+    "mutual-tls"
+  ]
+}

@@ -1,0 +1,41 @@
+---
+title: Labels, selectors, and annotations
+---
+
+## Concept and usage
+
+- Labels - **Properties attached** to each item, basically it will **match** to pod.  
+- Selectors - **Filter** the **items** based on **labels**  
+- Annotations - **Record** other **information** for your **records** like buildVersion, etc.
+
+Normally, we will use **labels** and **selectors** to **group and select objects**.
+
+```bash
+kubectl get deployments --selector env=prod
+kubectl get deployments --selector env=prod,tier=backend
+```
+
+```yaml {14,18}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-sample-deployment
+  labels:
+    env: prod
+    tier: backend
+  annotations: # additional information
+    buildVersion: 1.0.0
+    author: KarChun
+spec:
+  selector:
+    matchLabels:
+      app: sample-app
+  template:
+    metadata:
+      labels:
+        app: sample-app
+    spec:
+      containers:
+        - name: my-ubuntu-app
+          image: ubuntu
+```

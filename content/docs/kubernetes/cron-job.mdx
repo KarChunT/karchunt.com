@@ -1,0 +1,42 @@
+---
+title: Cron Job
+---
+
+## Concept and Usage of CronJob
+
+CronJob will **create jobs** on a **time-based schedule**. It is useful when you want to run a job at a specific time or at regular intervals.
+
+You can use this tool [crontab.guru](https://crontab.guru/) to generate the cron expression.
+
+| Field | Allowed Values |
+| --- | --- |
+| minute | 0-59 |
+| hour | 0-23 |
+| day-of-month | 1-31 |
+| month | 1-12 |
+| day-of-week | 0-6 (0 is Sunday) |
+
+```yaml title="cronjob.yaml"
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: backup-cron-job
+spec:
+  # minute, hour, day-of-month, month, day-of-week
+  schedule: "0 0 1 * *" # At 00:00 on day-of-month 1
+  jobTemplate:
+    spec: # Job spec
+      completions: 3 # run 3 pods
+      parallelism: 2 # parallel run 2 pods at a time
+      template: # pod template
+        spec:
+          containers:
+            - name: backup
+              image: busybox
+              command: ["echo", "Backup operation"]
+          restartPolicy: Never
+```
+
+```bash
+kubectl get cronjob
+```

@@ -1,0 +1,127 @@
+---
+title: Backup and Restore Methods
+---
+
+## Backup and Restore Methods in Kubernetes
+
+Backup Candidates:
+- **Resource Configuration**
+- **ETCD Cluster**
+- **Persistent Volumes**
+
+### Backup & Restore - Resource Configs
+
+We will **query the kube-apiserver** using the `kubectl` command or **access the API server directly** to **save all the objects** with the respective **resource configuration** created on the cluster as a **copy**.
+
+Here is an example of getting all pods, deployments, and services.
+
+```bash
+kubectl get all --all-namespaces -o yaml > backup.yaml
+kubectl apply -f backup.yaml
+```
+
+Well, there are many tools available to backup Kubernetes resource like **Velero**, **Kasten**, etc.
+
+### Backup & Restore - ETCD
+
+We know that **ETCD** is the **database** of the Kubernetes cluster that stores all the **cluster data** like nodes, pods, secrets, etc.
+
+While configuring ETCD, we actually got specified the **data directory** where the **ETCD data** is stored. We can**backup** this **data directory** to **backup the ETCD data**.
+
+You can use this command to view the configuration of the ETCD service. `kubectl describe pod <etcd-pod> -n kube-system`
+
+```bash title="etcd.service" {3}
+ExecStart=/usr/local/bin/etcd \\
+  ...
+  --data-dir=/var/lib/etcd
+```
+
+---
+If you don't want to use above method, you can use **ETCD snapshot** to backup the ETCD data. This command will create a snapshot of the ETCD data and save it to the specified path.
+
+[Backing up an etcd cluster reference](https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster)
+
+[ETCD recovery reference](https://github.com/etcd-io/website/blob/main/content/en/docs/v3.5/op-guide/recovery.md)
+
+<Callout type="info">
+  Make sure the `ETCDCTL_API` is set to `3` to **perform backup and restore**. 
+
+  ```bash
+  export ETCDCTL_API=3
+  etcdctl version
+  ```
+</Callout>
+
+```bash
+ETCDCTL_API=3 etcdctl \
+  --endpoints=https://127.0.0.1:2379 \ #  --listen-client-urls
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \ # --trusted-ca-file
+  --cert=/etc/kubernetes/pki/etcd/server.crt \ # --cert-file
+  --key=/etc/kubernetes/pki/etcd/server.key \ # --key-file
+  snapshot save /var/lib/etcd/snapshot.db
+
+# View the snapshot status
+ETCDCTL_API=3 etcdctl \
+  snapshot status /var/lib/etcd/snapshot.db
+```
+- You can specify any path to save the snapshot.
+- Remember to specify the certificate, endpoint, key, etc when saving the snapshot.
+
+---
+To **restore** the **ETCD data**.
+
+<Steps>
+
+#### Stop the kube-apiserver service
+
+The reason for **stopping the kube-apiserver service** is **ETCD cluster** will **require to restart to restore the data** and the kube-apiserver **depends** on it.
+
+```bash
+sudo service kube-apiserver stop
+```
+
+#### Run the ETCD restore command
+
+When the ETCD data restores from a backup (snapshot or etc), the ETCD will **initialize a new cluster configuration** and **configure the members of ETCD as new members** of the cluster **to prevent a new member** from joining an existing cluster.
+
+```bash
+ETCDCTL_API=3 etcdctl \
+  snapshot restore /var/lib/etcd/snapshot.db \
+  --data-dir /var/lib/etcd-new # this data directory will be created
+```
+
+#### Configure the ETCD configuration file
+
+Configure the ETCD configuration file to use the new data directory. You can use `ps aux | grep etcd` or `kubectl describe pod <control-plane-pod> -n kube-system` **(not etcd pod)**.
+
+```bash title="etcd.service" {3}
+ExecStart=/usr/local/bin/etcd \\
+  ...
+  --data-dir=/var/lib/etcd-new
+```
+
+After configuring the ETCD configuration file, remember to reload the service daemon and restart the ETCD service.
+
+```bash
+sudo systemctl daemon-reload
+sudo service etcd restart
+```
+
+---
+If you **deploy ETCD as a pod**, then you have to update `/etc/kubernetes/manifests/etcd.yaml`. Since this is a **static pod**, it will **auto restart when you update the file**.
+
+```yaml title="/etc/kubernetes/manifests/etcd.yaml" {3}
+volumes:
+- hostPath:
+    path: /var/lib/etcd-from-backup # new directory
+    type: DirectoryOrCreate
+  name: etcd-data
+```
+
+#### Start the kube-apiserver service
+
+```bash
+sudo service kube-apiserver start
+```
+
+</Steps>

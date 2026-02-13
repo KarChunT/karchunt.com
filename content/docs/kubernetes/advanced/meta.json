@@ -1,0 +1,8 @@
+{
+  "pages": [
+    "encrypting-secret-data-at-rest",
+    "scan-images-using-admission-controller",
+    "kubernetes-threat-model",
+    "overview-of-kubernetes-compliance-and-security-frameworks"
+  ]
+}

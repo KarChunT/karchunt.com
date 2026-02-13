@@ -1,0 +1,28 @@
+---
+title: What is Kubernetes?
+---
+
+## Kubernetes Introduction
+
+[Reference](https://kubernetes.io/)
+
+> Kubernetes, also known as K8s, is an open source system for automating deployment, scaling, and management of containerized applications.
+>
+> — kubernetes.io
+
+Kubernetes enables you to **deploy multiple instances** of your application as required and **allows easy communication** between **different services** within your application by **hosting** your applications as **containers** in an automated manner.
+
+## kubectl
+
+<Callout title="References">
+- [Installation](https://kubernetes.io/docs/tasks/tools/)
+- [Overview](https://kubernetes.io/docs/reference/kubectl/)
+- [Commands Reference](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands/)
+</Callout>
+
+**kubectl** is a command line tool used to interact with Kubernetes clusters, using the Kubernetes API. It allows you to run commands (deploy or manage applications) against Kubernetes clusters. It looks for a file in `$HOME/.kube` for configuration.
+
+```bash
+kubectl cluster-info # get cluster information
+kubectl get nodes # get nodes information in the cluster
+```

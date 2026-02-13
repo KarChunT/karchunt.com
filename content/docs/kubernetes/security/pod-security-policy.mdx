@@ -1,0 +1,164 @@
+---
+title: Pod Security Policy
+---
+
+## Overview
+
+Pod Security Policy (PSP) is a **cluster-level resource** and it's one of the **admission controllers** that allows you to **control the security of the Kubernetes pods**. It allows you to **define a set of conditions** that **a pod must meet** in order to run in the cluster.
+
+In Kubernetes v1.21, PSP is being **deprecated** and removed from Kubernets v1.25. There are multiple ways to replace PSPs
+- **Policy-as-code (PAC)** solutions within the Kubernetes ecosystem. For example, Kyverno, Open Policy Agent (OPA), Gatekeeper, etc
+- The **Kubernetes Pod Security Standards (PSS)** with **Pod Security Admission (PSA)**
+
+```yaml title="sample-pod.yaml" {14}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kube-apiserver-kind-cluster-control-plane
+  namespace: kube-system
+spec:
+  containers:
+  - command:
+    - kube-apiserver
+    - --advertise-address=10.89.0.2
+    - --allow-privileged=true
+    - --authorization-mode=Node,RBAC
+    - --client-ca-file=/etc/kubernetes/pki/ca.crt
+    - --enable-admission-plugins=NodeRestriction,PodSecurityPolicy
+    ...
+    image: registry.k8s.io/kube-apiserver:v1.30.0
+```
+
+We have to add the **PodSecurityPolicy** admission controller to the **kube-apiserver**. So we add **PodSecurityPolicy** to the **--enable-admission-plugins** flag.
+
+## Usage and Concept of Pod Security Policy
+
+```yaml title="sample-pod.yaml" {10-13,16-17}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample
+spec:
+  containers:
+    - name: ubuntu
+      image: ubuntu
+      securityContext:
+        privileged: true # privileged user
+        runAsUser: 0 # root user
+        capabilities:
+          add: ["CAP_SYS_BOOT"]
+  volumes:
+    - name: data-volume
+      hostPath:
+        path: /data
+```
+Take the above example, the pod is running as a **privileged user**, which means it allows the processes running in the container to have **root privileges** on the host. It also run as **root user** and has the **CAP_SYS_BOOT** capability, which allows the container to **reboot** the host. Besides, it mounts the **hostPath** volume, which allows the container to **access the host filesystem**. All these configurations are **insecure and dangerous**.
+
+<Steps>
+
+### Step 1: Create Pod Security Policy
+
+Therefore, we can create a **Pod Security Policy** to **restrict the pod from running** or **prevent to create the pod** with the above configurations. **Pod Security Policy** not only restricted the pod from creation but also **enforced or mutated (defaultAddCapabilities) the pod's configuration** to meet the policy.
+
+```yaml title="pod-security-policy.yaml"
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: restricted-psp
+spec:
+  privileged: false
+  seLinux:
+    rule: RunAsAny
+  runAsUser:
+    rule: MustRunAsNonRoot
+  fsGroup:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  volumes:
+    - 'persistentVolumeClaim'
+  requiredDropCapabilities:
+    - 'CAP_SYS_BOOT'
+  defaultAddCapabilities: # default add capabilities to the pod
+    - 'CAP_SYS_TIME'
+```
+- This will **reject** the pod if the pod privileged flag set to `true`
+- This will **reject** the pod if the pod runAsUser set to `0`
+- This will **reject** the pod if the pod is using `hostPath` volume, as it's not in the volumes list, which only allows `persistentVolumeClaim` volume
+- This will **reject** the pod if the pod has the `CAP_SYS_BOOT` capability
+- This will **add** the `CAP_SYS_TIME` capability to the pod default even if the pod doesn't have it
+
+### Step 2: Authorized the Pod Security Policy using RBAC
+
+```mermaid
+graph LR
+  kubectl --step 1--> authentication --step 2--> authorization
+  authorization --step 3--> ac
+  subgraph ac[Admission Controllers]
+    PodSecurityPolicy
+  end
+
+  ac --step 4--> security[Authorized Security Policies API]
+  ac --step 5--> a[Create Pod]
+```
+
+When we create a pod, the request will go through several steps:
+So, the **PodSecurityPolicy** will **check the pod's configuration** before creating the pod. If the pod's configuration **violates the policy**, the pod will be **rejected** and **not created**. However, we just enabled the **PodSecurityPolicy** admission controller, but we do **not authorize** any **security policies** yet. In this case, the admission controller will **not able to communicate** with the **pod security policies API** and eventually will **reject all the pods creation**, even if the pod's configuration is meet the policy.
+
+Now, we know that every pod has a **service account (default)** when created even if we don't specify it, as this comes from the **namespace**. So, we can **authorize** the **default service account** from the **namespace** to **access the security policies** by creating a **Role** and **RoleBinding**, so that the pod can be **validated** again the **PodSecurityPolicy**.
+
+<Tabs items={['role', 'rolebinding']}>
+  <Tab>
+    ```yaml title="role.yaml"
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      name: psp-role
+    rules:
+      - apiGroups: ['policy']
+        resources: ['podsecuritypolicies']
+        resourceNames: ['restricted-psp'] # Replace with your PodSecurityPolicy name
+        verbs: ['user']
+    ```
+  </Tab>
+  
+  <Tab>
+    ```yaml title="rolebinding.yaml"
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      name: psp-rolebinding
+    subjects:
+      - kind: ServiceAccount
+        name: default # replace based on your service account name
+        namespace: default # replace based on your namespace
+    roleRef:
+      kind: Role
+      name: psp-role # Replace with your Role name
+      apiGroup: rbac.authorization.k8s.io
+    ```
+  </Tab>
+</Tabs>
+
+### Step 3: Create the Pod with correct configuration
+
+Now, we can create the pod with the correct configuration that meets the **PodSecurityPolicy**.
+
+```yaml title="sample-pod.yaml" {10-11,14-15}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample
+spec:
+  containers:
+    - name: ubuntu
+      image: ubuntu
+      securityContext:
+        privileged: false # must be false as per the policy
+        runAsUser: 1000 # must be non-root user as per the policy
+  volumes:
+    - name: data-volume
+      persistentVolumeClaim: # must use persistentVolumeClaim as per the policy
+        claimName: my-pvc # replace with your actual PVC name
+```
+</Steps>

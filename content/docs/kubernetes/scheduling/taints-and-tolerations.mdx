@@ -1,0 +1,110 @@
+---
+title: Taints and Tolerations
+---
+
+## Concept of Taints and Tolerations
+
+<Callout>
+  **Taints** are set on **nodes**.  
+  **Tolerations** are set on **pods**.
+
+  Remember, Taints and Tolerations **do not tell the pod to go to a particular node**, instead it just **inform the node** to **only accept pods with certain tolerations**. It only **restrict nodes from accepting certain pods**.
+</Callout>
+
+Taints and tolerations basically just to **ensure that the pods are scheduled** onto the **right nodes** by **setting some restrictions** on the **nodes** that **only accept the pods with certain tolerations**.
+
+```mermaid
+flowchart
+  style node1 fill:#008000
+  pod1[Pod 1]
+  pod2[Pod 2]
+  pod3[Pod 3]
+
+  subgraph node2[Node 2]
+    pod6[Pod 6]
+    pod7[Pod 7]
+  end
+
+  subgraph node1[Node 1]
+    style node1 fill:#008000
+
+    pod4[Pod 4]
+    pod5[Pod 5]
+  end
+```
+
+Let's say we have **Node 1** and **Node 2** and we have **Pod 1**, **Pod 2**, and **Pod 3**. If we set a **taint** with a **key-value pair** `app=green` on **Node 1**, then **Node 1** will **only accept the pods** with the **toleration** of `app=green`. So, now you want to assign **Pod 1** to Node 1, you need to set the **tolerations** of `app=green` on **Pod 1**. 
+
+```mermaid
+flowchart
+  pod2[Pod 2]
+  pod3[Pod 3]
+
+  subgraph node2[Node 2]
+    pod6[Pod 6]
+    pod7[Pod 7]
+  end
+
+  subgraph node1[Node 1]
+    style node1 fill:#008000
+    pod1[Pod 1]
+    pod4[Pod 4]
+    pod5[Pod 5]
+  end
+```
+
+Therefore, the other pods like **Pod 2 and 3** will **not be scheduled/assigned** onto **Node 1**, as **Node 1** will only **accept the pods** with the **toleration** of `app=green`. Of course, **Pod 1** can also **being scheduled on Node 2**, because **Node 2 does not have any taints applied**, therefore taint only **tells the node to accept the pods with certain tolerations** and **does not tell the pod to go to that particular node**.
+
+## Steps of doing taints and tolerations
+
+Before I go through the steps, let me explain **why the Kubernetes Scheduler is not scheduling the pods on the master node**. It is because the master node **has a taint setup** automatically **when the Kubernetes cluster is created**. Therefore, it will **prevent** any pods from **being scheduled** on the master node.
+
+```bash
+# Check the taints on the node
+kubectl describe node <node-name> | grep Taint
+kubectl describe node node | grep Taint
+```
+
+<Steps>
+
+### Taint the Node
+
+```bash
+kubectl taint nodes <node-name> <key>=<value>:<effect>
+kubectl taint nodes node1 app=green:NoSchedule
+```
+
+The **taint effect** defines **what happens to the pods that do not tolerate the taint**. The possible effects are:
+- **NoSchedule**: The pod **will not be scheduled** onto the node.
+- **PreferNoSchedule**: The scheduler will **try to avoid placing a pod** that **does not tolerate the taint** on the node, but this is **not guaranteed**.
+- **NoExecute**: The pod **will be evicted (kicked out)** from the node if it is already running on the node, that means the pod is being killed. Besides, the new pods **will not be scheduled** onto the node if they do not tolerate the taint.
+
+### Tolerations on the Pod
+
+```yaml title="sample-pod.yaml"
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-pod
+spec:
+  containersL:
+    - name: sample-container
+      image: nginx
+  tolerations:
+    - key: "app"
+      operator: "Equal"
+      value: "green"
+      effect: "NoSchedule"
+```
+- Remember **all tolerations values** need to be **encoded** in `""` (double quotes).
+
+### Optional: Remove the taint
+
+Just add `-` at behind of the taint effect to remove the taint.
+
+```bash
+kubectl taint nodes <node-name> <key>=<value>:<effect>-
+kubectl taint nodes node1 app=green:NoSchedule-
+```
+
+</Steps>

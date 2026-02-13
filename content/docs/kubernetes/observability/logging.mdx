@@ -1,0 +1,30 @@
+---
+title: Logging
+---
+
+## Usage of Logging
+
+Logging is a way to **monitor and troubleshoot the applications** running in a Kubernetes cluster. It is important to **have a logging strategy** in place to **monitor the health of the applications** and to **troubleshoot issues** when they arise.
+
+```yaml title="sample-pod.yaml"
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-pod
+spec:
+  containers:
+    - name: web-app
+      image: webapp
+    - name: db:
+      image: webapp-db
+```
+
+```bash
+# View the live logs of a pod
+kubectl logs -f <pod-name>
+kubectl logs -f sample-pod
+
+# View the container logs if there are multiple containers in a pod
+kubectl logs -f <pod-name> -c <container-name>
+kubectl logs -f sample-pod -c webapp-db
+```

@@ -1,0 +1,10 @@
+{
+  "pages": [
+    "manual-scheduling",
+    "taints-and-tolerations",
+    "node-selectors",
+    "node-affinity",
+    "static-pod",
+    "multiple-schedulers"
+  ]
+}

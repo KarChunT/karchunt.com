@@ -1,0 +1,31 @@
+---
+title: Volume
+---
+
+## Usage and Concept of Volume
+
+Volumes are used to **store and presist data** in containers. The data will **not be lost** when the container is **restarted** or **deleted**. Volumes can be used to **share data** between containers.
+
+Refer [Kubernetes Volume Types](https://kubernetes.io/docs/concepts/storage/volumes/) for more information.
+
+```yaml title="pod-volume.yaml"
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+    - name: ubuntu
+      image: ubuntu
+      command: ["/bin/sh", "-c"]
+      args: ["for i in {1..10}; do echo $i >> /output/numbers.txt; done"]
+      volumeMounts:
+        - name: my-volume # same as volume name
+          mountPath: /output
+  volumes:
+    - name: my-volume
+      hostPath:
+        path: /data/output
+        type: Directory
+```
+- The above example will **store the container output** `/output` in the **host path** `/data/output`.

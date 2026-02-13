@@ -1,0 +1,36 @@
+---
+title: Job
+---
+
+## Concept and Usage of Job
+
+Job will **create one or more pods**. The job will be **considered as completed** when all the pods inside the job are **completed**. When you delete a job, the pods created by the job will be deleted too.
+
+Use case;
+- Running a batch Job
+- Backup operation
+
+```yaml title="job.yaml"
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: backup-job
+spec:
+  completions: 3 # run 3 pods
+  parallelism: 2 # parallel run 2 pods at a time
+  template: # pod template
+    spec:
+      containers:
+        - name: backup
+          image: busybox
+          command: ["echo", "Backup operation"]
+      restartPolicy: Never
+```
+
+If some of the pods fail, the job **will create new pods to replace the failed ones** until the **specified number of completions (3)** is **achieved**. The job will **keep retrying** until all Pods have successfully completed or the job is deleted. However, since the `restartPolicy` is set to `Never`, the pod **will not be restarted** if it fails, instead, **new Pod** will be **created** to **replace them**.
+
+```bash
+kubectl get jobs
+kubectl delete job <job-name>
+```
+

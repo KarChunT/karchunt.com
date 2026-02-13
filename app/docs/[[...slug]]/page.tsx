@@ -27,6 +27,7 @@ import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { LLMCopyButton, ViewOptions } from '@/components/page-actions';
 import { GITHUB_URL } from '@/app/constants';
+import { DocSelect } from '@/components/DocSelect';
 
 export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
   const params = await props.params;
@@ -43,6 +44,9 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
         style: 'clerk',
       }}
     >
+      {page.url !== '/docs' && (
+        <DocSelect currentHref={page.url} directShow={false} />
+      )}
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <div className="flex flex-row items-center gap-2 border-b pt-2 pb-6">

@@ -1,0 +1,9 @@
+{
+  "pages": [
+    "readiness-probes",
+    "liveness-probes",
+    "logging",
+    "monitoring",
+    "audit-logging"
+  ]
+}
