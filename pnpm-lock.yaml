@@ -14,6 +14,9 @@ importers:
       '@mdi/react':
         specifier: ^1.6.1
         version: 1.6.1
+      '@orama/orama':
+        specifier: ^3.1.18
+        version: 3.1.18
       '@paper-design/shaders-react':
         specifier: ^0.0.71
         version: 0.0.71(@types/react@19.2.14)(react@19.2.3)

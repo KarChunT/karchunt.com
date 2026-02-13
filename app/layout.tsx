@@ -5,6 +5,7 @@ import { RootProvider } from 'fumadocs-ui/provider/next';
 import { createMetadata } from '@/lib/metadata';
 import './globals.css';
 import 'katex/dist/katex.css';
+import SearchDialog from '@/components/search';
 
 export const metadata: Metadata = createMetadata({
   title: {
@@ -40,7 +41,11 @@ export default function RootLayout({
       </head>
 
       <body className="flex min-h-screen flex-col">
-        <RootProvider>
+        <RootProvider
+          search={{
+            SearchDialog,
+          }}
+        >
           {children}
           {/* Google Analytics Script */}
           {GOOGLE_ANALYTICS_ID && (
