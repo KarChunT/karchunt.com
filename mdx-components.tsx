@@ -65,6 +65,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     FileTree: Object.assign(Files, { File, Folder }),
     Tabs: Object.assign(TabsComponents.Tabs, { Tab: TabsComponents.Tab }),
     img: (props) => <ImageZoom {...(props as any)} />,
+    Files,
     File,
     Folder,
     Accordion,
