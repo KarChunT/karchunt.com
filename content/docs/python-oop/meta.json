@@ -1,0 +1,17 @@
+{
+  "title": "Python OOP",
+  "root": true,
+  "pages": [
+    "---Introduction---",
+    "concepts-of-oop",
+    "cohesion-and-coupling",
+    "---Core Topics---",
+    "class-and-object",
+    "encapsulation",
+    "inheritance",
+    "polymorphism",
+    "abstraction",
+    "---Class Diagram---",
+    "uml-class-diagram"
+  ]
+}
