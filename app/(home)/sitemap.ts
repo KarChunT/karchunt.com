@@ -1,24 +1,28 @@
 import type { MetadataRoute } from 'next';
-import { getBasePath } from '@/lib/utils';
-import { source } from '@/lib/source';
+import { source, blog } from '@/lib/source';
 
 export const revalidate = false;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const url = (path: string): string => new URL(path, getBasePath()).toString();
-  const items = await Promise.all(
-    source.getPages().map(async (page) => {
-      // if (page.data.type === 'openapi') return;
-      const { lastModified } = await page.data.load();
-
+  const url = (path: string): string =>
+    new URL(path, 'https://karchunt.com').toString();
+  const items = await Promise.all([
+    ...source.getPages().map(async (page) => {
       return {
         url: url(page.url),
-        lastModified: lastModified ? new Date(lastModified) : undefined,
-        changeFrequency: 'weekly',
+        changeFrequency: 'monthly',
         priority: 0.5,
       } as MetadataRoute.Sitemap[number];
     }),
-  );
+    ...blog.getPages().map(async (page) => {
+      return {
+        url: url(page.url),
+        changeFrequency: 'monthly',
+        lastModified: new Date(page.data.date).toISOString(),
+        priority: 0.5,
+      } as MetadataRoute.Sitemap[number];
+    }),
+  ]);
 
   return [
     {
