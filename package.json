@@ -52,6 +52,8 @@
     "@commitlint/config-conventional": "^20.4.1",
     "@shikijs/transformers": "^3.22.0",
     "@tailwindcss/postcss": "^4.1.18",
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/d3-force": "^3.0.10",
     "@types/node": "^20.19.33",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
