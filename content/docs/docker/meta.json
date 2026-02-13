@@ -1,0 +1,22 @@
+{
+  "title": "Docker",
+  "root": true,
+  "pages": [
+    "---Introduction---",
+    "what-is-docker",
+    "docker-architecture",
+    "docker-installation",
+    "daemon-configuration",
+    "---Core Topics---",
+    "container",
+    "image",
+    "volume",
+    "network",
+    "resource-limits",
+    "docker-compose",
+    "---Additional---",
+    "useful-commands",
+    "best-practices-for-creating-docker-image",
+    "future"
+  ]
+}
