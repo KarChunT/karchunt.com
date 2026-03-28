@@ -6,6 +6,7 @@ import { createMetadata } from '@/lib/metadata';
 import './globals.css';
 import 'katex/dist/katex.css';
 import SearchDialog from '@/components/search';
+import { Banner } from 'fumadocs-ui/components/banner';
 
 export const metadata: Metadata = createMetadata({
   title: {
@@ -41,6 +42,24 @@ export default function RootLayout({
       </head>
 
       <body className="flex min-h-screen flex-col">
+        <Banner
+          variant="rainbow"
+          rainbowColors={[
+            'rgba(255, 221, 51, 0.5)',
+            'rgba(255, 221, 51, 0.5)',
+            'transparent',
+            'rgba(255, 221, 51, 0.5)',
+            'transparent',
+            'rgba(255, 221, 51, 0.5)',
+            'transparent',
+          ]}
+        >
+          Migrating docs to&nbsp;
+          <a href="https://docs.karchunt.com" className="underline">
+            docs.karchunt.com
+          </a>
+          ... Stay tuned! 🚀
+        </Banner>
         <RootProvider
           search={{
             SearchDialog,
