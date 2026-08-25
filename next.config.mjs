@@ -7,7 +7,7 @@ const config = {
   reactStrictMode: true,
   output: 'export',
   basePath,
-  assetPrefix: basePath,
+  // assetPrefix: basePath,
   trailingSlash: true,
   images: {
     unoptimized: true,
