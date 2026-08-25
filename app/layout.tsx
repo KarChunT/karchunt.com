@@ -54,11 +54,8 @@ export default function RootLayout({
             'transparent',
           ]}
         >
-          Migrating docs to&nbsp;
-          <a href="https://docs.karchunt.com" className="underline">
-            docs.karchunt.com
-          </a>
-          ... Stay tuned! 🚀
+          It's time to say goodbye to my website after two years. I'm working on
+          something big ... Stay tuned! 🚀
         </Banner>
         <RootProvider
           search={{
