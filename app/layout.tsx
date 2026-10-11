@@ -54,8 +54,7 @@ export default function RootLayout({
             'transparent',
           ]}
         >
-          It's time to say goodbye to my website after two years. I'm working on
-          something big ... Stay tuned! 🚀
+          Goodbye after two years. Moving to lorebow.com 🚀
         </Banner>
         <RootProvider
           search={{
