@@ -62,7 +62,8 @@ jobs:
       - name: Build with Next.js
         run: pnpm run build
         env:
-          NEXT_PUBLIC_BASE_PATH: ${{ github.repository == 'KarChunT/karchunt.com-fork' && '/karchunt.com-fork' || '' }}
+          # NEXT_PUBLIC_BASE_PATH: ${{ github.repository == 'KarChunT/karchunt.com-fork' && '/karchunt.com-fork' || '' }}
+          NEXT_PUBLIC_BASE_PATH: '/karchunt.com'
           NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID }}
           NEXT_PUBLIC_GOOGLE_ADSENSE_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_ADSENSE_ID }}
 
