@@ -54,7 +54,7 @@ export default function RootLayout({
             'transparent',
           ]}
         >
-          Goodbye after two years. Moving to <a href="https://lorebow.com">lorebow.com</a> 🚀
+          Goodbye after two years. Moving to &#32;<a href="https://lorebow.com">lorebow.com</a></Banner> 🚀
         </Banner>
         <RootProvider
           search={{
